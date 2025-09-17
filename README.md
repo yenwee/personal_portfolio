@@ -2,6 +2,10 @@
 
 A modern personal portfolio website built with Next.js 15, showcasing professional experience, services, and technical expertise.
 
+## Live Demo
+
+Visit the live portfolio at: [https://yenwee.vercel.app/](https://yenwee.vercel.app/)
+
 ## Tech Stack
 
 - **Framework**: Next.js 15 with App Router
@@ -85,4 +89,4 @@ The project is configured for static export with:
 
 ## Deployment
 
-The application is configured for static export and can be deployed to any static hosting platform. The build output is optimized for CDN distribution.
+The application is deployed on Vercel and configured for static export. The build output is optimized for CDN distribution and can be deployed to any static hosting platform.
