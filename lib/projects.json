@@ -1,0 +1,52 @@
+{
+  "projects": [
+    {
+      "id": "aimod-platform",
+      "title": "AiMod - Agentic AI DataOps Platform",
+      "description": "Malaysia's first homegrown agentic AI DataOps & MLOps platform that automates data pipeline management and machine learning workflows.",
+      "image": "/project-images/aimod-platform.jpg",
+      "category": "AI Platform",
+      "technologies": ["LangGraph", "FastAPI", "Docker", "PostgreSQL", "React"],
+      "status": "In Production",
+      "year": "2025",
+      "client": "Infomina AI Sdn. Bhd.",
+      "featured": true
+    },
+    {
+      "id": "credit-risk-model",
+      "title": "Income Estimation & Loan Screening ML Models",
+      "description": "Developed machine learning models for income estimation with ~25% MAPE and loan screening with 0.75 AUC using XGBoost, processing 6TB of financial data.",
+      "image": "/project-images/credit-risk-model.jpg",
+      "category": "Financial ML",
+      "technologies": ["XGBoost", "Python", "PostgreSQL", "Apache Airflow", "Scikit-learn"],
+      "status": "Deployed",
+      "year": "2023",
+      "client": "Credit Bureau Malaysia",
+      "featured": true
+    },
+    {
+      "id": "recommendation-engine",
+      "title": "E-commerce Recommendation Engine",
+      "description": "Built an item recommendation system that doubled average sales uplifts for key accounts, serving 300+ stakeholders through interactive web dashboards.",
+      "image": "/project-images/recommendation-engine.jpg",
+      "category": "Recommendation System",
+      "technologies": ["Python", "TensorFlow", "React", "PostgreSQL", "Docker"],
+      "status": "Production",
+      "year": "2022",
+      "client": "Shopee Mobile Malaysia",
+      "featured": true
+    },
+    {
+      "id": "data-quality-monitoring",
+      "title": "Automated Data Quality Monitoring System",
+      "description": "Developed Python utility scripts for real-time data quality monitoring and buyer behavior segmentation analysis using mobile app usage data.",
+      "image": "/project-images/data-quality-monitoring.jpg",
+      "category": "Data Engineering",
+      "technologies": ["Python", "Apache Kafka", "Elasticsearch", "Kibana", "Docker"],
+      "status": "Production",
+      "year": "2021",
+      "client": "Shopee Mobile Malaysia",
+      "featured": false
+    }
+  ]
+}

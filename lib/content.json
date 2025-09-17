@@ -1,0 +1,138 @@
+{
+  "personal": {
+    "name": "Yen Wee Lim",
+    "firstName": "Yen Wee",
+    "lastName": "Lim",
+    "title": "Senior Data Scientist building AI-powered solutions at the intersection of",
+    "titleHighlights": [" finance,", " machine learning,", " data engineering,", " and business intelligence"],
+    "location": "Kuala Lumpur, Malaysia",
+    "email": "limyenwee@gmail.com",
+    "phone": "+6019 4739372",
+    "whatsappNumber": "60194739372",
+    "whatsappMessage": "Hi Yen Wee, I'm interested in discussing opportunities with you.",
+    "linkedin": "https://www.linkedin.com/in/yenwee-lim/",
+    "linkedinHandle": "yenwee-lim",
+    "github": "https://github.com/yenwee",
+    "githubHandle": "@yenweelim",
+    "resumePath": "/Resume_LimYenWee.pdf",
+    "availability": "Available for work"
+  },
+  "header": {
+    "tagline": "PORTFOLIO / 2025"
+  },
+  "metadata": {
+    "title": "Yen Wee Lim - Senior Data Scientist & AI Consultant",
+    "description": "Senior Data Scientist building AI-powered solutions at the intersection of machine learning, data engineering, and business intelligence. Specializing in agentic AI, financial modeling, and enterprise data platforms.",
+    "keywords": ["Data Science", "Machine Learning", "AI Consultant", "Malaysia", "Python", "LangGraph", "Financial Risk", "MLOps", "DataOps"],
+    "author": "Yen Wee Lim",
+    "ogTitle": "Yen Wee Lim - Senior Data Scientist & AI Consultant",
+    "ogDescription": "Professional portfolio showcasing AI/ML projects, data engineering solutions, and consulting services in Malaysia.",
+    "ogImage": "/profile-photo.png",
+    "ogUrl": "https://yenweelim.dev"
+  },
+  "intro": {
+    "description": "Always interested in new opportunities, collaborations, and conversations about AI, data science, and machine learning."
+  },
+  "currentRole": {
+    "position": "Senior Data Scientist (AI Product)",
+    "company": "@ Infomina AI Sdn. Bhd.",
+    "period": "Feb 2025 — Present"
+  },
+  "focus": ["Python", "Machine Learning", "Docker", "PostgreSQL", "FastAPI"],
+  "services": [
+    {
+      "title": "Agentic AI / LLM Automation",
+      "description": "Building intelligent AI agents and automated intelligent workflows using modern LLM frameworks to streamline business processes."
+    },
+    {
+      "title": "Web Product Development",
+      "description": "Full-stack development of data-driven web applications with modern frameworks, APIs, and scalable architectures."
+    },
+    {
+      "title": "Data Science, Engineering Pipelines",
+      "description": "End-to-end data pipelines, ETL processes, and machine learning model deployment using Docker, Airflow, and cloud platforms such as AWS."
+    },
+    {
+      "title": "Credit Risk & Finance Analytics",
+      "description": "Specialized financial modeling, risk assessment, and machine learning services for financial, banking and fintech industries."
+    }
+  ],
+  "workExperience": [
+    {
+      "year": "2025",
+      "role": "Senior Data Scientist (AI Product)",
+      "company": "Infomina AI Sdn. Bhd.",
+      "description": "Leading the product vision and development of AiMod — Malaysia's first homegrown agentic AI DataOps & MLOps platform, from concept to production.",
+      "tech": ["LLM", "AI Agents", "RAG", "DataOps", "MLOps"],
+      "logo": "/infomina-ai-logo-tech-startup.png"
+    },
+    {
+      "year": "2023",
+      "role": "Data Scientist",
+      "company": "Credit Bureau Malaysia",
+      "description": "Developed Income Estimation (MAPE ~25%) and Loan Screening Machine Learning models (AUC = 0.75). Built and maintained a 6TB data warehouse with daily ETL processes on Airflow, PostgreSQL.",
+      "tech": ["XGBoost", "PostgreSQL", "Apache Airflow", "Data Warehouse"],
+      "logo": "/credit-bureau-malaysia-bank-negara-logo.png"
+    },
+    {
+      "year": "2022",
+      "role": "Associate, Data Analytics",
+      "company": "Shopee Mobile Malaysia",
+      "description": "Developed 15-min refresh interval competitor pricing web dashboards for 300+ stakeholders and modeled a Sales Recommendation Engine that doubled average sales uplifts for key accounts.",
+      "tech": ["Python", "Business Intelligence", "Recommendation Systems"],
+      "logo": "/shopee-orange-logo-e-commerce.png"
+    },
+    {
+      "year": "2021",
+      "role": "Intern, Business Intelligence & Reporting",
+      "company": "Shopee Mobile Malaysia",
+      "description": "Developed Python utility scripts for data quality monitoring and carried out buyer behavior segmentation analysis through mobile application usage data.",
+      "tech": ["Python", "Data Analysis", "Business Intelligence"],
+      "logo": "/shopee-orange-logo-e-commerce.png"
+    }
+  ],
+  "education": [
+    {
+      "period": "Feb 2023 — Feb 2025",
+      "honors": "First Class Honours",
+      "degree": "Master of Science in Statistics",
+      "institution": "Universiti Malaya",
+      "gpa": "Cumulative GPA: 3.88/4.0",
+      "logo": "/universiti-malaya-um-logo-malaysia.png"
+    },
+    {
+      "period": "May 2018 — May 2022",
+      "honors": "First Class Honours",
+      "degree": "Bachelor of Science (Honours) Actuarial Science",
+      "institution": "Universiti Tunku Abdul Rahman",
+      "gpa": "Cumulative GPA: 3.76/4.0",
+      "achievements": "President's List — 2 Semesters, Dean's List — 4 Semesters",
+      "logo": "/universiti-tunku-abdul-rahman-utar-logo-malaysia.png"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Financial Risk Manager",
+      "level": "Holder",
+      "logo": "/frm-financial-risk-manager-garp-logo.jpeg"
+    },
+    {
+      "name": "Certified Financial Analyst",
+      "level": "Level 3 Candidate",
+      "logo": "/cfa-chartered-financial-analyst-institute-logo.png"
+    },
+    {
+      "name": "Deep Learning Specialization",
+      "level": "DeepLearning.AI",
+      "logo": "/deeplearning-ai-andrew-ng-coursera-logo.png"
+    }
+  ],
+  "technicalSkills": [
+    "Docker", "Spark", "Airflow", "MLflow", "FastAPI", "Grafana",
+    "Kubernetes", "PostgreSQL", "Trino", "dbt", "Python", "R",
+    "GitLab CI/CD", "PowerBI", "Tableau"
+  ],
+  "footer": {
+    "copyright": "© 2025 Yen Wee Lim. All rights reserved."
+  }
+}
