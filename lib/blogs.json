@@ -1,0 +1,12 @@
+{
+  "posts": [
+    {
+      "id": "hello-world",
+      "title": "Hello World -- Welcome to My Blog",
+      "description": "First post on my new blog. Sharing thoughts on building AI products, data engineering, and shipping software.",
+      "date": "2026-02-17",
+      "tags": ["General", "AI"],
+      "featured": true
+    }
+  ]
+}
