@@ -4,11 +4,22 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import contentData from "@/lib/content.json"
-import { Bot, Globe, Settings, TrendingUp } from "lucide-react"
+import { Bot, Globe, Settings, TrendingUp, Menu, X, Sun, Moon } from "lucide-react"
+
+const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
+  { name: "About", id: "intro" },
+  { name: "Services", id: "services" },
+  { name: "Projects", id: "projects", href: "/projects" },
+  { name: "Work", id: "work" },
+  { name: "Education", id: "education" },
+  { name: "Blog", id: "blog", href: "/blogs" },
+  { name: "Connect", id: "connect" },
+]
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
   const [activeSection, setActiveSection] = useState("")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
   useEffect(() => {
@@ -39,35 +50,87 @@ export default function Home() {
     setIsDark(!isDark)
   }
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    setMobileMenuOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed top-0 left-0 right-0 z-20 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
           <div className="flex items-center justify-between h-16">
             <div className="text-sm font-mono tracking-wider">{contentData.personal.name.toUpperCase()}</div>
-            <div className="hidden md:flex items-center gap-8">
-              {[
-                { name: "About", id: "intro" },
-                { name: "Services", id: "services" },
-                // { name: "Projects", id: "projects", isPage: true },
-                { name: "Work", id: "work" },
-                { name: "Education", id: "education" },
-                { name: "Connect", id: "connect" },
-              ].map((item) => (
-                item.isPage ? (
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-8">
+                {NAV_ITEMS.map((item) => (
+                  item.href ? (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      className="text-sm transition-colors duration-300 hover:text-foreground text-muted-foreground"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`text-sm transition-colors duration-300 hover:text-foreground ${
+                        activeSection === item.id ? "text-foreground" : "text-muted-foreground"
+                      }`}
+                    >
+                      {item.name}
+                    </button>
+                  )
+                ))}
+              </div>
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
+                aria-label="Toggle theme"
+              >
+                {isDark ? (
+                  <Sun className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
+                ) : (
+                  <Moon className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
+                )}
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-foreground" />
+                ) : (
+                  <Menu className="w-5 h-5 text-foreground" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-sm animate-menu-open">
+            <div className="max-w-4xl mx-auto px-6 py-4 space-y-1">
+              {NAV_ITEMS.map((item) => (
+                item.href ? (
                   <Link
                     key={item.id}
-                    href="/projects"
-                    className="text-sm transition-colors duration-300 hover:text-foreground text-muted-foreground"
+                    href={item.href}
+                    className="block w-full text-left px-3 py-3 rounded-lg text-sm transition-colors duration-200 text-muted-foreground hover:text-foreground hover:bg-muted/20"
                   >
                     {item.name}
                   </Link>
                 ) : (
                   <button
                     key={item.id}
-                    onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
-                    className={`text-sm transition-colors duration-300 hover:text-foreground ${
-                      activeSection === item.id ? "text-foreground" : "text-muted-foreground"
+                    onClick={() => scrollToSection(item.id)}
+                    className={`block w-full text-left px-3 py-3 rounded-lg text-sm transition-colors duration-200 ${
+                      activeSection === item.id
+                        ? "text-foreground bg-muted/30"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
                     }`}
                   >
                     {item.name}
@@ -76,20 +139,24 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
+        )}
       </nav>
 
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
           {["intro", "services", "work", "education", "connect"].map((section) => (
-            <button
-              key={section}
-              onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
-              className={`w-2 h-8 rounded-full transition-all duration-500 ${
-                activeSection === section ? "bg-foreground" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
-              }`}
-              aria-label={`Navigate to ${section}`}
-            />
+            <div key={section} className="group relative">
+              <button
+                onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
+                className={`nav-dot w-2 h-8 rounded-full ${
+                  activeSection === section ? "bg-foreground" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                }`}
+                aria-label={`Navigate to ${section}`}
+              />
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-xs font-mono text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </span>
+            </div>
           ))}
         </div>
       </nav>
@@ -132,7 +199,7 @@ export default function Home() {
                   {contentData.personal.titleHighlights.map((highlight, index) => (
                     <span key={index} className="text-foreground">{highlight}</span>
                   ))}
-                  .
+                  {contentData.personal.titleClosing}
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
@@ -173,69 +240,65 @@ export default function Home() {
           
         </header>
 
-        {/* Scroll Navigation Indicators */}
-        <div 
+        {/* Scroll Navigation Indicator */}
+        <div
           className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-10 transition-opacity duration-500 ${
             activeSection === 'connect' ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
         >
-          <div className="animate-bounce">
-            <button
-              onClick={() => {
-                const sections = ['intro', 'services', 'work', 'education', 'connect']
-                const currentIndex = sections.indexOf(activeSection || 'intro')
-                const nextSection = sections[currentIndex + 1]
-                if (nextSection) {
-                  document.getElementById(nextSection)?.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
-              className="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-muted-foreground/30 hover:border-foreground transition-all duration-300 hover:shadow-lg animate-pulse hover:animate-none bg-background/80 backdrop-blur-sm"
-              aria-label="Scroll to next section"
+          <button
+            onClick={() => {
+              const sections = ['intro', 'services', 'work', 'education', 'connect']
+              const currentIndex = sections.indexOf(activeSection || 'intro')
+              const nextSection = sections[currentIndex + 1]
+              if (nextSection) {
+                document.getElementById(nextSection)?.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+            className="group animate-gentle-float flex items-center justify-center w-10 h-10 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+            aria-label="Scroll to next section"
+          >
+            <svg
+              className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </button>
         </div>
 
-        {/* Scroll to Top Button - Only visible on connect section */}
-        <div 
+        {/* Scroll to Top - Only visible on connect section */}
+        <div
           className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-10 transition-opacity duration-500 ${
             activeSection === 'connect' ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
-          <div className="animate-bounce">
-            <button
-              onClick={() => document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group flex items-center justify-center w-12 h-12 rounded-full border-2 border-muted-foreground/30 hover:border-foreground transition-all duration-300 hover:shadow-lg animate-pulse hover:animate-none bg-background/80 backdrop-blur-sm"
-              aria-label="Scroll to top"
+          <button
+            onClick={() => document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group animate-gentle-float flex items-center justify-center w-10 h-10 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+            aria-label="Scroll to top"
+          >
+            <svg
+              className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
+          </button>
         </div>
 
         <section
@@ -256,7 +319,7 @@ export default function Home() {
                 return (
                 <div
                   key={index}
-                  className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg hover:bg-muted/20"
+                  className="group card-lift p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 hover:shadow-lg hover:bg-muted/20"
                 >
                   <div className="space-y-4">
                     <div className="w-12 h-12 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">
@@ -282,7 +345,7 @@ export default function Home() {
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-3xl sm:text-4xl font-light">Work Experience</h2>
-              <div className="text-sm text-muted-foreground font-mono">2021 — 2025</div>
+              <div className="text-sm text-muted-foreground font-mono">2022 — PRESENT</div>
             </div>
 
             <div className="space-y-8 sm:space-y-12">
@@ -593,34 +656,6 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-4">
-              <button
-                onClick={toggleTheme}
-                className="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <svg
-                    className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                )}
-              </button>
-
               <Link
                 href={`https://wa.me/${contentData.personal.whatsappNumber}?text=${encodeURIComponent(contentData.personal.whatsappMessage)}`}
                 target="_blank"
