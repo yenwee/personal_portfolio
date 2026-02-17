@@ -17,13 +17,19 @@ const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
 ]
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") return false
+    const stored = localStorage.getItem("theme")
+    if (stored) return stored === "dark"
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+  })
   const [activeSection, setActiveSection] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark)
+    localStorage.setItem("theme", isDark ? "dark" : "light")
   }, [isDark])
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export default function Home() {
   }, [])
 
   const toggleTheme = () => {
-    setIsDark(!isDark)
+    setIsDark((prev) => !prev)
   }
 
   const scrollToSection = (id: string) => {
