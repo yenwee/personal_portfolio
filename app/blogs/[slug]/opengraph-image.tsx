@@ -243,7 +243,7 @@ export default async function Image({
               color: TEXT_MUTED,
             }}
           >
-            yenwee.vercel.app
+            weeai.dev
           </span>
         </div>
       </div>

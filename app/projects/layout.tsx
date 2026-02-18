@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Projects - Yen Wee Lim",
     description: "A showcase of AI/ML projects, data engineering solutions, and web applications built for enterprise clients and personal development.",
-    url: "https://yenwee.vercel.app/projects",
+    url: "https://weeai.dev/projects",
   },
 }
 

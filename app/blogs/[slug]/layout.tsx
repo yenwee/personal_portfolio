@@ -18,7 +18,7 @@ export async function generateMetadata({
     return { title: "Post Not Found | Yen Wee Lim" }
   }
 
-  const url = `https://yenwee.vercel.app/blogs/${slug}`
+  const url = `https://weeai.dev/blogs/${slug}`
 
   return {
     title: `${post.title} | Yen Wee Lim`,

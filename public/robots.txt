@@ -25,7 +25,7 @@ User-agent: Applebot-Extended
 Allow: /
 
 # Sitemap reference
-Sitemap: https://yenwee.vercel.app/sitemap.xml
+Sitemap: https://weeai.dev/sitemap.xml
 
 # LLMs.txt reference (non-standard but some crawlers check for it)
-LLMs.txt: https://yenwee.vercel.app/llms.txt
+LLMs.txt: https://weeai.dev/llms.txt

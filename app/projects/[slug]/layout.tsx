@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import type React from "react"
 import projectsData from "@/lib/projects.json"
 
-const SITE_URL = "https://yenwee.vercel.app"
+const SITE_URL = "https://weeai.dev"
 
 interface ProjectLayoutProps {
   children: React.ReactNode

@@ -4,7 +4,7 @@ A modern personal portfolio website built with Next.js 15, showcasing profession
 
 ## Live Demo
 
-Visit the live portfolio at: [https://yenwee.vercel.app/](https://yenwee.vercel.app/)
+Visit the live portfolio at: [https://weeai.dev](https://weeai.dev)
 
 ## Tech Stack
 
