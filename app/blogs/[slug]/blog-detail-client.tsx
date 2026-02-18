@@ -5,7 +5,7 @@ import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeHighlight from "rehype-highlight"
-import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, FolderOpen } from "lucide-react"
 import { useEffect, useState, memo } from "react"
 import { TableOfContents } from "@/components/project/table-of-contents"
 import { AnimatedSection } from "@/components/project/animated-section"
@@ -25,10 +25,17 @@ interface BlogPost {
   readTime?: number
 }
 
+interface RelatedProject {
+  id: string
+  title: string
+  category: string
+}
+
 interface BlogDetailClientProps {
   post: BlogPost
   markdownContent: string
   slug: string
+  relatedProject?: RelatedProject
 }
 
 const SECTION_ACCENTS: Record<string, string> = {
@@ -103,7 +110,7 @@ const ReadingProgressBar = memo(function ReadingProgressBar() {
   )
 })
 
-export default function BlogDetailClient({ post, markdownContent, slug }: BlogDetailClientProps) {
+export default function BlogDetailClient({ post, markdownContent, slug, relatedProject }: BlogDetailClientProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString("en-US", {
@@ -355,6 +362,25 @@ export default function BlogDetailClient({ post, markdownContent, slug }: BlogDe
                 {preprocessCallouts(markdownContent.replace(/^#\s+.+\n+/, ''))}
               </ReactMarkdown>
             </article>
+
+            {/* Related Project */}
+            {relatedProject && (
+              <div className="mt-12 max-w-[680px]">
+                <Link
+                  href={`/projects/${relatedProject.id}`}
+                  className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
+                >
+                  <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
+                    <FolderOpen className="w-5 h-5 text-muted-foreground" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Related Project</p>
+                    <p className="font-medium text-foreground truncate">{relatedProject.title}</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                </Link>
+              </div>
+            )}
 
             {/* Footer Actions */}
             <div className="mt-12 pt-8 border-t border-border max-w-[680px]">

@@ -5,7 +5,7 @@ import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeHighlight from "rehype-highlight"
-import { ArrowLeft, ArrowRight, Calendar, User, Tag, Github } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, User, Tag, Github, FileText, Clock } from "lucide-react"
 import React from "react"
 import { StatsBar } from "@/components/project/stats-bar"
 import { Callout } from "@/components/project/callout"
@@ -38,10 +38,17 @@ interface ProjectType {
   github?: string
 }
 
+interface RelatedPost {
+  id: string
+  title: string
+  readTime: number
+}
+
 interface ProjectDetailClientProps {
   project: ProjectType
   markdownContent: string
   slug: string
+  relatedPosts?: RelatedPost[]
 }
 
 type CalloutType = "insight" | "challenge" | "decision" | "metric" | "note"
@@ -78,7 +85,7 @@ function getSectionAccent(text: string): string {
   return "bg-foreground/70"
 }
 
-export default function ProjectDetailClient({ project, markdownContent, slug }: ProjectDetailClientProps) {
+export default function ProjectDetailClient({ project, markdownContent, slug, relatedPosts }: ProjectDetailClientProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
@@ -336,6 +343,34 @@ export default function ProjectDetailClient({ project, markdownContent, slug }: 
                 {preprocessCallouts(markdownContent)}
               </ReactMarkdown>
             </div>
+
+            {/* Related Blog Posts */}
+            {relatedPosts && relatedPosts.length > 0 && (
+              <div className="mt-12">
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Related Blog Posts</h3>
+                <div className="space-y-3">
+                  {relatedPosts.map((post) => (
+                    <Link
+                      key={post.id}
+                      href={`/blogs/${post.id}`}
+                      className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
+                    >
+                      <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
+                        <FileText className="w-5 h-5 text-muted-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-foreground truncate">{post.title}</p>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                          <Clock className="w-3 h-3" />
+                          {post.readTime} min read
+                        </p>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Footer Actions */}
             <div className="mt-12 pt-8 border-t border-border">

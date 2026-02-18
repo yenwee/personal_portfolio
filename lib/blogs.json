@@ -7,7 +7,8 @@
       "date": "2026-02-18",
       "tags": ["AI Agents", "LangGraph", "Document AI"],
       "featured": true,
-      "readTime": 11
+      "readTime": 11,
+      "relatedProject": "doc-auto"
     },
     {
       "id": "locked-out-server-chinese-new-year-ansible",
@@ -16,7 +17,8 @@
       "date": "2026-02-18",
       "tags": ["Ansible", "DevOps", "Infrastructure"],
       "featured": true,
-      "readTime": 7
+      "readTime": 7,
+      "relatedProject": "smtp-relay-infrastructure"
     },
     {
       "id": "rag-is-not-enough-dual-mode-document-intelligence",
@@ -25,7 +27,8 @@
       "date": "2026-01-15",
       "tags": ["RAG", "Document AI", "LangGraph"],
       "featured": true,
-      "readTime": 8
+      "readTime": 8,
+      "relatedProject": "doc-auto"
     },
     {
       "id": "5-layer-ai-guardrails-system",
@@ -34,7 +37,8 @@
       "date": "2025-12-01",
       "tags": ["AI Safety", "LLM Security", "Architecture"],
       "featured": true,
-      "readTime": 8
+      "readTime": 8,
+      "relatedProject": "sentinel-guardrails"
     },
     {
       "id": "actuarial-science-to-ai",
@@ -43,7 +47,8 @@
       "date": "2025-11-10",
       "tags": ["Career", "AI", "Data Science"],
       "featured": false,
-      "readTime": 8
+      "readTime": 8,
+      "relatedProject": "credit-risk-ml"
     },
     {
       "id": "building-15-ai-agents-production",
@@ -52,7 +57,8 @@
       "date": "2025-10-15",
       "tags": ["AI Agents", "LangGraph", "Production"],
       "featured": true,
-      "readTime": 7
+      "readTime": 7,
+      "relatedProject": "aimod-platform"
     },
     {
       "id": "building-6tb-data-warehouse",
@@ -61,7 +67,8 @@
       "date": "2025-08-20",
       "tags": ["Data Engineering", "PostgreSQL", "ETL"],
       "featured": false,
-      "readTime": 8
+      "readTime": 8,
+      "relatedProject": "credit-risk-ml"
     }
   ]
 }

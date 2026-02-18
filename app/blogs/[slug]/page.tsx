@@ -3,6 +3,7 @@ import path from "node:path"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import blogsData from "@/lib/blogs.json"
+import projectsData from "@/lib/projects.json"
 import BlogDetailClient from "./blog-detail-client"
 
 interface BlogPost {
@@ -67,6 +68,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   const markdownContent = readMarkdownFile(slug) ?? `# ${post.title}\n\n${post.description}`
 
+  const relatedProjectId = (post as { relatedProject?: string }).relatedProject
+  const relatedProject = relatedProjectId
+    ? projectsData.projects.find((p) => p.id === relatedProjectId)
+    : undefined
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -97,6 +103,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         post={post}
         markdownContent={markdownContent}
         slug={slug}
+        relatedProject={relatedProject ? { id: relatedProject.id, title: relatedProject.title, category: relatedProject.category } : undefined}
       />
     </>
   )

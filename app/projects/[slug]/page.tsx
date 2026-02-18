@@ -3,6 +3,7 @@ import path from "node:path"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import projectsData from "@/lib/projects.json"
+import blogsData from "@/lib/blogs.json"
 import ProjectDetailClient from "./project-detail-client"
 
 interface ProjectStat {
@@ -77,6 +78,12 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   const markdownContent = readMarkdownFile(slug) ?? `## Overview\n\n${project.description}\n\n*Detailed write-up coming soon.*`
 
+  const relatedPostIds = (project as { relatedPosts?: string[] }).relatedPosts ?? []
+  const relatedPosts = relatedPostIds
+    .map((id) => blogsData.posts.find((p) => p.id === id))
+    .filter(Boolean)
+    .map((p) => ({ id: p!.id, title: p!.title, readTime: (p as { readTime?: number })?.readTime ?? 5 }))
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -103,6 +110,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         project={project}
         markdownContent={markdownContent}
         slug={slug}
+        relatedPosts={relatedPosts}
       />
     </>
   )

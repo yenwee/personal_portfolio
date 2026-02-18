@@ -26,7 +26,8 @@
         "Human-in-the-loop approval gates in pipeline workflows",
         "~80% estimated improvement in MLOps efficiency"
       ],
-      "role": "Led product vision, architecture, LLM agent system, frontend, and MLOps pipeline"
+      "role": "Led product vision, architecture, LLM agent system, frontend, and MLOps pipeline",
+      "relatedPosts": ["building-15-ai-agents-production"]
     },
     {
       "id": "doc-auto",
@@ -54,7 +55,8 @@
         "5-10x faster analysis compared to manual analyst review",
         "25+ database models, 7 document processing features, 6 format parsers"
       ],
-      "role": "Full-stack development of backend AI pipelines, frontend, and platform architecture"
+      "role": "Full-stack development of backend AI pipelines, frontend, and platform architecture",
+      "relatedPosts": ["rag-is-not-enough-dual-mode-document-intelligence", "model-is-not-the-bottleneck"]
     },
     {
       "id": "sentinel-guardrails",
@@ -81,7 +83,8 @@
         "Canary token as cryptographic trip-wire for system prompt leakage",
         "Output regeneration loop: violations get corrected responses instead of hard blocks"
       ],
-      "role": "Full design and implementation of the multi-layer guardrail architecture"
+      "role": "Full design and implementation of the multi-layer guardrail architecture",
+      "relatedPosts": ["5-layer-ai-guardrails-system"]
     },
     {
       "id": "credit-risk-ml",
@@ -108,7 +111,8 @@
         "MLOps platform prototype with Feast feature store for on-demand model retraining",
         "FastAPI model serving endpoints containerized with Docker"
       ],
-      "role": "Data Scientist - end-to-end ML pipeline from data warehouse to model serving"
+      "role": "Data Scientist - end-to-end ML pipeline from data warehouse to model serving",
+      "relatedPosts": ["building-6tb-data-warehouse", "actuarial-science-to-ai"]
     },
     {
       "id": "shopee-telegram-bot",
@@ -163,7 +167,8 @@
         "Documented incident recovery: fail2ban Restore Ban bypass, UFW ordering",
         "Tier B Postal upgrade path with 21-day IP warm-up schedule and DMARC graduation"
       ],
-      "role": "Infrastructure architect and sole developer (freelance)"
+      "role": "Infrastructure architect and sole developer (freelance)",
+      "relatedPosts": ["locked-out-server-chinese-new-year-ansible"]
     },
     {
       "id": "einvoice-system",
