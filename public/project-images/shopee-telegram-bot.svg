@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 7" refX="9" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="rgba(255,255,255,0.4)"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="12" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="white" opacity="0.9" font-weight="600">Shopee Telegram Bot Architecture</text>
+
+  <!-- CDP Scraper Group Container -->
+  <rect x="20" y="55" width="195" height="220" rx="10" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="117" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6" text-anchor="middle" font-weight="600" opacity="0.9">CDP Scraper</text>
+
+  <!-- Chrome Browser node -->
+  <rect x="38" y="90" width="160" height="36" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="118" y="113" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Chrome Browser</text>
+
+  <!-- Network Interceptor node -->
+  <rect x="38" y="140" width="160" height="36" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="118" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Network Interceptor</text>
+
+  <!-- Arrow from Chrome to Interceptor -->
+  <line x1="118" y1="126" x2="118" y2="140" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Capture Headers label -->
+  <rect x="52" y="191" width="130" height="22" rx="11" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="0.5"/>
+  <text x="117" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#93c5fd" text-anchor="middle">Capture Headers</text>
+
+  <!-- Arrow from CDP to Shopee API -->
+  <line x1="215" y1="158" x2="248" y2="158" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- Live Cookies label on arrow -->
+  <text x="232" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#fcd34d" text-anchor="middle" transform="rotate(-90, 232, 150)">Live Cookies</text>
+
+  <!-- Shopee API Group Container -->
+  <rect x="255" y="55" width="195" height="270" rx="10" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+  <text x="352" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#f59e0b" text-anchor="middle" font-weight="600" opacity="0.9">Shopee API</text>
+
+  <!-- Shop Listings node -->
+  <rect x="273" y="88" width="160" height="34" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="353" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Shop Listings</text>
+
+  <!-- Product Stock node -->
+  <rect x="273" y="132" width="160" height="34" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="353" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Product Stock</text>
+
+  <!-- curl Replay node -->
+  <rect x="273" y="176" width="160" height="34" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="353" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">curl Replay</text>
+
+  <!-- Price Monitor node -->
+  <rect x="273" y="220" width="160" height="34" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="353" y="242" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Price Monitor</text>
+
+  <!-- 6 Regions pill -->
+  <rect x="305" y="268" width="95" height="22" rx="11" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.3)" stroke-width="0.5"/>
+  <text x="352" y="283" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#fcd34d" text-anchor="middle">6 Regions</text>
+
+  <!-- Arrow from Shopee API to Telegram Bot -->
+  <line x1="450" y1="190" x2="498" y2="190" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Telegram Bot Group Container -->
+  <rect x="505" y="55" width="185" height="270" rx="10" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="597" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6" text-anchor="middle" font-weight="600" opacity="0.9">Telegram Bot</text>
+
+  <!-- Scheduler node -->
+  <rect x="523" y="88" width="150" height="40" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="598" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Scheduler</text>
+  <text x="598" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#93c5fd" text-anchor="middle">every 15min</text>
+
+  <!-- 11 Commands node -->
+  <rect x="523" y="138" width="150" height="34" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="598" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">11 Commands</text>
+
+  <!-- Notifications node -->
+  <rect x="523" y="182" width="150" height="34" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="598" y="204" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Notifications</text>
+
+  <!-- Stock Alerts node -->
+  <rect x="523" y="226" width="150" height="34" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="598" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Stock Alerts</text>
+
+  <!-- Price Drop Alerts node -->
+  <rect x="523" y="270" width="150" height="34" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="598" y="292" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Price Drop Alerts</text>
+
+  <!-- Arrow from Bot to Telegram -->
+  <line x1="690" y1="190" x2="710" y2="190" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Telegram circle (external) -->
+  <circle cx="748" cy="190" r="38" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="748" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="500">Telegram</text>
+  <text x="748" y="201" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#fcd34d" text-anchor="middle">API</text>
+
+  <!-- Data flow annotations -->
+  <!-- Bottom section: data flow summary -->
+  <rect x="20" y="370" width="770" height="115" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+
+  <!-- Flow step 1 -->
+  <rect x="40" y="388" width="150" height="32" rx="6" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="115" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#93c5fd" text-anchor="middle">1. Launch Chrome</text>
+  <text x="115" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">via Puppeteer CDP</text>
+
+  <line x1="190" y1="404" x2="220" y2="404" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Flow step 2 -->
+  <rect x="225" y="388" width="150" height="32" rx="6" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.2)" stroke-width="0.5"/>
+  <text x="300" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#fcd34d" text-anchor="middle">2. Intercept APIs</text>
+  <text x="300" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">Capture auth tokens</text>
+
+  <line x1="375" y1="404" x2="405" y2="404" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Flow step 3 -->
+  <rect x="410" y="388" width="150" height="32" rx="6" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.2)" stroke-width="0.5"/>
+  <text x="485" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#fcd34d" text-anchor="middle">3. Replay via curl</text>
+  <text x="485" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">Poll inventory data</text>
+
+  <line x1="560" y1="404" x2="590" y2="404" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Flow step 4 -->
+  <rect x="595" y="388" width="170" height="32" rx="6" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="680" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#93c5fd" text-anchor="middle">4. Notify via Telegram</text>
+  <text x="680" y="413" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">Stock + price changes</text>
+
+  <!-- Tech stack pills at bottom -->
+  <rect x="40" y="440" width="70" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="75" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Node.js</text>
+
+  <rect x="118" y="440" width="80" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="158" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Puppeteer</text>
+
+  <rect x="206" y="440" width="75" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="243" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">node-cron</text>
+
+  <rect x="289" y="440" width="90" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="334" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Telegraf.js</text>
+
+  <rect x="387" y="440" width="60" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="417" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Docker</text>
+</svg>

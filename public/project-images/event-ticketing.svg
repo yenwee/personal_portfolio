@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 7" refX="9" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="rgba(255,255,255,0.4)"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="12" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="white" opacity="0.9" font-weight="600">Event Ticketing Platform</text>
+
+  <!-- Public Group (blue) -->
+  <rect x="16" y="50" width="145" height="200" rx="10" fill="rgba(59,130,246,0.06)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="88" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#3b82f6" text-anchor="middle" font-weight="600" opacity="0.9">PUBLIC</text>
+
+  <!-- Festival Page node -->
+  <rect x="28" y="78" width="120" height="32" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="88" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Festival Page</text>
+
+  <!-- Checkout node -->
+  <rect x="28" y="120" width="120" height="32" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="88" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Checkout</text>
+
+  <!-- Self Check-in Portal node -->
+  <rect x="28" y="162" width="120" height="40" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="88" y="179" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Self Check-in</text>
+  <text x="88" y="193" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#93c5fd" text-anchor="middle">Portal</text>
+
+  <!-- Festival -> Checkout arrow -->
+  <line x1="88" y1="110" x2="88" y2="120" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Arrow from Checkout to Billplz -->
+  <line x1="148" y1="136" x2="178" y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Arrow from Self Check-in to Next.js API -->
+  <line x1="148" y1="182" x2="345" y2="182" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+
+  <!-- Billplz Group (amber) - moved left, no overlap -->
+  <rect x="178" y="50" width="148" height="140" rx="10" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+  <text x="252" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#f59e0b" text-anchor="middle" font-weight="600" opacity="0.9">BILLPLZ</text>
+
+  <!-- Create Bill node -->
+  <rect x="192" y="78" width="120" height="32" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="252" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Create Bill</text>
+
+  <!-- Webhook node (rose accent) -->
+  <rect x="192" y="122" width="120" height="40" rx="8" fill="rgba(244,63,94,0.1)" stroke="#f43f5e" stroke-width="1"/>
+  <text x="252" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Webhook</text>
+  <text x="252" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#fda4af" text-anchor="middle">HMAC-SHA256</text>
+
+  <!-- Arrow from Billplz Create Bill to API Routes -->
+  <line x1="312" y1="94" x2="345" y2="94" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Arrow from Webhook to NextAuth -->
+  <line x1="312" y1="142" x2="345" y2="142" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Next.js + Prisma Group (blue, center) - starts after Billplz -->
+  <rect x="345" y="50" width="200" height="350" rx="10" fill="rgba(59,130,246,0.06)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="445" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#3b82f6" text-anchor="middle" font-weight="600" opacity="0.9">NEXT.JS + PRISMA</text>
+
+  <!-- API Routes node -->
+  <rect x="360" y="78" width="170" height="32" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="445" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">API Routes</text>
+
+  <!-- NextAuth JWT node (rose accent) -->
+  <rect x="360" y="122" width="170" height="32" rx="8" fill="rgba(244,63,94,0.1)" stroke="#f43f5e" stroke-width="0.8"/>
+  <text x="445" y="143" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">NextAuth JWT</text>
+
+  <!-- QR Generator node -->
+  <rect x="360" y="166" width="170" height="40" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="445" y="183" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">QR Generator</text>
+  <text x="445" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#93c5fd" text-anchor="middle">JWT-signed tickets</text>
+
+  <!-- Rate Limiter node -->
+  <rect x="360" y="218" width="170" height="32" rx="8" fill="rgba(244,63,94,0.1)" stroke="rgba(244,63,94,0.5)" stroke-width="0.5"/>
+  <text x="445" y="239" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Rate Limiter</text>
+
+  <!-- Server Actions node -->
+  <rect x="360" y="262" width="170" height="32" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="445" y="283" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Server Actions</text>
+
+  <!-- Email Templates node -->
+  <rect x="360" y="306" width="170" height="32" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="445" y="327" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Email Templates</text>
+
+  <!-- Ticket PDF node -->
+  <rect x="360" y="350" width="170" height="32" rx="8" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="445" y="371" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Ticket PDF Gen</text>
+
+  <!-- Admin Group (blue) at bottom left -->
+  <rect x="16" y="270" width="145" height="155" rx="10" fill="rgba(59,130,246,0.06)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="88" y="288" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#3b82f6" text-anchor="middle" font-weight="600" opacity="0.9">ADMIN</text>
+
+  <!-- Analytics Dashboard node -->
+  <rect x="28" y="300" width="120" height="32" rx="8" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.5)" stroke-width="0.5"/>
+  <text x="88" y="321" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Analytics</text>
+
+  <!-- Staff Scanner node -->
+  <rect x="28" y="342" width="120" height="32" rx="8" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.5)" stroke-width="0.5"/>
+  <text x="88" y="363" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Staff Scanner</text>
+
+  <!-- CSV Export node -->
+  <rect x="28" y="384" width="120" height="30" rx="8" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.5)" stroke-width="0.5"/>
+  <text x="88" y="404" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">CSV Export</text>
+
+  <!-- Arrow from Admin to API -->
+  <line x1="161" y1="350" x2="345" y2="283" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+
+  <!-- Arrow from API to Infrastructure -->
+  <line x1="545" y1="94" x2="575" y2="94" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Infrastructure Group (emerald) -->
+  <rect x="580" y="50" width="196" height="200" rx="10" fill="rgba(16,185,129,0.06)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+  <text x="678" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#10b981" text-anchor="middle" font-weight="600" opacity="0.9">INFRASTRUCTURE</text>
+
+  <!-- PostgreSQL 16 node (oval) -->
+  <rect x="598" y="80" width="160" height="44" rx="22" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1"/>
+  <text x="678" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">PostgreSQL 16</text>
+  <text x="678" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#6ee7b7" text-anchor="middle">Relational DB</text>
+
+  <!-- Nginx + SSL node -->
+  <rect x="598" y="136" width="160" height="32" rx="8" fill="rgba(16,185,129,0.1)" stroke="#10b981" stroke-width="0.8"/>
+  <text x="678" y="157" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Nginx + SSL</text>
+
+  <!-- Docker Compose node -->
+  <rect x="598" y="180" width="160" height="32" rx="8" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.5)" stroke-width="0.5"/>
+  <text x="678" y="201" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Docker Compose</text>
+
+  <!-- Dual Check-in System info box -->
+  <rect x="580" y="275" width="196" height="90" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+  <text x="678" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="rgba(255,255,255,0.6)" text-anchor="middle" font-weight="500">Dual Check-in System</text>
+
+  <rect x="596" y="306" width="76" height="20" rx="6" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="634" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#93c5fd" text-anchor="middle">Self-service</text>
+
+  <rect x="680" y="306" width="76" height="20" rx="6" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="718" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#93c5fd" text-anchor="middle">Staff scan</text>
+
+  <text x="678" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">QR codes with JWT prevent forgery</text>
+
+  <!-- Tech stack pills at bottom -->
+  <rect x="580" y="390" width="62" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="611" y="404" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Next.js</text>
+
+  <rect x="650" y="390" width="55" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="677" y="404" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Prisma</text>
+
+  <rect x="713" y="390" width="55" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="740" y="404" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">React</text>
+
+  <rect x="580" y="418" width="75" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="617" y="432" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">TypeScript</text>
+
+  <rect x="663" y="418" width="55" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="690" y="432" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Docker</text>
+
+  <rect x="726" y="418" width="50" height="20" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="751" y="432" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c4b5fd" text-anchor="middle">Billplz</text>
+</svg>

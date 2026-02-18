@@ -1,127 +1,29 @@
-# AiMod - Agentic AI DataOps Platform
+## Every data question bottlenecked through one engineer
 
-AiMod represents Malaysia's pioneering venture into agentic AI DataOps & MLOps platforms, transforming how organizations manage their data infrastructure and machine learning workflows.
+I watched the same pattern at three different companies: an analyst types a question into Slack, a data engineer translates it into SQL, pastes a screenshot back, and the follow-up restarts the cycle. **The bottleneck was never the data -- it was the translation layer between intent and query.**
 
-## Project Overview
+The Decision Agent sits at the center of this. It routes natural language questions to sub-agents for SQL generation, charting, or explanation synthesis. Conversation history persists to PostgreSQL, so follow-ups carry context instead of starting from scratch. What took a two-day Slack thread now resolves in seconds.
 
-![AiMod Platform Dashboard](/project-images/aimod-platform.jpg)
+> [!decision] Separate LLM Instance Per Agent
+> Each of the 18 LLM instances has its own model, temperature, and system prompt tuned to its task -- the Fine Binning Agent needs precision while the Explanation Agent needs creativity, and a shared config would compromise both.
 
-AiMod is an intelligent platform that combines the power of agentic AI with robust DataOps practices to create self-managing data pipelines and ML workflows. The platform leverages LangGraph for complex decision-making processes and modern containerization technologies for scalable deployment.
+## Fifteen agents that actually ship
 
-## Key Features
+The temptation with LLM agents is to build a clever demo and call it done. I built these to be **load-bearing product components**, not assistants bolted onto the side. The Code Agent is a supervisor-worker pair that authors, edits, compiles, previews, and deploys dbt models entirely within a Monaco editor -- no context-switching, no copy-pasting between tools.
 
-### 🤖 Agentic AI Core
-- **Intelligent Agents**: Self-governing AI agents that monitor, optimize, and maintain data pipelines autonomously
-- **Decision Trees**: Complex decision-making using LangGraph for workflow orchestration
-- **Adaptive Learning**: Agents learn from historical performance to improve future operations
+The ML agents automate judgment calls that previously required a statistician: optimal binning for credit scorecards, model recommendation, monitoring thresholds, and feature analysis. I designed each agent's state machine in LangGraph with explicit, debuggable transitions so when something fails I can trace the exact decision path.
 
-### 📊 DataOps Excellence
-- **Automated Pipeline Management**: Self-healing data pipelines with intelligent error recovery
-- **Real-time Monitoring**: Comprehensive observability with proactive issue detection
-- **Quality Assurance**: Automated data quality checks and validation processes
+> [!insight] Multi-Tenancy From Day One
+> I scoped RBAC, JWT authentication, and a full audit trail into the initial architecture because sensitive financial data left zero tolerance for bolting on access control after the fact.
 
-### 🚀 MLOps Integration
-- **Model Lifecycle Management**: End-to-end ML model deployment and monitoring
-- **A/B Testing Framework**: Automated model performance comparison and selection
-- **Scalable Infrastructure**: Container-based deployment with auto-scaling capabilities
+## A DAG engine built for humans, not Airflow
 
-## Technical Architecture
+The Pipeline Builder converts natural language descriptions into structured DAG JSON, rendered as editable visual pipelines on a ReactFlow canvas. But the interesting decision was underneath: **I built a custom execution engine with 13 node types instead of wrapping Airflow operators.**
 
-The platform consists of multiple interconnected components working in harmony to deliver autonomous data operations.
+Airflow assumes you think in generic task dependencies. Data teams think in datasources, transforms, analyses, and outputs -- so the engine matches their mental model. Human-in-the-loop approval gates are first-class primitives, critical where model promotion requires explicit sign-off, not a rubber-stamp webhook.
 
-## Technologies Used
+## What I Learned
 
-- **LangGraph**: For complex agent decision-making and workflow orchestration
-- **FastAPI**: High-performance API framework for real-time data processing
-- **Docker**: Containerization for consistent deployment across environments
-- **PostgreSQL**: Robust data storage with advanced querying capabilities
-- **React**: Modern frontend for intuitive user interface
-
-## Implementation Highlights
-
-### Agent Architecture
-```python
-# Example of AiMod agent configuration
-class DataPipelineAgent:
-    def __init__(self, pipeline_config):
-        self.langgraph_instance = LangGraph(config=pipeline_config)
-        self.monitoring_tools = MonitoringStack()
-        
-    async def monitor_pipeline(self):
-        """Continuous monitoring with intelligent intervention"""
-        metrics = await self.get_pipeline_metrics()
-        if self.detect_anomaly(metrics):
-            return await self.execute_recovery_plan()
-```
-
-### Dashboard Interface
-The platform provides an intuitive dashboard for monitoring all active agents and pipelines:
-
-![AiMod Monitoring Dashboard](/project-images/aimod-platform.jpg)
-
-## Performance Metrics
-
-- **99.7% Uptime**: Achieved through intelligent self-healing mechanisms
-- **40% Faster Processing**: Optimized pipeline execution with agent-driven optimizations
-- **60% Reduction in Manual Intervention**: Autonomous problem resolution
-
-## Business Impact
-
-AiMod has revolutionized data operations for Infomina AI, providing:
-
-1. **Cost Efficiency**: 50% reduction in operational costs through automation
-2. **Improved Reliability**: Decreased system failures by 80%
-3. **Enhanced Scalability**: Seamless handling of 10x data volume increases
-4. **Faster Time-to-Market**: 3x faster deployment of new data products
-
-## Future Enhancements
-
-### Planned Features
-- **Multi-cloud Support**: Deployment across AWS, Azure, and GCP
-- **Advanced Analytics**: Enhanced predictive maintenance capabilities
-- **Integration Hub**: Pre-built connectors for popular data tools
-- **Self-Learning Optimization**: Agents that automatically tune performance parameters
-
-### Research Areas
-- **Quantum-Ready Architecture**: Preparing for quantum computing integration
-- **Federated Learning Support**: Enabling distributed ML model training
-- **Natural Language Interface**: Voice and text commands for platform interaction
-
-## Challenges Overcome
-
-### Technical Challenges
-1. **Complex Agent Coordination**: Implemented sophisticated communication protocols between multiple AI agents
-2. **Real-time Decision Making**: Developed low-latency decision engines for critical pipeline operations
-3. **Scalability**: Architected the platform to handle exponential growth in data volume
-
-### Business Challenges
-1. **Market Education**: Pioneering a new category required extensive stakeholder education
-2. **Regulatory Compliance**: Ensuring platform meets Malaysian data protection requirements
-3. **Talent Acquisition**: Building expertise in cutting-edge AI technologies
-
-## Screenshots & Visuals
-
-### Agent Management Interface
-![Agent Management](/project-images/aimod-platform.jpg)
-
-### Pipeline Monitoring
-![Pipeline Monitoring](/project-images/aimod-platform.jpg)
-
-*Note: Replace placeholder images with actual screenshots when available*
-
-## Getting Started
-
-For organizations interested in implementing AiMod:
-
-1. **Assessment Phase**: Evaluate current data infrastructure
-2. **Pilot Program**: Start with a limited scope deployment
-3. **Training & Onboarding**: Comprehensive team training on agentic AI concepts
-4. **Gradual Rollout**: Phased implementation across all data workflows
-
-## Contact
-
-For more information about AiMod and its capabilities, please reach out through the portfolio contact section.
-
----
-
-*This project showcases the intersection of artificial intelligence and data operations, representing the future of autonomous data management.*
+- **What surprised me**: the hardest problem was not the agents but the conversation persistence layer. Knowing when to carry state forward and when to reset required more iteration than any single agent's prompt design.
+- **What I would do differently**: invest earlier in agent observability. I built tracing after the fifth agent but should have built it before the second. Debugging distributed LLM calls without structured traces is like reading server logs through a keyhole.
+- **What stuck with me**: building for self-serve is fundamentally different from building for power users. Every feature obvious to me needed a guided path for the analyst who would use it daily.
