@@ -4,7 +4,8 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import contentData from "@/lib/content.json"
-import { Bot, Globe, Settings, TrendingUp, Menu, X, Sun, Moon, Quote } from "lucide-react"
+import { Bot, Globe, Settings, TrendingUp, Menu, X, Quote } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
   { name: "Projects", id: "projects", href: "/projects" },
@@ -13,18 +14,6 @@ const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
 ]
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    const stored = localStorage.getItem("theme")
-    if (stored) {
-      setIsDark(stored === "dark")
-    } else {
-      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches)
-    }
-    setMounted(true)
-  }, [])
   const [activeSection, setActiveSection] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
