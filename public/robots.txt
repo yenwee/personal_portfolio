@@ -1,0 +1,31 @@
+# Allow all crawlers to access content
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_next/image/
+
+# Explicitly allow known AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap reference
+Sitemap: https://yenwee.vercel.app/sitemap.xml
+
+# LLMs.txt reference (non-standard but some crawlers check for it)
+LLMs.txt: https://yenwee.vercel.app/llms.txt

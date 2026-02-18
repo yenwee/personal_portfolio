@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import contentData from "@/lib/content.json"
-import { Bot, Globe, Settings, TrendingUp, Menu, X, Quote } from "lucide-react"
+import { Bot, Globe, Settings, TrendingUp, Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
@@ -16,12 +16,7 @@ const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
 export default function Home() {
   const [activeSection, setActiveSection] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark)
-    localStorage.setItem("theme", isDark ? "dark" : "light")
-  }, [isDark])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,23 +24,21 @@ export default function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-in-up")
-            setActiveSection(entry.target.id)
+            if (entry.target.id) {
+              setActiveSection(entry.target.id)
+            }
           }
         })
       },
       { threshold: 0.1, rootMargin: "0px 0px -10% 0px" },
     )
 
-    sectionsRef.current.forEach((section) => {
-      if (section) observer.observe(section)
+    document.querySelectorAll(".section-reveal").forEach((el) => {
+      observer.observe(el)
     })
 
     return () => observer.disconnect()
   }, [])
-
-  const toggleTheme = () => {
-    setIsDark((prev) => !prev)
-  }
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
@@ -90,21 +83,7 @@ export default function Home() {
                   Start a Project
                 </Link>
               </div>
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
-                aria-label="Toggle theme"
-              >
-                {mounted ? (
-                  isDark ? (
-                    <Sun className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
-                  ) : (
-                    <Moon className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
-                  )
-                ) : (
-                  <div className="w-4 h-4" />
-                )}
-              </button>
+              <ThemeToggle />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="md:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
@@ -189,98 +168,91 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6 sm:px-8 pt-16">
         <header
           id="intro"
-          ref={(el) => (sectionsRef.current[0] = el)}
-          className="py-20 sm:py-28 flex items-center section-reveal"
+          className="py-20 sm:py-28 flex items-center animate-fade-in-up"
         >
-          <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
+          <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full items-start">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
-              <div className="grid md:grid-cols-2 gap-8 items-start">
-                <div className="space-y-3 sm:space-y-2">
-                  <div className="text-sm text-muted-foreground font-mono tracking-wider">{contentData.header.tagline}</div>
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
-                    {contentData.personal.firstName}
-                    <br />
-                    <span className="text-muted-foreground">{contentData.personal.lastName}</span>
-                  </h1>
-                </div>
-
-                <div className="flex justify-center md:justify-end">
-                  <div className="relative">
-                    <Image
-                      src="/profile-photo.png"
-                      alt="Yen Wee Lim - Professional headshot"
-                      width={200}
-                      height={200}
-                      className="rounded-md object-cover"
-                      priority
-                    />
-                  </div>
-                </div>
+              <div className="space-y-3 sm:space-y-2">
+                <div className="text-sm text-muted-foreground font-mono tracking-wider">{contentData.header.tagline}</div>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
+                  {contentData.personal.firstName}
+                  <br />
+                  <span className="text-muted-foreground">{contentData.personal.lastName}</span>
+                </h1>
               </div>
 
-              <div className="space-y-6">
-                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  {contentData.personal.title}
-                  {contentData.personal.titleHighlights.map((highlight, index) => (
-                    <span key={index} className="text-foreground">{highlight}</span>
-                  ))}
-                  {contentData.personal.titleClosing}
-                </p>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                {contentData.personal.title}
+                {contentData.personal.titleHighlights.map((highlight, index) => (
+                  <span key={index} className="text-foreground">{highlight}</span>
+                ))}
+                {contentData.personal.titleClosing}
+              </p>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    {contentData.personal.availability}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  {contentData.personal.availability}
+                </div>
+                <div>{contentData.personal.location}</div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <Link
+                  href="/projects"
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-all duration-300 hover:shadow-lg text-sm font-medium"
+                >
+                  View My Work
+                  <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <button
+                  onClick={() => scrollToSection("connect")}
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm text-sm font-medium"
+                >
+                  Let's Talk
+                  <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6 pt-4 border-t border-border/40">
+                <div className="space-y-3">
+                  <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
+                  <div className="space-y-1.5">
+                    <div className="text-foreground">{contentData.currentRole.position}</div>
+                    <div className="text-muted-foreground">{contentData.currentRole.company}</div>
+                    <div className="text-xs text-muted-foreground">{contentData.currentRole.period}</div>
                   </div>
-                  <div>{contentData.personal.location}</div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <Link
-                    href="/projects"
-                    className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-all duration-300 hover:shadow-lg text-sm font-medium"
-                  >
-                    View My Work
-                    <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                  <button
-                    onClick={() => scrollToSection("connect")}
-                    className="group inline-flex items-center justify-center gap-2 px-6 py-3 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm text-sm font-medium"
-                  >
-                    Let's Talk
-                    <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </button>
+                <div className="space-y-3">
+                  <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
+                  <div className="flex flex-wrap gap-2">
+                    {contentData.focus.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0">
-              <div className="space-y-4">
-                <div className="text-sm text-muted-foreground font-mono">CURRENTLY</div>
-                <div className="space-y-2">
-                  <div className="text-foreground">{contentData.currentRole.position}</div>
-                  <div className="text-muted-foreground">{contentData.currentRole.company}</div>
-                  <div className="text-xs text-muted-foreground">{contentData.currentRole.period}</div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
-                <div className="flex flex-wrap gap-2">
-                  {contentData.focus.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            <div className="lg:col-span-2 flex justify-center lg:justify-end order-first lg:order-last">
+              <Image
+                src="/profile-photo.png"
+                alt="Yen Wee Lim - Professional headshot"
+                width={280}
+                height={280}
+                className="rounded-md object-cover"
+                priority
+              />
             </div>
           </div>
           
@@ -382,7 +354,6 @@ export default function Home() {
 
         <section
           id="services"
-          ref={(el) => (sectionsRef.current[1] = el)}
           className="py-16 sm:py-24 section-reveal"
         >
           <div className="space-y-8 sm:space-y-10">
@@ -416,7 +387,6 @@ export default function Home() {
 
         <section
           id="work"
-          ref={(el) => (sectionsRef.current[2] = el)}
           className="py-16 sm:py-24 section-reveal"
         >
           <div className="space-y-8 sm:space-y-10">
@@ -475,7 +445,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section ref={(el) => (sectionsRef.current[5] = el)} className="py-16 sm:py-24 border-y border-border/40 bg-muted/20 -mx-6 sm:-mx-8 px-6 sm:px-8 section-reveal">
+        <section className="py-16 sm:py-24 border-y border-border/40 bg-muted/20 -mx-6 sm:-mx-8 px-6 sm:px-8 section-reveal">
           <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
             <div className="text-xs text-muted-foreground font-mono tracking-wider">WHAT PEOPLE SAY</div>
 
@@ -499,7 +469,6 @@ export default function Home() {
 
         <section
           id="education"
-          ref={(el) => (sectionsRef.current[3] = el)}
           className="py-16 sm:py-24 section-reveal"
         >
           <div className="space-y-8 sm:space-y-10">
@@ -508,20 +477,20 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <Image src="/universiti-malaya-um-logo-malaysia.png" alt="Universiti Malaya" width={24} height={24} className="rounded-[2px]" />
+                  <Image src="/universiti-malaya-um-logo-malaysia.png" alt="Universiti Malaya" width={48} height={24} className="object-contain shrink-0" />
                   <h3 className="font-medium text-foreground">MSc Statistics</h3>
                   <span className="text-xs text-muted-foreground/60 font-mono">2023-2025</span>
                 </div>
-                <p className="text-sm text-muted-foreground pl-9">Universiti Malaya - First Class Honours, GPA 3.88/4.0</p>
+                <p className="text-sm text-muted-foreground pl-[60px]">Universiti Malaya - First Class Honours, GPA 3.88/4.0</p>
               </div>
 
               <div className="space-y-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <Image src="/universiti-tunku-abdul-rahman-utar-logo-malaysia.png" alt="UTAR" width={24} height={24} className="rounded-[2px]" />
+                  <Image src="/universiti-tunku-abdul-rahman-utar-logo-malaysia.png" alt="UTAR" width={48} height={24} className="object-contain shrink-0" />
                   <h3 className="font-medium text-foreground">BSc Actuarial Science</h3>
                   <span className="text-xs text-muted-foreground/60 font-mono">2018-2022</span>
                 </div>
-                <p className="text-sm text-muted-foreground pl-9">UTAR - First Class Honours, GPA 3.76/4.0</p>
+                <p className="text-sm text-muted-foreground pl-[60px]">UTAR - First Class Honours, GPA 3.76/4.0</p>
               </div>
             </div>
 
@@ -537,7 +506,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => (sectionsRef.current[4] = el)} className="py-16 sm:py-24 section-reveal">
+        <section id="connect" className="py-16 sm:py-24 section-reveal">
           <div className="space-y-10">
             <div className="max-w-2xl">
               <h2 className="text-2xl sm:text-3xl font-light mb-4">Have a project in mind?</h2>

@@ -2,8 +2,8 @@
   "posts": [
     {
       "id": "model-is-not-the-bottleneck",
-      "title": "The Model Is Not the Bottleneck: How a 32B Model Beat Gemini 3 Pro at Document Extraction",
-      "description": "Why we scrapped our Gemini 3 Pro single-pass pipeline after 30% accuracy and built a four-node LangGraph graph with Qwen3 32B VL that hit 100% -- at lower cost, with better debuggability.",
+      "title": "The Model Is Not the Bottleneck: How Qwen3 32B Beat a Frontier VLM at Document Extraction",
+      "description": "Why we scrapped our Gemini 3 Pro single-pass pipeline after under 40% accuracy and built an adaptive LangGraph graph with Qwen3 32B VL that hit over 90% -- at lower cost, with better debuggability.",
       "date": "2026-02-18",
       "tags": ["AI Agents", "LangGraph", "Document AI"],
       "featured": true,

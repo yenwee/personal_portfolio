@@ -1,0 +1,45 @@
+# Yen Wee Lim
+
+> AI Engineer & Full-Stack Developer based in Kuala Lumpur, Malaysia. Currently Lead AI Solutions at Infomina AI Sdn. Bhd.
+
+Yen Wee Lim builds production AI systems, full-stack applications, and data platforms. His work spans agentic AI workflows with LangGraph, enterprise document intelligence, ML pipelines, and serverless infrastructure on AWS. He holds a background in actuarial science and transitioned into AI engineering through data warehousing and credit risk modelling.
+
+## Pages
+
+- [Homepage](https://yenwee.vercel.app): Main portfolio with services offered, work experience, education, certifications, and testimonials
+- [Projects](https://yenwee.vercel.app/projects): Showcase of AI/ML, data engineering, and web application projects
+- [Blog](https://yenwee.vercel.app/blogs): Technical writing on AI agents, data engineering, infrastructure, and career
+
+## Projects
+
+- [AiMod Platform](https://yenwee.vercel.app/projects/aimod-platform): Agentic AI DataOps and MLOps platform with 15+ LangGraph agents for automated data workflows
+- [Document AI](https://yenwee.vercel.app/projects/doc-auto): Enterprise dual-mode document intelligence system with agentic RAG for structured and unstructured extraction
+- [Sentinel Guardrails](https://yenwee.vercel.app/projects/sentinel-guardrails): 5-layer AI safety middleware for production LLM systems
+- [Credit Risk ML](https://yenwee.vercel.app/projects/credit-risk-ml): ML models and 6TB data warehouse built at Credit Bureau Malaysia
+- [E-Invoice System](https://yenwee.vercel.app/projects/einvoice-system): Serverless billing and e-invoicing system running on approximately RM50/month AWS infrastructure
+- [SMTP Relay](https://yenwee.vercel.app/projects/smtp-relay-infrastructure): Ansible-automated email relay infrastructure
+- [Event Ticketing](https://yenwee.vercel.app/projects/event-ticketing-platform): Full-stack ticketing platform with payment processing integration
+- [Shopee Bot](https://yenwee.vercel.app/projects/shopee-telegram-bot): E-commerce price monitoring bot using CDP and Telegram
+
+## Blog Posts
+
+- [How a 32B Model Beat Gemini 3 Pro at Document Extraction](https://yenwee.vercel.app/blogs/model-is-not-the-bottleneck): Why the model is not the bottleneck in production AI systems
+- [Locked Out of a Server on Chinese New Year](https://yenwee.vercel.app/blogs/locked-out-server-chinese-new-year-ansible): Server lockout incident that led to adopting Ansible automation
+- [RAG Is Not Enough](https://yenwee.vercel.app/blogs/rag-is-not-enough-dual-mode-document-intelligence): Why basic RAG fails for enterprise documents and the dual-mode approach
+- [5-Layer AI Guardrails System](https://yenwee.vercel.app/blogs/5-layer-ai-guardrails-system): Architecture behind the Sentinel AI safety middleware
+- [From Actuarial Science to AI](https://yenwee.vercel.app/blogs/actuarial-science-to-ai): Career journey from actuarial science to AI engineering
+- [Building 15 AI Agents for Production](https://yenwee.vercel.app/blogs/building-15-ai-agents-production): How 15 LangGraph agents were built and deployed in production
+- [Building a 6TB Data Warehouse](https://yenwee.vercel.app/blogs/building-6tb-data-warehouse): Designing and operating a 6TB PostgreSQL data warehouse
+
+## Services
+
+- **AI Agents & LLM Systems**: Agentic workflows, RAG pipelines, guardrails, and LLM integration
+- **Full-Stack Applications**: Web applications with modern frameworks and cloud deployment
+- **Data & MLOps Platforms**: Data warehouses, ML pipelines, and automated DataOps
+- **Dashboards & Analytics**: Business intelligence dashboards and data visualization
+
+## Optional
+
+- [LinkedIn](https://www.linkedin.com/in/yenwee-lim/): Professional profile and work history
+- [GitHub](https://github.com/yenwee): Open-source projects and code repositories
+- Email: limyenwee@gmail.com
