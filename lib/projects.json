@@ -2,51 +2,224 @@
   "projects": [
     {
       "id": "aimod-platform",
-      "title": "AiMod - Agentic AI DataOps Platform",
-      "description": "Malaysia's first homegrown agentic AI DataOps & MLOps platform that automates data pipeline management and machine learning workflows.",
-      "image": "/project-images/aimod-platform.jpg",
+      "title": "AiMod - Agentic AI DataOps & MLOps Platform",
+      "description": "End-to-end self-serve AI platform with 15+ LangGraph agents that automate data ingestion, transformation, ML model training, and on-demand analytics. Features a natural language interface that converts questions into SQL, charts, and narrative explanations through a multi-agent decision routing system.",
+      "image": "/project-images/aimod-platform.svg",
       "category": "AI Platform",
-      "technologies": ["LangGraph", "FastAPI", "Docker", "PostgreSQL", "React"],
+      "technologies": ["LangGraph", "FastAPI", "Next.js", "Apache Spark", "MLflow", "PostgreSQL", "Docker", "Traefik", "Kafka", "dbt"],
       "status": "In Production",
       "year": "2025",
-      "client": "Infomina AI Sdn. Bhd.",
-      "featured": true
+      "client": "Enterprise (Work)",
+      "featured": true,
+      "stats": [
+        { "value": "15+", "label": "LangGraph Agents" },
+        { "value": "9", "label": "Microservices" },
+        { "value": "~80%", "label": "Faster MLOps (Est.)" },
+        { "value": "1000s", "label": "dbt Models" }
+      ],
+      "highlights": [
+        "9 Python microservices behind Traefik reverse proxy",
+        "15+ LangGraph agents with 18 independently-configured LLM instances",
+        "Visual drag-and-drop pipeline builder (ReactFlow) with AI-assisted DAG construction",
+        "Natural language to SQL, charts, and explanations via multi-agent Decision Agent",
+        "Full data lakehouse: Spark, Flink, Kafka, Trino, Delta Lake, Airflow, dbt",
+        "Human-in-the-loop approval gates in pipeline workflows",
+        "~80% estimated improvement in MLOps efficiency"
+      ],
+      "role": "Led product vision, architecture, LLM agent system, frontend, and MLOps pipeline"
     },
     {
-      "id": "credit-risk-model",
-      "title": "Income Estimation & Loan Screening ML Models",
-      "description": "Developed machine learning models for income estimation with ~25% MAPE and loan screening with 0.75 AUC using XGBoost, processing 6TB of financial data.",
-      "image": "/project-images/credit-risk-model.jpg",
-      "category": "Financial ML",
-      "technologies": ["XGBoost", "Python", "PostgreSQL", "Apache Airflow", "Scikit-learn"],
+      "id": "doc-auto",
+      "title": "AI Document Processing Platform",
+      "description": "Enterprise SaaS for AI-powered document intelligence with dual-mode adaptive RAG. Agentic LangGraph pipelines mimic how human analysts work: search for content, flip to specific pages for visual analysis, reflect on coverage, then extract with confidence scores and source citations.",
+      "image": "/project-images/doc-auto.svg",
+      "category": "AI / Document Intelligence",
+      "technologies": ["LangGraph", "FastAPI", "React", "ChromaDB", "PostgreSQL", "Docker", "MinIO", "WeasyPrint"],
+      "status": "In Production",
+      "year": "2025",
+      "client": "Enterprise (Work)",
+      "featured": true,
+      "stats": [
+        { "value": "5-10x", "label": "Faster Analysis" },
+        { "value": "3", "label": "Agentic Pipelines" },
+        { "value": "Multi-tenant", "label": "Architecture" },
+        { "value": "6", "label": "Format Parsers" }
+      ],
+      "highlights": [
+        "3 LangGraph agentic pipelines: extraction (v1 + v2), Q&A with VLM tool use, precision document comparison",
+        "Dual-mode RAG: fast passive retrieval vs self-correcting agentic workflows",
+        "On-demand Vision Language Model integration for scanned/complex documents",
+        "Per-field confidence scores (0.0-1.0) with source page citations and inline editing",
+        "Multi-tenant with RBAC, per-user token quotas, and admin-configurable LLM providers",
+        "5-10x faster analysis compared to manual analyst review",
+        "25+ database models, 7 document processing features, 6 format parsers"
+      ],
+      "role": "Full-stack development of backend AI pipelines, frontend, and platform architecture"
+    },
+    {
+      "id": "sentinel-guardrails",
+      "title": "Sentinel - AI Guardrails Middleware",
+      "description": "Stateless middleware that protects LLM applications with a progressive 5-layer input guard and 4-layer output guard. Uses a fast-first architecture: regex at ~2ms catches obvious attacks, BERT at ~150ms handles semantic threats, and LLM judge at ~2s resolves edge cases -- keeping median latency low.",
+      "image": "/project-images/sentinel-guardrails.svg",
+      "category": "AI Safety / Security",
+      "technologies": ["FastAPI", "PyTorch", "HuggingFace Transformers", "DeBERTa", "Docker"],
+      "status": "In Production",
+      "year": "2025",
+      "client": "Enterprise (Work)",
+      "featured": true,
+      "stats": [
+        { "value": "5", "label": "Input Guard Layers" },
+        { "value": "4", "label": "Output Guard Layers" },
+        { "value": "~2ms", "label": "Regex Layer Latency" },
+        { "value": "0", "label": "Database Dependencies" }
+      ],
+      "highlights": [
+        "5-layer input guard: URL filter, 16 regex patterns, BERT prompt-injection classifier, LLM judge, intent scope gatekeeper",
+        "4-layer output guard: canary token leak detection, persona enforcement, BERT + topic classifier (parallel), LLM judge with auto-regeneration",
+        "Progressive performance tiers: ~2ms -> ~150ms -> ~2s escalation path",
+        "Hot-reloadable YAML policies without container restart",
+        "Canary token as cryptographic trip-wire for system prompt leakage",
+        "Output regeneration loop: violations get corrected responses instead of hard blocks"
+      ],
+      "role": "Full design and implementation of the multi-layer guardrail architecture"
+    },
+    {
+      "id": "credit-risk-ml",
+      "title": "Credit Risk ML Models & Data Warehouse",
+      "description": "Income estimation model (MAPE ~25%) and loan screening model (AUC 0.75) built on millions of national credit records. Includes a 6TB PostgreSQL data warehouse with daily ETL replication and an internal MLOps platform prototype with automated feature selection.",
+      "image": "/project-images/credit-risk-ml.svg",
+      "category": "Financial ML / Data Engineering",
+      "technologies": ["XGBoost", "Scikit-learn", "PostgreSQL", "Apache Airflow", "FastAPI", "MLflow", "Feast", "Docker"],
       "status": "Deployed",
       "year": "2023",
       "client": "Credit Bureau Malaysia",
-      "featured": true
+      "featured": true,
+      "stats": [
+        { "value": "~25%", "label": "Income Model MAPE" },
+        { "value": "0.75", "label": "Loan Model AUC" },
+        { "value": "6TB", "label": "Data Warehouse" },
+        { "value": "Millions", "label": "Credit Records" }
+      ],
+      "highlights": [
+        "Income Estimation model with ~25% MAPE on national credit data",
+        "Loan Screening model achieving 0.75 AUC using XGBoost",
+        "6TB PostgreSQL data warehouse with millions of credit records",
+        "Daily ETL replication from central bureau data and web scraping jobs on Apache Airflow",
+        "MLOps platform prototype with Feast feature store for on-demand model retraining",
+        "FastAPI model serving endpoints containerized with Docker"
+      ],
+      "role": "Data Scientist - end-to-end ML pipeline from data warehouse to model serving"
     },
     {
-      "id": "recommendation-engine",
-      "title": "E-commerce Recommendation Engine",
-      "description": "Built an item recommendation system that doubled average sales uplifts for key accounts, serving 300+ stakeholders through interactive web dashboards.",
-      "image": "/project-images/recommendation-engine.jpg",
-      "category": "Recommendation System",
-      "technologies": ["Python", "TensorFlow", "React", "PostgreSQL", "Docker"],
-      "status": "Production",
-      "year": "2022",
-      "client": "Shopee Mobile Malaysia",
-      "featured": true
+      "id": "shopee-telegram-bot",
+      "title": "E-Commerce Monitoring Bot",
+      "description": "Telegram bot that monitors Shopee Malaysia for price drops, stock changes, and new listings using a CDP capture-and-replay technique. Drives a real Chrome browser to intercept Shopee's internal API calls, then replays them server-side with live session cookies to bypass anti-bot detection.",
+      "image": "/project-images/shopee-telegram-bot.svg",
+      "category": "Automation / Web Scraping",
+      "technologies": ["Python", "pychrome (CDP)", "python-telegram-bot", "Chrome DevTools Protocol"],
+      "status": "Completed",
+      "year": "2024",
+      "client": "Personal Project",
+      "featured": false,
+      "stats": [
+        { "value": "6", "label": "Regions Supported" },
+        { "value": "11", "label": "Telegram Commands" },
+        { "value": "3x", "label": "Critical Alert Repeats" },
+        { "value": "0", "label": "External APIs Needed" }
+      ],
+      "highlights": [
+        "CDP capture-and-replay: intercepts Shopee's internal API calls via Chrome DevTools Protocol",
+        "Replays captured requests with live browser cookies using subprocess curl",
+        "Tracks shop listing counts, product stock, pricing, and listing status changes",
+        "Multi-region support: Malaysia, Singapore, Thailand, Indonesia, Vietnam, Philippines",
+        "11 Telegram commands with admin-only management and live config mutation",
+        "Critical alert system: 3x repeated notifications for delistings and restocks"
+      ],
+      "role": "Solo developer",
+      "github": "https://github.com/yenwee/shopee-telegram-bot"
     },
     {
-      "id": "data-quality-monitoring",
-      "title": "Automated Data Quality Monitoring System",
-      "description": "Developed Python utility scripts for real-time data quality monitoring and buyer behavior segmentation analysis using mobile app usage data.",
-      "image": "/project-images/data-quality-monitoring.jpg",
-      "category": "Data Engineering",
-      "technologies": ["Python", "Apache Kafka", "Elasticsearch", "Kibana", "Docker"],
-      "status": "Production",
-      "year": "2021",
-      "client": "Shopee Mobile Malaysia",
-      "featured": false
+      "id": "smtp-relay-infrastructure",
+      "title": "SMTP Relay Infrastructure & VPS Toolkit",
+      "description": "Two-tier email relay system replacing 60+ manually-rotated Gmail accounts for a debt collection agency. Tier A uses Postfix with a custom Python round-robin daemon for automatic Gmail account rotation. Accompanied by a reusable 8-role Ansible VPS provisioning toolkit with security hardening.",
+      "image": "/project-images/smtp-relay.svg",
+      "category": "DevOps / Infrastructure",
+      "technologies": ["Ansible", "Postfix", "Docker", "UFW", "fail2ban", "Uptime Kuma", "Dozzle", "Python"],
+      "status": "In Production",
+      "year": "2026",
+      "client": "Debt Collection Agency (Freelance)",
+      "featured": false,
+      "stats": [
+        { "value": "100K", "label": "Emails per Week" },
+        { "value": "60+", "label": "Gmail Accounts Automated" },
+        { "value": "8", "label": "Ansible Roles" },
+        { "value": "1", "label": "Command to Provision" }
+      ],
+      "highlights": [
+        "Custom Python TCP table server implementing Postfix round-robin sender rotation",
+        "Systemd-hardened daemon with file-locked persistent counter",
+        "8-role Ansible VPS toolkit: common, ssh_hardening, fail2ban, docker, watchdog, healthcheck, monitoring, firewall",
+        "Two-layer health monitoring: generic VPS checks + Postfix-specific queue drain detection",
+        "Documented incident recovery: fail2ban Restore Ban bypass, UFW ordering",
+        "Tier B Postal upgrade path with 21-day IP warm-up schedule and DMARC graduation"
+      ],
+      "role": "Infrastructure architect and sole developer (freelance)"
+    },
+    {
+      "id": "einvoice-system",
+      "title": "Sales, Billing & E-Invoicing System",
+      "description": "Full-stack serverless business management system for an SME equipment company. Covers sales CRM, invoicing, test weight rental management with automated overdue detection, mobile signature capture via JWT-secured links, purchase order tracking with delivery variance detection, and LHDN MyInvois e-invoicing compliance.",
+      "image": "/project-images/einvoice-system.svg",
+      "category": "Full-Stack SaaS",
+      "technologies": ["React", "TypeScript", "AWS Lambda", "DynamoDB", "S3", "Terraform", "Vite", "WeasyPrint"],
+      "status": "In Development",
+      "year": "2025",
+      "client": "SME Client (Freelance)",
+      "featured": false,
+      "stats": [
+        { "value": "~RM50", "label": "Monthly AWS Cost" },
+        { "value": "12", "label": "DynamoDB Tables" },
+        { "value": "7yr", "label": "Document Retention" },
+        { "value": "100%", "label": "Terraform IaC" }
+      ],
+      "highlights": [
+        "Serverless on AWS: Lambda + DynamoDB + S3 + API Gateway (~RM50/month)",
+        "12 DynamoDB tables with GSIs, fully defined in Terraform IaC",
+        "Mobile signature capture: JWT-secured links (24h expiry) with canvas-based signing, S3 storage with 7-year retention",
+        "Equipment rental management: check-out/check-in workflow, automated daily overdue detection via CloudWatch",
+        "Purchase order tracking with partial delivery recording and variance detection",
+        "Malaysian LHDN MyInvois e-invoicing integration (UBL 2.1 JSON format)",
+        "GitHub Actions CI/CD with pylint, black, mypy, pytest, bandit security scans"
+      ],
+      "role": "Sole developer (freelance)"
+    },
+    {
+      "id": "event-ticketing-platform",
+      "title": "Event Ticketing & Check-in Platform",
+      "description": "Full-stack ticketing platform with integrated payment processing (Billplz), QR code ticket generation, dual check-in flows (staff scanner + self-service), and admin analytics dashboard. Features privacy-first NRIC handling with SHA-256 hashing and HMAC-verified payment webhooks.",
+      "image": "/project-images/event-ticketing.svg",
+      "category": "Full-Stack Web App",
+      "technologies": ["Next.js", "Prisma", "PostgreSQL", "Billplz", "Docker", "Nginx", "Tailwind CSS", "Recharts"],
+      "status": "In Development",
+      "year": "2026",
+      "client": "Event Organizer (Freelance)",
+      "featured": false,
+      "stats": [
+        { "value": "2", "label": "Check-in Modes" },
+        { "value": "3", "label": "Pricing Tiers" },
+        { "value": "SHA-256", "label": "NRIC Privacy" },
+        { "value": "HMAC", "label": "Webhook Security" }
+      ],
+      "highlights": [
+        "Billplz payment integration with HMAC-SHA256 webhook verification and idempotent processing",
+        "JWT-signed QR tickets with dual check-in: staff camera/barcode scanner + 4-step self-service portal",
+        "Privacy-first: NRIC stored as SHA-256 hash with salt, only last 4 digits in plaintext",
+        "Tiered pricing phases (early bird, regular, door) with per-tier capacity management",
+        "Admin dashboard with revenue charts, tier breakdowns, check-in progress rings, CSV exports",
+        "Rate limiting (10 orders/min, 30 check-ins/min per IP)",
+        "Docker Compose deployment with PostgreSQL, Nginx reverse proxy, Let's Encrypt SSL, auto-migrations"
+      ],
+      "role": "Sole developer (freelance)"
     }
   ]
 }

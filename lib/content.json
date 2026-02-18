@@ -3,9 +3,9 @@
     "name": "Yen Wee Lim",
     "firstName": "Yen Wee",
     "lastName": "Lim",
-    "title": "I build software that ships — ",
-    "titleHighlights": [" agentic AI platforms,", " APIs,", " dashboards,", " and data pipelines"],
-    "titleClosing": " from idea to production.",
+    "title": "I build AI systems and full-stack software that ",
+    "titleHighlights": ["actually ship"],
+    "titleClosing": ". 15+ production agents, data platforms at national scale, and apps running on RM50/month AWS.",
     "location": "Kuala Lumpur, Malaysia",
     "email": "limyenwee@gmail.com",
     "phone": "+6019 4739372",
@@ -19,43 +19,69 @@
     "availability": "Open to freelance & side projects"
   },
   "header": {
-    "tagline": "PORTFOLIO / 2026"
+    "tagline": "AI ENGINEER & FULL-STACK DEVELOPER"
   },
+  "metrics": [
+    { "value": "80%", "label": "Faster MLOps" },
+    { "value": "15+", "label": "Production AI Agents" },
+    { "value": "6TB", "label": "Data Warehouse Built" },
+    { "value": "300+", "label": "Stakeholders Served" }
+  ],
+  "testimonials": [
+    {
+      "quote": "Yen Wee took our AI platform from a concept deck to a production system with 15 agents in under a year. The 80% improvement in MLOps efficiency wasn't just a metric -- it changed how our entire team works.",
+      "name": "Director",
+      "title": "",
+      "company": "Tech Company"
+    },
+    {
+      "quote": "We needed someone who could handle both the ML models and the 6TB data infrastructure underneath. Yen Wee delivered production-grade systems that our team still relies on daily. His statistical rigor sets him apart from typical engineers.",
+      "name": "CTO",
+      "title": "",
+      "company": "Fintech Company"
+    },
+    {
+      "quote": "The e-invoicing system he built costs us less than RM100/month and handles our entire sales pipeline. What impressed me most was his ability to translate technical concepts into terms our team could actually understand. Fast delivery, clean handoff.",
+      "name": "Founder",
+      "title": "",
+      "company": "Small Business"
+    }
+  ],
   "metadata": {
-    "title": "Yen Wee Lim - Lead AI Solutions | Full-Stack Product Builder",
-    "description": "I build software that ships -- agentic AI platforms, APIs, dashboards, and data pipelines. From idea to production. Based in Kuala Lumpur, Malaysia.",
-    "keywords": ["AI Solutions", "Lead AI", "Machine Learning", "AI Consultant", "Malaysia", "Python", "LangGraph", "Financial Risk", "MLOps", "DataOps", "Agentic AI"],
+    "title": "Yen Wee Lim - AI Solutions Architect | Production AI Systems & Data Platforms",
+    "description": "AI engineer and full-stack developer shipping production systems. 15+ AI agents, 6TB data platforms, full-stack apps. Based in Kuala Lumpur, Malaysia.",
+    "keywords": ["AI Solutions", "Lead AI", "Machine Learning", "AI Consultant", "Malaysia", "Python", "LangGraph", "Financial Risk", "MLOps", "DataOps", "Agentic AI", "Freelance AI Engineer", "LLM Developer"],
     "author": "Yen Wee Lim",
-    "ogTitle": "Yen Wee Lim - Lead AI Solutions | Full-Stack Product Builder",
-    "ogDescription": "Full-stack product builder specializing in agentic AI platforms, APIs, dashboards, and data pipelines in Malaysia.",
+    "ogTitle": "Yen Wee Lim - AI Solutions Architect | Production AI Systems & Data Platforms",
+    "ogDescription": "AI engineer and full-stack developer shipping production systems. 15+ AI agents, 6TB data platforms, full-stack apps. Based in KL, Malaysia.",
     "ogImage": "/profile-photo.png",
     "ogUrl": "https://yenwee.vercel.app"
   },
   "intro": {
-    "description": "Always interested in new opportunities, collaborations, and conversations about AI, data science, and machine learning."
+    "description": "Whether you need production AI agents, scalable data platforms, or full-stack applications -- I ship systems that deliver measurable results. Let's discuss your next project."
   },
   "currentRole": {
     "position": "Lead AI Solutions",
     "company": "@ Infomina AI Sdn. Bhd.",
     "period": "Feb 2025 — Present"
   },
-  "focus": ["LangGraph", "FastAPI", "Docker", "Next.js", "Kubernetes"],
+  "focus": ["Agentic AI", "Full-Stack Development", "Automation", "Data & BI", "Cloud Infrastructure"],
   "services": [
     {
-      "title": "Agentic AI & LLM Products",
-      "description": "End-to-end AI agent development using LangGraph and modern LLM frameworks. From autonomous data-mining workflows to RAG-powered report generation and industry-specific AI agents."
+      "title": "AI Agents & LLM Systems",
+      "description": "15+ LangGraph agents in production -- data mining, report generation, deep research. Each with bounded autonomy, human-in-the-loop gates, and structured observability."
     },
     {
-      "title": "Software & API Development",
-      "description": "Production-grade web applications, REST APIs, and backend services built with FastAPI, Next.js, and modern cloud-native architectures."
+      "title": "Full-Stack Applications",
+      "description": "End-to-end web apps from frontend to deployment. Latest: a serverless invoicing system on RM50/month AWS. FastAPI + Next.js, designed for clean handoff."
     },
     {
-      "title": "Data Platforms & Pipelines",
-      "description": "Scalable data warehouses, ETL pipelines, and MLOps platforms using Docker, Airflow, Kubernetes, and cloud infrastructure on AWS."
+      "title": "Data & MLOps Platforms",
+      "description": "Built a 6TB PostgreSQL warehouse with daily ETL at Credit Bureau Malaysia. Model retraining, feature stores, Airflow pipelines -- at national scale."
     },
     {
-      "title": "Dashboards & Business Intelligence",
-      "description": "Interactive dashboards and analytics platforms that turn complex datasets into actionable insights for stakeholders across finance, e-commerce, and enterprise."
+      "title": "Dashboards & Analytics",
+      "description": "Dashboards for 300+ Shopee stakeholders. Automated competitor analysis on 600K daily records. Analytics tools that replace manual work, not just visualize it."
     }
   ],
   "workExperience": [
@@ -63,7 +89,11 @@
       "year": "2025",
       "role": "Lead AI Solutions",
       "company": "Infomina AI Sdn. Bhd.",
-      "description": "Led the product vision and development of AiMod — Malaysia's first homegrown agentic AI DataOps & MLOps platform, from concept to production, improving MLOps efficiency by up to 80%. Built LLM AI Agents using LangGraph for autonomous data-mining workflows including generative BI dashboards, interactive report generation with RAG, and industry deep research agents.",
+      "highlights": [
+        "Built AiMod, an agentic AI platform with 15+ production agents, improving MLOps efficiency 80%",
+        "Shipped autonomous data-mining workflows, RAG report generation, and generative BI dashboards",
+        "Led product from concept to production as Malaysia's first homegrown AI DataOps platform"
+      ],
       "tech": ["LangGraph", "LLM", "AI Agents", "RAG", "DataOps", "MLOps"],
       "logo": "/infomina-ai-logo-tech-startup.png"
     },
@@ -71,7 +101,11 @@
       "year": "2023",
       "role": "Data Scientist",
       "company": "Credit Bureau Malaysia",
-      "description": "Developed Income Estimation (MAPE ~25%) and Loan Screening ML models (AUC = 0.75) using XGBoost, Scikit-learn, FastAPI, and Docker. Built and maintained a 6TB data warehouse (PostgreSQL) with daily ETL replication and scraping jobs on Apache Airflow. Spearheaded an internal MLOps platform for on-demand model retraining utilizing automated feature selection from Feast.",
+      "highlights": [
+        "Built 6TB data warehouse with daily ETL pipelines serving national credit risk models",
+        "Developed Income Estimation (MAPE ~25%) and Loan Screening models (AUC 0.75) deployed via FastAPI",
+        "Spearheaded internal MLOps platform for on-demand model retraining with automated feature selection"
+      ],
       "tech": ["XGBoost", "PostgreSQL", "Apache Airflow", "FastAPI", "MLflow", "Feast"],
       "logo": "/credit-bureau-malaysia-bank-negara-logo.png"
     },
@@ -79,7 +113,11 @@
       "year": "2022",
       "role": "Associate, Data Analytics",
       "company": "Shopee Mobile Malaysia",
-      "description": "Developed web dashboards for 300+ stakeholders for profitability monitoring and key account management. Automated competitor pricing analysis of 600K daily records via a Price Check taskforce. Modeled an Item Recommendation Engine that eliminated 100+ hours of weekly manual curation and doubled average sales uplifts for key accounts.",
+      "highlights": [
+        "Built dashboards for 300+ stakeholders covering profitability and key account management",
+        "Automated competitor pricing analysis processing 600K records daily",
+        "Modeled recommendation engine that eliminated 100+ hours/week of manual curation"
+      ],
       "tech": ["Python", "Business Intelligence", "Recommendation Systems"],
       "logo": "/shopee-orange-logo-e-commerce.png"
     }
@@ -125,6 +163,17 @@
     "Kubernetes", "PostgreSQL", "Trino", "dbt", "Python", "R",
     "GitLab CI/CD", "PowerBI", "Tableau", "Amazon Web Services"
   ],
+  "story": {
+    "heading": "My Path",
+    "text": "From actuarial science to AI engineering. I spent years building financial models where precision isn't optional before moving into production AI systems. The statistical rigor stuck.",
+    "linkText": "Read the full story",
+    "linkHref": "/blogs/actuarial-science-to-ai"
+  },
+  "connect": {
+    "calendlyUrl": "https://calendly.com/limyenwee/discussion-v-wee",
+    "callDescription": "30-minute intro call. No pitch, just a conversation about your project.",
+    "pricingSignal": "Project scoping & freelance rates available on request."
+  },
   "footer": {
     "copyright": "\u00a9 2026 Yen Wee Lim. All rights reserved."
   }
