@@ -1,12 +1,67 @@
 {
   "posts": [
     {
-      "id": "hello-world",
-      "title": "Hello World -- Welcome to My Blog",
-      "description": "First post on my new blog. Sharing thoughts on building AI products, data engineering, and shipping software.",
-      "date": "2026-02-17",
-      "tags": ["General", "AI"],
-      "featured": true
+      "id": "model-is-not-the-bottleneck",
+      "title": "The Model Is Not the Bottleneck: How a 32B Model Beat Gemini 3 Pro at Document Extraction",
+      "description": "Why we scrapped our Gemini 3 Pro single-pass pipeline after 30% accuracy and built a four-node LangGraph graph with Qwen3 32B VL that hit 100% -- at lower cost, with better debuggability.",
+      "date": "2026-02-18",
+      "tags": ["AI Agents", "LangGraph", "Document AI"],
+      "featured": true,
+      "readTime": 11
+    },
+    {
+      "id": "locked-out-server-chinese-new-year-ansible",
+      "title": "I Got Locked Out of My Own Server During Chinese New Year. Then I Automated Everything.",
+      "description": "Three lockouts during a holiday engagement taught me more about Ansible, server hardening, and disposable infrastructure than any tutorial ever could. Here is the playbook that survived.",
+      "date": "2026-02-18",
+      "tags": ["Ansible", "DevOps", "Infrastructure"],
+      "featured": true,
+      "readTime": 7
+    },
+    {
+      "id": "rag-is-not-enough-dual-mode-document-intelligence",
+      "title": "RAG Is Not Enough: How We Built Dual-Mode Document Intelligence",
+      "description": "Why basic RAG fails for enterprise documents and how we built a dual-mode system combining passive retrieval with agentic reasoning and VLM-powered document processing.",
+      "date": "2026-01-15",
+      "tags": ["RAG", "Document AI", "LangGraph"],
+      "featured": true,
+      "readTime": 8
+    },
+    {
+      "id": "5-layer-ai-guardrails-system",
+      "title": "The 5-Layer AI Guardrails System That Catches What GPT Misses",
+      "description": "How we built Sentinel, a progressive AI safety middleware with 5 input layers and 4 output layers that balances catch rate, latency, and cost.",
+      "date": "2025-12-01",
+      "tags": ["AI Safety", "LLM Security", "Architecture"],
+      "featured": true,
+      "readTime": 8
+    },
+    {
+      "id": "actuarial-science-to-ai",
+      "title": "Why I Left Actuarial Science for AI (And Why My Stats Background Is My Secret Weapon)",
+      "description": "A personal career journey from actuarial science to leading AI solutions, and why statistical rigor is the most underrated skill in modern AI engineering.",
+      "date": "2025-11-10",
+      "tags": ["Career", "AI", "Data Science"],
+      "featured": false,
+      "readTime": 8
+    },
+    {
+      "id": "building-15-ai-agents-production",
+      "title": "How We Built 15 AI Agents That Actually Work in Production",
+      "description": "Behind the scenes of AiMod's multi-agent DataOps platform: decision routing, bounded autonomy, human-in-the-loop patterns, and the architecture lessons from building 15 LangGraph agents.",
+      "date": "2025-10-15",
+      "tags": ["AI Agents", "LangGraph", "Production"],
+      "featured": true,
+      "readTime": 7
+    },
+    {
+      "id": "building-6tb-data-warehouse",
+      "title": "Building a 6TB Data Warehouse From Scratch: Lessons I Wish I Knew Earlier",
+      "description": "War stories from building a PostgreSQL data warehouse at Credit Bureau Malaysia: schema design, partitioning strategy, Airflow gotchas, and performance optimization at scale.",
+      "date": "2025-08-20",
+      "tags": ["Data Engineering", "PostgreSQL", "ETL"],
+      "featured": false,
+      "readTime": 8
     }
   ]
 }
