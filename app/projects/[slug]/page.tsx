@@ -14,6 +14,7 @@ import { Callout } from "@/components/project/callout"
 import { TableOfContents } from "@/components/project/table-of-contents"
 import { AnimatedSection } from "@/components/project/animated-section"
 import { PullQuote } from "@/components/project/pull-quote"
+import { ThemeToggle } from "@/components/theme-toggle"
 import "highlight.js/styles/github-dark.css"
 
 interface ProjectDetailPageProps {
@@ -110,12 +111,18 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
               <ArrowLeft className="w-4 h-4" />
               PROJECTS
             </Link>
-            <Link
-              href="/"
-              className="text-sm text-muted-foreground font-mono hover:text-foreground transition-colors"
-            >
-              YEN WEE LIM
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/blogs" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Blog
+              </Link>
+              <Link
+                href="/"
+                className="text-sm text-muted-foreground font-mono hover:text-foreground transition-colors"
+              >
+                YEN WEE LIM
+              </Link>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </nav>
