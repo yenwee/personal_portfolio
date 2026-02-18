@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight, Calendar, User, Tag } from "lucide-react"
 import projectsData from "@/lib/projects.json"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function ProjectsPage() {
   const { projects } = projectsData
@@ -24,14 +25,20 @@ export default function ProjectsPage() {
       <nav className="fixed top-0 left-0 right-0 z-20 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="flex items-center gap-2 text-sm font-mono tracking-wider hover:text-muted-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               YEN WEE LIM
             </Link>
-            <div className="text-sm text-muted-foreground font-mono">PROJECTS</div>
+            <div className="flex items-center gap-4">
+              <span className="hidden sm:block text-sm text-foreground font-medium">Projects</span>
+              <Link href="/blogs" className="hidden sm:block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Blog
+              </Link>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </nav>
