@@ -528,10 +528,10 @@ export default function Home() {
                 Book a Call
               </Link>
               <Link
-                href="mailto:limyenwee@gmail.com"
+                href="mailto:hello@weeai.dev"
                 className="group inline-flex items-center gap-2.5 px-5 py-2.5 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 text-sm font-medium"
               >
-                limyenwee@gmail.com
+                hello@weeai.dev
                 <svg className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

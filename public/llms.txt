@@ -42,4 +42,4 @@ Yen Wee Lim builds production AI systems, full-stack applications, and data plat
 
 - [LinkedIn](https://www.linkedin.com/in/yenwee-lim/): Professional profile and work history
 - [GitHub](https://github.com/yenwee): Open-source projects and code repositories
-- Email: limyenwee@gmail.com
+- Email: hello@weeai.dev
