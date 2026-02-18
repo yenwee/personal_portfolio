@@ -26,13 +26,18 @@ export async function generateMetadata({
   const title = `${project.title} | Yen Wee Lim`
   const description = project.description
 
+  const url = `${SITE_URL}/projects/${project.id}`
+
   return {
     title,
     description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: project.title,
       description,
-      url: `${SITE_URL}/projects/${project.id}`,
+      url,
       siteName: "Yen Wee Lim",
       type: "article",
       locale: "en_US",

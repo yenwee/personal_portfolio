@@ -77,11 +77,33 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   const markdownContent = readMarkdownFile(slug) ?? `## Overview\n\n${project.description}\n\n*Detailed write-up coming soon.*`
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: project.title,
+    description: project.description,
+    url: `https://weeai.dev/projects/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Yen Wee Lim",
+      url: "https://weeai.dev",
+    },
+    proficiencyLevel: "Expert",
+    dependencies: project.technologies.join(", "),
+    keywords: project.technologies,
+  }
+
   return (
-    <ProjectDetailClient
-      project={project}
-      markdownContent={markdownContent}
-      slug={slug}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProjectDetailClient
+        project={project}
+        markdownContent={markdownContent}
+        slug={slug}
+      />
+    </>
   )
 }

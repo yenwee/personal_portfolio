@@ -23,6 +23,9 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Yen Wee Lim`,
     description: post.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.description,

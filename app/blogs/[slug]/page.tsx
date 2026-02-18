@@ -67,11 +67,37 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   const markdownContent = readMarkdownFile(slug) ?? `# ${post.title}\n\n${post.description}`
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    url: `https://weeai.dev/blogs/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Yen Wee Lim",
+      url: "https://weeai.dev",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Yen Wee Lim",
+      url: "https://weeai.dev",
+    },
+    keywords: post.tags,
+  }
+
   return (
-    <BlogDetailClient
-      post={post}
-      markdownContent={markdownContent}
-      slug={slug}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogDetailClient
+        post={post}
+        markdownContent={markdownContent}
+        slug={slug}
+      />
+    </>
   )
 }

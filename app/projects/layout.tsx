@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Projects - Yen Wee Lim | AI/ML & Full-Stack Portfolio",
   description: "A showcase of AI/ML projects, data engineering solutions, and web applications built for enterprise clients and personal development.",
+  alternates: {
+    canonical: "https://weeai.dev/projects",
+  },
   openGraph: {
     title: "Projects - Yen Wee Lim",
     description: "A showcase of AI/ML projects, data engineering solutions, and web applications built for enterprise clients and personal development.",
