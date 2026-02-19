@@ -1,6 +1,35 @@
 {
   "projects": [
     {
+      "id": "hustle-os",
+      "title": "Hustle OS - Freelance Business Operating System",
+      "description": "AI-native business management app with eight integrated modules covering the full freelance lifecycle -- CRM, proposals, projects, timesheets, invoicing, expenses, contracts, and reports. One data model connects leads to invoices to financial reports. Eight Claude Code skill files let an AI agent operate the entire business through natural language.",
+      "image": "/project-images/hustle-os.svg",
+      "category": "Full-Stack SaaS",
+      "technologies": ["Next.js", "PostgreSQL", "Prisma", "Docker", "Cloudflare Tunnel", "MinIO", "Documenso", "Playwright"],
+      "status": "In Production",
+      "year": "2026",
+      "client": "Personal Project",
+      "featured": true,
+      "stats": [
+        { "value": "6", "label": "Days to Production" },
+        { "value": "8", "label": "Integrated Modules" },
+        { "value": "$1.55", "label": "Monthly Infra Cost" },
+        { "value": "0", "label": "SaaS Subscriptions" }
+      ],
+      "highlights": [
+        "8 modules sharing one PostgreSQL database: lead flows into client, client into project, project into timesheets, timesheets into invoices, invoices into reports",
+        "Proposal-to-invoice conversion: one-time items, milestone phases, and recurring schedules created in a single atomic transaction",
+        "Dual interface: web dashboard and CLI calling identical core functions in src/core/",
+        "AI email drafting (Claude/OpenAI) for invoices, proposals, and contracts with mandatory human review before send",
+        "Documenso e-signing: contract PDF upload, signature field placement, webhook-driven status tracking on sign.weeai.dev",
+        "AI-native: 8 Claude Code skill files let an AI agent create invoices, manage pipeline, log expenses, and run reports through natural language",
+        "Self-hosted on $1.55/month VPS via Cloudflare Tunnel and Zero Trust -- no nginx, no inbound ports"
+      ],
+      "role": "Solo developer",
+      "relatedPosts": ["built-my-own-business-os", "deployed-full-app-18-dollar-vps", "locked-out-server-chinese-new-year-ansible"]
+    },
+    {
       "id": "aimod-platform",
       "title": "AiMod - Agentic AI DataOps & MLOps Platform",
       "description": "End-to-end self-serve AI platform with 15+ LangGraph agents that automate data ingestion, transformation, ML model training, and on-demand analytics. Features a natural language interface that converts questions into SQL, charts, and narrative explanations through a multi-agent decision routing system.",

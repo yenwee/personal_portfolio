@@ -111,6 +111,11 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Make hljs background transparent so <pre> controls it */
+.hljs {
+  background: transparent !important;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

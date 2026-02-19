@@ -13,7 +13,7 @@ import { Callout } from "@/components/project/callout"
 import { PullQuote } from "@/components/project/pull-quote"
 import { ThemeToggle } from "@/components/theme-toggle"
 import contentData from "@/lib/content.json"
-import "highlight.js/styles/github-dark.css"
+import "highlight.js/styles/github-dark-dimmed.min.css"
 
 interface BlogPost {
   id: string
@@ -324,7 +324,7 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     )
                   },
                   pre: ({ children }) => (
-                    <pre className="bg-[#1a1a2e] border border-border rounded-lg p-4 overflow-x-auto mb-6 text-sm">
+                    <pre className="bg-[#22272e] text-[#adbac7] border border-[#444c56] rounded-lg p-4 overflow-x-auto mb-6 text-sm">
                       {children}
                     </pre>
                   ),

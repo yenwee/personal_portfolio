@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 7" refX="9" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="rgba(255,255,255,0.4)"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="12" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="white" opacity="0.9" font-weight="600">Hustle OS - Business Operating System</text>
+
+  <!-- Sales Column (amber) -->
+  <rect x="20" y="55" width="175" height="195" rx="10" fill="rgba(245,158,11,0.06)" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+  <text x="107" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#f59e0b" text-anchor="middle" font-weight="600" opacity="0.9">Sales</text>
+
+  <rect x="32" y="88" width="151" height="36" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="107" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">CRM Pipeline</text>
+
+  <rect x="32" y="132" width="151" height="36" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="107" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Proposals</text>
+
+  <rect x="32" y="176" width="151" height="36" rx="8" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1"/>
+  <text x="107" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Contracts</text>
+
+  <!-- Delivery Column (blue) -->
+  <rect x="210" y="55" width="175" height="195" rx="10" fill="rgba(59,130,246,0.06)" stroke="rgba(59,130,246,0.25)" stroke-width="1"/>
+  <text x="297" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6" text-anchor="middle" font-weight="600" opacity="0.9">Delivery</text>
+
+  <rect x="222" y="88" width="151" height="36" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="297" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Projects</text>
+
+  <rect x="222" y="132" width="151" height="36" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1"/>
+  <text x="297" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Timesheets</text>
+
+  <!-- Finance Column (green) -->
+  <rect x="400" y="55" width="175" height="195" rx="10" fill="rgba(16,185,129,0.06)" stroke="rgba(16,185,129,0.25)" stroke-width="1"/>
+  <text x="487" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#10b981" text-anchor="middle" font-weight="600" opacity="0.9">Finance</text>
+
+  <rect x="412" y="88" width="151" height="36" rx="8" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1"/>
+  <text x="487" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Invoices</text>
+
+  <rect x="412" y="132" width="151" height="36" rx="8" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1"/>
+  <text x="487" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Expenses</text>
+
+  <rect x="412" y="176" width="151" height="36" rx="8" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1"/>
+  <text x="487" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="white" text-anchor="middle">Reports</text>
+
+  <!-- Flow arrows Sales -> Delivery -> Finance -->
+  <line x1="195" y1="150" x2="210" y2="150" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="385" y1="150" x2="400" y2="150" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Tech Stack Section (purple) -->
+  <rect x="590" y="55" width="190" height="195" rx="10" fill="rgba(139,92,246,0.06)" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+  <text x="685" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#c4b5fd" text-anchor="middle" font-weight="600" opacity="0.9">Stack</text>
+
+  <rect x="602" y="88" width="85" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="644" y="106" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">Next.js</text>
+
+  <rect x="693" y="88" width="78" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="732" y="106" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">Prisma</text>
+
+  <rect x="602" y="124" width="85" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="644" y="142" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">PostgreSQL</text>
+
+  <rect x="693" y="124" width="78" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="732" y="142" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">Docker</text>
+
+  <rect x="602" y="160" width="85" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="644" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">MinIO</text>
+
+  <rect x="693" y="160" width="78" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="732" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">Documenso</text>
+
+  <rect x="602" y="196" width="169" height="28" rx="6" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+  <text x="686" y="214" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="white" text-anchor="middle">Cloudflare Tunnel + Zero Trust</text>
+
+  <!-- Data Flow Section -->
+  <rect x="20" y="270" width="760" height="70" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="400" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.5)" text-anchor="middle" font-weight="600">Data Flow</text>
+
+  <!-- Flow nodes -->
+  <rect x="35" y="302" width="70" height="26" rx="13" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="0.5"/>
+  <text x="70" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#fcd34d" text-anchor="middle">Lead</text>
+
+  <line x1="105" y1="315" x2="130" y2="315" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="135" y="302" width="70" height="26" rx="13" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="0.5"/>
+  <text x="170" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#fcd34d" text-anchor="middle">Client</text>
+
+  <line x1="205" y1="315" x2="230" y2="315" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="235" y="302" width="70" height="26" rx="13" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="270" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#93c5fd" text-anchor="middle">Project</text>
+
+  <line x1="305" y1="315" x2="330" y2="315" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="335" y="302" width="80" height="26" rx="13" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="375" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#93c5fd" text-anchor="middle">Timesheet</text>
+
+  <line x1="415" y1="315" x2="440" y2="315" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="445" y="302" width="70" height="26" rx="13" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="0.5"/>
+  <text x="480" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">Invoice</text>
+
+  <line x1="515" y1="315" x2="540" y2="315" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="545" y="302" width="75" height="26" rx="13" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="0.5"/>
+  <text x="582" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">Payment</text>
+
+  <line x1="620" y1="315" x2="645" y2="315" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="650" y="302" width="70" height="26" rx="13" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="0.5"/>
+  <text x="685" y="319" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">Reports</text>
+
+  <!-- Infrastructure Section -->
+  <rect x="20" y="360" width="760" height="125" rx="10" fill="rgba(244,63,94,0.04)" stroke="rgba(244,63,94,0.2)" stroke-width="1"/>
+  <text x="400" y="382" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#f43f5e" text-anchor="middle" font-weight="600" opacity="0.8">Infrastructure</text>
+
+  <!-- Internet -->
+  <circle cx="70" cy="430" r="24" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="70" y="434" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="rgba(255,255,255,0.6)" text-anchor="middle">Internet</text>
+
+  <line x1="94" y1="430" x2="140" y2="430" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Cloudflare -->
+  <rect x="145" y="410" width="120" height="40" rx="8" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+  <text x="205" y="428" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle">Cloudflare</text>
+  <text x="205" y="443" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#fcd34d" text-anchor="middle">Tunnel + Zero Trust</text>
+
+  <line x1="265" y1="430" x2="310" y2="430" stroke="rgba(255,255,255,0.3)" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- VPS -->
+  <rect x="315" y="398" width="200" height="68" rx="8" fill="rgba(59,130,246,0.1)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+  <text x="415" y="418" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="500">RackNerd VPS</text>
+  <text x="415" y="434" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#93c5fd" text-anchor="middle">2 vCPU / 2.4GB RAM / $1.55/mo</text>
+
+  <!-- Container pills inside VPS -->
+  <rect x="325" y="443" width="55" height="16" rx="8" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="352" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">app</text>
+
+  <rect x="385" y="443" width="40" height="16" rx="8" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="405" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">pg</text>
+
+  <rect x="430" y="443" width="45" height="16" rx="8" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="452" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">minio</text>
+
+  <rect x="480" y="443" width="30" height="16" rx="8" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
+  <text x="495" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">doc</text>
+
+  <!-- Domains -->
+  <rect x="540" y="400" width="115" height="28" rx="6" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.25)" stroke-width="0.5"/>
+  <text x="597" y="418" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">app.weeai.dev</text>
+
+  <rect x="540" y="436" width="115" height="28" rx="6" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.25)" stroke-width="0.5"/>
+  <text x="597" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">sign.weeai.dev</text>
+
+  <!-- Cron -->
+  <rect x="680" y="400" width="95" height="28" rx="6" fill="rgba(244,63,94,0.08)" stroke="rgba(244,63,94,0.2)" stroke-width="0.5"/>
+  <text x="727" y="418" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#fda4af" text-anchor="middle">Cron: 6h auto</text>
+
+  <rect x="680" y="436" width="95" height="28" rx="6" fill="rgba(244,63,94,0.08)" stroke="rgba(244,63,94,0.2)" stroke-width="0.5"/>
+  <text x="727" y="454" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#fda4af" text-anchor="middle">Daily backup</text>
+</svg>
