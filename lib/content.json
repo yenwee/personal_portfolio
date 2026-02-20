@@ -3,9 +3,9 @@
     "name": "Yen Wee Lim",
     "firstName": "Yen Wee",
     "lastName": "Lim",
-    "title": "I build AI systems and full-stack software that ",
+    "title": "I build AI systems, automation, and software that ",
     "titleHighlights": ["actually ship"],
-    "titleClosing": ". 15+ production agents, data platforms at national scale, and apps running on RM50/month AWS.",
+    "titleClosing": ".",
     "location": "Kuala Lumpur, Malaysia",
     "email": "hello@weeai.dev",
     "phone": "+6019 4739372",
@@ -22,10 +22,10 @@
     "tagline": "AI ENGINEER & FULL-STACK DEVELOPER"
   },
   "metrics": [
-    { "value": "80%", "label": "Faster MLOps" },
-    { "value": "15+", "label": "Production AI Agents" },
-    { "value": "6TB", "label": "Data Warehouse Built" },
-    { "value": "300+", "label": "Stakeholders Served" }
+    { "value": "15+", "label": "AI Agents Shipped" },
+    { "value": "20+", "label": "Projects Delivered" },
+    { "value": "300+", "label": "End Users Served" },
+    { "value": "4+", "label": "Years Experience" }
   ],
   "testimonials": [
     {
