@@ -110,7 +110,7 @@ The most valuable output of this project is not the app. It is what building the
 
 **I had to formalize invoicing.** What payment terms do I use? What tax fields are required? What does "overdue" mean -- 30 days? 14? Building the system forced answers to questions I had been avoiding.
 
-**I had to think about profitability.** The reports module calculates client profitability, revenue trends, and aging receivables. I built the math before I had enough data to run it. But the act of building it made me think about my business in ways I never had: which engagements are worth pursuing, what my effective hourly rate actually is, where money gets stuck.
+**I had to think about profitability.** The reports module calculates client profitability, revenue trends, and aging receivables. I built the math before I had enough data to run it. But the act of building it made me think about business operations in ways I never had: which engagements are worth pursuing, what effective hourly rates actually look like, where money gets stuck.
 
 **I had to confront what I was not tracking.** Every module I built revealed a gap in how I was running things. Expenses I was not logging. Time I was not tracking. Follow-ups I was not making. The tool did not fix these habits automatically -- but it made the gaps visible.
 
@@ -124,9 +124,9 @@ Probably not. Most solo operators should use FreshBooks or Wave and get on with 
 
 But if you are a developer, if you want to learn by building something real, and if you are willing to trade speed-to-market for depth of understanding -- building your own business tool is one of the most educational projects you can take on.
 
-You will learn full-stack development, database design, PDF generation, email integration, authentication, deployment, and performance optimization. Not from tutorials. From actual requirements that come from your actual business.
+You will learn full-stack development, database design, PDF generation, email integration, authentication, deployment, and performance optimization. Not from tutorials. From actual requirements that come from building something real.
 
-The app is still a work in progress. I am still adding features faster than I am using them. But every feature I build forces me to think about a part of my business I had been ignoring.
+The app is still a work in progress. I am still adding features faster than I am using them. But every feature I build forces me to think about a part of the problem space I had been ignoring.
 
 The whole thing took 6 days from first commit to production deployment. 189 commits, 24 database models, ~18,000 lines of application code. Running live at $1.55/month. That is less than the free trial period of most SaaS tools I considered replacing.
 
