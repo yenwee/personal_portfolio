@@ -1,12 +1,12 @@
-# I Built My Own Business OS Because No SaaS Could Connect My Entire Independent Workflow
+# I Built My Own Business OS Because No SaaS Could Connect My Entire Workflow
 
-I started consulting with no system. No invoicing tool. No CRM. No project tracker. No expense log. Just a laptop and the vague intention to "figure it out as I go."
+I started building side projects with no system. No invoicing tool. No CRM. No project tracker. No expense log. Just a laptop and the vague intention to "figure it out as I go."
 
 That is not a system. That is a liability.
 
 The standard advice would be to sign up for FreshBooks, HubSpot, Toggl, and Expensify. Four tools, maybe $200/month, problem solved. But I am a developer, I wanted to learn, and I had a hunch that stitching together four SaaS products designed for different workflows would create more friction than it solved.
 
-So I built my own. One app. Eight modules. The entire independent business lifecycle from lead to tax report. It started as an invoice generator. It turned into something much bigger. And the most valuable thing it produced was not software -- it was business clarity I could not have gotten any other way.
+So I built my own. One app. Eight modules. The entire end-to-end business workflow from lead to tax report. It started as an invoice generator. It turned into something much bigger. And the most valuable thing it produced was not software -- it was business clarity I could not have gotten any other way.
 
 ---
 
@@ -14,7 +14,7 @@ So I built my own. One app. Eight modules. The entire independent business lifec
 
 The honest answer has three parts.
 
-**Cost.** I was just starting out. Committing to $200/month in subscriptions before I had steady revenue felt backwards. Most solo business SaaS tools are priced for established businesses, not people figuring out whether independent work even works for them.
+**Cost.** I was just starting out. Committing to $200/month in subscriptions before I had steady revenue felt backwards. Most business SaaS tools are priced for established businesses, not people building their first real project.
 
 **Integration.** Even if I paid for everything, the tools do not talk to each other. When a lead converts to a client, you re-enter their details in your invoicing tool. When you finish a project milestone, you manually create an invoice. When tax season comes, you reconcile expenses across platforms that use different category names. The data lives in five silos. You are the integration layer.
 
@@ -92,7 +92,7 @@ Lead Pipeline:
 
 This is the part no SaaS gets right. Malaysian business registration (SSM number), tax identification (TIN), Sales and Service Tax (SST) -- all baked into invoice PDFs. Expense categories aligned with LHDN deduction rules. Tax reports that calculate equipment depreciation the way Malaysian tax law requires.
 
-Most invoicing tools are built for US or EU markets. Malaysian independent operators are an afterthought. Building my own meant getting the tax context right from the start.
+Most invoicing tools are built for US or EU markets. Malaysian developers are an afterthought. Building my own meant getting the tax context right from the start.
 
 ### Live and self-hosted
 
@@ -114,7 +114,7 @@ The most valuable output of this project is not the app. It is what building the
 
 **I had to confront what I was not tracking.** Every module I built revealed a gap in how I was running things. Expenses I was not logging. Time I was not tracking. Follow-ups I was not making. The tool did not fix these habits automatically -- but it made the gaps visible.
 
-The conventional wisdom says "do not build what you can buy." For teams, that is correct. But for a solo developer starting an independent practice, building your own business tool is a form of business education. You cannot build a system for something you do not understand. And the process of building it forces understanding.
+The conventional wisdom says "do not build what you can buy." For teams, that is correct. But for a solo developer building a real-world side project, building your own business tool is a form of business education. You cannot build a system for something you do not understand. And the process of building it forces understanding.
 
 ---
 

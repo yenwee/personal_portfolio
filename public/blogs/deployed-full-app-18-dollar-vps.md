@@ -2,7 +2,7 @@
 
 $1.55 per month. Five Docker containers. One server with 2.4GB of RAM.
 
-That is the production infrastructure running my entire solo business -- invoicing, proposals, CRM, project tracking, expense management, contracts with e-signing, timesheets, and financial reports. Live on the internet, protected by Cloudflare Zero Trust, backed up daily.
+That is the production infrastructure running my entire side project -- invoicing, proposals, CRM, project tracking, expense management, contracts with e-signing, timesheets, and financial reports. Live on the internet, protected by Cloudflare Zero Trust, backed up daily.
 
 No Vercel. No Railway. No managed anything.
 

@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": "built-my-own-business-os",
-      "title": "I Built My Own Business OS Because No SaaS Could Connect My Entire Independent Workflow",
+      "title": "I Built My Own Business OS Because No SaaS Could Connect My Entire Workflow",
       "description": "Eight modules, one Next.js app, zero context switching. Why I stopped using five separate tools and built a unified system for CRM, invoicing, projects, timesheets, expenses, and reports.",
       "date": "2026-02-20",
       "tags": ["Software Engineering", "Next.js", "Side Projects"],
