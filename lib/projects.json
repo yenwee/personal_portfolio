@@ -27,7 +27,7 @@
         "Self-hosted on $1.55/month VPS via Cloudflare Tunnel and Zero Trust -- no nginx, no inbound ports"
       ],
       "role": "Solo developer",
-      "relatedPosts": ["built-my-own-business-os", "deployed-full-app-18-dollar-vps", "locked-out-server-chinese-new-year-ansible"]
+      "relatedPosts": ["built-my-own-business-os", "deployed-full-app-18-dollar-vps", "locked-out-server-chinese-new-year-ansible", "vps-urge-is-a-feature-not-a-bug"]
     },
     {
       "id": "aimod-platform",
@@ -197,7 +197,7 @@
         "Tier B Postal upgrade path with 21-day IP warm-up schedule and DMARC graduation"
       ],
       "role": "Infrastructure architect and sole developer (contract)",
-      "relatedPosts": ["locked-out-server-chinese-new-year-ansible"]
+      "relatedPosts": ["locked-out-server-chinese-new-year-ansible", "vps-urge-is-a-feature-not-a-bug"]
     },
     {
       "id": "einvoice-system",

@@ -14,6 +14,10 @@ This is a sequel to my [Ansible lockout story](/blogs/locked-out-server-chinese-
 
 The app is Hustle OS -- a Next.js app backed by PostgreSQL, MinIO for S3 storage, and Documenso for digital signatures. It runs fine locally. The question was whether it could run on a $18.66/year RackNerd VPS with 2.4GB RAM.
 
+![RackNerd Black Friday VPS pricing - $18.66/year for 2.5GB RAM](/blogs/racknerd-vps-pricing.png)
+
+*The $18.66/year plan, second from left. 2 vCPU cores, 45GB SSD, 2.5GB RAM, 3TB transfer.*
+
 Here is what needed to fit:
 
 | Service | What It Does | Memory Budget |

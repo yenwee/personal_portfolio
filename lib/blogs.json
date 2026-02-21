@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "vps-urge-is-a-feature-not-a-bug",
+      "title": "Your VPS Urge Is a Feature, Not a Bug",
+      "description": "Hardware costs are climbing, cloud bills are getting less predictable, and AI just closed the knowledge gap that kept most developers from self-hosting. Here is why the urge to buy a VPS is rational, not impulsive.",
+      "date": "2026-02-21",
+      "tags": ["DevOps", "Infrastructure", "Docker", "Cloudflare"],
+      "featured": true,
+      "readTime": 7,
+      "relatedProject": "smtp-relay-infrastructure"
+    },
+    {
       "id": "built-my-own-business-os",
       "title": "I Built My Own Full-Stack OS Because No SaaS Could Connect My Entire Workflow",
       "description": "Eight modules, one Next.js app, zero context switching. Why I stopped using five separate tools and built a unified system for CRM, invoicing, projects, timesheets, expenses, and reports.",
