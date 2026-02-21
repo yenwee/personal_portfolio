@@ -16,7 +16,7 @@
     "github": "https://github.com/yenwee",
     "githubHandle": "@yenweelim",
     "resumePath": "/Resume_LimYenWee.pdf",
-    "availability": "Open to freelance & side projects"
+    "availability": "Open to collaborations"
   },
   "header": {
     "tagline": "AI ENGINEER & FULL-STACK DEVELOPER"
@@ -50,7 +50,7 @@
   "metadata": {
     "title": "Yen Wee Lim - AI Solutions Architect | Production AI Systems & Data Platforms",
     "description": "AI engineer and full-stack developer shipping production systems. 15+ AI agents, 6TB data platforms, full-stack apps. Based in Kuala Lumpur, Malaysia.",
-    "keywords": ["AI Solutions", "Lead AI", "Machine Learning", "AI Consultant", "Malaysia", "Python", "LangGraph", "Financial Risk", "MLOps", "DataOps", "Agentic AI", "Freelance AI Engineer", "LLM Developer"],
+    "keywords": ["AI Solutions", "Lead AI", "Machine Learning", "AI Consultant", "Malaysia", "Python", "LangGraph", "Financial Risk", "MLOps", "DataOps", "Agentic AI", "Independent AI Engineer", "LLM Developer"],
     "author": "Yen Wee Lim",
     "ogTitle": "Yen Wee Lim - AI Solutions Architect | Production AI Systems & Data Platforms",
     "ogDescription": "AI engineer and full-stack developer shipping production systems. 15+ AI agents, 6TB data platforms, full-stack apps. Based in KL, Malaysia.",
@@ -172,7 +172,7 @@
   "connect": {
     "calendlyUrl": "https://calendly.com/limyenwee/discussion-v-wee",
     "callDescription": "30-minute intro call. No pitch, just a conversation about your project.",
-    "pricingSignal": "Project scoping & freelance rates available on request."
+    "pricingSignal": "Have an idea? Let's explore it together."
   },
   "footer": {
     "copyright": "\u00a9 2026 Yen Wee Lim. All rights reserved."

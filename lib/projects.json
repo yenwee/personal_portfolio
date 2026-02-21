@@ -2,8 +2,8 @@
   "projects": [
     {
       "id": "hustle-os",
-      "title": "Hustle OS - Freelance Business Operating System",
-      "description": "AI-native business management app with eight integrated modules covering the full freelance lifecycle -- CRM, proposals, projects, timesheets, invoicing, expenses, contracts, and reports. One data model connects leads to invoices to financial reports. Eight Claude Code skill files let an AI agent operate the entire business through natural language.",
+      "title": "Hustle OS - Solo Business Operating System",
+      "description": "AI-native business management app with eight integrated modules covering the full independent business lifecycle -- CRM, proposals, projects, timesheets, invoicing, expenses, contracts, and reports. One data model connects leads to invoices to financial reports. Eight Claude Code skill files let an AI agent operate the entire business through natural language.",
       "image": "/project-images/hustle-os.svg",
       "category": "Full-Stack SaaS",
       "technologies": ["Next.js", "PostgreSQL", "Prisma", "Docker", "Cloudflare Tunnel", "MinIO", "Documenso", "Playwright"],
@@ -180,7 +180,7 @@
       "technologies": ["Ansible", "Postfix", "Docker", "UFW", "fail2ban", "Uptime Kuma", "Dozzle", "Python"],
       "status": "In Production",
       "year": "2026",
-      "client": "Debt Collection Agency (Freelance)",
+      "client": "Debt Collection Agency (Contract)",
       "featured": false,
       "stats": [
         { "value": "100K", "label": "Emails per Week" },
@@ -196,7 +196,7 @@
         "Documented incident recovery: fail2ban Restore Ban bypass, UFW ordering",
         "Tier B Postal upgrade path with 21-day IP warm-up schedule and DMARC graduation"
       ],
-      "role": "Infrastructure architect and sole developer (freelance)",
+      "role": "Infrastructure architect and sole developer (contract)",
       "relatedPosts": ["locked-out-server-chinese-new-year-ansible"]
     },
     {
@@ -208,7 +208,7 @@
       "technologies": ["React", "TypeScript", "AWS Lambda", "DynamoDB", "S3", "Terraform", "Vite", "WeasyPrint"],
       "status": "In Development",
       "year": "2025",
-      "client": "SME Client (Freelance)",
+      "client": "SME Client (Contract)",
       "featured": false,
       "stats": [
         { "value": "~RM50", "label": "Monthly AWS Cost" },
@@ -225,7 +225,7 @@
         "Malaysian LHDN MyInvois e-invoicing integration (UBL 2.1 JSON format)",
         "GitHub Actions CI/CD with pylint, black, mypy, pytest, bandit security scans"
       ],
-      "role": "Sole developer (freelance)"
+      "role": "Sole developer (contract)"
     },
     {
       "id": "event-ticketing-platform",
@@ -236,7 +236,7 @@
       "technologies": ["Next.js", "Prisma", "PostgreSQL", "Billplz", "Docker", "Nginx", "Tailwind CSS", "Recharts"],
       "status": "In Development",
       "year": "2026",
-      "client": "Event Organizer (Freelance)",
+      "client": "Event Organizer (Contract)",
       "featured": false,
       "stats": [
         { "value": "2", "label": "Check-in Modes" },
@@ -253,7 +253,7 @@
         "Rate limiting (10 orders/min, 30 check-ins/min per IP)",
         "Docker Compose deployment with PostgreSQL, Nginx reverse proxy, Let's Encrypt SSL, auto-migrations"
       ],
-      "role": "Sole developer (freelance)"
+      "role": "Sole developer (contract)"
     }
   ]
 }
