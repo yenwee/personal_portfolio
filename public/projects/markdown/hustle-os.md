@@ -1,6 +1,6 @@
 ## Five SaaS tools, five data silos, one frustrated developer
 
-I started freelancing with no system. The standard advice is to subscribe to FreshBooks, HubSpot, Toggl, Asana, and Expensify. But **five tools means five databases that do not talk to each other**, and you become the integration layer -- re-entering client details, manually creating invoices from project milestones, context-switching between interfaces that each assume they are the center of your workflow.
+I started consulting with no system. The standard advice is to subscribe to FreshBooks, HubSpot, Toggl, Asana, and Expensify. But **five tools means five databases that do not talk to each other**, and you become the integration layer -- re-entering client details, manually creating invoices from project milestones, context-switching between interfaces that each assume they are the center of your workflow.
 
 I wanted one pipeline: a lead becomes a client, a client gets a project, a project generates timesheets, timesheets flow into invoices, invoices feed financial reports. So I built it. Six days from first commit to production deployment, 189 commits, 24 database models.
 

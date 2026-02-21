@@ -1,6 +1,6 @@
 # I Got Locked Out of My Own Server During Chinese New Year. Then I Automated Everything.
 
-Chinese New Year reunion dinner. My phone buzzes. A monitoring alert -- the Contabo VPS I had been hardening for a freelance client is unreachable. I excuse myself from the table, open a terminal on my laptop, and type `ssh root@...`. Connection refused.
+Chinese New Year reunion dinner. My phone buzzes. A monitoring alert -- the Contabo VPS I had been hardening for a client is unreachable. I excuse myself from the table, open a terminal on my laptop, and type `ssh root@...`. Connection refused.
 
 I had changed the SSH port, enabled key-only authentication, and restarted the service. In that order. The problem: I had not tested the new port from a second session before killing password login. The server was hardened alright -- hardened against me.
 
