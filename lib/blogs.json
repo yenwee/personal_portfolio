@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": "built-my-own-business-os",
-      "title": "I Built My Own Business OS Because No SaaS Could Connect My Entire Workflow",
+      "title": "I Built My Own Full-Stack OS Because No SaaS Could Connect My Entire Workflow",
       "description": "Eight modules, one Next.js app, zero context switching. Why I stopped using five separate tools and built a unified system for CRM, invoicing, projects, timesheets, expenses, and reports.",
       "date": "2026-02-20",
       "tags": ["Software Engineering", "Next.js", "Side Projects"],
@@ -12,7 +12,7 @@
     },
     {
       "id": "deployed-full-app-18-dollar-vps",
-      "title": "I Deployed My Full Business App on a $18.66/Year VPS. Here Is Every Problem I Hit.",
+      "title": "I Deployed My Full-Stack App on a $18.66/Year VPS. Here Is Every Problem I Hit.",
       "description": "Five Docker containers, Cloudflare Tunnel, Zero Trust access control, data migration, and performance tuning -- all on a 2.4GB RAM budget VPS. A sequel to the Ansible lockout story.",
       "date": "2026-02-20",
       "tags": ["DevOps", "Docker", "Cloudflare", "Infrastructure"],

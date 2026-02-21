@@ -1,4 +1,4 @@
-# I Built My Own Business OS Because No SaaS Could Connect My Entire Workflow
+# I Built My Own Full-Stack OS Because No SaaS Could Connect My Entire Workflow
 
 I started building side projects with no system. No invoicing tool. No CRM. No project tracker. No expense log. Just a laptop and the vague intention to "figure it out as I go."
 
@@ -6,7 +6,7 @@ That is not a system. That is a liability.
 
 The standard advice would be to sign up for FreshBooks, HubSpot, Toggl, and Expensify. Four tools, maybe $200/month, problem solved. But I am a developer, I wanted to learn, and I had a hunch that stitching together four SaaS products designed for different workflows would create more friction than it solved.
 
-So I built my own. One app. Eight modules. The entire end-to-end business workflow from lead to tax report. It started as an invoice generator. It turned into something much bigger. And the most valuable thing it produced was not software -- it was business clarity I could not have gotten any other way.
+So I built my own. One app. Eight modules. The entire end-to-end business workflow from lead to tax report. It started as an invoice generator. It turned into something much bigger. And the most valuable thing it produced was not software -- it was clarity about how real-world systems work that I could not have gotten any other way.
 
 ---
 
@@ -114,7 +114,7 @@ The most valuable output of this project is not the app. It is what building the
 
 **I had to confront what I was not tracking.** Every module I built revealed a gap in how I was running things. Expenses I was not logging. Time I was not tracking. Follow-ups I was not making. The tool did not fix these habits automatically -- but it made the gaps visible.
 
-The conventional wisdom says "do not build what you can buy." For teams, that is correct. But for a solo developer building a real-world side project, building your own business tool is a form of business education. You cannot build a system for something you do not understand. And the process of building it forces understanding.
+The conventional wisdom says "do not build what you can buy." For teams, that is correct. But for a solo developer building a real-world side project, building your own full-stack tool is a form of applied learning. You cannot build a system for something you do not understand. And the process of building it forces understanding.
 
 ---
 
@@ -122,7 +122,7 @@ The conventional wisdom says "do not build what you can buy." For teams, that is
 
 Probably not. Most solo operators should use FreshBooks or Wave and get on with their work.
 
-But if you are a developer, if you want to learn by building something real, and if you are willing to trade speed-to-market for depth of understanding -- building your own business tool is one of the most educational projects you can take on.
+But if you are a developer, if you want to learn by building something real, and if you are willing to trade speed-to-market for depth of understanding -- building your own full-stack tool is one of the most educational projects you can take on.
 
 You will learn full-stack development, database design, PDF generation, email integration, authentication, deployment, and performance optimization. Not from tutorials. From actual requirements that come from building something real.
 

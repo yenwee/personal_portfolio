@@ -3,7 +3,7 @@
     {
       "id": "hustle-os",
       "title": "Hustle OS - Personal Project Management System",
-      "description": "AI-native business management app with eight integrated modules covering the full end-to-end business workflow -- CRM, proposals, projects, timesheets, invoicing, expenses, contracts, and reports. One data model connects leads to invoices to financial reports. Eight Claude Code skill files let an AI agent operate the entire business through natural language.",
+      "description": "AI-native full-stack app with eight integrated modules covering the full end-to-end workflow -- CRM, proposals, projects, timesheets, invoicing, expenses, contracts, and reports. One data model connects leads to invoices to financial reports. Eight Claude Code skill files let an AI agent operate the entire system through natural language.",
       "image": "/project-images/hustle-os.svg",
       "category": "Full-Stack SaaS",
       "technologies": ["Next.js", "PostgreSQL", "Prisma", "Docker", "Cloudflare Tunnel", "MinIO", "Documenso", "Playwright"],

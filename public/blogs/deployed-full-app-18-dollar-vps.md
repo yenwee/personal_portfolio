@@ -1,4 +1,4 @@
-# I Deployed My Full Business App on a $18.66/Year VPS. Here Is Every Problem I Hit.
+# I Deployed My Full-Stack App on a $18.66/Year VPS. Here Is Every Problem I Hit.
 
 $1.55 per month. Five Docker containers. One server with 2.4GB of RAM.
 

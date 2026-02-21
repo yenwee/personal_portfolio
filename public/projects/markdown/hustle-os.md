@@ -13,7 +13,7 @@ Every module writes to the same PostgreSQL instance through Prisma. When a propo
 
 The REST API accepts both database IDs and human-readable formats (`INV-0042`, `PRJ-005`, `CTR-001`). Route helpers detect the format via regex and resolve accordingly, so **the API is human-friendly without sacrificing machine precision**.
 
-## AI-native: an agent can run the business
+## AI-native: an agent can run the whole system
 
 The app was built to be operated by both humans and AI. Eight Claude Code skill files -- `/invoice`, `/proposal`, `/crm`, `/project`, `/expense`, `/reports`, `/contract`, `/timesheet` -- give an AI agent the ability to create invoices, manage the sales pipeline, log expenses, bill time entries, and run financial reports through natural language. **The same CLI that a developer uses from the terminal is the same interface an AI agent uses autonomously.**
 
@@ -26,7 +26,7 @@ The architecture made this possible. A single Next.js monolith handles SSR, API 
 
 The app works, but I am still building more than using it. That honesty matters more than a polished story.
 
-**What surprised me**: the highest-leverage output was not the software -- it was the business clarity. Building a profitability report forced me to think about which clients are worth pursuing. Building a CRM pipeline forced me to define a sales process I had never formalized. The code was the byproduct; the thinking was the product.
+**What surprised me**: the highest-leverage output was not the software -- it was the clarity about how real-world systems connect. Building a profitability report forced me to think about which clients are worth pursuing. Building a CRM pipeline forced me to define a sales process I had never formalized. The code was the byproduct; the thinking was the product.
 
 **What I would do differently**: start with fewer modules and use each one in production before building the next. I built eight modules in six days because the architecture made it easy, but depth of use reveals requirements that breadth of features misses.
 
