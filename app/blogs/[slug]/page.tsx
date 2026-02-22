@@ -80,6 +80,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     description: post.description,
     datePublished: post.date,
     url: `https://weeai.dev/blogs/${slug}`,
+    image: `https://weeai.dev/blogs/${slug}/opengraph-image`,
     author: {
       "@type": "Person",
       name: "Yen Wee Lim",
@@ -93,11 +94,40 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     keywords: post.tags,
   }
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://weeai.dev",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://weeai.dev/blogs",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://weeai.dev/blogs/${slug}`,
+      },
+    ],
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <BlogDetailClient
         post={post}

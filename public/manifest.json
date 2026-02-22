@@ -1,0 +1,21 @@
+{
+  "name": "Yen Wee Lim - AI Solutions Architect",
+  "short_name": "Yen Wee Lim",
+  "description": "AI engineer and full-stack developer shipping production systems. 15+ AI agents, 6TB data platforms, full-stack apps.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -41,11 +41,20 @@ export async function generateMetadata({
       siteName: "Yen Wee Lim",
       type: "article",
       locale: "en_US",
+      images: [
+        {
+          url: `${url}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: project.title,
       description,
+      images: [`${url}/twitter-image`],
     },
   }
 }

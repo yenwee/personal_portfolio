@@ -63,6 +63,7 @@ export const metadata: Metadata = {
       url: '/icon.png',
     },
   },
+  manifest: '/manifest.json',
 }
 
 export default function RootLayout({
@@ -70,9 +71,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const jsonLd = {
+  const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${contentData.metadata.ogUrl}/#person`,
     name: contentData.personal.name,
     jobTitle: contentData.currentRole.position,
     url: contentData.metadata.ogUrl,
@@ -85,6 +87,31 @@ export default function RootLayout({
     worksFor: {
       "@type": "Organization",
       name: contentData.workExperience[0].company,
+    },
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "LangGraph",
+      "Full-Stack Development",
+      "Python",
+      "TypeScript",
+      "Next.js",
+      "MLOps",
+      "Data Engineering",
+      "Agentic AI",
+    ],
+  }
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${contentData.metadata.ogUrl}/#website`,
+    url: contentData.metadata.ogUrl,
+    name: contentData.metadata.title,
+    description: contentData.metadata.description,
+    publisher: {
+      "@type": "Person",
+      "@id": `${contentData.metadata.ogUrl}/#person`,
     },
   }
 
@@ -105,7 +132,11 @@ export default function RootLayout({
         )}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         {children}
       </body>

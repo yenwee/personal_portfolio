@@ -90,6 +90,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     headline: project.title,
     description: project.description,
     url: `https://weeai.dev/projects/${slug}`,
+    image: `https://weeai.dev/projects/${slug}/opengraph-image`,
     author: {
       "@type": "Person",
       name: "Yen Wee Lim",
@@ -100,11 +101,40 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     keywords: project.technologies,
   }
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://weeai.dev",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: "https://weeai.dev/projects",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `https://weeai.dev/projects/${slug}`,
+      },
+    ],
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <ProjectDetailClient
         project={project}
