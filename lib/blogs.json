@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "open-models-can-do-chores-not-think",
+      "title": "Open Models Can Do Your Chores. They Still Cannot Think for You.",
+      "description": "My Telegram bot handles expenses and budgets on an open model. Then I asked it to do something hard and it handed the problem back to me. That gap between simple automation and real reasoning is the thing nobody in the OpenClaw discourse wants to talk about.",
+      "date": "2026-02-22",
+      "tags": ["AI Agents", "Open Source", "LLM", "Production"],
+      "featured": true,
+      "readTime": 9,
+      "relatedProject": "doc-auto"
+    },
+    {
       "id": "vps-urge-is-a-feature-not-a-bug",
       "title": "Your VPS Urge Is a Feature, Not a Bug",
       "description": "Hardware costs are climbing, cloud bills are getting less predictable, and AI just closed the knowledge gap that kept most developers from self-hosting. Here is why the urge to buy a VPS is rational, not impulsive.",
