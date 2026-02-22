@@ -6,7 +6,8 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeHighlight from "rehype-highlight"
 import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, FolderOpen } from "lucide-react"
-import { useEffect, useState, memo } from "react"
+import { useEffect, useState, useRef, memo } from "react"
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 import { TableOfContents } from "@/components/project/table-of-contents"
 import { AnimatedSection } from "@/components/project/animated-section"
 import { Callout } from "@/components/project/callout"
@@ -87,15 +88,25 @@ function preprocessCallouts(markdown: string): string {
   })
 }
 
+const READING_MILESTONES = [25, 50, 75, 100] as const
+
 const ReadingProgressBar = memo(function ReadingProgressBar() {
   const [progress, setProgress] = useState(0)
+  const firedMilestonesRef = useRef<Set<number>>(new Set())
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
       if (docHeight > 0) {
-        setProgress(Math.min((scrollTop / docHeight) * 100, 100))
+        const pct = Math.min((scrollTop / docHeight) * 100, 100)
+        setProgress(pct)
+        for (const milestone of READING_MILESTONES) {
+          if (pct >= milestone && !firedMilestonesRef.current.has(milestone)) {
+            firedMilestonesRef.current.add(milestone)
+            trackEvent(ANALYTICS_EVENTS.READING_PROGRESS, { milestone })
+          }
+        }
       }
     }
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -153,6 +164,8 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:block text-sm px-4 py-1.5 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-all duration-300 font-medium whitespace-nowrap"
+                data-umami-event="cta-start-project"
+                data-umami-event-location="blog-nav"
               >
                 Start a Project
               </Link>
@@ -309,6 +322,8 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground transition-colors"
+                      data-umami-event="content-external-link"
+                      data-umami-event-url={href}
                     >
                       {children}
                     </a>
@@ -369,6 +384,8 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                 <Link
                   href={`/projects/${relatedProject.id}`}
                   className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
+                  data-umami-event="content-related-project"
+                  data-umami-event-project={relatedProject.id}
                 >
                   <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
                     <FolderOpen className="w-5 h-5 text-muted-foreground" />
@@ -388,6 +405,7 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                 <Link
                   href="/blogs"
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                  data-umami-event="nav-back-blog"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Blog
@@ -397,12 +415,16 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                   <Link
                     href="/"
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                    data-umami-event="nav-portfolio"
+                    data-umami-event-from="blog"
                   >
                     View Portfolio
                   </Link>
                   <Link
                     href="/#connect"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
+                    data-umami-event="cta-get-in-touch"
+                    data-umami-event-from="blog"
                   >
                     Get In Touch
                     <ArrowRight className="w-4 h-4" />

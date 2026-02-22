@@ -6,6 +6,7 @@ import Image from "next/image"
 import contentData from "@/lib/content.json"
 import { Bot, Globe, Settings, TrendingUp, Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 
 function AnimatedStat({ value, label }: { value: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -61,7 +62,7 @@ const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
 export default function Home() {
   const [activeSection, setActiveSection] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+  const viewedSectionsRef = useRef<Set<string>>(new Set())
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,6 +75,10 @@ export default function Home() {
             })
             if (entry.target.id) {
               setActiveSection(entry.target.id)
+              if (!viewedSectionsRef.current.has(entry.target.id)) {
+                viewedSectionsRef.current.add(entry.target.id)
+                trackEvent(ANALYTICS_EVENTS.SECTION_VIEW, { section: entry.target.id })
+              }
             }
           }
         })
@@ -107,6 +112,7 @@ export default function Home() {
                       key={item.id}
                       href={item.href}
                       className="text-sm transition-colors duration-300 hover:text-foreground text-muted-foreground"
+                      data-umami-event={`nav-${item.id}`}
                     >
                       {item.name}
                     </Link>
@@ -127,6 +133,8 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-premium text-sm px-4 py-1.5 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-all duration-300 font-medium whitespace-nowrap"
+                  data-umami-event="cta-book-call"
+                  data-umami-event-location="nav"
                 >
                   Book a Call
                 </Link>
@@ -179,6 +187,8 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full text-center px-3 py-3 bg-foreground text-background rounded-lg text-sm font-medium transition-colors duration-200"
+                  data-umami-event="cta-book-call"
+                  data-umami-event-location="nav-mobile"
                 >
                   Book a Call
                 </Link>
@@ -219,6 +229,7 @@ export default function Home() {
                 <Link
                   href="/projects"
                   className="group btn-premium inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-all duration-300 hover:shadow-lg text-sm font-medium"
+                  data-umami-event="cta-view-work"
                 >
                   View My Work
                   <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,6 +241,8 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group btn-premium inline-flex items-center justify-center gap-2 px-6 py-3 border border-foreground/30 rounded-lg hover:border-foreground/60 hover:bg-foreground/5 transition-all duration-300 hover:shadow-sm text-sm font-medium"
+                  data-umami-event="cta-book-call"
+                  data-umami-event-location="hero"
                 >
                   Book a Call
                   <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -279,6 +292,7 @@ export default function Home() {
             }}
             className="group animate-gentle-float flex items-center justify-center w-10 h-10 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
             aria-label={activeSection === 'connect' ? 'Scroll to top' : 'Scroll to next section'}
+            data-umami-event="nav-scroll-button"
           >
             <svg
               className={`w-4 h-4 text-muted-foreground group-hover:text-foreground transition-all duration-300 ${activeSection === 'connect' ? 'rotate-180' : ''}`}
@@ -344,6 +358,7 @@ export default function Home() {
             <Link
               href={contentData.story.linkHref}
               className="group inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors whitespace-nowrap shrink-0"
+              data-umami-event="content-read-journey"
             >
               {contentData.story.linkText}
               <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -529,6 +544,8 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group btn-premium inline-flex items-center gap-2.5 px-5 py-2.5 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-all duration-300 text-sm font-medium"
+                data-umami-event="cta-book-call"
+                data-umami-event-location="connect"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -538,6 +555,7 @@ export default function Home() {
               <Link
                 href="mailto:hello@weeai.dev"
                 className="group btn-premium inline-flex items-center gap-2.5 px-5 py-2.5 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 text-sm font-medium"
+                data-umami-event="contact-email"
               >
                 hello@weeai.dev
                 <svg className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -549,6 +567,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group btn-premium inline-flex items-center gap-2.5 px-5 py-2.5 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 text-sm font-medium text-muted-foreground"
+                data-umami-event="download-resume"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -560,13 +579,13 @@ export default function Home() {
             <p className="text-sm text-muted-foreground">{contentData.connect.callDescription}</p>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <Link href="https://www.linkedin.com/in/yenwee-lim/" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md hover:bg-muted/50 hover:text-foreground transition-all duration-300">
+              <Link href="https://www.linkedin.com/in/yenwee-lim/" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md hover:bg-muted/50 hover:text-foreground transition-all duration-300" data-umami-event="social-linkedin">
                 LinkedIn
               </Link>
-              <Link href="https://github.com/yenwee" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md hover:bg-muted/50 hover:text-foreground transition-all duration-300">
+              <Link href="https://github.com/yenwee" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md hover:bg-muted/50 hover:text-foreground transition-all duration-300" data-umami-event="social-github">
                 GitHub
               </Link>
-              <Link href={`https://wa.me/${contentData.personal.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md hover:bg-muted/50 hover:text-foreground transition-all duration-300">
+              <Link href={`https://wa.me/${contentData.personal.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md hover:bg-muted/50 hover:text-foreground transition-all duration-300" data-umami-event="social-whatsapp">
                 WhatsApp
               </Link>
             </div>

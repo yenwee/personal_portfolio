@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { trackEvent } from "@/lib/analytics"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, Calendar, Clock, Star, BookOpen } from "lucide-react"
 import blogsData from "@/lib/blogs.json"
@@ -49,9 +50,13 @@ export default function BlogsPage() {
   ).sort()
 
   const toggleTag = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    )
+    setSelectedTags((prev) => {
+      const isRemoving = prev.includes(tag)
+      if (!isRemoving) {
+        trackEvent("filter-blog-tag", { tag })
+      }
+      return isRemoving ? prev.filter((t) => t !== tag) : [...prev, tag]
+    })
   }
 
   const filteredPosts = selectedTags.length === 0
@@ -153,6 +158,8 @@ export default function BlogsPage() {
             <Link
               href={`/blogs/${featuredPost.id}`}
               className="group block border border-border rounded-lg overflow-hidden hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+              data-umami-event="content-blog-click"
+              data-umami-event-post={featuredPost.id}
             >
               <div className="relative bg-gradient-to-br from-foreground/5 via-foreground/[0.02] to-transparent">
                 <div className="grid md:grid-cols-5 gap-0">
@@ -231,6 +238,8 @@ export default function BlogsPage() {
               key={post.id}
               href={`/blogs/${post.id}`}
               className="group block border border-border rounded-lg overflow-hidden hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+              data-umami-event="content-blog-click"
+              data-umami-event-post={post.id}
             >
               {/* Colored gradient header */}
               <div className={`h-2 bg-gradient-to-r ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`} />
@@ -288,6 +297,8 @@ export default function BlogsPage() {
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-foreground hover:text-muted-foreground transition-colors"
+            data-umami-event="nav-back-portfolio"
+            data-umami-event-from="blogs"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Portfolio

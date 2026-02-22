@@ -29,6 +29,7 @@ export function ThemeToggle() {
       onClick={() => setIsDark((prev) => !prev)}
       className="p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
       aria-label="Toggle theme"
+      data-umami-event="ui-theme-toggle"
     >
       {mounted ? (
         isDark ? (

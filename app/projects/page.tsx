@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { trackEvent } from "@/lib/analytics"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight, Calendar, User, Tag } from "lucide-react"
@@ -68,9 +69,13 @@ export default function ProjectsPage() {
             {allCategories.map((category) => (
               <button
                 key={category}
-                onClick={() => setSelectedCategory(
-                  selectedCategory === category ? "" : category
-                )}
+                onClick={() => {
+                  const newCategory = selectedCategory === category ? "" : category
+                  if (newCategory) {
+                    trackEvent("filter-project-category", { category: newCategory })
+                  }
+                  setSelectedCategory(newCategory)
+                }}
                 className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
                   selectedCategory === category
                     ? "bg-foreground text-background border-foreground"
@@ -163,6 +168,8 @@ export default function ProjectsPage() {
                     <Link
                       href={`/projects/${project.id}`}
                       className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
+                      data-umami-event="content-project-click"
+                      data-umami-event-project={project.id}
                     >
                       View Details
                       <ArrowRight className="w-4 h-4" />
@@ -192,6 +199,8 @@ export default function ProjectsPage() {
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-foreground hover:text-muted-foreground transition-colors"
+            data-umami-event="nav-back-portfolio"
+            data-umami-event-from="projects"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Portfolio

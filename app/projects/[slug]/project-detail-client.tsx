@@ -114,6 +114,8 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:block text-sm px-4 py-1.5 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-all duration-300 font-medium whitespace-nowrap"
+                data-umami-event="cta-start-project"
+                data-umami-event-location="project-nav"
               >
                 Start a Project
               </Link>
@@ -217,6 +219,8 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3 py-1.5 text-sm border border-border rounded-md hover:bg-muted/20 transition-colors"
+                data-umami-event="social-github-repo"
+                data-umami-event-project={project.id}
               >
                 <Github className="w-4 h-4" />
                 View Source
@@ -354,6 +358,8 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                       key={post.id}
                       href={`/blogs/${post.id}`}
                       className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
+                      data-umami-event="content-related-blog"
+                      data-umami-event-post={post.id}
                     >
                       <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
                         <FileText className="w-5 h-5 text-muted-foreground" />
@@ -378,6 +384,7 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                 <Link
                   href="/projects"
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                  data-umami-event="nav-back-projects"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Projects
@@ -387,12 +394,16 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                   <Link
                     href="/"
                     className="text-muted-foreground hover:text-foreground transition-colors"
+                    data-umami-event="nav-portfolio"
+                    data-umami-event-from="project"
                   >
                     View Portfolio
                   </Link>
                   <Link
                     href="/#connect"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
+                    data-umami-event="cta-get-in-touch"
+                    data-umami-event-from="project"
                   >
                     Get In Touch
                     <ArrowRight className="w-4 h-4" />

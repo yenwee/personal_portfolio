@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import { trackEvent } from "@/lib/analytics"
 
 interface TOCItem {
   id: string
@@ -64,6 +65,7 @@ export function TableOfContents({ markdown }: { markdown: string }) {
               href={`#${id}`}
               onClick={(e) => {
                 e.preventDefault()
+                trackEvent("content-toc-click", { heading: id })
                 document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
               }}
               className={`block transition-colors duration-200 leading-snug ${
