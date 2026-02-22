@@ -1,15 +1,42 @@
 OpenClaw proved open models can do your chores. They still cannot think for you.
 
-Last week Peter Steinberger got hired by OpenAI. He built OpenClaw on Kimi 2.5, running on a Raspberry Pi. Millions use it. The open-source AI agent story of 2026.
+Peter Steinberger got hired by OpenAI last week. He built OpenClaw on Kimi 2.5. Running on a Raspberry Pi. Millions use it.
 
-I run a similar setup. My Telegram bot Clara handles my finances on an open model -- expense tracking, budget queries, investment portfolio. She is fast, cheap, and reliable on the simple stuff.
+I run a similar setup.
 
-Then I asked her to set up three budget categories with spending limits. Two sequential API calls. She nailed step one. Step two failed.
+My Telegram bot Clara handles my finances on an open model. Expense tracking, budget queries, investment portfolio. Fast, cheap, reliable on simple stuff.
 
-And here is the part nobody talks about: she did not just get stuck. She told me the problem was nginx blocking POST requests. Sounded technical. Sounded right. It was completely wrong. The actual issue was an API permission error. She hallucinated a diagnosis and delivered it with confidence.
+Then I asked her to set up three budget categories with spending limits.
 
-That gap -- between doing chores and doing thinking -- is the thing the "open models are good enough" camp keeps glossing over. Benchmarks show a three-month lag between open and proprietary models. On standardized tasks, sure. On the weird edge cases where the model has to actually reason? The gap feels a lot wider.
+She nailed step one. Step two failed.
 
-I wrote about this in detail: the genius vs intern analogy, why architecture is the SOP that compensates for what the model cannot reason through, and what Steinberger's OpenAI hire actually tells us about where general agents are headed.
+She did not just get stuck. She told me the problem was nginx blocking POST requests. Sounded technical. Sounded right.
 
-Full post: https://weeai.dev/blogs/open-models-can-do-chores-not-think
+It was completely wrong.
+
+The actual issue was an API permission error. She hallucinated a confident diagnosis and pointed me in the wrong direction.
+
+Here is how I think about it:
+
+Give a senior engineer a vague brief and they figure it out. Read the docs, try alternatives, make judgment calls. Hand them autonomy and they use it.
+
+Give an intern the same brief and they nail the straightforward parts. Then they get stuck. Not because they are bad. Because the task exceeded what they can reason through alone.
+
+A genius does not need an SOP. An intern absolutely does.
+
+Open models are the intern. Genuinely good at following instructions. But when the task goes off-script, they need architecture to compensate for the reasoning they cannot do on their own.
+
+"Just write a better SOP then." I tried. Detailed tool definitions, error handling rules, fallback paths. Clara got better. The ceiling moved. But it did not disappear. She still hallucinated a diagnosis when she hit something the instructions did not cover. You cannot SOP your way out of a reasoning gap.
+
+I wrote about where that ceiling is, what Steinberger joining OpenAI tells us about general agents, and why "can I write a detailed enough SOP?" is the real question for open vs frontier models.
+
+Full breakdown in the comments.
+
+#OpenClaw #AIAgents #OpenSource #LLM
+
+---
+FIRST COMMENT (post immediately after publishing):
+
+Full post here: https://weeai.dev/blogs/open-models-can-do-chores-not-think
+
+The post covers the genius vs intern analogy in detail, benchmarks vs real-world reasoning, and why Steinberger's hire is less about open-source validation and more about what general agents still need.

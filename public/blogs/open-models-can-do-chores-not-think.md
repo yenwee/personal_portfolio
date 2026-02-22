@@ -95,6 +95,13 @@ For agents with well-defined tool schemas and predictable workflows -- data fetc
 
 For agents that need to reason through novel situations -- deciding which pipeline to run, judging whether an extraction is complete, recovering from an error nobody anticipated -- you either need a smarter model or a much more detailed guidebook. And at some point, the guidebook for every possible edge case becomes impossible to write. That is when you need the genius.
 
+I know this because I tried the obvious fix. I wrote Clara increasingly detailed instructions. Tool definitions with explicit parameters. Error handling rules for every API response code I could anticipate. Fallback paths when the primary endpoint failed. She got better. The ceiling moved higher.
+
+But it did not disappear. The budget failure happened after all those improvements. I had already written her a detailed skill file covering Firefly III operations. She still hallucinated a diagnosis when she hit something the skill file did not cover. You cannot SOP your way out of a reasoning gap. At some point the model has to actually think, and no markdown file of instructions substitutes for that.
+
+> [!caution] The SOP has a ceiling too
+> Writing a better guidebook helps. I am not saying it does not. But a guidebook only covers the paths you can anticipate. The moment something unexpected happens -- a permission error instead of a network error, an API that changed its response format, an edge case you never tested -- the model is on its own. And if it cannot reason through novelty, it will either freeze or hallucinate. Both happened to Clara.
+
 > [!insight] The real question for open models
 > It is not "is this model smart enough?" It is "can I write a detailed enough SOP to cover what this model cannot reason through on its own?" If yes, open model. If not, you need a stronger model or you need to accept the failure rate.
 
