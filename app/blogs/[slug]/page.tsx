@@ -73,12 +73,15 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     ? projectsData.projects.find((p) => p.id === relatedProjectId)
     : undefined
 
+  const lastUpdated = (post as { lastUpdated?: string }).lastUpdated
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    ...(lastUpdated && { dateModified: lastUpdated }),
     url: `https://weeai.dev/blogs/${slug}`,
     image: `https://weeai.dev/blogs/${slug}/opengraph-image`,
     author: {

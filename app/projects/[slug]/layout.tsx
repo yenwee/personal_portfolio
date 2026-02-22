@@ -33,6 +33,10 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: url,
+      languages: {
+        "en": url,
+        "x-default": url,
+      },
     },
     openGraph: {
       title: project.title,

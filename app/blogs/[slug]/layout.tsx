@@ -19,12 +19,17 @@ export async function generateMetadata({
   }
 
   const url = `https://weeai.dev/blogs/${slug}`
+  const lastUpdated = (post as { lastUpdated?: string }).lastUpdated
 
   return {
     title: `${post.title} | Yen Wee Lim`,
     description: post.description,
     alternates: {
       canonical: url,
+      languages: {
+        "en": url,
+        "x-default": url,
+      },
     },
     openGraph: {
       title: post.title,
@@ -33,6 +38,7 @@ export async function generateMetadata({
       siteName: "Yen Wee Lim",
       type: "article",
       publishedTime: post.date,
+      ...(lastUpdated && { modifiedTime: lastUpdated }),
       tags: post.tags,
       images: [
         {

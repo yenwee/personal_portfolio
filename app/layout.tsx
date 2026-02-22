@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   keywords: contentData.metadata.keywords,
   authors: [{ name: contentData.metadata.author }],
   creator: contentData.metadata.author,
+  alternates: {
+    canonical: contentData.metadata.ogUrl,
+    languages: {
+      "en": contentData.metadata.ogUrl,
+      "x-default": contentData.metadata.ogUrl,
+    },
+  },
   openGraph: {
     title: contentData.metadata.ogTitle,
     description: contentData.metadata.ogDescription,

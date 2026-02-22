@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   description: "A showcase of AI/ML projects, data engineering solutions, and web applications built for enterprise clients and personal development.",
   alternates: {
     canonical: "https://weeai.dev/projects",
+    languages: {
+      "en": "https://weeai.dev/projects",
+      "x-default": "https://weeai.dev/projects",
+    },
   },
   openGraph: {
     title: "Projects - Yen Wee Lim",

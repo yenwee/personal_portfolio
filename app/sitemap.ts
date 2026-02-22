@@ -36,12 +36,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
-  const blogRoutes: MetadataRoute.Sitemap = blogsData.posts.map((post) => ({
-    url: `${BASE_URL}/blogs/${post.id}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "yearly" as const,
-    priority: 0.7,
-  }))
+  const blogRoutes: MetadataRoute.Sitemap = blogsData.posts.map((post) => {
+    const lastUpdated = (post as { lastUpdated?: string }).lastUpdated
+    return {
+      url: `${BASE_URL}/blogs/${post.id}`,
+      lastModified: new Date(lastUpdated ?? post.date),
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    }
+  })
 
   return [...staticRoutes, ...projectRoutes, ...blogRoutes]
 }
