@@ -1,6 +1,6 @@
 "use client"
 
-import { Lightbulb, AlertTriangle, Zap, Info, TrendingUp } from "lucide-react"
+import { Lightbulb, AlertTriangle, Zap, Info, TrendingUp, ShieldAlert, OctagonAlert, TriangleAlert } from "lucide-react"
 import type { ReactNode } from "react"
 
 const CALLOUT_STYLES = {
@@ -38,6 +38,27 @@ const CALLOUT_STYLES = {
     icon: Info,
     iconColor: "text-muted-foreground",
     title: "Note",
+  },
+  warning: {
+    border: "border-yellow-500/30",
+    bg: "bg-yellow-500/5",
+    icon: TriangleAlert,
+    iconColor: "text-yellow-500",
+    title: "Warning",
+  },
+  danger: {
+    border: "border-red-500/30",
+    bg: "bg-red-500/5",
+    icon: OctagonAlert,
+    iconColor: "text-red-500",
+    title: "Danger",
+  },
+  caution: {
+    border: "border-orange-500/30",
+    bg: "bg-orange-500/5",
+    icon: ShieldAlert,
+    iconColor: "text-orange-500",
+    title: "Caution",
   },
 } as const
 

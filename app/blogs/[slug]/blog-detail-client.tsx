@@ -73,18 +73,23 @@ function getSectionAccent(text: string): string {
   return "bg-foreground/70"
 }
 
-type CalloutType = "insight" | "challenge" | "decision" | "metric" | "note"
+type CalloutType = "insight" | "challenge" | "decision" | "metric" | "note" | "warning" | "danger" | "caution"
 
-const CALLOUT_TYPES = "insight|challenge|decision|metric|note"
+const CALLOUT_TYPES = "insight|challenge|decision|metric|note|warning|danger|caution"
 const CALLOUT_REGEX = new RegExp(
-  `^> \\[!(${CALLOUT_TYPES})\\]\\s*(.+)\\n> (.+)$`,
+  `^> \\[!(${CALLOUT_TYPES})\\]\\s*(.+)\\n((?:> .+(?:\\n|$))+)`,
   "gm"
 )
 
 function preprocessCallouts(markdown: string): string {
-  return markdown.replace(CALLOUT_REGEX, (_, type, title, body) => {
+  return markdown.replace(CALLOUT_REGEX, (_, type, title, bodyLines) => {
     const encodedTitle = title.trim().replace(/\|/g, "\\|")
-    return `[CALLOUT:${type}:${encodedTitle}] ${body.trim()}`
+    const body = bodyLines
+      .split("\n")
+      .map((line: string) => line.replace(/^>\s?/, ""))
+      .join(" ")
+      .trim()
+    return `[CALLOUT:${type}:${encodedTitle}] ${body}`
   })
 }
 
@@ -277,7 +282,7 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     const firstChild = childArray[0]
                     if (typeof firstChild === 'string') {
                       const calloutMatch = firstChild.match(
-                        /^\[CALLOUT:(insight|challenge|decision|metric|note):(.+?)\]\s*(.*)/
+                        /^\[CALLOUT:(insight|challenge|decision|metric|note|warning|danger|caution):(.+?)\]\s*(.*)/
                       )
                       if (calloutMatch) {
                         const [, type, title, bodyStart] = calloutMatch
