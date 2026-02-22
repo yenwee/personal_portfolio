@@ -31,7 +31,7 @@ Give an intern the same vague brief and they will get the straightforward parts 
 > [!insight] The SOP principle
 > A genius does not need a standard operating procedure. An intern absolutely does. The same applies to models -- a frontier model can operate with vague instructions and autonomy. A smaller open model needs structured tool definitions, explicit error handling, and clear guardrails. The architecture is the SOP.
 
-OpenClaw, the biggest AI agent story of 2026, runs on this exact tradeoff. Peter Steinberger built it on open models. Kimi 2.5. Running on a Raspberry Pi. It went viral. Millions use it. OpenAI hired him for it.
+OpenClaw, the biggest AI agent story of 2026, runs on this exact tradeoff. Peter Steinberger built it on open models -- Kimi K2.5 being the most popular, though it supports others. Running on a Raspberry Pi. It went viral. Millions of installs. OpenAI hired him for it.
 
 And for the things it does -- managing your calendar, sending messages, looking up files, running simple automations -- it is genuinely good. These are tasks with clear intent and predictable tool calls. The model does not need to be a genius. It just needs to follow instructions.
 
@@ -73,7 +73,7 @@ But benchmarks measure average capability across defined tasks. They measure sho
 
 They do not measure the model's ability to reason through a three-step recovery path it has never seen in training. That is where the gap feels a lot wider than three months.
 
-Palo Alto Networks called OpenClaw "the potential biggest insider threat of 2026." The security angle gets the headlines. But the part that concerns me more is the reasoning angle: an agent with full system access and limited ability to reason about consequences is a specific kind of risk that benchmarks do not capture.
+Palo Alto Networks flagged AI agents as "2026's biggest insider threat" -- and OpenClaw, with its full system access and millions of installs, is the poster child for that warning. The security angle gets the headlines. But the part that concerns me more is the reasoning angle: an agent with full system access and limited ability to reason about consequences is a specific kind of risk that benchmarks do not capture.
 
 > [!danger] Confident and wrong at scale
 > Clara misdiagnosed a permission error as an nginx issue on my personal finance bot. That cost me ten minutes. Now imagine an agent with the same reasoning limits making the same kind of confident misdiagnosis on production infrastructure, customer data, or financial transactions. The failure mode is not "the agent gets stuck." It is "the agent does the wrong thing and tells you it went fine."
