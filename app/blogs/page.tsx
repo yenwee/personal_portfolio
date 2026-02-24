@@ -221,18 +221,21 @@ export default function BlogsPage() {
               >
                 <div className="relative bg-gradient-to-br from-foreground/5 via-foreground/[0.02] to-transparent">
                   <div className="grid md:grid-cols-5 gap-0">
-                    {/* Left visual accent */}
-                    <div className="hidden md:flex md:col-span-2 items-center justify-center bg-muted/30 p-6 sm:p-8 overflow-hidden">
-                      {featuredPost.featuredImage ? (
+                    {/* Visual accent */}
+                    {featuredPost.featuredImage ? (
+                      <div className="md:col-span-2 flex items-center justify-center bg-muted/30 p-6 sm:p-8 overflow-hidden">
                         <div className="relative w-full aspect-[4/3]">
                           <Image
                             src={featuredPost.featuredImage}
                             alt={featuredPost.title}
                             fill
                             className="object-contain group-hover:scale-105 transition-transform duration-500"
+                            priority
                           />
                         </div>
-                      ) : (
+                      </div>
+                    ) : (
+                      <div className="hidden md:flex md:col-span-2 items-center justify-center bg-muted/30 p-6 sm:p-8 overflow-hidden">
                         <div className="text-center space-y-4">
                           <BookOpen className="w-16 h-16 text-muted-foreground/40 mx-auto" />
                           <div className="space-y-2">
@@ -240,8 +243,8 @@ export default function BlogsPage() {
                             <div className="text-xs font-mono text-muted-foreground tracking-wider">READ TIME</div>
                           </div>
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Right content */}
                     <div className="md:col-span-3 p-8 sm:p-12">
@@ -313,6 +316,7 @@ export default function BlogsPage() {
                       alt={post.title}
                       fill
                       className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      loading={index < 4 ? "eager" : "lazy"}
                     />
                   </div>
                 ) : (
