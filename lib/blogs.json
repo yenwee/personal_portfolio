@@ -82,7 +82,14 @@
       "tags": ["RAG", "Document AI", "LangGraph"],
       "featured": true,
       "readTime": 8,
-      "relatedProject": "doc-auto"
+      "relatedProject": "doc-auto",
+      "crossPostedOn": [
+        {
+          "name": "Towards AI",
+          "url": "https://pub.towardsai.net/rag-is-not-enough-how-we-built-dual-mode-document-intelligence-e9b988e12461",
+          "logo": "/images/towards-ai-logo.png"
+        }
+      ]
     },
     {
       "id": "5-layer-ai-guardrails-system",

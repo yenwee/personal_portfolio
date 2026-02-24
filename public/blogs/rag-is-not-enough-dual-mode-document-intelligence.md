@@ -11,7 +11,11 @@ There was just one problem. The answer was wrong. The document mentioned KYC upg
 
 That failure led us to build what I call **dual-mode document intelligence** -- a system that combines passive RAG for simple lookups with agentic RAG for complex reasoning, plus a vision-language model pipeline for documents that are not machine-readable at all. Here is the architecture and the reasoning behind every major decision.
 
+![RAG System Failure in Regulatory Compliance](/blogs/images/rag-system-failure.png)
+
 ## Why Basic RAG Fails for Enterprise Documents
+
+![Basic RAG Fails for Enterprise Documents](/blogs/images/rag-failure-modes.png)
 
 Let me be specific about the failure modes, because "RAG does not work" is not a useful diagnosis.
 
@@ -35,12 +39,16 @@ A significant portion of enterprise documents in Southeast Asia are scanned PDFs
 
 ## The Dual-Mode Architecture
 
+![Choose the appropriate RAG mode for query complexity](/blogs/images/rag-dual-mode-decision.png)
+
 > [!decision] Dual-Mode Over Single Pipeline
 > Rather than optimizing a single RAG pipeline, we chose a dual-mode architecture that dynamically selects between passive RAG for simple lookups and agentic RAG for complex reasoning -- matching the complexity of the answer strategy to the complexity of the question.
 
 Our system dynamically selects between two modes based on query complexity and document characteristics.
 
 ### Mode 1: Passive RAG (Simple Queries)
+
+![Passive RAG Improvements](/blogs/images/rag-passive-improvements.png)
 
 For straightforward factual lookups -- "What is the effective date of this policy?", "Who signed this contract?", "What is the total amount in Section 5?" -- passive RAG works well. These queries have a single, localized answer that exists in a specific place in the document.
 
@@ -65,6 +73,8 @@ class HierarchicalChunk:
 **Confidence scoring.** Every retrieval comes with a confidence score that reflects not just embedding similarity but also structural alignment (does the query ask about a section and the chunk is from that section?) and coverage (does the retrieved context contain all the entities mentioned in the query?).
 
 ### Mode 2: Agentic RAG (Complex Queries)
+
+![Agentic RAG Pipeline for Complex Queries](/blogs/images/rag-agentic-pipeline.png)
 
 For queries that require reasoning across multiple sections, following cross-references, comparing information, or synthesizing conclusions, we switch to agentic mode. This is where LangGraph comes in.
 
@@ -122,6 +132,8 @@ class DocumentAgent:
 
 ### Mode Selection: How the System Decides
 
+![Which mode should be used for the query?](/blogs/images/rag-mode-selection.png)
+
 The mode selector is a lightweight classifier that examines the query and document characteristics:
 
 - **Passive mode triggers**: Single-entity queries, factual lookups, queries about a specific named section, queries with clear localized answers.
@@ -163,6 +175,8 @@ The VLM pipeline handles tables significantly better than traditional OCR becaus
 For documents with mixed content (some pages are digital, some are scanned), we detect page type automatically and route accordingly. Digital pages go through direct text extraction. Scanned pages go through the VLM pipeline. The downstream RAG system receives consistent structured content regardless of the source format.
 
 ## Confidence Scoring: Knowing What You Do Not Know
+
+![How confident is the system in its answer?](/blogs/images/rag-confidence-scoring.png)
 
 The most important feature of our system is not what it knows -- it is what it communicates about what it does not know.
 
