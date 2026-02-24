@@ -98,7 +98,7 @@ function preprocessCallouts(markdown: string): string {
       .map((line: string) => line.replace(/^>\s?/, ""))
       .join(" ")
       .trim()
-    return `[CALLOUT:${type}:${encodedTitle}] ${body}`
+    return `[CALLOUT:${type}:${encodedTitle}] ${body}\n`
   })
 }
 

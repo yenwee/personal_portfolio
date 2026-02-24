@@ -14,7 +14,7 @@ The VPS market hit $5.2 billion in 2025, growing at 15.5% annually. Active subsc
 
 The poster child is 37signals. DHH documented their AWS exit in detail: $3.2 million per year in cloud spend, S3 bill alone at $1.5 million/year, down to $200,000/year on Pure Storage after migrating. Total savings over five years: $7 million.
 
-![RackNerd Black Friday VPS pricing - $18.66/year for 2.5GB RAM](/blogs/racknerd-vps-pricing.png)
+![RackNerd Black Friday VPS pricing - $18.66/year for 2.5GB RAM](/blogs/images/vps/racknerd-vps-pricing.png)
 
 > [!metric] My Own Numbers
 > I run five Docker containers on a $18.66/year RackNerd VPS (second from left). The equivalent on managed cloud (database, hosting, object storage, monitoring, e-signing service) would cost roughly $80-120/month. The VPS paid for itself in the first week.
@@ -44,7 +44,7 @@ This is the part that changed the equation for developers who have not gone thro
 
 Self-hosting was always technically possible on the cheap. The barrier was never the tools. It was the knowledge required when something went wrong. Your reverse proxy returns a 502 and you have no idea whether it is DNS, a container crash, a port conflict, or a firewall rule. Your database runs out of connections at 3 AM and you do not know what `ulimit` means.
 
-![VPS console showing SSH service name confusion - sshd vs ssh on Ubuntu](/blogs/vps-novnc-ssh-debug.png)
+![VPS console showing SSH service name confusion - sshd vs ssh on Ubuntu](/blogs/images/vps/vps-novnc-ssh-debug.png)
 
 *The kind of problem AI solves in seconds. Ubuntu names the service `ssh`, not `sshd`. A small thing if you know it, a 30-minute search if you do not.*
 

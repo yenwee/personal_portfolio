@@ -1,5 +1,7 @@
 # Why I Left Actuarial Science for AI (And Why My Stats Background Is My Secret Weapon)
 
+![Choose a career path](/blogs/images/actuarial/actuarial-two-tabs.png)
+
 The decision crystallized over a single weekend in 2019. I was sitting in a cafe in Kuala Lumpur, staring at two browser tabs. The left tab had the Society of Actuaries exam schedule for the next three years -- a clear, well-trodden path toward a comfortable career in insurance pricing. The right tab had a Jupyter notebook where I had just trained a gradient boosting model to predict credit defaults with an AUC of 0.89 on a Kaggle dataset.
 
 > The actuarial path promised stability. The machine learning path promised I would never be bored.
@@ -12,6 +14,8 @@ I closed the left tab.
 That decision has shaped every part of my career since then, from building ML models at Credit Bureau Malaysia to architecting agentic AI systems at Infomina. And the counterintuitive truth is that the actuarial and statistical training I "left behind" has become the most valuable part of my toolkit.
 
 ## The Path That Was Not a Straight Line
+
+![Career Transition from Actuarial Science to AI Engineering](/blogs/images/actuarial/actuarial-career-path.png)
 
 Let me be clear: I did not wake up one morning and decide to become an AI engineer. The transition happened in stages, each one building on the last.
 
@@ -27,6 +31,8 @@ The path from actuarial science to AI looks like a pivot from the outside. From 
 > How do you make good decisions under uncertainty? This single question connects actuarial science, statistics, and AI -- and it has been the throughline of my entire career.
 
 ## How Statistical Rigor Becomes a Superpower in AI
+
+![Statistical Superpowers for AI Engineering](/blogs/images/actuarial/actuarial-statistical-superpowers.png)
 
 Here is what I have noticed working alongside engineers who came to AI from pure software backgrounds: they are often excellent at building systems but less rigorous about validating whether those systems work correctly.
 
@@ -71,6 +77,8 @@ At Credit Bureau Malaysia, we caught a significant drift in our credit scoring m
 
 ## The FRM and CFA Perspective on Risk in AI
 
+![Financial risk frameworks range from internal to external impact](/blogs/images/actuarial/actuarial-risk-frameworks.png)
+
 I hold the Financial Risk Manager (FRM) certification and I am currently a CFA Level 3 candidate. These are not typical credentials for someone building AI systems, but they give me a perspective that I think is increasingly important as AI moves into regulated industries.
 
 The FRM curriculum covers operational risk, model risk, and systemic risk -- concepts that translate directly to AI system design:
@@ -82,6 +90,8 @@ The FRM curriculum covers operational risk, model risk, and systemic risk -- con
 **Systemic risk** is the one that keeps me up at night. As AI agents become more interconnected (calling other APIs, triggering other agents, making autonomous decisions), the potential for cascading failures increases. The same dynamics that caused the 2008 financial crisis -- tight coupling, hidden dependencies, insufficient circuit breakers -- can appear in complex AI systems.
 
 ## Advice for Career Changers
+
+![Advice for career changers](/blogs/images/actuarial/actuarial-career-advice.png)
 
 If you are considering a similar pivot, here is what I have learned:
 
@@ -97,6 +107,8 @@ If you are considering a similar pivot, here is what I have learned:
 **The transition is a marathon, not a sprint.** It took me roughly three years to go from "data analyst with some ML skills" to "AI solutions lead building production systems." There were periods of impostor syndrome, late nights learning new tools, and moments where the actuarial path looked a lot more comfortable. Every career change has these. They pass.
 
 ## Where Statistics Meets the Future
+
+![Where Statistics Meets the Future of AI](/blogs/images/actuarial/actuarial-statistics-future.png)
 
 The irony is that as AI gets more sophisticated, the need for statistical rigor increases, not decreases. Large language models hallucinate. Agentic systems make autonomous decisions with real consequences. The questions become: How do you validate an agent's decisions? How do you quantify the uncertainty in a RAG system's output? How do you detect when a model has drifted from its intended behavior?
 

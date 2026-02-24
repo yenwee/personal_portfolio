@@ -1,5 +1,7 @@
 # I Got Locked Out of My Own Server During Chinese New Year. Then I Automated Everything.
 
+![Engineer Locked Out of Server](/blogs/images/ansible/ansible-lockout-story.png)
+
 Chinese New Year reunion dinner. My phone buzzes. A monitoring alert -- the Contabo VPS I had been hardening for a client is unreachable. I excuse myself from the table, open a terminal on my laptop, and type `ssh root@...`. Connection refused.
 
 I had changed the SSH port, enabled key-only authentication, and restarted the service. In that order. The problem: I had not tested the new port from a second session before killing password login. The server was hardened alright -- hardened against me.
@@ -18,6 +20,8 @@ I procured a Contabo VPS -- bare Ubuntu 24.04, nothing installed, exposed to the
 The first time, I did it by hand. That was the mistake.
 
 ## Three Lockouts, Three Lessons
+
+![Achieving Server Stability](/blogs/images/ansible/ansible-three-lockouts.png)
 
 ### Lockout 1: SSH Hardening Without a Safety Net
 
@@ -46,6 +50,8 @@ The fix was simple in hindsight: run the firewall role last, after everything el
 > Enabling a firewall mid-provisioning creates iptables conflicts with Docker and other services that manage their own rules. The firewall role runs deliberately last in the playbook -- after SSH hardening, after Docker, after all services are verified.
 
 ## Eight Roles, One Command
+
+![Ansible Role Cycle for Server Setup](/blogs/images/ansible/ansible-eight-roles.png)
 
 After the third lockout, I stopped doing things by hand. Every manual step became an Ansible task. Every ordering lesson became a role dependency. The result: eight idempotent roles that take a bare Ubuntu 24.04 VPS to production-ready.
 
@@ -95,6 +101,8 @@ I only caught it because the playbook's verification step -- the one I added aft
 That verification task is the most important line in the entire playbook. It exists because of a lockout during Chinese New Year.
 
 ## What the Lockouts Taught Me
+
+![Manual process fails when tired or distracted](/blogs/images/ansible/ansible-systems-beat-discipline.png)
 
 I could have avoided every lockout by being more careful. But "be more careful" is not a system. It is a wish. **Systems beat discipline every time**, because systems work when you are tired, distracted, or eating reunion dinner.
 

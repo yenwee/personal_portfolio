@@ -1,5 +1,7 @@
 # I Built My Own Full-Stack OS Because No SaaS Could Connect My Entire Workflow
 
+![SaaS Fragmentation Problem](/blogs/images/bos/bos-saas-fragmentation.png)
+
 I started building side projects with no system. No invoicing tool. No CRM. No project tracker. No expense log. Just a laptop and the vague intention to "figure it out as I go."
 
 That is not a system. That is a liability.
@@ -26,6 +28,8 @@ The third reason is the one that actually mattered. The first two were justifica
 
 ## It Started With Invoicing
 
+![Feature Chain Reaction](/blogs/images/bos/bos-feature-chain.png)
+
 The first version did one thing: generate invoices. A form, some fields, a PDF. That was it.
 
 But the moment you have invoicing, you need to know who to invoice. So I added clients. Then I needed to track which clients had paid and which had not. So I added payment status and overdue detection. Then I needed to send the invoices. So I added email with PDF attachments.
@@ -37,6 +41,8 @@ I did not plan eight modules. I planned one. The rest emerged from the question:
 ---
 
 ## What It Does Now
+
+![Hustle OS Eight Modules](/blogs/images/bos/bos-eight-modules.png)
 
 Hustle OS is a Next.js app backed by PostgreSQL. Eight modules covering the full business workflow:
 
@@ -60,11 +66,13 @@ Hustle OS is a Next.js app backed by PostgreSQL. Eight modules covering the full
 
 Everything connects through one data model. A lead becomes a client. A client gets a project. A project generates timesheets. Timesheets become invoices. Invoices feed reports. No re-entry. No copy-pasting between tools.
 
-![Hustle OS Dashboard](/blogs/images/hustle-os-dashboard.png)
+![Hustle OS Dashboard](/blogs/images/hustle-os/hustle-os-dashboard.png)
 
 ---
 
 ## The Technical Decisions
+
+![Monolith Architecture](/blogs/images/bos/bos-monolith-architecture.png)
 
 ### One monolith, not microservices
 
@@ -101,6 +109,8 @@ The app is live at [app.weeai.dev](https://app.weeai.dev), with contract e-signi
 ---
 
 ## What I Actually Learned
+
+![Building Forces Understanding](/blogs/images/bos/bos-building-forces-understanding.png)
 
 The software works. But I am still building more than I am using it day-to-day. And that is the honest part of this story.
 

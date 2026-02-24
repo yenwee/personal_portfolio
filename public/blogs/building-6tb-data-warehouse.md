@@ -8,6 +8,8 @@ Here is what I wish someone had told me before I started.
 
 ## The Scale Shock
 
+![Data Warehouse Scale](/blogs/images/dw/dw-scale-shock.png)
+
 When I joined, the data lived in a patchwork of legacy systems and flat files. The "data warehouse" was a generous term for a collection of SQL Server databases that had grown organically over years. My mandate was to consolidate everything into a proper analytical warehouse.
 
 The initial data audit revealed the scope:
@@ -27,6 +29,8 @@ I had built data pipelines before. Small ones. The kind where you can `SELECT *`
 The single most consequential decision in any data warehouse project is the schema design, because unlike application databases, you cannot easily refactor a warehouse schema once it is loaded with terabytes of historical data.
 
 ### Star Schema With a Twist
+
+![Star Schema with Temporal Dimensions](/blogs/images/dw/dw-star-schema.png)
 
 We went with a modified star schema. The core fact tables tracked credit events (applications, disbursements, repayments, defaults), and dimension tables covered entities (borrowers, institutions, products, time).
 
@@ -84,6 +88,8 @@ Partitioning cut our average query times by roughly 70% for date-bounded queries
 
 ## Daily ETL: Where Theory Meets Reality
 
+![Daily ETL Pipeline](/blogs/images/dw/dw-etl-pipeline.png)
+
 The textbook version of ETL is straightforward: extract from sources, transform to match your schema, load into the warehouse. The production version is a minefield.
 
 ### The Replication Challenge
@@ -126,6 +132,8 @@ with DAG("daily_credit_ingestion", schedule_interval="0 6 * * *") as dag:
 **Gotcha 3: Sensor deadlocks.** We used Airflow sensors to wait for source files to arrive before starting extraction. But sensors occupy a worker slot while waiting. If all your worker slots are occupied by sensors waiting for files that have not arrived, no actual work gets done. We switched to `mode="reschedule"` for all sensors, which releases the worker slot between pokes.
 
 ## Performance Optimization: Making 6TB Feel Small
+
+![PostgreSQL Performance Optimization](/blogs/images/dw/dw-performance-optimization.png)
 
 When an analyst runs a query against 6TB of data, "please wait" is not an acceptable answer. Here are the optimizations that made the biggest difference.
 
@@ -184,6 +192,8 @@ ALTER TABLE fact_credit_events SET (
 The default scale factor of 0.2 meant that a table with 500 million rows would not trigger a vacuum until 100 million dead tuples accumulated. That is a recipe for table bloat and degraded performance.
 
 ## The Lessons
+
+![Data Warehouse Lessons](/blogs/images/dw/dw-lessons.png)
 
 > [!decision] Why We Stayed With PostgreSQL
 > We considered migrating to a columnar database twice. Both times, proper partitioning, indexing, and materialized views got us the performance we needed. PostgreSQL can handle more than most people give it credit for.

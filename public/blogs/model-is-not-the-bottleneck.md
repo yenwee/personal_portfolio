@@ -17,7 +17,7 @@ This is the story of how we got there and what it taught me about building produ
 
 ## Why Single-Pass Extraction Fails
 
-![Single-Pass Extraction Fails](/blogs/images/vlm-single-pass-fails.png)
+![Single-Pass Extraction Fails](/blogs/images/vlm/vlm-single-pass-fails.png)
 
 When you feed an entire document image to an LLM in one pass, the model receives roughly 15,000 tokens of visual information. Most of it is noise: headers, footers, watermarks, logos, decorative borders, irrelevant tables, page numbers, legal boilerplate.
 
@@ -33,7 +33,7 @@ This is not a single inference. It is a directed graph.
 
 ## The Insight: The Graph Is the Product
 
-![Multi-Pass Document Processing Cycle](/blogs/images/vlm-multi-pass-cycle.png)
+![Multi-Pass Document Processing Cycle](/blogs/images/vlm/vlm-multi-pass-cycle.png)
 
 The turning point came when we stopped asking "which model extracts best?" and started asking "how does a skilled human actually read a document?"
 
@@ -51,7 +51,7 @@ Once we made this mental shift, the architecture designed itself. We did not nee
 
 ## The Architecture: An Adaptive LangGraph Pipeline
 
-![Document Extraction Workflow](/blogs/images/vlm-extraction-workflow.png)
+![Document Extraction Workflow](/blogs/images/vlm/vlm-extraction-workflow.png)
 
 Here is the pipeline. Unlike a simple chain, this is an adaptive graph with conditional loops -- nodes that can route back to earlier stages based on what they find.
 
@@ -220,7 +220,7 @@ This debuggability transformed our error resolution workflow. Instead of re-runn
 
 ## The Trade-Offs Nobody Talks About
 
-![Adaptive Graph Architecture Trade-Offs](/blogs/images/vlm-tradeoffs.png)
+![Adaptive Graph Architecture Trade-Offs](/blogs/images/vlm/vlm-tradeoffs.png)
 
 Let me be honest about what this architecture costs you.
 
@@ -251,7 +251,7 @@ Not every problem needs an adaptive pipeline. A standardized form with predictab
 
 ## The Broader Lesson: Architect the Workflow
 
-![AI System Design: Beyond Model Benchmarks](/blogs/images/vlm-beyond-benchmarks.png)
+![AI System Design: Beyond Model Benchmarks](/blogs/images/vlm/vlm-beyond-benchmarks.png)
 
 Every production AI system is a workflow, not a single inference call. The question is whether you design that workflow explicitly -- as a graph with defined nodes, edges, and state -- or leave it implicit, stuffed into one massive prompt and hoping the model figures it out.
 

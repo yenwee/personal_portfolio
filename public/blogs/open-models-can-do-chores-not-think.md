@@ -13,7 +13,7 @@ The actual problem? A permission issue on the API call. Not nginx. She hallucina
 
 The thing is, ten minutes earlier she was flawless. "rm 45 grabfood" logged RM 45 under Food. "How much this month?" pulled a clean spending summary. "Portfolio?" showed my Ghostfolio holdings. No hesitation, no errors. An open model running on budget infrastructure, doing exactly what I built her to do.
 
-![Clara's Telegram capabilities -- expense tracking, investment queries, budget status, all working smoothly on an open model](/blogs/images/clara-capabilities-overview.png)
+![Clara's Telegram capabilities -- expense tracking, investment queries, budget status, all working smoothly on an open model](/blogs/images/open-models/clara-capabilities-overview.png)
 
 Two tasks. One simple, one slightly complex. The gap between them is the thing I keep running into -- and the thing nobody in the OpenClaw discourse wants to talk about.
 
@@ -22,7 +22,7 @@ Two tasks. One simple, one slightly complex. The gap between them is the thing I
 
 ## A genius does not need instructions
 
-![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/balancing-model-capabilities.png)
+![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/open-models/balancing-model-capabilities.png)
 
 Here is how I think about it.
 
@@ -55,7 +55,7 @@ These are pattern-matching tasks. Clear input, one API call, predictable respons
 
 The budget setup was different. It required two sequential API operations -- create categories, then POST limits through a separate endpoint. Clara nailed step one. Step two failed. And this is where the gap showed up.
 
-![Clara hitting the ceiling -- categories created successfully, but budget amounts failed and she misdiagnosed the root cause](/blogs/images/clara-budget-failure.png)
+![Clara hitting the ceiling -- categories created successfully, but budget amounts failed and she misdiagnosed the root cause](/blogs/images/open-models/clara-budget-failure.png)
 
 She told me the problem was nginx blocking POST requests. It was not. The actual issue was an API permission error. She hallucinated a confident, technical-sounding explanation that pointed me in the wrong direction entirely.
 
@@ -66,7 +66,7 @@ A stronger model might have checked the actual error response, tried with differ
 
 ## Benchmarks miss the interesting part
 
-![Epoch AI Capabilities Index -- Chinese AI models have lagged the US frontier by 7 months on average since 2023](/blogs/images/epoch-ai-capability-gap.png)
+![Epoch AI Capabilities Index -- Chinese AI models have lagged the US frontier by 7 months on average since 2023](/blogs/images/open-models/epoch-ai-capability-gap.png)
 
 Epoch AI says open-weight models trail proprietary ones by about three months on average. And on benchmarks, that is probably true. DeepSeek V3.2 matches GPT-5.2 on most standardized tests. Qwen3-235B is competitive with anything.
 
@@ -84,7 +84,7 @@ Palo Alto Networks flagged AI agents as "2026's biggest insider threat" -- and O
 
 ## If you cannot get the genius, build a better guidebook
 
-![Building better guidebooks for AI agents -- from limited autonomy through defined tool schemas, predictable workflows, and detailed instructions to enhanced autonomy](/blogs/images/building-better-guidebooks.png)
+![Building better guidebooks for AI agents -- from limited autonomy through defined tool schemas, predictable workflows, and detailed instructions to enhanced autonomy](/blogs/images/open-models/building-better-guidebooks.png)
 
 At Infomina AI, we run multiple LangGraph agents in production. Some use Claude. Some use open models. The choice is never about which model is cheaper.
 
@@ -113,7 +113,7 @@ But it did not disappear. The budget failure happened after all those improvemen
 
 ## The quiet part about Steinberger joining OpenAI
 
-![Steinberger's OpenAI hire -- beyond open-source validation, a conversation about why general agents need smarter models](/blogs/images/steinberger-openai-hire.png)
+![Steinberger's OpenAI hire -- beyond open-source validation, a conversation about why general agents need smarter models](/blogs/images/open-models/steinberger-openai-hire.png)
 
 Everyone frames the hire as validation for open-source AI agents. It is.
 

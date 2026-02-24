@@ -11,6 +11,8 @@ That experience taught me something that I now consider the cardinal rule of pro
 
 ## Why Most AI Agent Systems Fail in Production
 
+![AI Agent Failure Modes](/blogs/images/agents/agents-failure-modes.png)
+
 Before I get into what we built, let me be honest about why the first version failed. And it was not because the models were bad.
 
 Most AI agent failures come down to three categories:
@@ -26,6 +28,8 @@ Most AI agent failures come down to three categories:
 After the first failure, we stepped back and designed around three principles: **explicit routing, bounded autonomy, and human-in-the-loop by default**.
 
 ### Decision Routing with LangGraph
+
+![Task Routing Process](/blogs/images/agents/agents-decision-routing.png)
 
 We use LangGraph's `StateGraph` as the backbone. Every agent interaction flows through a central routing layer that examines the task, classifies intent, and dispatches to the appropriate specialist agent.
 
@@ -48,6 +52,8 @@ The key insight here is the confidence threshold. If the router is not at least 
 
 ### The Agent Taxonomy
 
+![AI Agent Hierarchy](/blogs/images/agents/agents-four-tiers.png)
+
 Our 15 agents fall into four tiers:
 
 - **Tier 1 -- Orchestration** (2 agents): Task routing and workflow coordination. These agents never touch data directly. They are traffic controllers.
@@ -58,6 +64,8 @@ Our 15 agents fall into four tiers:
 Each tier has its own error handling strategy and timeout configuration. Tier 2 agents, for instance, have strict 30-second timeouts because they interact with databases. Tier 3 agents get longer leashes because model training operations are inherently slower.
 
 ### Bounded Autonomy: The Permission System
+
+![Bounded Autonomy](/blogs/images/agents/agents-bounded-autonomy.png)
 
 Every agent operates within a declared capability envelope. Here is a simplified version of what that looks like:
 
@@ -84,6 +92,8 @@ This is not just configuration -- it is a contract. Before any agent executes an
 
 ## Human-in-the-Loop: Not Optional, Not an Afterthought
 
+![Human-in-the-Loop Decision Process](/blogs/images/agents/agents-human-in-loop.png)
+
 We designed human intervention as a first-class concept, not a fallback. There are three trigger points:
 
 1. **Low routing confidence** (< 85%): The system asks a human to confirm or redirect the task.
@@ -93,6 +103,8 @@ We designed human intervention as a first-class concept, not a fallback. There a
 The approval workflow is async. We push pending approvals to a queue, notify the relevant team member, and the agent workflow pauses at a checkpoint until approval arrives. LangGraph's built-in persistence makes this surprisingly clean -- the agent state serializes to PostgreSQL, and we resume exactly where we left off.
 
 ## Monitoring and Observability
+
+![LLM Observability Stack](/blogs/images/agents/agents-observability.png)
 
 You cannot run 15 agents in production without knowing what they are doing. We built a three-layer observability stack:
 

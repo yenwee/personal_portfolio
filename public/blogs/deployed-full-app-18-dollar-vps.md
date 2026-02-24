@@ -1,5 +1,7 @@
 # I Deployed My Full-Stack App on a $18.66/Year VPS. Here Is Every Problem I Hit.
 
+![Five Containers in 2.4GB RAM](/blogs/images/vps/vps-five-containers.png)
+
 $1.55 per month. Five Docker containers. One server with 2.4GB of RAM.
 
 That is the production infrastructure running my entire side project -- invoicing, proposals, CRM, project tracking, expense management, contracts with e-signing, timesheets, and financial reports. Live on the internet, protected by Cloudflare Zero Trust, backed up daily.
@@ -14,7 +16,7 @@ This is a sequel to my [Ansible lockout story](/blogs/locked-out-server-chinese-
 
 The app is Hustle OS -- a Next.js app backed by PostgreSQL, MinIO for S3 storage, and Documenso for digital signatures. It runs fine locally. The question was whether it could run on a $18.66/year RackNerd VPS with 2.4GB RAM.
 
-![RackNerd Black Friday VPS pricing - $18.66/year for 2.5GB RAM](/blogs/racknerd-vps-pricing.png)
+![RackNerd Black Friday VPS pricing - $18.66/year for 2.5GB RAM](/blogs/images/vps/racknerd-vps-pricing.png)
 
 *The $18.66/year plan, second from left. 2 vCPU cores, 45GB SSD, 2.5GB RAM, 3TB transfer.*
 
@@ -33,6 +35,8 @@ The math does not work on paper. It works in practice -- barely -- with careful 
 ---
 
 ## The Bugs Nobody Warns You About
+
+![Docker Deployment Bugs](/blogs/images/vps/vps-docker-bugs.png)
 
 ### Docker exposes your app to the entire internet by default
 
@@ -89,6 +93,8 @@ A one-line file. Sat wrong for months. Invisible until the first real deployment
 
 ## Cloudflare Tunnel: Free Reverse Proxy, Zero Config
 
+![Cloudflare Tunnel Architecture](/blogs/images/vps/vps-cloudflare-tunnel.png)
+
 No nginx. No SSL certificates. No inbound ports.
 
 Cloudflare Tunnel makes an outbound connection from the VPS to Cloudflare's edge. Traffic flows: `user -> Cloudflare -> tunnel -> localhost:3002`. The VPS does not even need ports 80 or 443 open.
@@ -115,6 +121,8 @@ The workaround: create multiple Zero Trust applications, each covering a subset 
 ---
 
 ## Squeezing 5 Containers Into 2.4GB
+
+![Memory Optimization](/blogs/images/vps/vps-memory-optimization.png)
 
 After deployment, the app felt sluggish. The diagnosis was immediate:
 
@@ -171,6 +179,8 @@ The 300ms is the speed of light from Malaysia to Buffalo, NY. The app itself res
 ---
 
 ## What PaaS Hides From You
+
+![Lessons from Self-Hosting](/blogs/images/vps/vps-paas-lessons.png)
 
 On Vercel, I would have run `git push` and gotten a URL. I would not have learned:
 

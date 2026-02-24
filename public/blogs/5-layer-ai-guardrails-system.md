@@ -12,6 +12,8 @@ That realization led to Sentinel, the AI guardrails middleware I built to sit be
 
 ## The Problem With Single-Layer Safety
 
+![Attack reaches the model, causing harm](/blogs/images/guardrails/guardrails-single-layer-failure.png)
+
 Most teams approach AI safety with a single check: either a system prompt that says "do not do bad things," or a single classifier that runs before the LLM call. Both approaches have the same fundamental flaw -- they create a single point of failure.
 
 > [!challenge] Single-Layer Safety Is a Single Point of Failure
@@ -25,6 +27,8 @@ System prompts can be overridden with jailbreaks. A single classifier has a fixe
 Sentinel was designed around a different principle: **progressive filtering with increasing sophistication and cost**. Cheap, fast checks run first. Expensive, thorough checks run only when needed. This keeps median latency low while maintaining high catch rates.
 
 ## The 5 Input Layers
+
+![5-Layer Progressive Input Filtering for AI Safety](/blogs/images/guardrails/guardrails-5-input-layers.png)
 
 ### Layer 1: Pattern Matching (~2ms)
 
@@ -112,6 +116,8 @@ The LLM judge catches things like multi-turn manipulation attempts, context-awar
 
 ## The 4 Output Layers
 
+![Data Validation Process](/blogs/images/guardrails/guardrails-4-output-layers.png)
+
 Input filtering is half the equation. Even with clean inputs, LLMs can produce problematic outputs through hallucination, training data leakage, or edge cases in the model's alignment.
 
 **Output Layer 1: PII Scanner.** Regex and NER-based detection for phone numbers, ICs (Malaysian identity cards), email addresses, and credit card numbers. If the model leaks PII that was not in the input, we redact it.
@@ -144,6 +150,8 @@ If every request hit the LLM judge, we would be adding 1.8 seconds of latency an
 The system trades off a small amount of catch rate (we estimate the 5-layer system catches ~97% of adversarial inputs versus ~99% for LLM-judge-on-everything) for a 30x reduction in latency and a 15x reduction in cost.
 
 ## Deployment Architecture
+
+![Sentinel Deployment Architecture](/blogs/images/guardrails/guardrails-deployment.png)
 
 Sentinel runs as a standalone FastAPI service. It sits in the request path as middleware -- every request to the primary LLM passes through Sentinel first, and every response passes through on the way back.
 
