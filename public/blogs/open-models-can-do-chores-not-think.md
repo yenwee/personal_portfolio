@@ -22,6 +22,8 @@ Two tasks. One simple, one slightly complex. The gap between them is the thing I
 
 ## A genius does not need instructions
 
+![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/balancing-model-capabilities.png)
+
 Here is how I think about it.
 
 Give a senior engineer a vague brief and they will figure it out. They will read the docs, try alternatives when something breaks, make judgment calls about what to escalate and what to just fix. You can hand them autonomy because they have the reasoning capacity to use it.
@@ -63,8 +65,6 @@ A stronger model might have checked the actual error response, tried with differ
 > I built Clara knowing these limits exist. She is useful and I use her daily. But too many people in the "open models are good enough" camp are only testing the shoe-tying tasks and declaring victory.
 
 ## Benchmarks miss the interesting part
-
-![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/balancing-model-capabilities.png)
 
 ![Epoch AI Capabilities Index -- Chinese AI models have lagged the US frontier by 7 months on average since 2023](/blogs/images/epoch-ai-capability-gap.png)
 
