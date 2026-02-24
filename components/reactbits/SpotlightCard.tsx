@@ -39,26 +39,33 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       `radial-gradient(${spotlightSize}px circle at ${x}px ${y}px, ${spotlightColor}, transparent 70%)`;
   }, [isDark, spotlightSize]);
 
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    if (overlayRef.current) {
+      overlayRef.current.style.background = 'transparent';
+    }
+  }, []);
+
   return (
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden border border-border ${className}`}
     >
+      <div style={{ position: 'relative', height: '100%' }}>
+        {children}
+      </div>
       <div
         ref={overlayRef}
         className="pointer-events-none absolute inset-0"
         style={{
           opacity: isHovered ? 1 : 0,
           transition: 'opacity 300ms ease',
-          zIndex: 1,
+          zIndex: 10,
         }}
       />
-      <div style={{ position: 'relative', zIndex: 2 }}>
-        {children}
-      </div>
     </div>
   );
 };
