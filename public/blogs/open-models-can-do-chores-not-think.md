@@ -66,6 +66,8 @@ A stronger model might have checked the actual error response, tried with differ
 
 ![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/balancing-model-capabilities.png)
 
+![Epoch AI Capabilities Index -- Chinese AI models have lagged the US frontier by 7 months on average since 2023](/blogs/images/epoch-ai-capability-gap.png)
+
 Epoch AI says open-weight models trail proprietary ones by about three months on average. And on benchmarks, that is probably true. DeepSeek V3.2 matches GPT-5.2 on most standardized tests. Qwen3-235B is competitive with anything.
 
 But benchmarks measure average capability across defined tasks. They measure shoe-tying.
