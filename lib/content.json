@@ -16,6 +16,8 @@
     "github": "https://github.com/yenwee",
     "githubHandle": "@yenweelim",
     "resumePath": "/Resume_LimYenWee.pdf",
+    "medium": "https://medium.com/@yenwee0804",
+    "mediumHandle": "@yenwee0804",
     "availability": "Open to collaborations"
   },
   "header": {
@@ -163,9 +165,63 @@
     "Kubernetes", "PostgreSQL", "Trino", "dbt", "Python", "R",
     "GitLab CI/CD", "PowerBI", "Tableau", "Amazon Web Services"
   ],
+  "publishedIn": [
+    {
+      "name": "Towards Data Science",
+      "logo": "/images/tds-logo.png",
+      "url": "https://towardsdatascience.com"
+    },
+    {
+      "name": "Towards AI",
+      "logo": "/images/towards-ai-logo.png",
+      "url": "https://pub.towardsai.net"
+    },
+    {
+      "name": "Medium",
+      "logo": "/images/medium-logo.svg",
+      "url": "https://medium.com/@yenwee0804"
+    }
+  ],
+  "speaking": [
+    {
+      "title": "AI in Financial Services",
+      "event": "FSI Forum with HPE",
+      "date": "2025",
+      "description": "Leveraging AI for compliance, BNM stress testing, and the Consumer Credit Act with financial leaders.",
+      "image": "/images/speaking-hpe-fsi.jpg"
+    },
+    {
+      "title": "AI for Government Policy",
+      "event": "JPJ Digital Workshop",
+      "date": "2025",
+      "description": "Real-time public sentiment analysis for the Digital Road Tax launch, enabling proactive policy adjustments.",
+      "image": "/images/speaking-jpj-sentiment.jpg"
+    },
+    {
+      "title": "AiMod Platform Demo",
+      "event": "Top Management Townhall",
+      "date": "2025",
+      "description": "Live demo of AiMod's pipeline builder and autonomous data-mining agents to senior leadership.",
+      "image": "/images/speaking-hpe-demo-2.jpg"
+    },
+    {
+      "title": "Credit Risk ML Models",
+      "event": "AI Unplugged 2023 (ACCCIM)",
+      "date": "2023",
+      "description": "Represented Credit Bureau Malaysia at the booth, demoing credit scoring and income estimation models to industry visitors.",
+      "image": "/images/speaking-aiunplugged.jpg"
+    },
+    {
+      "title": "Digital Trade Platform Launch",
+      "event": "MATRADE Grand Launch",
+      "date": "2023",
+      "description": "Attended the grand launch of MATRADE's Digital Trade Platform, connecting with government and trade digitization leaders.",
+      "image": "/images/speaking-matrade.jpg"
+    }
+  ],
   "story": {
     "heading": "My Path",
-    "text": "From actuarial science to AI engineering. I spent years building financial models where precision isn't optional before moving into production AI systems. The statistical rigor stuck.",
+    "text": "From actuarial science to AI engineering. I spent years building financial models where precision isn't optional before moving into production AI systems. The statistical rigor stuck. I write about ML and data science on Towards Data Science and Towards AI.",
     "linkText": "Read the full story",
     "linkHref": "/blogs/actuarial-science-to-ai"
   },

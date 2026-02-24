@@ -8,7 +8,14 @@
       "tags": ["AI Agents", "Open Source", "LLM", "Production"],
       "featured": true,
       "readTime": 9,
-      "relatedProject": "doc-auto"
+      "relatedProject": "doc-auto",
+      "crossPostedOn": [
+        {
+          "name": "Towards AI",
+          "url": "https://pub.towardsai.net/8fb5beb07d78?source=friends_link&sk=5188d50f1719162393c3afd9b0701af4",
+          "logo": "/images/towards-ai-logo.png"
+        }
+      ]
     },
     {
       "id": "vps-urge-is-a-feature-not-a-bug",

@@ -24,6 +24,7 @@ import TiltedCard from "@/components/reactbits/TiltedCard"
 import LogoLoop from "@/components/reactbits/LogoLoop"
 import "@/components/reactbits/LogoLoop.css"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
+import GlareHover from "@/components/reactbits/GlareHover"
 
 function AnimatedStat({ value, label }: { value: string; label: string }) {
   const numericMatch = value.match(/^(\d+)(.*)$/)
@@ -337,6 +338,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Published In */}
+        <section className="py-6 sm:py-8 section-reveal">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <div className="text-xs text-muted-foreground/50 font-mono tracking-wider shrink-0">PUBLISHED IN</div>
+            <div className="flex items-center gap-6">
+              {contentData.publishedIn.map((pub: { name: string; logo: string; url: string }, index: number) => (
+                <Link
+                  key={index}
+                  href={pub.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 text-muted-foreground/60 hover:text-foreground transition-colors duration-300"
+                >
+                  <Image src={pub.logo} alt={pub.name} width={20} height={20} className="rounded-[3px] opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="text-sm">{pub.name}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Currently & Focus */}
         <section className="py-8 sm:py-10 section-reveal">
           <div className="grid sm:grid-cols-2 gap-6">
@@ -505,6 +527,76 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Speaking & Talks */}
+        <section className="py-16 sm:py-24 section-reveal">
+          <div className="space-y-8 sm:space-y-10">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Speaking & Talks</ScrollFloat>
+              <div className="flex items-center gap-3">
+                <div className="text-xs text-muted-foreground font-mono tracking-wider hidden sm:block">SHARING KNOWLEDGE</div>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => {
+                      const container = document.getElementById('speaking-scroll');
+                      if (container) container.scrollBy({ left: -340, behavior: 'smooth' });
+                    }}
+                    className="w-8 h-8 rounded-full border border-border/60 hover:border-foreground/50 flex items-center justify-center transition-all duration-300 hover:bg-muted/30"
+                    aria-label="Scroll left"
+                  >
+                    <svg className="w-3.5 h-3.5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => {
+                      const container = document.getElementById('speaking-scroll');
+                      if (container) container.scrollBy({ left: 340, behavior: 'smooth' });
+                    }}
+                    className="w-8 h-8 rounded-full border border-border/60 hover:border-foreground/50 flex items-center justify-center transition-all duration-300 hover:bg-muted/30"
+                    aria-label="Scroll right"
+                  >
+                    <svg className="w-3.5 h-3.5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="speaking-scroll" className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 sm:-mx-8 sm:px-8">
+              {contentData.speaking.map((talk: { title: string; event: string; date: string; description: string; image: string }, index: number) => (
+                <AnimatedContent
+                  key={index}
+                  distance={40}
+                  direction="horizontal"
+                  delay={index * 0.15}
+                  className="snap-start shrink-0 w-[280px] sm:w-[320px]"
+                >
+                  <TiltedCard rotateAmplitude={8} scaleOnHover={1.02} className="rounded-lg overflow-hidden border border-border/50 hover:border-border transition-all duration-300 h-full bg-background">
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={talk.image}
+                        alt={talk.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-4 space-y-2">
+                      <h3 className="font-medium text-foreground text-sm">{talk.title}</h3>
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <span>{talk.event}</span>
+                        <span className="text-muted-foreground/40">&middot;</span>
+                        <span className="font-mono">{talk.date}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground/70 leading-relaxed">{talk.description}</p>
+                    </div>
+                  </TiltedCard>
+                </AnimatedContent>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section
           id="education"
           className="py-16 sm:py-24 section-reveal"
@@ -615,6 +707,11 @@ export default function Home() {
                   icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>,
                   label: "GitHub",
                   onClick: () => window.open("https://github.com/yenwee", "_blank"),
+                },
+                {
+                  icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>,
+                  label: "Medium",
+                  onClick: () => window.open(contentData.personal.medium, "_blank"),
                 },
                 {
                   icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>,

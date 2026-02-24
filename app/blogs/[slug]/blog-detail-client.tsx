@@ -18,6 +18,12 @@ import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
 import "highlight.js/styles/github-dark-dimmed.min.css"
 
+interface CrossPost {
+  name: string
+  url: string
+  logo: string
+}
+
 interface BlogPost {
   id: string
   title: string
@@ -26,6 +32,7 @@ interface BlogPost {
   tags: string[]
   featured: boolean
   readTime?: number
+  crossPostedOn?: CrossPost[]
 }
 
 interface RelatedProject {
@@ -216,6 +223,23 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     </span>
                   ))}
                 </div>
+                {post.crossPostedOn && post.crossPostedOn.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-muted-foreground/40">|</span>
+                    {post.crossPostedOn.map((cp) => (
+                      <Link
+                        key={cp.name}
+                        href={cp.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs border border-border rounded-md bg-background/50 hover:border-foreground/30 hover:text-foreground transition-colors"
+                      >
+                        <Image src={cp.logo} alt={cp.name} width={14} height={14} className="rounded-[2px]" />
+                        <span>Published on {cp.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             </AnimatedContent>
           </AnimatedSection>

@@ -162,6 +162,15 @@
     }
   }
 
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Gentle float for scroll indicator — replaces competing bounce+pulse */
   .animate-gentle-float {
     animation: gentle-float 3s ease-in-out infinite;
