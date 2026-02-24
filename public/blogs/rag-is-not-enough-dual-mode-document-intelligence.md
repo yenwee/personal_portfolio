@@ -6,12 +6,12 @@ Our RAG system chunked the document, embedded it, retrieved the top-5 most relev
 
 There was just one problem. The answer was wrong. The document mentioned KYC upgrades as a *recommendation*, not a *requirement*, and the deadline was Q3 2026, not 2025. The RAG system had retrieved a chunk that contained the right keywords but missed the conditional language and got the date wrong because the relevant date appeared in a different section than the KYC mention.
 
+![RAG System Failure in Regulatory Compliance](/blogs/images/rag-system-failure.png)
+
 > [!challenge] The Wrong Answer Problem
 > This was not an edge case. This was a fundamental limitation of how basic RAG works. In regulated industries like banking and finance, a wrong answer delivered with high confidence is worse than no answer at all.
 
 That failure led us to build what I call **dual-mode document intelligence** -- a system that combines passive RAG for simple lookups with agentic RAG for complex reasoning, plus a vision-language model pipeline for documents that are not machine-readable at all. Here is the architecture and the reasoning behind every major decision.
-
-![RAG System Failure in Regulatory Compliance](/blogs/images/rag-system-failure.png)
 
 ## Why Basic RAG Fails for Enterprise Documents
 
