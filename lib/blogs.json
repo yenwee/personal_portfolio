@@ -55,7 +55,14 @@
       "tags": ["AI Agents", "LangGraph", "Document AI"],
       "featured": true,
       "readTime": 11,
-      "relatedProject": "doc-auto"
+      "relatedProject": "doc-auto",
+      "crossPostedOn": [
+        {
+          "name": "Towards AI",
+          "url": "https://pub.towardsai.net/the-model-is-not-the-bottleneck-how-qwen3-32b-beat-a-frontier-vlm-at-document-extraction-82314b93f320",
+          "logo": "/images/towards-ai-logo.png"
+        }
+      ]
     },
     {
       "id": "locked-out-server-chinese-new-year-ansible",

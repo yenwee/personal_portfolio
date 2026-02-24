@@ -17,6 +17,8 @@ This is the story of how we got there and what it taught me about building produ
 
 ## Why Single-Pass Extraction Fails
 
+![Single-Pass Extraction Fails](/blogs/images/vlm-single-pass-fails.png)
+
 When you feed an entire document image to an LLM in one pass, the model receives roughly 15,000 tokens of visual information. Most of it is noise: headers, footers, watermarks, logos, decorative borders, irrelevant tables, page numbers, legal boilerplate.
 
 The signal -- the actual invoice number, the line item amounts, the vendor name in 8pt font -- competes for attention with a company logo that occupies 20% of the page. This is not an intelligence problem. It is an **attention allocation problem**.
@@ -30,6 +32,8 @@ The analogy extends further. A human reading a complex document uses a **multi-p
 This is not a single inference. It is a directed graph.
 
 ## The Insight: The Graph Is the Product
+
+![Multi-Pass Document Processing Cycle](/blogs/images/vlm-multi-pass-cycle.png)
 
 The turning point came when we stopped asking "which model extracts best?" and started asking "how does a skilled human actually read a document?"
 
@@ -46,6 +50,8 @@ A skilled document processor does something like this:
 Once we made this mental shift, the architecture designed itself. We did not need a bigger model. We needed a better graph -- one that gave a smaller model exactly the right context at exactly the right moment.
 
 ## The Architecture: An Adaptive LangGraph Pipeline
+
+![Document Extraction Workflow](/blogs/images/vlm-extraction-workflow.png)
 
 Here is the pipeline. Unlike a simple chain, this is an adaptive graph with conditional loops -- nodes that can route back to earlier stages based on what they find.
 
@@ -214,6 +220,8 @@ This debuggability transformed our error resolution workflow. Instead of re-runn
 
 ## The Trade-Offs Nobody Talks About
 
+![Adaptive Graph Architecture Trade-Offs](/blogs/images/vlm-tradeoffs.png)
+
 Let me be honest about what this architecture costs you.
 
 ### Debugging Surface Area
@@ -242,6 +250,8 @@ We maintain a test suite of representative documents across vendor templates. Ev
 Not every problem needs an adaptive pipeline. A standardized form with predictable fields in predictable locations can be handled by a single well-prompted call to a capable model. The graph is for the messy real world where documents come in hundreds of formats and "close enough" is not acceptable.
 
 ## The Broader Lesson: Architect the Workflow
+
+![AI System Design: Beyond Model Benchmarks](/blogs/images/vlm-beyond-benchmarks.png)
 
 Every production AI system is a workflow, not a single inference call. The question is whether you design that workflow explicitly -- as a graph with defined nodes, edges, and state -- or leave it implicit, stuffed into one massive prompt and hoping the model figures it out.
 
