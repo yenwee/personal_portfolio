@@ -23,7 +23,6 @@ import "@/components/reactbits/Threads.css"
 import TiltedCard from "@/components/reactbits/TiltedCard"
 import LogoLoop from "@/components/reactbits/LogoLoop"
 import "@/components/reactbits/LogoLoop.css"
-import GradientText from "@/components/reactbits/GradientText"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
 
 function AnimatedStat({ value, label }: { value: string; label: string }) {
@@ -263,7 +262,7 @@ export default function Home() {
                   data-umami-event="cta-book-call"
                   data-umami-event-location="hero"
                 >
-                  <GradientText colors={["#6366f1", "#a78bfa", "#818cf8"]} animationSpeed={5} className="font-medium">Book a Call</GradientText>
+                  Book a Call
                   <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -434,8 +433,8 @@ export default function Home() {
 
             <div className="space-y-0">
               {contentData.workExperience.map((job: { year: string; role: string; company: string; highlights: string[]; tech: string[]; logo: string }, index: number) => (
-                <AnimatedContent key={index} distance={40} duration={0.5} delay={index * 0.1}>
                 <div
+                  key={index}
                   className="group card-lift relative pl-8 pb-10 last:pb-0 border-l border-border/60"
                 >
                   <div className="absolute left-0 top-1 w-2 h-2 rounded-full bg-muted-foreground/30 -translate-x-[calc(50%+0.5px)] group-hover:bg-foreground transition-colors duration-300" />
@@ -478,7 +477,6 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-                </AnimatedContent>
               ))}
             </div>
           </div>
