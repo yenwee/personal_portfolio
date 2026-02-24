@@ -443,6 +443,37 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Tech Stack */}
+        <section className="py-16 sm:py-24 section-reveal">
+          <div className="space-y-8 sm:space-y-10">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Tech Stack</ScrollFloat>
+              <div className="text-xs text-muted-foreground font-mono tracking-wider">TOOLS I SHIP WITH</div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {contentData.technicalSkills.map((group: { category: string; skills: string[] }, index: number) => (
+                <SpotlightCard
+                  key={index}
+                  className="card-lift p-5 rounded-lg space-y-3"
+                >
+                  <div className="text-xs text-muted-foreground font-mono tracking-wider">{group.category.toUpperCase()}</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-2.5 py-1 text-xs text-foreground/80 bg-muted/50 rounded-md border border-border/50 hover:border-muted-foreground/40 transition-colors duration-300"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section
           id="work"
           className="py-16 sm:py-24 section-reveal"

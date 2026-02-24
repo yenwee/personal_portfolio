@@ -161,9 +161,22 @@
     }
   ],
   "technicalSkills": [
-    "LangGraph", "Docker", "Kafka", "Spark", "Airflow", "MLflow", "FastAPI", "Grafana",
-    "Kubernetes", "PostgreSQL", "Trino", "dbt", "Python", "R",
-    "GitLab CI/CD", "PowerBI", "Tableau", "Amazon Web Services"
+    {
+      "category": "AI & ML",
+      "skills": ["LangGraph", "LLM / RAG", "XGBoost", "PyTorch", "MLflow", "Hugging Face"]
+    },
+    {
+      "category": "Data Engineering",
+      "skills": ["PostgreSQL", "Apache Airflow", "Kafka", "Spark", "Trino", "dbt"]
+    },
+    {
+      "category": "Full-Stack",
+      "skills": ["Python", "TypeScript", "FastAPI", "Next.js", "React", "Tailwind CSS"]
+    },
+    {
+      "category": "DevOps & Cloud",
+      "skills": ["Docker", "Kubernetes", "AWS", "GitLab CI/CD", "Grafana", "Vercel"]
+    }
   ],
   "publishedIn": [
     {
