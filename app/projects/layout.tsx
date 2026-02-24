@@ -14,6 +14,22 @@ export const metadata: Metadata = {
     title: "Projects - Yen Wee Lim",
     description: "A showcase of AI/ML projects, data engineering solutions, and web applications built for enterprise clients and personal development.",
     url: "https://weeai.dev/projects",
+    siteName: "Yen Wee Lim",
+    type: "website",
+    images: [
+      {
+        url: "/profile-photo.png",
+        width: 1200,
+        height: 630,
+        alt: "Yen Wee Lim - Projects",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects - Yen Wee Lim | AI/ML & Full-Stack Portfolio",
+    description: "A showcase of AI/ML projects, data engineering solutions, and web applications built for enterprise clients and personal development.",
+    images: ["/profile-photo.png"],
   },
 }
 

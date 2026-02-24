@@ -45,6 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: contentData.metadata.ogTitle,
     description: contentData.metadata.ogDescription,
+    creator: "@yenwee0804",
     images: [contentData.metadata.ogImage],
   },
   robots: {

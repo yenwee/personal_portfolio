@@ -455,7 +455,7 @@ export default function Home() {
               {contentData.technicalSkills.map((group: { category: string; skills: string[] }, index: number) => (
                 <SpotlightCard
                   key={index}
-                  className="card-lift p-5 rounded-lg space-y-3"
+                  className="card-lift p-5 rounded-lg space-y-3 h-full"
                 >
                   <div className="text-xs text-muted-foreground font-mono tracking-wider">{group.category.toUpperCase()}</div>
                   <div className="flex flex-wrap gap-1.5">
