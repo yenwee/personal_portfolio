@@ -64,6 +64,8 @@ A stronger model might have checked the actual error response, tried with differ
 
 ## Benchmarks miss the interesting part
 
+![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/balancing-model-capabilities.png)
+
 Epoch AI says open-weight models trail proprietary ones by about three months on average. And on benchmarks, that is probably true. DeepSeek V3.2 matches GPT-5.2 on most standardized tests. Qwen3-235B is competitive with anything.
 
 But benchmarks measure average capability across defined tasks. They measure shoe-tying.
@@ -79,6 +81,8 @@ Palo Alto Networks flagged AI agents as "2026's biggest insider threat" -- and O
 > Clara misdiagnosed a permission error as an nginx issue on my personal finance bot. That cost me ten minutes. Now imagine an agent with the same reasoning limits making the same kind of confident misdiagnosis on production infrastructure, customer data, or financial transactions. The failure mode is not "the agent gets stuck." It is "the agent does the wrong thing and tells you it went fine."
 
 ## If you cannot get the genius, build a better guidebook
+
+![Building better guidebooks for AI agents -- from limited autonomy through defined tool schemas, predictable workflows, and detailed instructions to enhanced autonomy](/blogs/images/building-better-guidebooks.png)
 
 At Infomina AI, we run multiple LangGraph agents in production. Some use Claude. Some use open models. The choice is never about which model is cheaper.
 
@@ -106,6 +110,8 @@ But it did not disappear. The budget failure happened after all those improvemen
 > It is not "is this model smart enough?" It is "can I write a detailed enough SOP to cover what this model cannot reason through on its own?" If yes, open model. If not, you need a stronger model or you need to accept the failure rate.
 
 ## The quiet part about Steinberger joining OpenAI
+
+![Steinberger's OpenAI hire -- beyond open-source validation, a conversation about why general agents need smarter models](/blogs/images/steinberger-openai-hire.png)
 
 Everyone frames the hire as validation for open-source AI agents. It is.
 
