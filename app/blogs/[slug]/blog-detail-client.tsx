@@ -13,6 +13,8 @@ import { AnimatedSection } from "@/components/project/animated-section"
 import { Callout } from "@/components/project/callout"
 import { PullQuote } from "@/components/project/pull-quote"
 import { ThemeToggle } from "@/components/theme-toggle"
+import BlurText from "@/components/reactbits/BlurText"
+import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
 import "highlight.js/styles/github-dark-dimmed.min.css"
 
@@ -193,39 +195,43 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            {/* Meta Row */}
-            <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4" />
-                <time dateTime={post.date}>{formatDate(post.date)}</time>
+            <AnimatedContent distance={30} duration={0.5}>
+              {/* Meta Row */}
+              <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4" />
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4" />
+                  {getReadTime()} min read
+                </div>
+                <div className="flex items-center gap-2">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 text-xs border border-border rounded-md bg-background/50"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4" />
-                {getReadTime()} min read
-              </div>
-              <div className="flex items-center gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-1 text-xs border border-border rounded-md bg-background/50"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </AnimatedContent>
           </AnimatedSection>
 
           {/* Post Title */}
           <AnimatedSection delay={0.15}>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 leading-tight text-foreground">{post.title}</h1>
+            <BlurText text={post.title} tag="h1" className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 leading-tight text-foreground" animateBy="words" direction="bottom" delay={80} stepDuration={0.4} />
           </AnimatedSection>
 
           {/* Post Description */}
           <AnimatedSection delay={0.2}>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-              {post.description}
-            </p>
+            <AnimatedContent distance={30} duration={0.5} delay={0.1}>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+                {post.description}
+              </p>
+            </AnimatedContent>
           </AnimatedSection>
         </div>
       </div>
@@ -366,7 +372,7 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     <td className="px-4 py-3 text-muted-foreground border-t border-border/50">{children}</td>
                   ),
                   img: ({ src, alt }) => (
-                    <div className="relative w-full my-8">
+                    <span className="block relative w-full my-8">
                       <Image
                         src={src || ''}
                         alt={alt || ''}
@@ -375,7 +381,7 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                         className="rounded-lg border border-border object-cover w-full"
                         sizes="(max-width: 768px) 100vw, 800px"
                       />
-                    </div>
+                    </span>
                   ),
                 }}
               >
@@ -385,58 +391,62 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
 
             {/* Related Project */}
             {relatedProject && (
-              <div className="mt-12 max-w-[680px]">
-                <Link
-                  href={`/projects/${relatedProject.id}`}
-                  className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
-                  data-umami-event="content-related-project"
-                  data-umami-event-project={relatedProject.id}
-                >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
-                    <FolderOpen className="w-5 h-5 text-muted-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Related Project</p>
-                    <p className="font-medium text-foreground truncate">{relatedProject.title}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-                </Link>
-              </div>
+              <AnimatedContent distance={40} duration={0.6}>
+                <div className="mt-12 max-w-[680px]">
+                  <Link
+                    href={`/projects/${relatedProject.id}`}
+                    className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
+                    data-umami-event="content-related-project"
+                    data-umami-event-project={relatedProject.id}
+                  >
+                    <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
+                      <FolderOpen className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Related Project</p>
+                      <p className="font-medium text-foreground truncate">{relatedProject.title}</p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                  </Link>
+                </div>
+              </AnimatedContent>
             )}
 
             {/* Footer Actions */}
-            <div className="mt-12 pt-8 border-t border-border max-w-[680px]">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <Link
-                  href="/blogs"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                  data-umami-event="nav-back-blog"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Blog
-                </Link>
+            <AnimatedContent distance={30} duration={0.5}>
+              <div className="mt-12 pt-8 border-t border-border max-w-[680px]">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <Link
+                    href="/blogs"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                    data-umami-event="nav-back-blog"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Blog
+                  </Link>
 
-                <div className="flex items-center gap-4">
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                    data-umami-event="nav-portfolio"
-                    data-umami-event-from="blog"
-                  >
-                    View Portfolio
-                  </Link>
-                  <Link
-                    href="/#connect"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
-                    data-umami-event="cta-get-in-touch"
-                    data-umami-event-from="blog"
-                  >
-                    Get In Touch
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="flex items-center gap-4">
+                    <Link
+                      href="/"
+                      className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                      data-umami-event="nav-portfolio"
+                      data-umami-event-from="blog"
+                    >
+                      View Portfolio
+                    </Link>
+                    <Link
+                      href="/#connect"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
+                      data-umami-event="cta-get-in-touch"
+                      data-umami-event-from="blog"
+                    >
+                      Get In Touch
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedContent>
           </main>
 
           {/* Sidebar TOC */}

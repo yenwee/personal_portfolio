@@ -1,11 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { trackEvent } from "@/lib/analytics"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, Calendar, Clock, Star, BookOpen } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, Clock, Star, BookOpen, Filter, X } from "lucide-react"
 import blogsData from "@/lib/blogs.json"
 import { ThemeToggle } from "@/components/theme-toggle"
+import SplitText from "@/components/reactbits/SplitText"
+import SpotlightCard from "@/components/reactbits/SpotlightCard"
+import "@/components/reactbits/SpotlightCard.css"
 
 const TAG_COLORS: Record<string, string> = {
   "AI Agents": "bg-violet-500/10 text-violet-700 dark:text-violet-400 border-violet-500/20",
@@ -40,6 +43,18 @@ const CARD_GRADIENTS = [
 export default function BlogsPage() {
   const { posts } = blogsData
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [filterOpen, setFilterOpen] = useState(false)
+  const filterRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setFilterOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   const sortedPosts = [...posts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -109,47 +124,82 @@ export default function BlogsPage() {
       <main className="max-w-6xl mx-auto px-6 sm:px-8 pt-24 pb-16">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-light mb-4">Blog</h1>
+          <SplitText text="Blog" tag="h1" className="text-4xl sm:text-5xl font-light mb-4" delay={40} duration={0.5} textAlign="left" />
           <p className="text-lg text-muted-foreground max-w-2xl">
             Thoughts on building AI products, data engineering patterns, and lessons
             from shipping software at startups and enterprises.
           </p>
 
           {/* Tag Filter */}
-          <div className="flex flex-wrap gap-2 mt-6">
-            <button
-              onClick={() => setSelectedTags([])}
-              className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
-                selectedTags.length === 0
-                  ? "bg-foreground text-background border-foreground"
-                  : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
-              }`}
-            >
-              All
-            </button>
-            {allTags.map((tag) => {
-              const isActive = selectedTags.includes(tag)
-              const colorClass = getTagColor(tag)
-              return (
+          <div className="flex items-center gap-3 mt-6" ref={filterRef}>
+            <div className="relative">
+              <button
+                onClick={() => setFilterOpen(!filterOpen)}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border transition-colors ${
+                  selectedTags.length > 0
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
+                }`}
+              >
+                <Filter className="w-3.5 h-3.5" />
+                {selectedTags.length > 0 ? `${selectedTags.length} filter${selectedTags.length > 1 ? "s" : ""}` : "Filter by topic"}
+              </button>
+
+              {filterOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 max-h-72 overflow-y-auto rounded-lg border border-border bg-background shadow-lg z-30">
+                  <div className="p-2 space-y-0.5">
+                    {allTags.map((tag) => {
+                      const isActive = selectedTags.includes(tag)
+                      const postCount = posts.filter((p) => p.tags.includes(tag)).length
+                      return (
+                        <button
+                          key={tag}
+                          onClick={() => toggleTag(tag)}
+                          className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${
+                            isActive
+                              ? "bg-foreground/10 text-foreground"
+                              : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                          }`}
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className={`w-1.5 h-1.5 rounded-full ${isActive ? "bg-foreground" : "bg-transparent"}`} />
+                            {tag}
+                          </span>
+                          <span className="text-xs text-muted-foreground/60">{postCount}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {selectedTags.length > 0 && (
+              <>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {selectedTags.map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => toggleTag(tag)}
+                      className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs border rounded-md ${getTagColor(tag)}`}
+                    >
+                      {tag}
+                      <X className="w-3 h-3" />
+                    </button>
+                  ))}
+                </div>
                 <button
-                  key={tag}
-                  onClick={() => toggleTag(tag)}
-                  className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
-                    isActive
-                      ? colorClass
-                      : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
-                  }`}
+                  onClick={() => setSelectedTags([])}
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {tag}
+                  Clear
                 </button>
-              )
-            })}
+                <span className="text-xs text-muted-foreground">
+                  {filteredPosts.length} {filteredPosts.length === 1 ? "post" : "posts"}
+                </span>
+              </>
+            )}
           </div>
-          {selectedTags.length > 0 && (
-            <p className="text-sm text-muted-foreground mt-3">
-              {filteredPosts.length} {filteredPosts.length === 1 ? "post" : "posts"} found
-            </p>
-          )}
         </div>
 
         {/* Featured Post */}
@@ -157,76 +207,81 @@ export default function BlogsPage() {
           <div className="mb-12">
             <Link
               href={`/blogs/${featuredPost.id}`}
-              className="group block border border-border rounded-lg overflow-hidden hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+              className="group block"
               data-umami-event="content-blog-click"
               data-umami-event-post={featuredPost.id}
             >
-              <div className="relative bg-gradient-to-br from-foreground/5 via-foreground/[0.02] to-transparent">
-                <div className="grid md:grid-cols-5 gap-0">
-                  {/* Left visual accent */}
-                  <div className="hidden md:flex md:col-span-2 items-center justify-center bg-[#1a1a2e] p-8 sm:p-12">
-                    <div className="text-center space-y-4">
-                      <BookOpen className="w-16 h-16 text-violet-400/60 mx-auto" />
-                      <div className="space-y-2">
-                        <div className="text-2xl font-light text-white/90">{featuredPost.readTime ?? 5} min</div>
-                        <div className="text-xs font-mono text-white/50 tracking-wider">READ TIME</div>
-                      </div>
-                      <div className="flex flex-wrap justify-center gap-2 mt-4">
-                        {featuredPost.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2.5 py-1 text-xs rounded-md bg-white/10 text-white/70 border border-white/10"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+              <SpotlightCard
+                className="rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+                spotlightSize={400}
+              >
+                <div className="relative bg-gradient-to-br from-foreground/5 via-foreground/[0.02] to-transparent">
+                  <div className="grid md:grid-cols-5 gap-0">
+                    {/* Left visual accent */}
+                    <div className="hidden md:flex md:col-span-2 items-center justify-center bg-[#1a1a2e] p-8 sm:p-12">
+                      <div className="text-center space-y-4">
+                        <BookOpen className="w-16 h-16 text-violet-400/60 mx-auto" />
+                        <div className="space-y-2">
+                          <div className="text-2xl font-light text-white/90">{featuredPost.readTime ?? 5} min</div>
+                          <div className="text-xs font-mono text-white/50 tracking-wider">READ TIME</div>
+                        </div>
+                        <div className="flex flex-wrap justify-center gap-2 mt-4">
+                          {featuredPost.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2.5 py-1 text-xs rounded-md bg-white/10 text-white/70 border border-white/10"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Right content */}
-                  <div className="md:col-span-3 p-8 sm:p-12">
-                    <div className="mb-6">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-foreground text-background rounded-full">
-                        <Star className="w-3 h-3" />
-                        Featured
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4" />
-                        <time dateTime={featuredPost.date}>{formatDate(featuredPost.date)}</time>
+                    {/* Right content */}
+                    <div className="md:col-span-3 p-8 sm:p-12">
+                      <div className="mb-6">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-foreground text-background rounded-full">
+                          <Star className="w-3 h-3" />
+                          Featured
+                        </span>
                       </div>
-                      <div className="flex items-center gap-1.5 md:hidden">
-                        <Clock className="w-4 h-4" />
-                        {featuredPost.readTime ?? 5} min read
+                      <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1.5">
+                          <Calendar className="w-4 h-4" />
+                          <time dateTime={featuredPost.date}>{formatDate(featuredPost.date)}</time>
+                        </div>
+                        <div className="flex items-center gap-1.5 md:hidden">
+                          <Clock className="w-4 h-4" />
+                          {featuredPost.readTime ?? 5} min read
+                        </div>
                       </div>
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl font-light mb-3 group-hover:text-muted-foreground transition-colors leading-snug">
-                      {featuredPost.title}
-                    </h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6 text-base sm:text-lg">
-                      {featuredPost.description}
-                    </p>
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex flex-wrap gap-2 md:hidden">
-                        {featuredPost.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className={`px-2.5 py-1 text-xs border rounded-md ${getTagColor(tag)}`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                      <h2 className="text-2xl sm:text-3xl font-light mb-3 group-hover:text-muted-foreground transition-colors leading-snug">
+                        {featuredPost.title}
+                      </h2>
+                      <p className="text-muted-foreground leading-relaxed mb-6 text-base sm:text-lg">
+                        {featuredPost.description}
+                      </p>
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-wrap gap-2 md:hidden">
+                          {featuredPost.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className={`px-2.5 py-1 text-xs border rounded-md ${getTagColor(tag)}`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <span className="flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-muted-foreground transition-colors whitespace-nowrap">
+                          Read Article
+                          <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                        </span>
                       </div>
-                      <span className="flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-muted-foreground transition-colors whitespace-nowrap">
-                        Read Article
-                        <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                      </span>
                     </div>
                   </div>
                 </div>
-              </div>
+              </SpotlightCard>
             </Link>
           </div>
         )}
@@ -237,57 +292,61 @@ export default function BlogsPage() {
             <Link
               key={post.id}
               href={`/blogs/${post.id}`}
-              className="group block border border-border rounded-lg overflow-hidden hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+              className="group block"
               data-umami-event="content-blog-click"
               data-umami-event-post={post.id}
             >
-              {/* Colored gradient header */}
-              <div className={`h-2 bg-gradient-to-r ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`} />
-              <div className="p-6 sm:p-8 space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4" />
-                      <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <SpotlightCard
+                className="rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+              >
+                {/* Colored gradient header */}
+                <div className={`h-2 bg-gradient-to-r ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`} />
+                <div className="p-6 sm:p-8 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4" />
+                        <time dateTime={post.date}>{formatDate(post.date)}</time>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        {post.readTime ?? 5} min
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4" />
-                      {post.readTime ?? 5} min
-                    </div>
-                  </div>
-                  {post.featured && (
-                    <span className="px-2.5 py-0.5 text-xs font-medium bg-foreground/10 text-foreground rounded-full">
-                      Featured
-                    </span>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <h2 className="text-xl font-medium group-hover:text-muted-foreground transition-colors leading-snug">
-                    {post.title}
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed line-clamp-2 text-sm">
-                    {post.description}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between gap-4 pt-2">
-                  <div className="flex flex-wrap gap-1.5">
-                    {post.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className={`px-2 py-0.5 text-xs border rounded-md ${getTagColor(tag)}`}
-                      >
-                        {tag}
+                    {post.featured && (
+                      <span className="px-2.5 py-0.5 text-xs font-medium bg-foreground/10 text-foreground rounded-full">
+                        Featured
                       </span>
-                    ))}
+                    )}
                   </div>
-                  <span className="flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
-                    Read
-                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
-                  </span>
+
+                  <div className="space-y-2">
+                    <h2 className="text-xl font-medium group-hover:text-muted-foreground transition-colors leading-snug">
+                      {post.title}
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed line-clamp-2 text-sm">
+                      {post.description}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4 pt-2">
+                    <div className="flex flex-wrap gap-1.5">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className={`px-2 py-0.5 text-xs border rounded-md ${getTagColor(tag)}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
+                      Read
+                      <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </SpotlightCard>
             </Link>
           ))}
         </div>

@@ -1,0 +1,7 @@
+:root {
+  --spotlight-bg: rgba(100, 100, 255, 0.12);
+}
+
+.dark {
+  --spotlight-bg: rgba(200, 200, 255, 0.1);
+}

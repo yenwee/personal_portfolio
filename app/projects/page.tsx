@@ -1,16 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { trackEvent } from "@/lib/analytics"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowRight, Calendar, User, Tag } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, User, Tag, Filter, X } from "lucide-react"
 import projectsData from "@/lib/projects.json"
 import { ThemeToggle } from "@/components/theme-toggle"
+import SplitText from "@/components/reactbits/SplitText"
+import SpotlightCard from "@/components/reactbits/SpotlightCard"
+import GlareHover from "@/components/reactbits/GlareHover"
+import "@/components/reactbits/SpotlightCard.css"
 
 export default function ProjectsPage() {
   const { projects } = projectsData
   const [selectedCategory, setSelectedCategory] = useState<string>("")
+  const [filterOpen, setFilterOpen] = useState(false)
+  const filterRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setFilterOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   const allCategories = Array.from(
     new Set(projects.map((p) => p.category))
@@ -48,43 +64,85 @@ export default function ProjectsPage() {
       <main className="max-w-6xl mx-auto px-6 sm:px-8 pt-24 pb-16">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-light mb-4">Selected Projects</h1>
+          <SplitText text="Selected Projects" tag="h1" className="text-4xl sm:text-5xl font-light mb-4" delay={40} duration={0.5} textAlign="left" />
           <p className="text-lg text-muted-foreground max-w-2xl">
             A showcase of AI/ML projects, data engineering solutions, and web applications
             I've built for enterprise clients and personal development.
           </p>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mt-6">
-            <button
-              onClick={() => setSelectedCategory("")}
-              className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
-                selectedCategory === ""
-                  ? "bg-foreground text-background border-foreground"
-                  : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
-              }`}
-            >
-              All
-            </button>
-            {allCategories.map((category) => (
+          <div className="flex items-center gap-3 mt-6" ref={filterRef}>
+            <div className="relative">
               <button
-                key={category}
-                onClick={() => {
-                  const newCategory = selectedCategory === category ? "" : category
-                  if (newCategory) {
-                    trackEvent("filter-project-category", { category: newCategory })
-                  }
-                  setSelectedCategory(newCategory)
-                }}
-                className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
-                  selectedCategory === category
+                onClick={() => setFilterOpen(!filterOpen)}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border transition-colors ${
+                  selectedCategory
                     ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
                 }`}
               >
-                {category}
+                <Filter className="w-3.5 h-3.5" />
+                {selectedCategory || "Filter by category"}
               </button>
-            ))}
+
+              {filterOpen && (
+                <div className="absolute top-full left-0 mt-2 w-60 rounded-lg border border-border bg-background shadow-lg z-30">
+                  <div className="p-2 space-y-0.5">
+                    <button
+                      onClick={() => { setSelectedCategory(""); setFilterOpen(false) }}
+                      className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${
+                        selectedCategory === ""
+                          ? "bg-foreground/10 text-foreground"
+                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className={`w-1.5 h-1.5 rounded-full ${selectedCategory === "" ? "bg-foreground" : "bg-transparent"}`} />
+                        All Projects
+                      </span>
+                      <span className="text-xs text-muted-foreground/60">{projects.length}</span>
+                    </button>
+                    {allCategories.map((category) => {
+                      const count = projects.filter((p) => p.category === category).length
+                      return (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            const newCategory = selectedCategory === category ? "" : category
+                            if (newCategory) {
+                              trackEvent("filter-project-category", { category: newCategory })
+                            }
+                            setSelectedCategory(newCategory)
+                            setFilterOpen(false)
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${
+                            selectedCategory === category
+                              ? "bg-foreground/10 text-foreground"
+                              : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                          }`}
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className={`w-1.5 h-1.5 rounded-full ${selectedCategory === category ? "bg-foreground" : "bg-transparent"}`} />
+                            {category}
+                          </span>
+                          <span className="text-xs text-muted-foreground/60">{count}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {selectedCategory && (
+              <button
+                onClick={() => setSelectedCategory("")}
+                className="inline-flex items-center gap-1 px-2 py-0.5 text-xs border border-border rounded-md text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {selectedCategory}
+                <X className="w-3 h-3" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -92,11 +150,23 @@ export default function ProjectsPage() {
         {filteredProjects.length > 0 ? (
           <div className="grid lg:grid-cols-2 gap-8">
             {filteredProjects.map((project) => (
-              <div
+              <Link
                 key={project.id}
-                className="group border border-border rounded-lg overflow-hidden hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+                href={`/projects/${project.id}`}
+                className="group block"
+                data-umami-event="content-project-click"
+                data-umami-event-project={project.id}
               >
-                <div className="relative h-64 bg-[#1a1a2e] overflow-hidden flex items-center justify-center">
+              <SpotlightCard
+                className="rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
+              >
+                <GlareHover
+                  glareColor="#8888ff"
+                  glareOpacity={0.15}
+                  glareSize={300}
+                  transitionDuration={800}
+                  className="relative h-64 bg-[#1a1a2e] overflow-hidden flex items-center justify-center"
+                >
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -120,7 +190,7 @@ export default function ProjectsPage() {
                       {project.status}
                     </span>
                   </div>
-                </div>
+                </GlareHover>
 
                 <div className="p-6 space-y-4">
                   <div className="space-y-2">
@@ -165,18 +235,14 @@ export default function ProjectsPage() {
                   </div>
 
                   <div className="flex items-center gap-3 pt-2">
-                    <Link
-                      href={`/projects/${project.id}`}
-                      className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
-                      data-umami-event="content-project-click"
-                      data-umami-event-project={project.id}
-                    >
+                    <span className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md group-hover:bg-foreground/90 transition-colors text-sm font-medium">
                       View Details
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                      <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
+                    </span>
                   </div>
                 </div>
-              </div>
+              </SpotlightCard>
+              </Link>
             ))}
           </div>
         ) : (

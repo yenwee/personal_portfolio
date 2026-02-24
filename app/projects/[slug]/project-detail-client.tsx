@@ -13,6 +13,8 @@ import { TableOfContents } from "@/components/project/table-of-contents"
 import { AnimatedSection } from "@/components/project/animated-section"
 import { PullQuote } from "@/components/project/pull-quote"
 import { ThemeToggle } from "@/components/theme-toggle"
+import BlurText from "@/components/reactbits/BlurText"
+import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
 import "highlight.js/styles/github-dark.css"
 
@@ -130,39 +132,43 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
         <div className="max-w-6xl mx-auto px-6 sm:px-8 pt-24 pb-12">
           {/* Project Meta */}
           <AnimatedSection>
-            <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Tag className="w-4 h-4" />
-                {project.category}
+            <AnimatedContent distance={30} duration={0.5}>
+              <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <Tag className="w-4 h-4" />
+                  {project.category}
+                </div>
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  {project.year}
+                </div>
+                <div className="flex items-center gap-1">
+                  <User className="w-4 h-4" />
+                  {project.client}
+                </div>
+                <div className={`px-3 py-1 text-xs font-medium rounded-full ${
+                  project.status === 'In Production' || project.status === 'Production' || project.status === 'Deployed'
+                    ? 'bg-green-500/10 text-green-600 border border-green-500/20'
+                    : 'bg-blue-500/10 text-blue-600 border border-blue-500/20'
+                }`}>
+                  {project.status}
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {project.year}
-              </div>
-              <div className="flex items-center gap-1">
-                <User className="w-4 h-4" />
-                {project.client}
-              </div>
-              <div className={`px-3 py-1 text-xs font-medium rounded-full ${
-                project.status === 'In Production' || project.status === 'Production' || project.status === 'Deployed'
-                  ? 'bg-green-500/10 text-green-600 border border-green-500/20'
-                  : 'bg-blue-500/10 text-blue-600 border border-blue-500/20'
-              }`}>
-                {project.status}
-              </div>
-            </div>
+            </AnimatedContent>
           </AnimatedSection>
 
           {/* Project Title */}
           <AnimatedSection delay={0.1}>
-            <h1 className="text-4xl sm:text-5xl font-light mb-4">{project.title}</h1>
+            <BlurText text={project.title} tag="h1" className="text-4xl sm:text-5xl font-light mb-4" animateBy="words" direction="bottom" delay={80} stepDuration={0.4} />
           </AnimatedSection>
 
           {/* Project Description */}
           <AnimatedSection delay={0.15}>
-            <p className="text-xl text-muted-foreground mb-6 max-w-3xl leading-relaxed">
-              {project.description}
-            </p>
+            <AnimatedContent distance={30} duration={0.5} delay={0.1}>
+              <p className="text-xl text-muted-foreground mb-6 max-w-3xl leading-relaxed">
+                {project.description}
+              </p>
+            </AnimatedContent>
           </AnimatedSection>
 
           {/* Technologies */}
@@ -181,17 +187,19 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
 
           {/* Architecture Diagram */}
           <AnimatedSection delay={0.25}>
-            <div className="relative w-full rounded-lg overflow-hidden bg-[#1a1a2e] border border-border">
-              <Image
-                src={project.image}
-                alt={`${project.title} Architecture`}
-                width={800}
-                height={450}
-                className="w-full h-auto object-contain p-6"
-                sizes="(max-width: 768px) 100vw, 800px"
-                priority
-              />
-            </div>
+            <AnimatedContent distance={40} duration={0.6}>
+              <div className="relative w-full rounded-lg overflow-hidden bg-[#1a1a2e] border border-border">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} Architecture`}
+                  width={800}
+                  height={450}
+                  className="w-full h-auto object-contain p-6"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  priority
+                />
+              </div>
+            </AnimatedContent>
           </AnimatedSection>
         </div>
       </div>
@@ -200,7 +208,9 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
       {project.stats && (
         <div className="max-w-6xl mx-auto px-6 sm:px-8 -mt-6 relative z-10">
           <AnimatedSection delay={0.3}>
-            <StatsBar stats={project.stats} />
+            <AnimatedContent distance={30} duration={0.5}>
+              <StatsBar stats={project.stats} />
+            </AnimatedContent>
           </AnimatedSection>
         </div>
       )}
@@ -350,67 +360,71 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
 
             {/* Related Blog Posts */}
             {relatedPosts && relatedPosts.length > 0 && (
-              <div className="mt-12">
-                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Related Blog Posts</h3>
-                <div className="space-y-3">
-                  {relatedPosts.map((post) => (
-                    <Link
-                      key={post.id}
-                      href={`/blogs/${post.id}`}
-                      className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
-                      data-umami-event="content-related-blog"
-                      data-umami-event-post={post.id}
-                    >
-                      <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
-                        <FileText className="w-5 h-5 text-muted-foreground" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-foreground truncate">{post.title}</p>
-                        <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                          <Clock className="w-3 h-3" />
-                          {post.readTime} min read
-                        </p>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-                    </Link>
-                  ))}
+              <AnimatedContent distance={40} duration={0.6}>
+                <div className="mt-12">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Related Blog Posts</h3>
+                  <div className="space-y-3">
+                    {relatedPosts.map((post) => (
+                      <Link
+                        key={post.id}
+                        href={`/blogs/${post.id}`}
+                        className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
+                        data-umami-event="content-related-blog"
+                        data-umami-event-post={post.id}
+                      >
+                        <div className="flex items-center justify-center w-10 h-10 rounded-md bg-muted/30 shrink-0">
+                          <FileText className="w-5 h-5 text-muted-foreground" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-foreground truncate">{post.title}</p>
+                          <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                            <Clock className="w-3 h-3" />
+                            {post.readTime} min read
+                          </p>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </AnimatedContent>
             )}
 
             {/* Footer Actions */}
-            <div className="mt-12 pt-8 border-t border-border">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <Link
-                  href="/projects"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                  data-umami-event="nav-back-projects"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Projects
-                </Link>
+            <AnimatedContent distance={30} duration={0.5}>
+              <div className="mt-12 pt-8 border-t border-border">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <Link
+                    href="/projects"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                    data-umami-event="nav-back-projects"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Projects
+                  </Link>
 
-                <div className="flex items-center gap-4">
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    data-umami-event="nav-portfolio"
-                    data-umami-event-from="project"
-                  >
-                    View Portfolio
-                  </Link>
-                  <Link
-                    href="/#connect"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
-                    data-umami-event="cta-get-in-touch"
-                    data-umami-event-from="project"
-                  >
-                    Get In Touch
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="flex items-center gap-4">
+                    <Link
+                      href="/"
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      data-umami-event="nav-portfolio"
+                      data-umami-event-from="project"
+                    >
+                      View Portfolio
+                    </Link>
+                    <Link
+                      href="/#connect"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
+                      data-umami-event="cta-get-in-touch"
+                      data-umami-event-from="project"
+                    >
+                      Get In Touch
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedContent>
           </main>
 
           {/* Sidebar TOC */}
