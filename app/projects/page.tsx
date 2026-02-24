@@ -11,6 +11,7 @@ import SplitText from "@/components/reactbits/SplitText"
 import SpotlightCard from "@/components/reactbits/SpotlightCard"
 import GlareHover from "@/components/reactbits/GlareHover"
 import "@/components/reactbits/SpotlightCard.css"
+import AnimatedContent from "@/components/reactbits/AnimatedContent"
 
 export default function ProjectsPage() {
   const { projects } = projectsData
@@ -149,9 +150,9 @@ export default function ProjectsPage() {
         {/* Projects Grid */}
         {filteredProjects.length > 0 ? (
           <div className="grid lg:grid-cols-2 gap-8">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
+              <AnimatedContent key={project.id} distance={30} direction="vertical" delay={0.1 + index * 0.05}>
               <Link
-                key={project.id}
                 href={`/projects/${project.id}`}
                 className="group block"
                 data-umami-event="content-project-click"
@@ -243,6 +244,7 @@ export default function ProjectsPage() {
                 </div>
               </SpotlightCard>
               </Link>
+              </AnimatedContent>
             ))}
           </div>
         ) : (

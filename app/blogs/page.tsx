@@ -3,12 +3,14 @@
 import { useState, useRef, useEffect } from "react"
 import { trackEvent } from "@/lib/analytics"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, ArrowRight, Calendar, Clock, Star, BookOpen, Filter, X } from "lucide-react"
 import blogsData from "@/lib/blogs.json"
 import { ThemeToggle } from "@/components/theme-toggle"
 import SplitText from "@/components/reactbits/SplitText"
 import SpotlightCard from "@/components/reactbits/SpotlightCard"
 import "@/components/reactbits/SpotlightCard.css"
+import AnimatedContent from "@/components/reactbits/AnimatedContent"
 
 const TAG_COLORS: Record<string, string> = {
   "AI Agents": "bg-violet-500/10 text-violet-700 dark:text-violet-400 border-violet-500/20",
@@ -56,9 +58,10 @@ export default function BlogsPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  const sortedPosts = [...posts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+  const sortedPosts = [...posts].sort((a, b) => {
+    if (a.featured !== b.featured) return a.featured ? -1 : 1
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
 
   const allTags = Array.from(
     new Set(posts.flatMap((p) => p.tags))
@@ -204,6 +207,7 @@ export default function BlogsPage() {
 
         {/* Featured Post */}
         {featuredPost && (
+          <AnimatedContent distance={40} direction="vertical" delay={0.1}>
           <div className="mb-12">
             <Link
               href={`/blogs/${featuredPost.id}`}
@@ -218,24 +222,25 @@ export default function BlogsPage() {
                 <div className="relative bg-gradient-to-br from-foreground/5 via-foreground/[0.02] to-transparent">
                   <div className="grid md:grid-cols-5 gap-0">
                     {/* Left visual accent */}
-                    <div className="hidden md:flex md:col-span-2 items-center justify-center bg-[#1a1a2e] p-8 sm:p-12">
-                      <div className="text-center space-y-4">
-                        <BookOpen className="w-16 h-16 text-violet-400/60 mx-auto" />
-                        <div className="space-y-2">
-                          <div className="text-2xl font-light text-white/90">{featuredPost.readTime ?? 5} min</div>
-                          <div className="text-xs font-mono text-white/50 tracking-wider">READ TIME</div>
+                    <div className="hidden md:flex md:col-span-2 items-center justify-center bg-muted/30 p-6 sm:p-8 overflow-hidden">
+                      {featuredPost.featuredImage ? (
+                        <div className="relative w-full aspect-[4/3]">
+                          <Image
+                            src={featuredPost.featuredImage}
+                            alt={featuredPost.title}
+                            fill
+                            className="object-contain group-hover:scale-105 transition-transform duration-500"
+                          />
                         </div>
-                        <div className="flex flex-wrap justify-center gap-2 mt-4">
-                          {featuredPost.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2.5 py-1 text-xs rounded-md bg-white/10 text-white/70 border border-white/10"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                      ) : (
+                        <div className="text-center space-y-4">
+                          <BookOpen className="w-16 h-16 text-muted-foreground/40 mx-auto" />
+                          <div className="space-y-2">
+                            <div className="text-2xl font-light text-foreground/70">{featuredPost.readTime ?? 5} min</div>
+                            <div className="text-xs font-mono text-muted-foreground tracking-wider">READ TIME</div>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
 
                     {/* Right content */}
@@ -284,13 +289,14 @@ export default function BlogsPage() {
               </SpotlightCard>
             </Link>
           </div>
+          </AnimatedContent>
         )}
 
         {/* Posts Grid */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
           {otherPosts.map((post, index) => (
+            <AnimatedContent key={post.id} distance={30} direction="vertical" delay={0.1 + index * 0.05}>
             <Link
-              key={post.id}
               href={`/blogs/${post.id}`}
               className="group block"
               data-umami-event="content-blog-click"
@@ -299,8 +305,19 @@ export default function BlogsPage() {
               <SpotlightCard
                 className="rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-lg bg-background"
               >
-                {/* Colored gradient header */}
-                <div className={`h-2 bg-gradient-to-r ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`} />
+                {/* Featured image or gradient header */}
+                {post.featuredImage ? (
+                  <div className="relative h-40 sm:h-48 bg-muted/30 overflow-hidden">
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.title}
+                      fill
+                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                ) : (
+                  <div className={`h-2 bg-gradient-to-r ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`} />
+                )}
                 <div className="p-6 sm:p-8 space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -348,6 +365,7 @@ export default function BlogsPage() {
                 </div>
               </SpotlightCard>
             </Link>
+            </AnimatedContent>
           ))}
         </div>
 

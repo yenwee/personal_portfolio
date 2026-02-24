@@ -8,6 +8,7 @@
       "tags": ["AI Agents", "Open Source", "LLM", "Production"],
       "featured": true,
       "readTime": 9,
+      "featuredImage": "/blogs/images/open-models/balancing-model-capabilities.png",
       "relatedProject": "doc-auto",
       "crossPostedOn": [
         {
@@ -23,8 +24,9 @@
       "description": "Hardware costs are climbing, cloud bills are getting less predictable, and AI just closed the knowledge gap that kept most developers from self-hosting. Here is why the urge to buy a VPS is rational, not impulsive.",
       "date": "2026-02-21",
       "tags": ["DevOps", "Infrastructure", "Docker", "Cloudflare"],
-      "featured": true,
+      "featured": false,
       "readTime": 7,
+      "featuredImage": "/blogs/images/vps/vps-cloudflare-tunnel.png",
       "relatedProject": "smtp-relay-infrastructure"
     },
     {
@@ -33,8 +35,9 @@
       "description": "Eight modules, one Next.js app, zero context switching. Why I stopped using five separate tools and built a unified system for CRM, invoicing, projects, timesheets, expenses, and reports.",
       "date": "2026-02-20",
       "tags": ["Software Engineering", "Next.js", "Side Projects"],
-      "featured": true,
+      "featured": false,
       "readTime": 10,
+      "featuredImage": "/blogs/images/bos/bos-eight-modules.png",
       "relatedProject": "hustle-os"
     },
     {
@@ -43,8 +46,9 @@
       "description": "Five Docker containers, Cloudflare Tunnel, Zero Trust access control, data migration, and performance tuning -- all on a 2.4GB RAM budget VPS. A sequel to the Ansible lockout story.",
       "date": "2026-02-20",
       "tags": ["DevOps", "Docker", "Cloudflare", "Infrastructure"],
-      "featured": true,
+      "featured": false,
       "readTime": 10,
+      "featuredImage": "/blogs/images/vps/vps-five-containers.png",
       "relatedProject": "hustle-os"
     },
     {
@@ -55,6 +59,7 @@
       "tags": ["AI Agents", "LangGraph", "Document AI"],
       "featured": true,
       "readTime": 11,
+      "featuredImage": "/blogs/images/vlm/vlm-extraction-workflow.png",
       "relatedProject": "doc-auto",
       "crossPostedOn": [
         {
@@ -70,8 +75,9 @@
       "description": "Three lockouts during a holiday engagement taught me more about Ansible, server hardening, and disposable infrastructure than any tutorial ever could. Here is the playbook that survived.",
       "date": "2026-02-18",
       "tags": ["Ansible", "DevOps", "Infrastructure"],
-      "featured": true,
+      "featured": false,
       "readTime": 7,
+      "featuredImage": "/blogs/images/ansible/ansible-eight-roles.png",
       "relatedProject": "smtp-relay-infrastructure"
     },
     {
@@ -82,6 +88,7 @@
       "tags": ["RAG", "Document AI", "LangGraph"],
       "featured": true,
       "readTime": 8,
+      "featuredImage": "/blogs/images/rag/rag-dual-mode-decision.png",
       "relatedProject": "doc-auto",
       "crossPostedOn": [
         {
@@ -97,8 +104,9 @@
       "description": "How we built Sentinel, a progressive AI safety middleware with 5 input layers and 4 output layers that balances catch rate, latency, and cost.",
       "date": "2025-12-01",
       "tags": ["AI Safety", "LLM Security", "Architecture"],
-      "featured": true,
+      "featured": false,
       "readTime": 8,
+      "featuredImage": "/blogs/images/guardrails/guardrails-deployment.png",
       "relatedProject": "sentinel-guardrails"
     },
     {
@@ -107,8 +115,9 @@
       "description": "A personal career journey from actuarial science to leading AI solutions, and why statistical rigor is the most underrated skill in modern AI engineering.",
       "date": "2025-11-10",
       "tags": ["Career", "AI", "Data Science"],
-      "featured": false,
+      "featured": true,
       "readTime": 8,
+      "featuredImage": "/blogs/images/actuarial/actuarial-two-tabs.png",
       "relatedProject": "credit-risk-ml"
     },
     {
@@ -117,8 +126,9 @@
       "description": "Behind the scenes of AiMod's multi-agent DataOps platform: decision routing, bounded autonomy, human-in-the-loop patterns, and the architecture lessons from building 15 LangGraph agents.",
       "date": "2025-10-15",
       "tags": ["AI Agents", "LangGraph", "Production"],
-      "featured": true,
+      "featured": false,
       "readTime": 7,
+      "featuredImage": "/blogs/images/agents/agents-four-tiers.png",
       "relatedProject": "aimod-platform"
     },
     {
@@ -129,6 +139,7 @@
       "tags": ["Data Engineering", "PostgreSQL", "ETL"],
       "featured": false,
       "readTime": 8,
+      "featuredImage": "/blogs/images/dw/dw-star-schema.png",
       "relatedProject": "credit-risk-ml"
     }
   ]
