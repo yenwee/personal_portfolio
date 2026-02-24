@@ -61,6 +61,7 @@ function SplitText({
         paddingBottom: "0.15em",
       }}
     >
+      <span className="sr-only">{text}</span>
       {words.map((word, wordIndex) => {
         const chars = word.split("");
 
