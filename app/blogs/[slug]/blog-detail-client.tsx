@@ -13,6 +13,7 @@ import { AnimatedSection } from "@/components/project/animated-section"
 import { Callout } from "@/components/project/callout"
 import { PullQuote } from "@/components/project/pull-quote"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { CodeBlock } from "@/components/project/code-block"
 import BlurText from "@/components/reactbits/BlurText"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
@@ -426,11 +427,13 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                       <code className={className}>{children}</code>
                     )
                   },
-                  pre: ({ children }) => (
-                    <pre className="bg-[#22272e] text-[#adbac7] border border-[#444c56] rounded-lg p-4 overflow-x-auto mb-6 text-sm">
-                      {children}
-                    </pre>
-                  ),
+                  pre: ({ children, ...props }) => {
+                    return (
+                      <CodeBlock {...props}>
+                        {children}
+                      </CodeBlock>
+                    )
+                  },
                   hr: () => (
                     <hr className="my-10 border-border" />
                   ),

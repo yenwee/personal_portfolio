@@ -142,8 +142,8 @@ export default function ProjectsPage() {
               <button
                 onClick={() => setFilterOpen(!filterOpen)}
                 className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border transition-colors ${selectedCategory
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
+                  ? "bg-foreground text-background border-foreground"
+                  : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
                   }`}
               >
                 <Filter className="w-3.5 h-3.5" />
@@ -157,8 +157,8 @@ export default function ProjectsPage() {
                     <button
                       onClick={() => { setSelectedCategory(""); setFilterOpen(false) }}
                       className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${selectedCategory === ""
-                          ? "bg-foreground/10 text-foreground"
-                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                        ? "bg-foreground/10 text-foreground"
+                        : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                         }`}
                     >
                       All Categories
@@ -173,8 +173,8 @@ export default function ProjectsPage() {
                           setFilterOpen(false)
                         }}
                         className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${selectedCategory === category
-                            ? "bg-foreground/10 text-foreground"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                          ? "bg-foreground/10 text-foreground"
+                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                           }`}
                       >
                         {category}
@@ -190,8 +190,8 @@ export default function ProjectsPage() {
               <button
                 onClick={() => setTechFilterOpen(!techFilterOpen)}
                 className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border transition-colors ${selectedTech
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
+                  ? "bg-foreground text-background border-foreground"
+                  : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
                   }`}
               >
                 <ChevronDown className="w-3.5 h-3.5" />
@@ -205,8 +205,8 @@ export default function ProjectsPage() {
                     <button
                       onClick={() => { setSelectedTech(""); setTechFilterOpen(false) }}
                       className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${selectedTech === ""
-                          ? "bg-foreground/10 text-foreground"
-                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                        ? "bg-foreground/10 text-foreground"
+                        : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                         }`}
                     >
                       All Technologies
@@ -221,8 +221,8 @@ export default function ProjectsPage() {
                           setTechFilterOpen(false)
                         }}
                         className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${selectedTech === tech
-                            ? "bg-foreground/10 text-foreground"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                          ? "bg-foreground/10 text-foreground"
+                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                           }`}
                       >
                         {tech}
@@ -270,8 +270,8 @@ export default function ProjectsPage() {
                         key={s.id}
                         onClick={() => { setSortBy(s.id as any); setSortOpen(false) }}
                         className={`w-full flex items-center px-3 py-1.5 text-sm rounded-md transition-colors ${sortBy === s.id
-                            ? "bg-foreground/10 text-foreground"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                          ? "bg-foreground/10 text-foreground"
+                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                           }`}
                       >
                         {s.label}
@@ -321,7 +321,7 @@ export default function ProjectsPage() {
                     >
                       <div className={`flex ${viewMode === "grid" ? "flex-col" : "flex-col sm:flex-row"} w-full`}>
                         {/* Image Section */}
-                        <div className={`relative ${viewMode === "grid" ? "h-64 w-full" : "h-56 sm:h-auto sm:w-1/3 min-w-[240px]"}`}>
+                        <div className={`relative ${viewMode === "grid" ? "h-64 sm:h-72 w-full" : "h-48 sm:h-full sm:w-1/3 sm:min-h-[240px] shrink-0"}`}>
                           <GlareHover
                             glareColor="#8888ff"
                             glareOpacity={0.15}
@@ -333,8 +333,9 @@ export default function ProjectsPage() {
                               src={project.image}
                               alt={project.title}
                               fill
-                              className="object-contain p-4 transition-transform group-hover:scale-105"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              priority={index < 4}
+                              sizes={viewMode === "grid" ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 640px) 100vw, 33vw"}
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                             {project.featured && (
                               <div className="absolute top-4 left-4">
@@ -345,8 +346,8 @@ export default function ProjectsPage() {
                             )}
                             <div className="absolute top-4 right-4">
                               <span className={`px-3 py-1 text-xs font-medium rounded-full shadow-sm ${project.status === 'In Production' || project.status === 'Production'
-                                  ? 'bg-green-500/10 text-green-600 border border-green-500/20 backdrop-blur-sm'
-                                  : 'bg-blue-500/10 text-blue-600 border border-blue-500/20 backdrop-blur-sm'
+                                ? 'bg-green-500/10 text-green-600 border border-green-500/20 backdrop-blur-sm'
+                                : 'bg-blue-500/10 text-blue-600 border border-blue-500/20 backdrop-blur-sm'
                                 }`}>
                                 {project.status}
                               </span>

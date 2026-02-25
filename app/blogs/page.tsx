@@ -189,8 +189,8 @@ export default function BlogsPage() {
               <button
                 onClick={() => setFilterOpen(!filterOpen)}
                 className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border transition-colors ${selectedTags.length > 0
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
+                  ? "bg-foreground text-background border-foreground"
+                  : "bg-transparent text-muted-foreground border-border hover:border-muted-foreground/50"
                   }`}
               >
                 <Filter className="w-3.5 h-3.5" />
@@ -211,8 +211,8 @@ export default function BlogsPage() {
                           key={tag}
                           onClick={() => toggleTag(tag)}
                           className={`w-full flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors ${isActive
-                              ? "bg-foreground/10 text-foreground"
-                              : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                            ? "bg-foreground/10 text-foreground"
+                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                             }`}
                         >
                           <span className="flex items-center gap-2">
@@ -279,8 +279,8 @@ export default function BlogsPage() {
                         key={s.id}
                         onClick={() => { setSortBy(s.id as any); setSortOpen(false) }}
                         className={`w-full flex items-center px-3 py-1.5 text-sm rounded-md transition-colors ${sortBy === s.id
-                            ? "bg-foreground/10 text-foreground"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                          ? "bg-foreground/10 text-foreground"
+                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                           }`}
                       >
                         {s.label}
@@ -427,8 +427,9 @@ export default function BlogsPage() {
                                 src={post.featuredImage}
                                 alt={post.title}
                                 fill
-                                className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                                loading={index < 4 ? "eager" : "lazy"}
+                                priority={index < 4}
+                                sizes={viewMode === "grid" ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 640px) 100vw, 20vw"}
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
                               />
                             </div>
                           </div>

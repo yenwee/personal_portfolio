@@ -55,6 +55,14 @@ export async function generateMetadata({ params }: ProjectDetailPageProps): Prom
       title: project.title,
       description: project.description,
       type: "article",
+      images: [
+        {
+          url: `https://weeai.dev/api/og?title=${encodeURIComponent(project.title)}&category=Project&image=${encodeURIComponent(project.image || '')}`,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
     },
   }
 }

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: contentData.metadata.title,
     images: [
       {
-        url: contentData.metadata.ogImage,
+        url: `${contentData.metadata.ogUrl}/api/og?title=${encodeURIComponent(contentData.metadata.title)}&category=Portfolio`,
         width: 1200,
         height: 630,
         alt: contentData.metadata.author,
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: contentData.metadata.ogTitle,
     description: contentData.metadata.ogDescription,
     creator: "@yenwee0804",
-    images: [contentData.metadata.ogImage],
+    images: [`${contentData.metadata.ogUrl}/api/og?title=${encodeURIComponent(contentData.metadata.title)}&category=Portfolio`],
   },
   robots: {
     index: true,

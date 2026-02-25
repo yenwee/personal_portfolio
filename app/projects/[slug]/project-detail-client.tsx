@@ -13,6 +13,7 @@ import { TableOfContents } from "@/components/project/table-of-contents"
 import { AnimatedSection } from "@/components/project/animated-section"
 import { PullQuote } from "@/components/project/pull-quote"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { CodeBlock } from "@/components/project/code-block"
 import BlurText from "@/components/reactbits/BlurText"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
@@ -211,8 +212,8 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                   {project.client}
                 </div>
                 <div className={`px-3 py-1 text-xs font-medium rounded-full ${project.status === 'In Production' || project.status === 'Production' || project.status === 'Deployed'
-                    ? 'bg-green-500/10 text-green-600 border border-green-500/20'
-                    : 'bg-blue-500/10 text-blue-600 border border-blue-500/20'
+                  ? 'bg-green-500/10 text-green-600 border border-green-500/20'
+                  : 'bg-blue-500/10 text-blue-600 border border-blue-500/20'
                   }`}>
                   {project.status}
                 </div>
@@ -420,11 +421,13 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                       <code className={className}>{children}</code>
                     )
                   },
-                  pre: ({ children }) => (
-                    <pre className="bg-[#1a1a2e] border border-border rounded-lg p-4 overflow-x-auto mb-8 text-sm">
-                      {children}
-                    </pre>
-                  ),
+                  pre: ({ children, ...props }) => {
+                    return (
+                      <CodeBlock {...props}>
+                        {children}
+                      </CodeBlock>
+                    )
+                  },
                   img: ({ src, alt }) => (
                     <div
                       className="relative w-full my-10 group cursor-zoom-in overflow-hidden rounded-lg border border-border bg-background"
@@ -583,12 +586,12 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
           </button>
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
             <Image
-              src={lightboxImage}
-              alt="Expanded view"
+              src={project.image}
+              alt={project.title}
               fill
-              className="object-contain"
-              sizes="100vw"
-              quality={100}
+              priority
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-cover"
             />
           </div>
         </div>

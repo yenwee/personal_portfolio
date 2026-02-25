@@ -15,6 +15,7 @@ interface BlogPost {
   featured: boolean
   readTime?: number
   crossPostedOn?: { name: string; url: string; logo: string }[]
+  featuredImage?: string
 }
 
 interface BlogDetailPageProps {
@@ -46,6 +47,14 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
       type: "article",
       publishedTime: post.date,
       tags: post.tags,
+      images: [
+        {
+          url: `https://weeai.dev/api/og?title=${encodeURIComponent(post.title)}&category=Blog&image=${encodeURIComponent(post.featuredImage || '')}`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
   }
 }
@@ -84,7 +93,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     datePublished: post.date,
     ...(lastUpdated && { dateModified: lastUpdated }),
     url: `https://weeai.dev/blogs/${slug}`,
-    image: `https://weeai.dev/blogs/${slug}/opengraph-image`,
+    image: `https://weeai.dev/api/og?title=${encodeURIComponent(post.title)}&category=Blog&image=${encodeURIComponent(post.featuredImage || '')}`,
     author: {
       "@type": "Person",
       name: "Yen Wee Lim",
