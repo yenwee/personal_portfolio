@@ -6,12 +6,12 @@ The decision crystallized over a single weekend in 2019. I was sitting in a cafe
 
 > The actuarial path promised stability. The machine learning path promised I would never be bored.
 
-I closed the left tab.
+**I closed the left tab.**
 
 > [!decision] The Pivot Point
 > Two browser tabs, two career trajectories -- one promised stability, the other promised I would never be bored. I closed the actuarial exam tab and never looked back.
 
-That decision has shaped every part of my career since then, from building ML models at Credit Bureau Malaysia to architecting agentic AI systems at Infomina. And the counterintuitive truth is that the actuarial and statistical training I "left behind" has become the most valuable part of my toolkit.
+That decision has shaped every part of my career since then, from building ML models at Credit Bureau Malaysia to architecting agentic AI systems at Infomina. And the counterintuitive truth is that the actuarial and statistical training I "left behind" has become **the most valuable part of my toolkit**.
 
 ## The Path That Was Not a Straight Line
 
@@ -40,7 +40,7 @@ Statistical training gives you a set of reflexes that are extraordinarily useful
 
 ### 1. You Obsess Over Distributions, Not Just Averages
 
-When someone tells me their model achieves "92% accuracy," my first question is: what is the class distribution? A model that predicts "no fraud" for every transaction achieves 99.5% accuracy on a dataset where 0.5% of transactions are fraudulent. Actuarial training beats this into you -- you learn to think about tail risks, not central tendencies.
+When someone tells me their model achieves "92% accuracy," my first question is: what is the class distribution? A model that predicts "no fraud" for every transaction achieves 99.5% accuracy on a dataset where 0.5% of transactions are fraudulent. Actuarial training beats this into you -- you learn to think about **tail risks, not central tendencies**.
 
 In practice, this means I spend more time on precision-recall curves, calibration plots, and confusion matrices than most engineers consider necessary. It also means our models perform better in production, where the edge cases are what matter.
 
@@ -48,7 +48,7 @@ In practice, this means I spend more time on precision-recall curves, calibratio
 
 Most ML models output a point prediction. Actuarial models output a distribution. When I build AI systems, I always push for confidence intervals, prediction intervals, or at minimum, calibrated probability scores.
 
-This matters enormously for agentic AI. When our routing agent at AiMod says "I am 85% confident this is a data profiling task," that number needs to mean something. If the model says 85% and it is right 60% of the time, your confidence scores are miscalibrated and your escalation logic is broken.
+This matters enormously for agentic AI. When our routing agent at AiMod says "I am 85% confident this is a data profiling task," that number needs to mean something. If the model says 85% and it is right 60% of the time, your confidence scores are miscalibrated and **your escalation logic is broken**.
 
 ```python
 # Calibration matters: Expected vs. observed accuracy at each confidence bin
@@ -70,7 +70,7 @@ Actuaries build models that need to work for 20+ years (life insurance pricing).
 
 In AI, model drift is a known problem that most teams only address reactively -- they wait until performance degrades and then investigate. My instinct is to monitor for drift proactively: track feature distributions over time, run statistical tests (PSI, KL divergence, KS tests) on incoming data, and alert before the model output degrades.
 
-At Credit Bureau Malaysia, we caught a significant drift in our credit scoring model three weeks before it would have affected regulatory reports. The source? A banking partner changed their internal risk grading scale without notifying us. Our distribution monitoring flagged the shift in the `risk_grade` feature distribution before it propagated to the model output.
+At Credit Bureau Malaysia, we caught a significant drift in our credit scoring model **three weeks before** it would have affected regulatory reports. The source? A banking partner changed their internal risk grading scale without notifying us. Our distribution monitoring flagged the shift in the `risk_grade` feature distribution before it propagated to the model output.
 
 > [!note] Early Drift Detection in Practice
 > At Credit Bureau Malaysia, proactive distribution monitoring caught a significant credit scoring drift three weeks before it would have affected regulatory reports -- caused by a banking partner silently changing their internal risk grading scale.
@@ -104,7 +104,7 @@ If you are considering a similar pivot, here is what I have learned:
 
 **Build things that work, not things that impress.** Kaggle competitions and toy projects are fine for learning, but what actually advances your career is building something that solves a real problem for a real user. My first production model at Credit Bureau Malaysia was a relatively simple logistic regression. It was not impressive. But it ran reliably every day, produced calibrated probabilities, and informed real lending decisions. That matters more than a state-of-the-art architecture that crashes in production.
 
-**The transition is a marathon, not a sprint.** It took me roughly three years to go from "data analyst with some ML skills" to "AI solutions lead building production systems." There were periods of impostor syndrome, late nights learning new tools, and moments where the actuarial path looked a lot more comfortable. Every career change has these. They pass.
+**The transition is a *marathon*, not a sprint.** It took me roughly three years to go from "data analyst with some ML skills" to "AI solutions lead building production systems." There were periods of impostor syndrome, late nights learning new tools, and moments where the actuarial path looked a lot more comfortable. Every career change has these. They pass.
 
 ## Where Statistics Meets the Future
 

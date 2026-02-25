@@ -54,7 +54,7 @@ ports:
   - "127.0.0.1:3002:3002"
 ```
 
-One line. Easy to miss. Potentially catastrophic.
+One line. Easy to miss. **Potentially catastrophic.**
 
 ### Next.js standalone does not listen where you expect
 
@@ -67,7 +67,7 @@ ENV HOSTNAME=0.0.0.0
 CMD ["node", "server.js"]
 ```
 
-One environment variable. Not in the Next.js docs. Found it in a GitHub issue.
+One environment variable. *Not in the Next.js docs.* Found it in a GitHub issue.
 
 ### Alpine Linux resolves localhost to IPv6 first
 
@@ -87,7 +87,7 @@ test: ["CMD", "wget", "--spider", "http://127.0.0.1:3002/api/v1/health"]
 
 Prisma's `migration_lock.toml` still said `provider = "sqlite"` from before I migrated to PostgreSQL. Months ago. Locally, Prisma never checks this file. In production with `prisma migrate deploy`, it is enforced.
 
-A one-line file. Sat wrong for months. Invisible until the first real deployment.
+A one-line file. Sat wrong for months. **Invisible until the first real deployment.**
 
 ---
 
@@ -108,7 +108,7 @@ ingress:
   - service: http_status:404
 ```
 
-Two subdomains. One systemd service. Full TLS and DDoS protection. Cost: $0.
+Two subdomains. One systemd service. Full TLS and DDoS protection. **Cost: $0.**
 
 ### Zero Trust on the free plan has a catch
 
@@ -140,7 +140,7 @@ Three changes:
 2. **Containers**: MinIO 256M -> 128M, Documenso 512M -> 256M, PostgreSQL shared_buffers 64M -> 32M
 3. **App**: gzip compression (101KB pages -> 19KB), immutable cache headers on static assets
 
-Swap dropped from 405 MB to 219 MB. Pages loaded noticeably faster.
+Swap dropped from **405 MB to 219 MB**. Pages loaded noticeably faster.
 
 ---
 
@@ -199,10 +199,10 @@ These are the lessons that exist in the gap between "it works on my machine" and
 
 If you are building a SaaS for thousands of users -- use a managed platform. The operational overhead is not worth it.
 
-If you are a solopreneur running a tool for yourself and a handful of clients -- a $18.66/yr VPS with Cloudflare Tunnel is absurdly cost-effective. You own every layer. When something breaks, you know exactly where to look.
+If you are a solopreneur running a tool for yourself and a handful of clients -- a $18.66/yr VPS with Cloudflare Tunnel is absurdly cost-effective. You own every layer. When something breaks, you know *exactly* where to look.
 
 The Ansible playbook hardens the server. Docker Compose runs the app. Cloudflare routes the traffic. Cron handles maintenance.
 
 Total monthly cost: less than a cup of coffee.
 
-The real cost is the education. And that is the point.
+The real cost is **the education**. And that is the point.

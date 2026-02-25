@@ -17,7 +17,7 @@ Before I get into what we built, let me be honest about why the first version fa
 
 Most AI agent failures come down to three categories:
 
-1. **Uncontrolled state transitions.** Without explicit guardrails on when and how agents hand off work, you get cascading failures. Agent A calls Agent B, which calls Agent C, which calls Agent A again. Congratulations, you have built a very sophisticated infinite loop.
+1. **Uncontrolled state transitions.** Without explicit guardrails on when and how agents hand off work, you get cascading failures. Agent A calls Agent B, which calls Agent C, which calls Agent A again. Congratulations, you have built a *very sophisticated infinite loop*.
 
 2. **No observability.** When a single LLM call takes 2-8 seconds and you have five agents in a chain, debugging "why did the output look wrong" becomes archaeological work. You are sifting through logs trying to reconstruct a conversation that happened across multiple contexts.
 
@@ -48,7 +48,7 @@ class TaskRouter:
 > [!insight] The 85% Confidence Threshold
 > Setting a confidence threshold at 85% for routing decisions eliminated roughly 60% of misrouting errors overnight -- a single pattern that became our most impactful reliability improvement.
 
-The key insight here is the confidence threshold. If the router is not at least 85% confident about where to send a task, it escalates to a human. This single pattern eliminated roughly 60% of our misrouting errors overnight.
+The key insight here is the confidence threshold. If the router is not at least 85% confident about where to send a task, it escalates to a human. This single pattern eliminated roughly **60% of our misrouting errors** overnight.
 
 ### The Agent Taxonomy
 
@@ -137,7 +137,7 @@ After running this system in production across multiple enterprise clients, here
 > [!note] Start With Two Agents, Not Fifteen
 > Get routing and one specialist agent working flawlessly before adding more. Every new agent multiplies the surface area for bugs -- complexity grows exponentially, not linearly.
 
-**Start with two agents, not fifteen.** Get routing and one specialist agent working flawlessly before adding more. Every new agent multiplies the surface area for bugs.
+**Start with two agents, not fifteen.** Get routing and one specialist agent working flawlessly before adding more. Every new agent **multiplies the surface area** for bugs.
 
 **Invest in your state schema early.** The `AgentState` object is the most important data structure in your entire system. Get it wrong and you will be refactoring everything when you add your sixth agent.
 
@@ -151,6 +151,6 @@ We are now working on agent-to-agent learning, where successful task completions
 
 > Building AI agents that work at 3 AM when nobody is watching, on data they have never seen, for users who phrase requests in ways you never anticipated -- that is the actual engineering challenge.
 
-The most important takeaway: building AI agents that demo well is easy. Building AI agents that work at 3 AM when nobody is watching, on data they have never seen, for users who phrase requests in ways you never anticipated -- that is the actual engineering challenge. And it is solvable, but only if you treat it as a systems problem, not a prompting problem.
+The most important takeaway: building AI agents that demo well is *easy*. Building AI agents that work at 3 AM when nobody is watching, on data they have never seen, for users who phrase requests in ways you never anticipated -- that is the actual engineering challenge. And it is solvable, but only if you treat it as **a systems problem, not a prompting problem**.
 
 If you are building multi-agent systems and want to compare notes, I am always up for a conversation. Reach out through my portfolio or connect with me on LinkedIn.

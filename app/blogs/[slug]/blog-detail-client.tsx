@@ -453,8 +453,8 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     <td className="px-4 py-3 text-muted-foreground border-t border-border/50">{children}</td>
                   ),
                   img: ({ src, alt }) => (
-                    <div
-                      className="relative w-full my-10 group cursor-zoom-in overflow-hidden rounded-lg border border-border bg-background"
+                    <span
+                      className="relative block w-full my-10 group cursor-zoom-in overflow-hidden rounded-lg border border-border bg-background"
                       onClick={() => setLightboxImage(String(src || ''))}
                     >
                       <Image
@@ -465,10 +465,10 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                         className="object-cover w-full group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                         sizes="(max-width: 768px) 100vw, 800px"
                       />
-                      <div className="absolute top-4 right-4 p-2 bg-background/80 backdrop-blur-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                      <span className="absolute top-4 right-4 p-2 bg-background/80 backdrop-blur-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                         <ZoomIn className="w-4 h-4 text-foreground" />
-                      </div>
-                    </div>
+                      </span>
+                    </span>
                   ),
                 }}
               >

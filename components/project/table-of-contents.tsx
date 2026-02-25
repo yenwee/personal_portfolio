@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, useCallback } from "react"
 import { trackEvent } from "@/lib/analytics"
 
 interface TOCItem {
@@ -31,25 +31,47 @@ export function TableOfContents({ markdown }: { markdown: string }) {
   const [activeId, setActiveId] = useState("")
   const headings = useMemo(() => extractHeadings(markdown), [markdown])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        }
-      },
-      { rootMargin: "-80px 0px -70% 0px" }
-    )
-
-    headings.forEach(({ id }) => {
+  const handleScroll = useCallback(() => {
+    // Query actual h2/h3 elements with IDs from the DOM
+    const elements: { id: string; top: number }[] = []
+    for (const { id } of headings) {
       const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+      if (el) {
+        elements.push({ id, top: el.getBoundingClientRect().top })
+      }
+    }
 
-    return () => observer.disconnect()
+    // Find the last heading that has scrolled past the top of the viewport
+    // (with some offset for the sticky header)
+    let current = ""
+    for (const el of elements) {
+      if (el.top < 120) {
+        current = el.id
+      } else {
+        break
+      }
+    }
+
+    // If nothing has scrolled past yet, highlight the first one
+    if (!current && elements.length > 0) {
+      current = elements[0].id
+    }
+
+    if (current) {
+      setActiveId(current)
+    }
   }, [headings])
+
+  useEffect(() => {
+    // Initial check after a short delay to let the DOM render
+    const timer = setTimeout(handleScroll, 100)
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      clearTimeout(timer)
+    }
+  }, [handleScroll])
 
   if (headings.length < 3) return null
 

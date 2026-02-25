@@ -4,7 +4,7 @@
 
 I started building side projects with no system. No invoicing tool. No CRM. No project tracker. No expense log. Just a laptop and the vague intention to "figure it out as I go."
 
-That is not a system. That is a liability.
+That is not a system. That is **a liability**.
 
 The standard advice would be to sign up for FreshBooks, HubSpot, Toggl, and Expensify. Four tools, maybe $200/month, problem solved. But I am a developer, I wanted to learn, and I had a hunch that stitching together four SaaS products designed for different workflows would create more friction than it solved.
 
@@ -18,11 +18,11 @@ The honest answer has three parts.
 
 **Cost.** I was just starting out. Committing to $200/month in subscriptions before I had steady revenue felt backwards. Most business SaaS tools are priced for established businesses, not people building their first real project.
 
-**Integration.** Even if I paid for everything, the tools do not talk to each other. When a lead converts to a client, you re-enter their details in your invoicing tool. When you finish a project milestone, you manually create an invoice. When tax season comes, you reconcile expenses across platforms that use different category names. The data lives in five silos. You are the integration layer.
+**Integration.** Even if I paid for everything, the tools do not talk to each other. When a lead converts to a client, you re-enter their details in your invoicing tool. When you finish a project milestone, you manually create an invoice. When tax season comes, you reconcile expenses across platforms that use different category names. The data lives in five silos. *You* are the integration layer.
 
 **Learning.** I wanted to build something real. Not a tutorial project, not a to-do app, not a clone of something that already exists. A tool I would actually use, solving a problem I actually had. If it also taught me Next.js, PostgreSQL, and deployment -- even better.
 
-The third reason is the one that actually mattered. The first two were justifications I told myself later.
+The third reason is **the one that actually mattered**. The first two were justifications I told myself later.
 
 ---
 
@@ -34,7 +34,7 @@ The first version did one thing: generate invoices. A form, some fields, a PDF. 
 
 But the moment you have invoicing, you need to know who to invoice. So I added clients. Then I needed to track which clients had paid and which had not. So I added payment status and overdue detection. Then I needed to send the invoices. So I added email with PDF attachments.
 
-Each feature pulled the next one into existence. Invoicing needed clients. Clients needed a pipeline to track how they became clients. The pipeline needed proposals. Proposals needed to link to projects. Projects needed time tracking. Time tracking needed to flow into invoices. Invoices needed to feed financial reports.
+Each feature **pulled the next one into existence**. Invoicing needed clients. Clients needed a pipeline to track how they became clients. The pipeline needed proposals. Proposals needed to link to projects. Projects needed time tracking. Time tracking needed to flow into invoices. Invoices needed to feed financial reports.
 
 I did not plan eight modules. I planned one. The rest emerged from the question: "What do I need next to make this actually useful?"
 
@@ -64,7 +64,7 @@ Hustle OS is a Next.js app backed by PostgreSQL. Eight modules covering the full
 - **Contracts** -- Generate contracts, send for e-signing via Documenso. Track signature status.
 - **Email** -- AI-drafted emails for invoices, proposals, and contracts. I review every draft before it sends. Nothing goes out autonomously.
 
-Everything connects through one data model. A lead becomes a client. A client gets a project. A project generates timesheets. Timesheets become invoices. Invoices feed reports. No re-entry. No copy-pasting between tools.
+Everything connects through one data model. A lead becomes a client. A client gets a project. A project generates timesheets. Timesheets become invoices. Invoices feed reports. **No re-entry.** No copy-pasting between tools.
 
 ![Hustle OS Dashboard](/blogs/images/hustle-os/hustle-os-dashboard.png)
 
@@ -124,7 +124,7 @@ The most valuable output of this project is not the app. It is what building the
 
 **I had to confront what I was not tracking.** Every module I built revealed a gap in how I was running things. Expenses I was not logging. Time I was not tracking. Follow-ups I was not making. The tool did not fix these habits automatically -- but it made the gaps visible.
 
-The conventional wisdom says "do not build what you can buy." For teams, that is correct. But for a solo developer building a real-world side project, building your own full-stack tool is a form of applied learning. You cannot build a system for something you do not understand. And the process of building it forces understanding.
+The conventional wisdom says "do not build what you can buy." For teams, that is correct. But for a solo developer building a real-world side project, building your own full-stack tool is a form of applied learning. You cannot build a system for something you do not understand. And the process of building it *forces* understanding.
 
 ---
 
@@ -138,9 +138,9 @@ You will learn full-stack development, database design, PDF generation, email in
 
 The app is still a work in progress. I am still adding features faster than I am using them. But every feature I build forces me to think about a part of the problem space I had been ignoring.
 
-The whole thing took 6 days from first commit to production deployment. 189 commits, 24 database models, ~18,000 lines of application code. Running live at $1.55/month. That is less than the free trial period of most SaaS tools I considered replacing.
+The whole thing took **6 days from first commit to production deployment**. 189 commits, 24 database models, ~18,000 lines of application code. Running live at $1.55/month. That is less than the free trial period of most SaaS tools I considered replacing.
 
-The tool is the byproduct. The clarity is the product.
+The tool is the byproduct. **The clarity is the product.**
 
 ---
 

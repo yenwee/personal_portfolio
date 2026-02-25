@@ -1,6 +1,17 @@
 {
   "posts": [
     {
+      "id": "distillation-is-not-the-crime-fraud-is",
+      "title": "Distillation Is Not the Crime. Fraud Is.",
+      "description": "Anthropic accused three Chinese firms of industrial-scale distillation. The fraud is clear. But the conversation shifted to distillation is theft, and that framing should worry anyone who builds AI systems for a living.",
+      "date": "2026-02-25",
+      "tags": ["AI Agents", "Open Source", "LLM", "Production"],
+      "featured": false,
+      "readTime": 8,
+      "featuredImage": "/blogs/images/distillation/distillation-campaign-scale.png",
+      "relatedProject": "aimod-platform"
+    },
+    {
       "id": "open-models-can-do-chores-not-think",
       "title": "Open Models Can Do Your Chores. They Still Cannot Think for You.",
       "description": "My Telegram bot handles expenses and budgets on an open model. Then I asked it to do something hard and it handed the problem back to me. That gap between simple automation and real reasoning is the thing nobody in the OpenClaw discourse wants to talk about.",

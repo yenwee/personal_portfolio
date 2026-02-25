@@ -48,7 +48,7 @@ class PatternFilter:
         return FilterResult(blocked=False, layer="pattern")
 ```
 
-This catches the obvious stuff: known jailbreak prefixes ("ignore all previous instructions"), explicit harmful keywords, and injection patterns like prompt delimiters (`"""`, `<|system|>`). It will never win awards for sophistication, but it handles about 35% of malicious inputs at near-zero cost.
+This catches the obvious stuff: known jailbreak prefixes ("ignore all previous instructions"), explicit harmful keywords, and injection patterns like prompt delimiters (`"""`, `<|system|>`). It will never win awards for sophistication, but it handles about **35% of malicious inputs** at near-zero cost.
 
 ### Layer 2: Canary Token Detection (~5ms)
 
@@ -66,7 +66,7 @@ def detect_leak(user_input: str) -> bool:
 
 If a user's input contains the canary sequence, it means they have somehow extracted or are replaying the system prompt. This catches a category of prompt injection attacks that pattern matching cannot: the ones where the attacker is feeding your own system prompt back to you as part of a manipulation chain.
 
-The false positive rate is effectively zero because the sequence never appears in natural text.
+The false positive rate is **effectively zero** because the sequence never appears in natural text.
 
 ### Layer 3: BERT-Based Classification (~50ms)
 
@@ -110,7 +110,7 @@ Respond with a JSON assessment:
 """
 ```
 
-This layer only fires for inputs that made it through layers 1-4 but were flagged as uncertain by layer 3 or 4. In practice, less than 8% of inputs reach this layer, which keeps the cost manageable.
+This layer only fires for inputs that made it through layers 1-4 but were flagged as uncertain by layer 3 or 4. In practice, **less than 8% of inputs reach this layer**, which keeps the cost manageable.
 
 The LLM judge catches things like multi-turn manipulation attempts, context-aware social engineering (where the attack only makes sense given the system's stated purpose), and novel attack patterns that are not in our embedding database yet.
 
@@ -149,7 +149,7 @@ Cost and latency. At scale, the math is unforgiving:
 
 If every request hit the LLM judge, we would be adding 1.8 seconds of latency and $1.50 per thousand requests to every single interaction. With the progressive system, median latency overhead is under 60ms and median cost per thousand requests is under $0.10, because most requests are resolved by layers 1-3.
 
-The system trades off a small amount of catch rate (we estimate the 5-layer system catches ~97% of adversarial inputs versus ~99% for LLM-judge-on-everything) for a 30x reduction in latency and a 15x reduction in cost.
+The system trades off a small amount of catch rate (we estimate the 5-layer system catches ~97% of adversarial inputs versus ~99% for LLM-judge-on-everything) for a **30x reduction in latency** and a 15x reduction in cost.
 
 ## Deployment Architecture
 
@@ -171,12 +171,12 @@ Configuration is per-tenant. Enterprise clients can adjust thresholds, add custo
 
 > Safety is a spectrum, not a binary.
 
-The goal is not to catch 100% of bad inputs (that requires blocking many good inputs too). The goal is to make attacks economically unviable -- expensive enough in effort and low enough in success rate that attackers move on.
+The goal is not to catch 100% of bad inputs (that requires blocking many good inputs too). The goal is to make attacks **economically unviable** -- expensive enough in effort and low enough in success rate that attackers move on.
 
 **Your threat model will evolve.** New attack patterns emerge weekly. The system must be designed for easy updates. Our pattern database, embedding index, and BERT model can all be updated independently without redeploying the service.
 
 **Measure everything.** We track false positive rate, false negative rate, latency per layer, and the distribution of which layer catches what. Without these metrics, you are tuning in the dark.
 
-Building AI guardrails is not glamorous work. Nobody writes blog posts about the prompt injection that did not happen. But for anyone shipping LLMs to production, especially in regulated industries like finance and government, it is the work that lets you sleep at night.
+Building AI guardrails is not glamorous work. Nobody writes blog posts about the prompt injection that did not happen. But for anyone shipping LLMs to production, especially in regulated industries like finance and government, it is the work that lets you *sleep* at night.
 
 If you are implementing AI safety for your organization and want to discuss architecture decisions, feel free to connect. This is a space where the community benefits from shared knowledge.

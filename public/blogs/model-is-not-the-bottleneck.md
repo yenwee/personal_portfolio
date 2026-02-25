@@ -1,6 +1,6 @@
 # The Model Is Not the Bottleneck: How Qwen3 32B Beat a Frontier VLM at Document Extraction
 
-We had the best model. It did not matter.
+We had the best model. *It did not matter.*
 
 A client needed structured data extracted from scanned invoices and compliance documents. Hundreds of formats, inconsistent layouts, handwritten annotations in the margins. The kind of problem that frontier vision-language models are supposed to solve out of the box.
 
@@ -29,7 +29,7 @@ The model does not know what matters. It processes everything with roughly equal
 
 The analogy extends further. A human reading a complex document uses a **multi-pass strategy**: first understand what fields to look for, then search the document for relevant chunks, then evaluate whether each chunk actually contains useful data, then decide the best extraction method, and finally validate the results. Each step uses a different cognitive mode. Each step builds on the output of the previous one.
 
-This is not a single inference. It is a directed graph.
+This is not a single inference. It is a *directed graph*.
 
 ## The Insight: The Graph Is the Product
 
@@ -47,7 +47,7 @@ A skilled document processor does something like this:
 > [!insight] The Model Is a Component
 > The model is not the product. The model is a component inside a workflow graph. The graph is the product. This reframing changes everything about how you architect extraction systems.
 
-Once we made this mental shift, the architecture designed itself. We did not need a bigger model. We needed a better graph -- one that gave a smaller model exactly the right context at exactly the right moment.
+Once we made this mental shift, the architecture designed itself. We did not need a bigger model. We needed a *better graph* -- one that gave a smaller model exactly the right context at exactly the right moment.
 
 ## The Architecture: An Adaptive LangGraph Pipeline
 

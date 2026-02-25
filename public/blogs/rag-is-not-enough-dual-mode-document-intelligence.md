@@ -4,12 +4,12 @@ A client handed us a 47-page regulatory compliance report and asked a simple que
 
 Our RAG system chunked the document, embedded it, retrieved the top-5 most relevant chunks, and confidently responded: "Yes, the document requires a KYC process upgrade by Q3 2025."
 
-There was just one problem. The answer was wrong. The document mentioned KYC upgrades as a *recommendation*, not a *requirement*, and the deadline was Q3 2026, not 2025. The RAG system had retrieved a chunk that contained the right keywords but missed the conditional language and got the date wrong because the relevant date appeared in a different section than the KYC mention.
+There was just one problem. The answer was wrong. The document mentioned KYC upgrades as a *recommendation*, not a *requirement*, and the deadline was Q3 2026, not 2025. The RAG system had retrieved a chunk that contained the right keywords but **missed the conditional language** and got the date wrong because the relevant date appeared in a different section than the KYC mention.
 
 ![RAG System Failure in Regulatory Compliance](/blogs/images/rag/rag-system-failure.png)
 
 > [!challenge] The Wrong Answer Problem
-> This was not an edge case. This was a fundamental limitation of how basic RAG works. In regulated industries like banking and finance, a wrong answer delivered with high confidence is worse than no answer at all.
+> This was not an edge case. This was a fundamental limitation of how basic RAG works. In regulated industries like banking and finance, a wrong answer delivered with high confidence is *worse than no answer at all*.
 
 That failure led us to build what I call **dual-mode document intelligence** -- a system that combines passive RAG for simple lookups with agentic RAG for complex reasoning, plus a vision-language model pipeline for documents that are not machine-readable at all. Here is the architecture and the reasoning behind every major decision.
 
@@ -27,7 +27,7 @@ When you chunk a 50-page document into 512-token segments, you shatter these cro
 
 ### Failure Mode 2: Contextual Qualifiers Get Lost
 
-Legal and regulatory documents are precision instruments. The difference between "shall" and "should," between "requirement" and "recommendation," between "must comply by" and "should target" -- these distinctions matter enormously. But a chunk that contains "KYC process upgrade" and "Q3" will score highly for the query "KYC upgrade deadline" regardless of whether the surrounding context says it is mandatory or optional.
+Legal and regulatory documents are precision instruments. The difference between "shall" and "should," between "requirement" and "recommendation," between "must comply by" and "should target" -- these distinctions **matter enormously**. But a chunk that contains "KYC process upgrade" and "Q3" will score highly for the query "KYC upgrade deadline" regardless of whether the surrounding context says it is mandatory or optional.
 
 ### Failure Mode 3: Tables and Structured Data
 
@@ -198,12 +198,12 @@ After deploying this system across several enterprise clients processing thousan
 > Accuracy on complex queries improved from 67% (basic RAG) to 91% (dual-mode system). False confidence rate dropped from 15% to under 3%. Median query latency: 1.5 seconds for passive mode, 8 seconds for agentic mode.
 
 - **Accuracy on complex queries** improved from ~67% (basic RAG) to ~91% (dual-mode system)
-- **False confidence rate** (wrong answers with high confidence) dropped from ~15% to under 3%
+- **False confidence rate** (wrong answers with high confidence) dropped from ~15% to **under 3%**
 - **Median query latency** for passive mode: ~1.5 seconds; agentic mode: ~8 seconds
 - **Client trust** -- the hardest metric to quantify but the most important -- improved significantly once users saw the system admit uncertainty rather than fabricate confidence
 
-> RAG is a retrieval technique, not an intelligence technique.
+> RAG is a *retrieval* technique, not an *intelligence* technique.
 
-The core lesson: For enterprise use cases where accuracy has legal or financial consequences, you need to layer reasoning, verification, and honest uncertainty communication on top of retrieval. The documents are too important, and the stakes too high, for anything less.
+The core lesson: For enterprise use cases where accuracy has legal or financial consequences, you need to **layer reasoning, verification, and honest uncertainty communication** on top of retrieval. The documents are too important, and the stakes too high, for anything less.
 
 If you are building document AI systems and facing similar challenges, I would welcome the conversation. This is a space where practical experience matters more than benchmarks.

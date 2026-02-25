@@ -1,6 +1,6 @@
 # Building a 6TB Data Warehouse From Scratch: Lessons I Wish I Knew Earlier
 
-The first time I ran `SELECT pg_database_size('credit_bureau_dw')` and saw 6.2 terabytes staring back at me, I had one thought: "This is either going to be the most educational experience of my career or the thing that ends it."
+The first time I ran `SELECT pg_database_size('credit_bureau_dw')` and saw 6.2 terabytes staring back at me, I had one thought: "This is either going to be **the most educational experience of my career** or the thing that ends it."
 
 It turned out to be the former, but not without some painful lessons along the way. I spent two years at Credit Bureau Malaysia building and maintaining a PostgreSQL data warehouse that ingested credit data from every major financial institution in the country. Millions of records flowing in daily, regulatory reporting deadlines that could not slip by a single hour, and queries from risk analysts who needed answers in seconds, not minutes.
 
@@ -26,7 +26,7 @@ I had built data pipelines before. Small ones. The kind where you can `SELECT *`
 
 ## Schema Design: The Decisions That Haunt You
 
-The single most consequential decision in any data warehouse project is the schema design, because unlike application databases, you cannot easily refactor a warehouse schema once it is loaded with terabytes of historical data.
+The single most consequential decision in any data warehouse project is the schema design, because unlike application databases, **you cannot easily refactor** a warehouse schema once it is loaded with terabytes of historical data.
 
 ### Star Schema With a Twist
 
@@ -159,11 +159,11 @@ WHERE f.event_date >= CURRENT_DATE - INTERVAL '24 months'
 GROUP BY 1, 2, 3;
 ```
 
-Materialized view refreshes were scheduled as the final step in the daily ETL. A query that took 45 seconds against the raw fact table returned in under 200 milliseconds from the materialized view.
+Materialized view refreshes were scheduled as the final step in the daily ETL. A query that took 45 seconds against the raw fact table returned in **under 200 milliseconds** from the materialized view.
 
 ### Index Strategy
 
-We followed a principle I call **query-driven indexing**: no index exists without a documented query that needs it. Every index has a maintenance cost (slower writes, more storage, vacuum overhead), so each one must justify its existence.
+We followed a principle I call **query-driven indexing**: **no index exists without a documented query** that needs it. Every index has a maintenance cost (slower writes, more storage, vacuum overhead), so each one must justify its existence.
 
 The most impactful indices were partial indices:
 
@@ -210,6 +210,6 @@ If I were starting this project today, here is what I would do differently:
 
 4. **Respect PostgreSQL's strengths.** We considered migrating to a columnar database twice. Both times, proper partitioning, indexing, and materialized views got us the performance we needed. PostgreSQL can handle more than most people give it credit for.
 
-> Data engineering is not about the tools -- it is about the discipline. The tools will change, but the principles of idempotency, observability, and defensive design will carry you through any scale.
+> Data engineering is not about the tools -- it is about the *discipline*. The tools will change, but the principles of idempotency, observability, and defensive design will carry you through any scale.
 
 For anyone embarking on a similar journey, feel free to reach out. I am always happy to discuss the war stories that do not make it into documentation.

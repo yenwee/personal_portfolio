@@ -4,12 +4,12 @@
 
 Chinese New Year reunion dinner. My phone buzzes. A monitoring alert -- the Contabo VPS I had been hardening for a client is unreachable. I excuse myself from the table, open a terminal on my laptop, and type `ssh root@...`. Connection refused.
 
-I had changed the SSH port, enabled key-only authentication, and restarted the service. In that order. The problem: I had not tested the new port from a second session before killing password login. The server was hardened alright -- hardened against me.
+I had changed the SSH port, enabled key-only authentication, and restarted the service. In that order. The problem: I had not tested the new port from a second session before killing password login. The server was hardened alright -- **hardened against me**.
 
 > [!challenge] The Pattern Behind Every Lockout
 > Every lockout I hit during this engagement had the same shape: I hardened before I verified. Security changes that cannot be reversed remotely need a verified escape route before they take effect.
 
-That was the first lockout. It was not the last. By the time I finished this engagement, I had locked myself out three times, re-provisioned the entire server three times, and built an Ansible playbook that made all of it painless. The lockouts were the best thing that happened to this project.
+That was the first lockout. It was not the last. By the time I finished this engagement, I had locked myself out three times, re-provisioned the entire server three times, and built an Ansible playbook that made all of it painless. The lockouts were **the best thing that happened to this project**.
 
 ## Why I Was Hardening a Server During a Holiday
 
@@ -108,14 +108,14 @@ That verification task is the most important line in the entire playbook. It exi
 
 ![Manual process fails when tired or distracted](/blogs/images/ansible/ansible-systems-beat-discipline.png)
 
-I could have avoided every lockout by being more careful. But "be more careful" is not a system. It is a wish. **Systems beat discipline every time**, because systems work when you are tired, distracted, or eating reunion dinner.
+I could have avoided every lockout by being more careful. But "be more careful" is not a system. It is a *wish*. **Systems beat discipline every time**, because systems work when you are tired, distracted, or eating reunion dinner.
 
 The Ansible playbook is a system. It encodes every lesson as a task, every ordering constraint as a dependency, every verification as a check. When I provision a new server six months from now, I will not need to remember that fail2ban has a database persistence quirk or that UFW fights with Docker. The playbook remembers for me.
 
 > The fewer moving parts a system has, the fewer ways it fails at 2 a.m. And the fewer things you need to remember during Chinese New Year dinner.
 
-Building for disposability changed how I think about infrastructure. A server that can be replaced in one command is a server you do not need to be precious about. Every fix becomes a playbook change, not an SSH session. Every configuration becomes version-controlled, reviewable, repeatable.
+Building for disposability changed how I think about infrastructure. A server that can be *replaced* in one command is a server you do not need to be precious about. Every fix becomes **a playbook change, not an SSH session**. Every configuration becomes version-controlled, reviewable, repeatable.
 
-The three lockouts were frustrating in the moment. But each one hardened the playbook that made every subsequent provisioning run bulletproof. Pain drove the engineering. The engineering outlasted the pain.
+The three lockouts were frustrating in the moment. But each one hardened the playbook that made every subsequent provisioning run bulletproof. Pain drove the engineering. **The engineering outlasted the pain.**
 
 If you are provisioning VPS instances and still doing it by hand, the first lockout will convince you to start automating. If you are lucky, it will happen during a holiday -- when the inconvenience is sharp enough to make the lesson stick.
