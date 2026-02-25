@@ -1,6 +1,8 @@
 import { ImageResponse } from 'next/og'
+import fs from 'fs/promises'
+import path from 'path'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export async function GET(request: Request) {
     try {
@@ -15,37 +17,35 @@ export async function GET(request: Request) {
 
         if (bgImage) {
             try {
-                // Try fetching using VERCEL_URL first, fallback to origin
-                const fetchUrl = bgImage.startsWith('http')
-                    ? bgImage
-                    : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}${bgImage}` : `${origin}${bgImage}`);
+                if (bgImage.startsWith('http')) {
+                    // Fallback for external HTTP images
+                    const res = await fetch(bgImage, {
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                        }
+                    });
 
-                const res = await fetch(fetchUrl, {
-                    headers: {
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    if (!res.ok) {
+                        errorMessage = `Remote Fetch Failed: ${res.status}`;
+                    } else {
+                        const buffer = await res.arrayBuffer();
+                        const b64 = Buffer.from(buffer).toString('base64');
+                        bgImageData = `data:image/png;base64,${b64}`;
                     }
-                });
-
-                if (!res.ok) {
-                    errorMessage = `Fetch Failed: ${res.status} URL: ${fetchUrl}`;
                 } else {
-                    const buffer = await res.arrayBuffer();
-
-                    // Convert ArrayBuffer to Base64 in Edge runtime using btoa and Uint8Array
-                    let binary = '';
-                    const bytes = new Uint8Array(buffer);
-                    for (let i = 0; i < bytes.byteLength; i++) {
-                        binary += String.fromCharCode(bytes[i]);
-                    }
-
-                    const mime = bgImage.endsWith('.jpg') || bgImage.endsWith('.jpeg') ? 'image/jpeg'
-                        : bgImage.endsWith('.webp') ? 'image/webp'
+                    // Read file directly from serverless function disk using fs
+                    const safePath = bgImage.startsWith('/') ? bgImage.slice(1) : bgImage;
+                    const filePath = path.join(process.cwd(), 'public', safePath);
+                    const fileBuffer = await fs.readFile(filePath);
+                    const ext = path.extname(filePath).toLowerCase();
+                    const mime = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg'
+                        : ext === '.webp' ? 'image/webp'
                             : 'image/png';
 
-                    bgImageData = `data:${mime};base64,${btoa(binary)}`;
+                    bgImageData = `data:${mime};base64,${fileBuffer.toString('base64')}`;
                 }
             } catch (err: any) {
-                errorMessage = `Error: ${err.message}`;
+                errorMessage = `FS Read Error: ${err.message}`;
             }
         }
 
@@ -107,7 +107,7 @@ export async function GET(request: Request) {
                         }}
                     >
                         {errorMessage && (
-                            <div style={{ color: 'red', fontSize: 24, paddingBottom: 20 }}>
+                            <div style={{ color: '#ff4444', fontSize: 24, paddingBottom: 20 }}>
                                 {errorMessage}
                             </div>
                         )}
