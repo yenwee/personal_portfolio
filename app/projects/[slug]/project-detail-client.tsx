@@ -15,6 +15,7 @@ import { PullQuote } from "@/components/project/pull-quote"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { CodeBlock } from "@/components/project/code-block"
 import BlurText from "@/components/reactbits/BlurText"
+import ShinyText from "@/components/reactbits/ShinyText"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
 import projectsData from "@/lib/projects.json"
@@ -180,11 +181,11 @@ export default function ProjectDetailClient({ project, markdownContent, slug, re
                 href={contentData.connect.calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:block text-sm px-4 py-1.5 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-all duration-300 font-medium whitespace-nowrap"
+                className="btn-premium hidden sm:flex text-sm px-4 py-1.5 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-all duration-300 font-medium whitespace-nowrap"
                 data-umami-event="cta-start-project"
                 data-umami-event-location="project-nav"
               >
-                Start a Project
+                <ShinyText text="Book a Call" speed={3} shineColor="rgba(255,255,255,0.6)" color="currentColor" />
               </Link>
               <ThemeToggle />
             </div>
