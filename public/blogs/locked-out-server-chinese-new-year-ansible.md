@@ -13,6 +13,8 @@ That was the first lockout. It was not the last. By the time I finished this eng
 
 ## Why I Was Hardening a Server During a Holiday
 
+![Debt collection agency needing server automation for 100K emails per week](/blogs/images/ansible/ansible-holiday-hardening.png)
+
 A debt collection agency was sending 100,000 payment reminder emails per week through 60+ manually-rotated Gmail Workspace accounts. One operator's vacation meant one missed rotation, which meant thousands of reminders stuck in a queue overnight. They needed automation, and that automation needed a server.
 
 I procured a Contabo VPS -- bare Ubuntu 24.04, nothing installed, exposed to the internet. Before I could deploy anything useful, the machine needed hardening: SSH lockdown, firewall rules, intrusion prevention, Docker, monitoring. The kind of work that feels straightforward until it is not.
@@ -75,6 +77,8 @@ Every role is idempotent. Running the playbook twice produces the same result as
 > When your playbook can be re-run safely on a live server, you stop being afraid of running it. That fearlessness is the entire point.
 
 ## Three Re-Provisions, Same Result
+
+![Three re-provisions with identical ansible-playbook results](/blogs/images/ansible/ansible-three-reprovisions.png)
 
 The full environment was re-provisioned three times during this engagement. Two VPS migrations and one OS reinstall. Each time, I ran a single `ansible-playbook` command and walked away. Same roles, same ordering, same result.
 
