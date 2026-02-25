@@ -122,6 +122,8 @@ with DAG("daily_credit_ingestion", schedule_interval="0 6 * * *") as dag:
 
 ### Airflow Gotchas That Cost Me Sleep
 
+![Three Airflow gotchas -- idempotency, connection exhaustion, sensor deadlocks](/blogs/images/dw/dw-airflow-gotchas.png)
+
 > [!note] Idempotency Is Non-Negotiable
 > When a task fails halfway and you retry it, does it pick up where it left off or does it create duplicates? Every single task in your pipeline must be idempotent -- no exceptions.
 

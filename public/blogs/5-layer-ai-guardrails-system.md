@@ -130,6 +130,8 @@ Input filtering is half the equation. Even with clean inputs, LLMs can produce p
 
 ## The BERT vs. LLM Judge Tradeoff
 
+![Progressive filtering cost and latency tradeoff across 5 layers](/blogs/images/guardrails/guardrails-cost-tradeoff.png)
+
 One of the most common questions I get is: why not just use the LLM judge for everything?
 
 Cost and latency. At scale, the math is unforgiving:
@@ -164,6 +166,8 @@ The service is stateless and horizontally scalable. We run it on Kubernetes with
 Configuration is per-tenant. Enterprise clients can adjust thresholds, add custom patterns, and whitelist specific use cases without affecting other tenants.
 
 ## What I Have Learned About AI Safety Engineering
+
+![AI safety engineering lessons -- design for evolving threats](/blogs/images/guardrails/guardrails-safety-lessons.png)
 
 > Safety is a spectrum, not a binary.
 
