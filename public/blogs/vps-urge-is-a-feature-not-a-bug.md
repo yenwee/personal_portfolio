@@ -10,6 +10,8 @@ Not because I need more compute. Because the economics of self-hosting changed f
 
 ## The numbers
 
+![VPS market growth and the economics of self-hosting](/blogs/images/vps/vps-market-growth.png)
+
 The VPS market hit $5.2 billion in 2025, growing at 15.5% annually. Active subscribers jumped from 29 million in 2022 to 38 million in 2025.
 
 The poster child is 37signals. DHH documented their AWS exit in detail: $3.2 million per year in cloud spend, S3 bill alone at $1.5 million/year, down to $200,000/year on Pure Storage after migrating. Total savings over five years: $7 million.
@@ -26,6 +28,8 @@ It does. Two things changed.
 ---
 
 ## Hardware is getting more expensive
+
+![Rising hardware costs -- DRAM and NAND prices climbing](/blogs/images/vps/vps-hardware-costs.png)
 
 DRAM contract prices are up 50% in 2025, with another 20-30% forecast into 2026. NAND has doubled in six months. All 2026 production capacity is already sold out. Samsung's memory price hikes of up to 60% are hitting data center builders now.
 
@@ -61,6 +65,8 @@ You still learn. Probably faster than from a tutorial, because the feedback loop
 
 ## The stack
 
+![Modern self-hosting stack -- four open-source layers](/blogs/images/vps/vps-self-hosting-stack.png)
+
 The modern self-hosting stack has converged on something clean. Here is what I run:
 
 - **Reverse proxy**: Cloudflare Tunnel, no ports exposed, no Nginx config to manage.
@@ -75,6 +81,8 @@ For most indie projects, Docker Compose is enough. The more ambitious path is k3
 ---
 
 ## When it does not work
+
+![Cloud vs VPS decision framework](/blogs/images/vps/vps-cloud-vs-self-hosted.png)
 
 Cloud scales with usage, which matters when usage is unpredictable. Bursty workloads, seasonal traffic, anything where you cannot forecast resource needs. For those, pay-per-use still makes sense.
 
