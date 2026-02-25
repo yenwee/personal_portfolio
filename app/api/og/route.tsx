@@ -82,18 +82,20 @@ export async function GET(request: Request) {
                         }} />
                     )}
 
-                    {/* Dark Overlay for readability */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: 'rgba(0, 0, 0, 0.65)',
-                            display: 'flex',
-                        }}
-                    />
+                    {/* Dark Overlay for readability only if no background image */}
+                    {!bgImageData && (
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                                display: 'flex',
+                            }}
+                        />
+                    )}
 
                     <div
                         style={{
@@ -111,25 +113,29 @@ export async function GET(request: Request) {
                                 {errorMessage}
                             </div>
                         )}
-                        <div style={{
-                            fontSize: 32,
-                            color: '#9ca3af',
-                            fontWeight: 500,
-                            letterSpacing: '0.1em',
-                            textTransform: 'uppercase',
-                            marginBottom: '16px',
-                        }}>
-                            {category}
-                        </div>
-                        <div style={{
-                            fontSize: 72,
-                            color: 'white',
-                            fontWeight: 700,
-                            lineHeight: 1.1,
-                            letterSpacing: '-0.02em',
-                        }}>
-                            {title}
-                        </div>
+                        {!bgImageData && (
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <div style={{
+                                    fontSize: 32,
+                                    color: '#9ca3af',
+                                    fontWeight: 500,
+                                    letterSpacing: '0.1em',
+                                    textTransform: 'uppercase',
+                                    marginBottom: '16px',
+                                }}>
+                                    {category}
+                                </div>
+                                <div style={{
+                                    fontSize: 72,
+                                    color: 'white',
+                                    fontWeight: 700,
+                                    lineHeight: 1.1,
+                                    letterSpacing: '-0.02em',
+                                }}>
+                                    {title}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             ),
