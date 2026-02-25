@@ -5,7 +5,7 @@ import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeHighlight from "rehype-highlight"
-import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, FolderOpen } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, ChevronLeft, FolderOpen, ArrowUp, Twitter, Linkedin, Link as LinkIcon, ZoomIn, X } from "lucide-react"
 import { useEffect, useState, useRef, memo } from "react"
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 import { TableOfContents } from "@/components/project/table-of-contents"
@@ -16,6 +16,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import BlurText from "@/components/reactbits/BlurText"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import contentData from "@/lib/content.json"
+import blogsData from "@/lib/blogs.json"
 import "highlight.js/styles/github-dark-dimmed.min.css"
 
 interface CrossPost {
@@ -136,6 +137,45 @@ const ReadingProgressBar = memo(function ReadingProgressBar() {
 })
 
 export default function BlogDetailClient({ post, markdownContent, slug, relatedProject }: BlogDetailClientProps) {
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  const currentIndex = blogsData.posts.findIndex(p => p.id === post.id)
+  const prevPost = currentIndex > 0 ? blogsData.posts[currentIndex - 1] : null
+  const nextPost = currentIndex < blogsData.posts.length - 1 && currentIndex !== -1 ? blogsData.posts[currentIndex + 1] : null
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://weeai.dev/blogs/${slug}`
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareUrl)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+    trackEvent("share_blog", { platform: "copy_link", post: post.id })
+  }
+
+  const shareOnTwitter = () => {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Check out this article: ${post.title}`)}&url=${encodeURIComponent(shareUrl)}`, '_blank')
+    trackEvent("share_blog", { platform: "twitter", post: post.id })
+  }
+
+  const shareOnLinkedin = () => {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank')
+    trackEvent("share_blog", { platform: "linkedin", post: post.id })
+  }
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString("en-US", {
@@ -264,8 +304,21 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
       <div className="max-w-6xl mx-auto px-6 sm:px-8 py-8">
         <div className="flex gap-8">
           {/* Main Content */}
-          <main className="flex-1 min-w-0 py-4 sm:py-8">
-            <article className="blog-content max-w-[680px]">
+          <main className="flex-1 min-w-0 py-4 sm:py-8 max-w-[760px]">
+
+            {/* Share Actions - Desktop Top */}
+            <AnimatedSection>
+              <div className="hidden sm:flex items-center gap-2 text-muted-foreground mb-8 pb-8 border-b border-border/50">
+                <span className="text-sm font-medium mr-2">Share this article:</span>
+                <button onClick={shareOnTwitter} className="p-2 hover:text-foreground hover:bg-muted/50 rounded-full transition-colors" title="Share on Twitter"><Twitter className="w-4 h-4" /></button>
+                <button onClick={shareOnLinkedin} className="p-2 hover:text-foreground hover:bg-muted/50 rounded-full transition-colors" title="Share on LinkedIn"><Linkedin className="w-4 h-4" /></button>
+                <button onClick={copyToClipboard} className="p-2 hover:text-foreground hover:bg-muted/50 rounded-full transition-colors" title="Copy Link">
+                  {copied ? <span className="text-green-500 text-xs font-medium w-4 text-center">✓</span> : <LinkIcon className="w-4 h-4" />}
+                </button>
+              </div>
+            </AnimatedSection>
+
+            <article className="blog-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeHighlight]}
@@ -396,16 +449,22 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     <td className="px-4 py-3 text-muted-foreground border-t border-border/50">{children}</td>
                   ),
                   img: ({ src, alt }) => (
-                    <span className="block relative w-full my-8">
+                    <div
+                      className="relative w-full my-10 group cursor-zoom-in overflow-hidden rounded-lg border border-border bg-background"
+                      onClick={() => setLightboxImage(String(src || ''))}
+                    >
                       <Image
-                        src={src || ''}
-                        alt={alt || ''}
+                        src={String(src || '')}
+                        alt={String(alt || '')}
                         width={800}
                         height={450}
-                        className="rounded-lg border border-border object-cover w-full"
+                        className="object-cover w-full group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                         sizes="(max-width: 768px) 100vw, 800px"
                       />
-                    </span>
+                      <div className="absolute top-4 right-4 p-2 bg-background/80 backdrop-blur-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                        <ZoomIn className="w-4 h-4 text-foreground" />
+                      </div>
+                    </div>
                   ),
                 }}
               >
@@ -413,10 +472,61 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
               </ReactMarkdown>
             </article>
 
+            {/* Share Actions - Mobile Bottom */}
+            <div className="sm:hidden mt-8 pt-8 border-t border-border/50">
+              <h3 className="text-sm font-medium text-foreground mb-4">Share this article</h3>
+              <div className="flex items-center gap-3">
+                <button onClick={shareOnTwitter} className="flex-1 flex items-center justify-center gap-2 py-2 border border-border rounded-md hover:bg-muted/50 transition-colors text-sm"><Twitter className="w-4 h-4" /> Twitter</button>
+                <button onClick={shareOnLinkedin} className="flex-1 flex items-center justify-center gap-2 py-2 border border-border rounded-md hover:bg-muted/50 transition-colors text-sm"><Linkedin className="w-4 h-4" /> LinkedIn</button>
+                <button onClick={copyToClipboard} className="flex-1 flex items-center justify-center gap-2 py-2 border border-border rounded-md hover:bg-muted/50 transition-colors text-sm">
+                  {copied ? <span className="text-green-500">Copied!</span> : <><LinkIcon className="w-4 h-4" /> Copy Links</>}
+                </button>
+              </div>
+            </div>
+
+            {/* Next/Previous Navigation */}
+            <AnimatedContent distance={40} duration={0.6}>
+              <div className="mt-16 pt-8 border-t border-border">
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">More from the blog</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {prevPost ? (
+                    <Link
+                      href={`/blogs/${prevPost.id}`}
+                      className="group flex flex-col p-5 border border-border rounded-lg hover:border-foreground/30 hover:bg-muted/10 transition-all text-left"
+                    >
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                        <ChevronLeft className="w-3.5 h-3.5" /> Previous Post
+                      </div>
+                      <div className="font-medium text-foreground group-hover:underline decoration-foreground/30 underline-offset-4 leading-snug">{prevPost.title}</div>
+                      <div className="text-xs text-muted-foreground/60 flex items-center gap-2 mt-2">
+                        <Calendar className="w-3 h-3" /> {formatDate(prevPost.date)}
+                      </div>
+                    </Link>
+                  ) : <div></div>}
+
+                  {nextPost && (
+                    <Link
+                      href={`/blogs/${nextPost.id}`}
+                      className="group flex flex-col p-5 border border-border rounded-lg hover:border-foreground/30 hover:bg-muted/10 transition-all text-right sm:items-end"
+                    >
+                      <div className="flex items-center justify-end gap-2 text-xs text-muted-foreground mb-2">
+                        Next Post <ChevronRight className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="font-medium text-foreground group-hover:underline decoration-foreground/30 underline-offset-4 leading-snug">{nextPost.title}</div>
+                      <div className="text-xs text-muted-foreground/60 flex items-center gap-2 mt-2">
+                        <Calendar className="w-3 h-3" /> {formatDate(nextPost.date)}
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </AnimatedContent>
+
             {/* Related Project */}
             {relatedProject && (
               <AnimatedContent distance={40} duration={0.6}>
-                <div className="mt-12 max-w-[680px]">
+                <div className="mt-12">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Related Project</h3>
                   <Link
                     href={`/projects/${relatedProject.id}`}
                     className="group flex items-center gap-4 p-4 border border-border rounded-lg hover:border-foreground/20 hover:bg-muted/20 transition-all"
@@ -427,8 +537,10 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                       <FolderOpen className="w-5 h-5 text-muted-foreground" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Related Project</p>
                       <p className="font-medium text-foreground truncate">{relatedProject.title}</p>
+                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                        {relatedProject.category}
+                      </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
                   </Link>
@@ -438,11 +550,11 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
 
             {/* Footer Actions */}
             <AnimatedContent distance={30} duration={0.5}>
-              <div className="mt-12 pt-8 border-t border-border max-w-[680px]">
+              <div className="mt-12 pt-8 border-t border-border">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <Link
                     href="/blogs"
-                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
                     data-umami-event="nav-back-blog"
                   >
                     <ArrowLeft className="w-4 h-4" />
@@ -458,15 +570,6 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                     >
                       View Portfolio
                     </Link>
-                    <Link
-                      href="/#connect"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors text-sm font-medium"
-                      data-umami-event="cta-get-in-touch"
-                      data-umami-event-from="blog"
-                    >
-                      Get In Touch
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -481,6 +584,42 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
           )}
         </div>
       </div>
+
+      {/* Lightbox / Image Zoom */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            className="absolute top-6 right-6 p-2 bg-background/80 border border-border rounded-full hover:bg-muted/50 transition-colors z-[101]"
+            onClick={() => setLightboxImage(null)}
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
+            <Image
+              src={lightboxImage}
+              alt="Expanded view"
+              fill
+              className="object-contain"
+              sizes="100vw"
+              quality={100}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 p-3 bg-foreground text-background rounded-full shadow-lg transition-all duration-300 transform z-50 hover:scale-110 focus:outline-none ${showScrollTop ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0 pointer-events-none"
+          }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-5 h-5" />
+      </button>
+
     </div>
   )
 }

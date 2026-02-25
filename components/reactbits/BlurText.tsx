@@ -95,8 +95,8 @@ export default function BlurText({
           <motion.span
             key={index}
             style={{ display: 'inline-block', willChange: 'transform, filter, opacity' }}
-            initial={defaultFrom}
-            animate={isVisible ? animateKeyframes : defaultFrom}
+            initial={defaultFrom as any}
+            animate={isVisible ? (animateKeyframes as any) : (defaultFrom as any)}
             transition={{
               duration: totalDuration,
               times,
