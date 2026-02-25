@@ -4,12 +4,16 @@ export const runtime = 'edge'
 
 export async function GET(request: Request) {
     try {
-        const { searchParams } = new URL(request.url)
+        const { searchParams, origin } = new URL(request.url)
 
         // ?title=<title>&category=<category>&image=<imageLink>
         const title = searchParams.get('title')
         const category = searchParams.get('category') || 'Blog Post'
         const bgImage = searchParams.get('image')
+
+        const absoluteBgImage = bgImage
+            ? (bgImage.startsWith('http') ? bgImage : `${origin}${bgImage}`)
+            : null
 
         return new ImageResponse(
             (
@@ -22,13 +26,28 @@ export async function GET(request: Request) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor: '#0a0a0a',
-                        backgroundImage: bgImage
-                            ? `url(${bgImage})`
-                            : 'linear-gradient(to right, #4f46e5, #9333ea)',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
                     }}
                 >
+                    {absoluteBgImage ? (
+                        <img
+                            src={absoluteBgImage}
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover'
+                            }}
+                        />
+                    ) : (
+                        <div style={{
+                            position: 'absolute',
+                            top: 0, left: 0, right: 0, bottom: 0,
+                            backgroundImage: 'linear-gradient(to right, #4f46e5, #9333ea)'
+                        }} />
+                    )}
+
                     {/* Dark Overlay for readability */}
                     <div
                         style={{
