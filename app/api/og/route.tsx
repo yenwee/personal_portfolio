@@ -6,17 +6,48 @@ export async function GET(request: Request) {
     try {
         const { searchParams, origin } = new URL(request.url)
 
-        // ?title=<title>&category=<category>&image=<imageLink>
-        const title = searchParams.get('title')
+        const title = searchParams.get('title') || 'Hello World'
         const category = searchParams.get('category') || 'Blog Post'
         const bgImage = searchParams.get('image')
 
-        // Bypass Cloudflare bot-protection loopbacks by using the raw Vercel deployment URL
-        const absoluteBgImage = bgImage
-            ? (bgImage.startsWith('http')
-                ? bgImage
-                : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}${bgImage}` : `${origin}${bgImage}`))
-            : null;
+        let bgImageData: string | null = null;
+        let errorMessage: string | null = null;
+
+        if (bgImage) {
+            try {
+                // Try fetching using VERCEL_URL first, fallback to origin
+                const fetchUrl = bgImage.startsWith('http')
+                    ? bgImage
+                    : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}${bgImage}` : `${origin}${bgImage}`);
+
+                const res = await fetch(fetchUrl, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    }
+                });
+
+                if (!res.ok) {
+                    errorMessage = `Fetch Failed: ${res.status} URL: ${fetchUrl}`;
+                } else {
+                    const buffer = await res.arrayBuffer();
+
+                    // Convert ArrayBuffer to Base64 in Edge runtime using btoa and Uint8Array
+                    let binary = '';
+                    const bytes = new Uint8Array(buffer);
+                    for (let i = 0; i < bytes.byteLength; i++) {
+                        binary += String.fromCharCode(bytes[i]);
+                    }
+
+                    const mime = bgImage.endsWith('.jpg') || bgImage.endsWith('.jpeg') ? 'image/jpeg'
+                        : bgImage.endsWith('.webp') ? 'image/webp'
+                            : 'image/png';
+
+                    bgImageData = `data:${mime};base64,${btoa(binary)}`;
+                }
+            } catch (err: any) {
+                errorMessage = `Error: ${err.message}`;
+            }
+        }
 
         return new ImageResponse(
             (
@@ -31,9 +62,9 @@ export async function GET(request: Request) {
                         backgroundColor: '#0a0a0a',
                     }}
                 >
-                    {absoluteBgImage ? (
+                    {bgImageData ? (
                         <img
-                            src={absoluteBgImage}
+                            src={bgImageData}
                             style={{
                                 position: 'absolute',
                                 top: 0,
@@ -63,6 +94,7 @@ export async function GET(request: Request) {
                             display: 'flex',
                         }}
                     />
+
                     <div
                         style={{
                             display: 'flex',
@@ -74,28 +106,29 @@ export async function GET(request: Request) {
                             zIndex: 10,
                         }}
                     >
-                        <div
-                            style={{
-                                fontSize: 32,
-                                fontWeight: 600,
-                                color: '#a855f7',
-                                marginBottom: 20,
-                                textTransform: 'uppercase',
-                                letterSpacing: 2,
-                            }}
-                        >
-                            YEN WEE LIM | {category}
+                        {errorMessage && (
+                            <div style={{ color: 'red', fontSize: 24, paddingBottom: 20 }}>
+                                {errorMessage}
+                            </div>
+                        )}
+                        <div style={{
+                            fontSize: 32,
+                            color: '#9ca3af',
+                            fontWeight: 500,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            marginBottom: '16px',
+                        }}>
+                            {category}
                         </div>
-                        <div
-                            style={{
-                                fontSize: 64,
-                                fontWeight: 800,
-                                color: 'white',
-                                lineHeight: 1.1,
-                                maxWidth: '900px',
-                            }}
-                        >
-                            {title || "Welcome to my Portfolio"}
+                        <div style={{
+                            fontSize: 72,
+                            color: 'white',
+                            fontWeight: 700,
+                            lineHeight: 1.1,
+                            letterSpacing: '-0.02em',
+                        }}>
+                            {title}
                         </div>
                     </div>
                 </div>
@@ -106,7 +139,6 @@ export async function GET(request: Request) {
             }
         )
     } catch (e: any) {
-        console.log(`${e.message}`)
         return new Response(`Failed to generate the image`, {
             status: 500,
         })
