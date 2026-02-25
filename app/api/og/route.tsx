@@ -1,8 +1,6 @@
 import { ImageResponse } from 'next/og'
-import fs from 'fs/promises'
-import path from 'path'
 
-export const runtime = 'nodejs'
+export const runtime = 'edge'
 
 export async function GET(request: Request) {
     try {
@@ -13,26 +11,12 @@ export async function GET(request: Request) {
         const category = searchParams.get('category') || 'Blog Post'
         const bgImage = searchParams.get('image')
 
-        let bgImageData: string | null = null;
-
-        if (bgImage) {
-            try {
-                if (bgImage.startsWith('http')) {
-                    const res = await fetch(bgImage, { headers: { 'User-Agent': 'bot' } });
-                    const arrayBuffer = await res.arrayBuffer();
-                    const b64 = Buffer.from(arrayBuffer).toString('base64');
-                    bgImageData = `data:image/png;base64,${b64}`;
-                } else {
-                    const filePath = path.join(process.cwd(), 'public', bgImage);
-                    const fileBuffer = await fs.readFile(filePath);
-                    const ext = path.extname(filePath).toLowerCase();
-                    const mime = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.webp' ? 'image/webp' : 'image/png';
-                    bgImageData = `data:${mime};base64,${fileBuffer.toString('base64')}`;
-                }
-            } catch (err) {
-                console.error("Failed to load bg image:", err);
-            }
-        }
+        // Bypass Cloudflare bot-protection loopbacks by using the raw Vercel deployment URL
+        const absoluteBgImage = bgImage
+            ? (bgImage.startsWith('http')
+                ? bgImage
+                : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}${bgImage}` : `${origin}${bgImage}`))
+            : null;
 
         return new ImageResponse(
             (
@@ -47,9 +31,9 @@ export async function GET(request: Request) {
                         backgroundColor: '#0a0a0a',
                     }}
                 >
-                    {bgImageData ? (
+                    {absoluteBgImage ? (
                         <img
-                            src={bgImageData}
+                            src={absoluteBgImage}
                             style={{
                                 position: 'absolute',
                                 top: 0,
