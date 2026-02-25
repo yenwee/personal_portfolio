@@ -8,7 +8,7 @@
       "tags": ["AI Agents", "Open Source", "LLM", "Production"],
       "featured": true,
       "readTime": 9,
-      "featuredImage": "/blogs/images/open-models/balancing-model-capabilities.png",
+      "featuredImage": "/blogs/images/open-models/balancing-model-capabilities-v2.png",
       "relatedProject": "doc-auto",
       "crossPostedOn": [
         {
@@ -26,7 +26,7 @@
       "tags": ["DevOps", "Infrastructure", "Docker", "Cloudflare"],
       "featured": false,
       "readTime": 7,
-      "featuredImage": "/blogs/images/vps/vps-cloudflare-tunnel.png",
+      "featuredImage": "/blogs/images/vps/vps-paas-lessons.png",
       "relatedProject": "smtp-relay-infrastructure"
     },
     {
@@ -59,7 +59,7 @@
       "tags": ["AI Agents", "LangGraph", "Document AI"],
       "featured": true,
       "readTime": 11,
-      "featuredImage": "/blogs/images/vlm/vlm-extraction-workflow.png",
+      "featuredImage": "/blogs/images/vlm/vlm-beyond-benchmarks.png",
       "relatedProject": "doc-auto",
       "crossPostedOn": [
         {

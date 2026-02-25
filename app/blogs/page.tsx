@@ -223,13 +223,13 @@ export default function BlogsPage() {
                   <div className="grid md:grid-cols-5 gap-0">
                     {/* Visual accent */}
                     {featuredPost.featuredImage ? (
-                      <div className="md:col-span-2 flex items-center justify-center bg-muted/30 p-6 sm:p-8 overflow-hidden">
-                        <div className="relative w-full aspect-[4/3]">
+                      <div className="md:col-span-2 flex items-center justify-center p-6 sm:p-8 overflow-hidden">
+                        <div className="relative w-full aspect-[4/3] bg-white rounded-lg overflow-hidden">
                           <Image
                             src={featuredPost.featuredImage}
                             alt={featuredPost.title}
                             fill
-                            className="object-contain group-hover:scale-105 transition-transform duration-500"
+                            className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                             priority
                           />
                         </div>
@@ -310,14 +310,16 @@ export default function BlogsPage() {
               >
                 {/* Featured image or gradient header */}
                 {post.featuredImage ? (
-                  <div className="relative h-40 sm:h-48 bg-muted/30 overflow-hidden">
-                    <Image
-                      src={post.featuredImage}
-                      alt={post.title}
-                      fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-                      loading={index < 4 ? "eager" : "lazy"}
-                    />
+                  <div className="relative h-40 sm:h-48 overflow-hidden flex items-center justify-center p-3">
+                    <div className="relative w-full h-full bg-white rounded-lg overflow-hidden">
+                      <Image
+                        src={post.featuredImage}
+                        alt={post.title}
+                        fill
+                        className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                        loading={index < 4 ? "eager" : "lazy"}
+                      />
+                    </div>
                   </div>
                 ) : (
                   <div className={`h-2 bg-gradient-to-r ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`} />

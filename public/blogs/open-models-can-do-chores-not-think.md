@@ -22,7 +22,7 @@ Two tasks. One simple, one slightly complex. The gap between them is the thing I
 
 ## A genius does not need instructions
 
-![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/open-models/balancing-model-capabilities.png)
+![Balancing model capabilities with task requirements -- frontier models handle vague instructions, autonomy, and complex reasoning while open models excel at structured tool definitions, explicit error handling, and simple task execution](/blogs/images/open-models/balancing-model-capabilities-v2.png)
 
 Here is how I think about it.
 
