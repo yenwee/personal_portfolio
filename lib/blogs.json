@@ -7,7 +7,8 @@
       "date": "2026-03-01",
       "tags": ["AI", "Finance", "Economics"],
       "featured": false,
-      "readTime": 8
+      "readTime": 8,
+      "featuredImage": "/blogs/images/energy/energy-featured.png"
     },
     {
       "id": "eightfold-ai-billion-workers-actuary",
