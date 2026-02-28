@@ -20,7 +20,14 @@
       "featured": false,
       "readTime": 8,
       "featuredImage": "/blogs/images/distillation/distillation-campaign-scale.png",
-      "relatedProject": "aimod-platform"
+      "relatedProject": "aimod-platform",
+      "crossPostedOn": [
+        {
+          "name": "Towards AI",
+          "url": "https://pub.towardsai.net/distillation-is-not-the-crime-fraud-is",
+          "logo": "/images/towards-ai-logo.png"
+        }
+      ]
     },
     {
       "id": "open-models-can-do-chores-not-think",
@@ -49,7 +56,14 @@
       "featured": false,
       "readTime": 7,
       "featuredImage": "/blogs/images/vps/vps-paas-lessons.png",
-      "relatedProject": "smtp-relay-infrastructure"
+      "relatedProject": "smtp-relay-infrastructure",
+      "crossPostedOn": [
+        {
+          "name": "Level Up Coding",
+          "url": "https://levelup.gitconnected.com/your-vps-urge-is-a-feature-not-a-bug",
+          "logo": "/images/levelup-coding-logo.jpeg"
+        }
+      ]
     },
     {
       "id": "built-my-own-business-os",
@@ -117,6 +131,11 @@
           "name": "Towards AI",
           "url": "https://pub.towardsai.net/rag-is-not-enough-how-we-built-dual-mode-document-intelligence-e9b988e12461",
           "logo": "/images/towards-ai-logo.png"
+        },
+        {
+          "name": "AI Advances",
+          "url": "https://ai.gopubby.com/rag-is-not-enough-how-we-built-dual-mode-document-intelligence-e9b988e12461",
+          "logo": "/images/ai-advances-logo.png"
         }
       ]
     },
@@ -129,7 +148,14 @@
       "featured": false,
       "readTime": 8,
       "featuredImage": "/blogs/images/guardrails/guardrails-deployment.png",
-      "relatedProject": "sentinel-guardrails"
+      "relatedProject": "sentinel-guardrails",
+      "crossPostedOn": [
+        {
+          "name": "Towards AI",
+          "url": "https://pub.towardsai.net/the-5-layer-ai-guardrails-system-that-catches-what-gpt-misses",
+          "logo": "/images/towards-ai-logo.png"
+        }
+      ]
     },
     {
       "id": "actuarial-science-to-ai",
@@ -140,7 +166,14 @@
       "featured": false,
       "readTime": 8,
       "featuredImage": "/blogs/images/actuarial/actuarial-two-tabs.png",
-      "relatedProject": "credit-risk-ml"
+      "relatedProject": "credit-risk-ml",
+      "crossPostedOn": [
+        {
+          "name": "Towards AI",
+          "url": "https://pub.towardsai.net/why-i-left-actuarial-science-for-ai-and-why-my-stats-background-is-my-secret-weapon",
+          "logo": "/images/towards-ai-logo.png"
+        }
+      ]
     },
     {
       "id": "building-15-ai-agents-production",
