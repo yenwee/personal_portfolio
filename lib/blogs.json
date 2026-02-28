@@ -6,7 +6,7 @@
       "description": "A $15 kit from the dark web now fools most bank identity systems. Detection is not keeping up. The shift from 'spot the fake' to 'prove the real' is already happening.",
       "date": "2026-02-28",
       "tags": ["AI", "AI Safety", "Production"],
-      "featured": false,
+      "featured": true,
       "readTime": 8,
       "draft": false,
       "featuredImage": "/blogs/images/deepfake/deepfake-reframe-comparison.png"
@@ -137,7 +137,7 @@
       "description": "A personal career journey from actuarial science to leading AI solutions, and why statistical rigor is the most underrated skill in modern AI engineering.",
       "date": "2025-11-10",
       "tags": ["Career", "AI", "Data Science"],
-      "featured": true,
+      "featured": false,
       "readTime": 8,
       "featuredImage": "/blogs/images/actuarial/actuarial-two-tabs.png",
       "relatedProject": "credit-risk-ml"
