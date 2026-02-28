@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "ai-energy-cost-no-denominator",
+      "title": "The AI Industry Has an Energy Problem It Cannot Do Math On",
+      "description": "Sam Altman says training a human uses energy too. The comparison is an accounting error, and the AI industry has no denominator to prove otherwise.",
+      "date": "2026-02-28",
+      "tags": ["AI", "Finance", "Economics"],
+      "featured": false,
+      "readTime": 8,
+      "draft": true
+    },
+    {
       "id": "eightfold-ai-billion-workers-actuary",
       "title": "You Were Probably Scored by an AI Hiring Tool. The System That Should Have Stopped It Has Existed Since 1970.",
       "description": "Eightfold AI scored over a billion workers for Microsoft, Morgan Stanley, and PayPal. Nobody got a receipt.",
