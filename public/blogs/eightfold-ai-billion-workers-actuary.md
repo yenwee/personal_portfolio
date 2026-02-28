@@ -1,4 +1,4 @@
-# Eightfold AI Scored a Billion Workers in Secret. An Actuary Would Have Stopped Them at the Door.
+# You Were Probably Scored by an AI Hiring Tool. The System That Should Have Stopped It Has Existed Since 1970.
 
 *You have probably been scored by an AI hiring tool. You were never told, and there is no way to dispute it.*
 
