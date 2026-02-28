@@ -43,8 +43,13 @@ const CARD_GRADIENTS = [
   "from-cyan-500/8 via-transparent to-transparent",
 ]
 
+function isPublished(post: any): boolean {
+  if (post.draft) return false
+  return new Date(post.date) <= new Date()
+}
+
 export default function BlogsPage() {
-  const posts = blogsData.posts.filter((p: any) => !p.draft)
+  const posts = blogsData.posts.filter(isPublished)
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState<"recent" | "oldest" | "popular">("recent")
