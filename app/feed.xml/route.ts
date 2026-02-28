@@ -22,7 +22,7 @@ export async function GET() {
         },
     })
 
-    blogsData.posts.forEach((post) => {
+    blogsData.posts.filter((p: any) => !p.draft).forEach((post) => {
         feed.addItem({
             title: post.title,
             id: `${siteUrl}/blogs/${post.id}`,

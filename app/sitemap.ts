@@ -36,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
-  const blogRoutes: MetadataRoute.Sitemap = blogsData.posts.map((post) => {
+  const blogRoutes: MetadataRoute.Sitemap = blogsData.posts.filter((p: any) => !p.draft).map((post) => {
     const lastUpdated = (post as { lastUpdated?: string }).lastUpdated
     return {
       url: `${BASE_URL}/blogs/${post.id}`,

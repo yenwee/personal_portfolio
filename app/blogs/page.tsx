@@ -43,7 +43,7 @@ const CARD_GRADIENTS = [
 ]
 
 export default function BlogsPage() {
-  const { posts } = blogsData
+  const posts = blogsData.posts.filter((p: any) => !p.draft)
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState<"recent" | "oldest" | "popular">("recent")
