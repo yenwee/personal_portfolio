@@ -333,7 +333,7 @@ export default function BlogsPage() {
                       {/* Visual accent */}
                       {featuredPost.featuredImage ? (
                         <div className="md:col-span-2 flex items-center justify-center p-6 sm:p-8 overflow-hidden">
-                          <div className="relative w-full aspect-[4/3] bg-white rounded-lg overflow-hidden">
+                          <div className="relative w-full aspect-video bg-white rounded-lg overflow-hidden">
                             <Image
                               src={featuredPost.featuredImage}
                               alt={featuredPost.title}
