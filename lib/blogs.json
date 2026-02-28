@@ -20,7 +20,14 @@
       "featured": true,
       "readTime": 8,
       "draft": false,
-      "featuredImage": "/blogs/images/deepfake/deepfake-reframe-comparison.png"
+      "featuredImage": "/blogs/images/deepfake/deepfake-reframe-comparison.png",
+      "crossPostedOn": [
+        {
+          "name": "AI Advances",
+          "url": "https://ai.gopubby.com/you-cannot-detect-your-way-out-of-the-deepfake-problem-3a6546090cec",
+          "logo": "/images/ai-advances-logo.png"
+        }
+      ]
     },
     {
       "id": "distillation-is-not-the-crime-fraud-is",
