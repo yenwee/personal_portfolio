@@ -6,8 +6,6 @@
 
 ![Sam Altman speaking at TED 2025](/blogs/images/energy/sam-altman-ted.jpg)
 
-![One AI query versus one human lifetime -- not the same unit of analysis](/blogs/images/energy/energy-featured.png)
-
 ## The comparison that falls apart on contact
 
 Sam Altman told an audience at the India AI Impact Summit in February 2026 that "it also takes a lot of energy to train a human. It takes, like, 20 years of life, and all of the food you eat during that time before you get smart." Some in the crowd laughed. The quote circulated as a clever reframe -- AI energy costs are overblown because humans are expensive to run, too.
@@ -23,6 +21,8 @@ These are not the same unit of analysis. You do not compare the marginal cost of
 ## The two honest comparisons nobody wants to publish
 
 If you wanted to honestly compare AI and human cognitive costs, there are really only two ways to do it. The industry avoids both.
+
+![One AI query versus one human lifetime -- not the same unit of analysis](/blogs/images/energy/energy-featured.png)
 
 One way is cost per cognitive task -- how much does it cost for an AI to answer a question or generate a code block, versus paying a human to do the same work? This comparison favors AI. Inference is cheap per task. OpenAI cites this constantly when selling enterprise contracts. Fractions of a cent per query on most workloads.
 
