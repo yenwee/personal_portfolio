@@ -16,8 +16,6 @@ This is not a Southeast Asian problem. It is a structural one. The economics of 
 
 I build AI agent systems for a living. A core part of the job is making sure agents do not act on inputs they cannot verify. The deepfake problem is that same challenge, scaled to every person with a phone.
 
----
-
 ## The numbers
 
 ![Deepfake Fraud Statistics](/blogs/images/deepfake/deepfake-fraud-statistics.png)
@@ -29,8 +27,6 @@ On the dark web, KYC bypass kits sell for $15. For that price you get a syntheti
 On the detection side, the picture is worse than most people assume. A 2024 study from University College London found that humans identify high-quality deepfakes at rates barely above random chance. A coin flip. And the counterintuitive part: prior exposure to deepfakes does not make people more skeptical. It makes them more susceptible. The brain normalizes the pattern. Familiarity breeds belief, not doubt.
 
 85% of enterprises now report facing deepfake attacks, per Regula's 2024 survey. Global cost of AI-enabled fraud is in the tens of billions and climbing. The generation tools get cheaper every quarter. The detection tools do not.
-
----
 
 ## Why detection is a losing game
 
@@ -45,8 +41,6 @@ Deepfakes follow the same dynamic. The teams building generators have full acces
 The math makes it worse. Generating a deepfake is a single forward pass through a neural network. Detecting one requires analyzing multiple signals -- facial landmarks, audio spectrograms, compression artifacts, temporal consistency -- and making a probabilistic judgment. Generation is cheap and parallel. Detection is expensive and sequential. At internet scale, that asymmetry kills you.
 
 Malaysia's Ministry of Digital is developing a deepfake verification app with Universiti Kebangsaan Malaysia. Reasonable project. But think about it practically: you cannot ask every person who gets a WhatsApp voice note to run it through a verification app before deciding whether to trust it. That is the ceiling of any detection strategy.
-
----
 
 ## What is replacing detection
 
@@ -66,8 +60,6 @@ Notice what these have in common. None of them are asking "is this fake?" They a
 
 That is a different security model entirely. Detection is reactive -- you examine content after creation and guess. Provenance is proactive -- you establish authenticity at the point of origin. Detection scales with the volume of fakes. Provenance scales with the volume of legitimate content. Only one of those curves is survivable.
 
----
-
 ## The shift
 
 ![Shift from Detection to Provenance for Trust](/blogs/images/deepfake/deepfake-reframe-comparison.png)
@@ -86,8 +78,6 @@ None of this eliminates deepfakes. Nothing will. But it changes the economics. R
 Not every country is moving at this speed. Malaysia blocked Grok AI in January 2026 after xAI failed to implement safeguards against non-consensual deepfake generation. That was reactive -- necessary, but not systemic. The country's AI Bill is not expected until mid-2026 at the earliest. Across the region, the UNODC has documented transnational fraud factories that combine AI-generated content with underground banking networks. These are not lone actors. They are organizations with R&D budgets and operational playbooks. The gap between the sophistication of the attack and the maturity of the defense is widening.
 
 But the direction is clear. Jurisdiction after jurisdiction is moving from "detect fakes" to "verify real." The speed varies. The direction does not.
-
----
 
 ## Where this leaves you
 
