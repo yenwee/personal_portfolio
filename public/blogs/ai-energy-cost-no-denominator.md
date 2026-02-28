@@ -1,6 +1,6 @@
 # The AI Industry Has an Energy Problem It Cannot Do Math On
 
-*Sam Altman says training a human uses energy too. By that logic, your office electric bill is justified because the sun also produces heat.*
+*Sam Altman says training a human uses energy too. By that logic, your toaster is as expensive as a power plant.*
 
 ---
 
