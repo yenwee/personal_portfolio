@@ -4,6 +4,8 @@
 
 ---
 
+![Sam Altman speaking at TED 2025](/blogs/images/energy/sam-altman-ted.jpg)
+
 ![One AI query versus one human lifetime -- not the same unit of analysis](/blogs/images/energy/energy-featured.png)
 
 ## The comparison that falls apart on contact
