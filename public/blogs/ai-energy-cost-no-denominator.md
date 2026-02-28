@@ -4,6 +4,8 @@
 
 ---
 
+![One AI query versus one human lifetime -- not the same unit of analysis](/blogs/images/energy/energy-featured.png)
+
 ## The comparison that falls apart on contact
 
 Sam Altman told an audience at the India AI Impact Summit in February 2026 that "it also takes a lot of energy to train a human. It takes, like, 20 years of life, and all of the food you eat during that time before you get smart." Some in the crowd laughed. The quote circulated as a clever reframe -- AI energy costs are overblown because humans are expensive to run, too.
@@ -28,6 +30,8 @@ Global data center electricity consumption is projected to double by 2030, accor
 
 Altman switches between these two frames depending on which makes AI look better. Selling to enterprises? Cost per task. Defending against energy critics? Total human cost. He never holds still long enough for the math to land on one denominator.
 
+![How AI companies switch denominators depending on the audience](/blogs/images/energy/energy-frame-switch.png)
+
 He is not the only one. Google's 2024 environmental report led with per-query efficiency metrics and PUE scores. The 13% year-over-year increase in total greenhouse gas emissions -- driven by data center expansion -- got quieter treatment.
 
 Microsoft did something more interesting. They quietly shifted their Scope 3 sustainability commitments from absolute carbon reduction to "intensity-based" targets, measured as emissions per dollar of revenue. Total emissions have risen 29% since their 2020 carbon-negative pledge. The math technically works -- as long as revenue grows faster than pollution.
@@ -37,6 +41,8 @@ The denominator is always chosen after the conclusion.
 ## What it looks like when you actually measure
 
 At a previous job, I built scoring models at a national credit bureau. Every model had a cost attribution -- not just compute, but the full cost: engineer time, validation cycles, infrastructure, and the expected revenue per decisioned application. We tracked it down to the sen. That is a hundredth of a Malaysian ringgit.
+
+![Five layers of cost attribution per ML model](/blogs/images/energy/energy-cost-attribution.png)
 
 If a model's ROI did not justify the infrastructure, we killed it. No deprecation notice, no review cycle -- just gone. Every query against a 6TB data warehouse rolled up into a business case. Nobody got to wave their hands and say "it also costs a lot to feed the analysts."
 
@@ -52,6 +58,8 @@ Without a denominator, every comparison is rigged. Altman can compare whatever h
 
 Other industries figured this out a long time ago. Cars have miles per gallon. Buildings have energy use intensity. Power plants have heat rate. Data centers themselves have PUE -- total facility energy divided by IT equipment energy. None of these are perfect, but they are standardized, public, and auditable. They give regulators and competitors something to check.
 
+![Standard energy efficiency metrics by industry -- AI has none](/blogs/images/energy/energy-missing-denominator.png)
+
 AI has nothing like this.
 
 And the fix is not mysterious. You would need a standard unit of useful output -- something tied to task completion, not raw tokens. A correctly answered question, a working code block, a decision that would have taken a human analyst a measured amount of time. Full-stack cost attribution: training, data center construction, cooling, the embodied carbon of the hardware. Then independent audit, not sustainability PDFs written by the same company burning the electricity.
@@ -59,6 +67,8 @@ And the fix is not mysterious. You would need a standard unit of useful output -
 None of this is technically difficult for companies that already track cloud spend to the millisecond. The data exists. The will to publish it does not.
 
 Here is what I keep coming back to. I run AI systems now. I can tell you roughly what it costs to process one document through a multi-agent pipeline -- inference, orchestration, retries, the lot. A small AI team in Kuala Lumpur can track this. The idea that a company valued at $300 billion cannot define "cost per useful output" is not a technical limitation. It is a choice.
+
+![A small team can track cost per output -- a $300B company refuses to](/blogs/images/energy/energy-300b-choice.png)
 
 ## This is not really about energy
 
