@@ -8,7 +8,8 @@
       "tags": ["AI", "AI Safety", "Production"],
       "featured": false,
       "readTime": 8,
-      "draft": true
+      "draft": true,
+      "featuredImage": "/blogs/images/deepfake/deepfake-reframe-comparison.png"
     },
     {
       "id": "distillation-is-not-the-crime-fraud-is",
