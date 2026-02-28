@@ -6,7 +6,7 @@
 
 ## The comparison that falls apart on contact
 
-Sam Altman told a crowd in February 2026 that "it also takes a lot of energy to train a human." The audience laughed. The quote circulated as a clever reframe -- AI energy costs are overblown because humans are expensive to run, too.
+Sam Altman told an audience at the India AI Impact Summit in February 2026 that "it also takes a lot of energy to train a human. It takes, like, 20 years of life, and all of the food you eat during that time before you get smart." Some in the crowd laughed. The quote circulated as a clever reframe -- AI energy costs are overblown because humans are expensive to run, too.
 
 It is a good soundbite. It is also an accounting error.
 
@@ -22,11 +22,11 @@ There are two defensible ways to compare AI and human cognitive costs. The AI in
 
 One way is cost per cognitive task -- how much does it cost for an AI to answer a question or generate a code block, versus paying a human to do the same work? This comparison favors AI. Inference is cheap per task. OpenAI cites this constantly when selling enterprise contracts. Fractions of a cent per query on most workloads.
 
-The other way is total system cost -- how much does it cost to build, train, and run all the AI infrastructure versus the human workforce it claims to replace? This comparison does not favor AI. Training runs cost hundreds of millions. Data center power demand is projected to double by 2028. Nvidia shipped more power-hungry chips in 2025 than some countries consume in a year.
+The other way is total system cost -- how much does it cost to build, train, and run all the AI infrastructure versus the human workforce it claims to replace? This comparison does not favor AI. Training runs cost hundreds of millions. Global data center electricity consumption is projected to double by 2030, according to the IEA. Nvidia's deployed H100 GPUs alone consume roughly 13,000 GWh per year -- more electricity than countries like Costa Rica or Guatemala use annually.
 
 Altman switches between these two frames depending on which makes AI look better. Selling to enterprises? Cost per task. Defending against energy critics? Total human cost. He never holds still long enough for the math to land on one denominator.
 
-He is not the only one. Google's 2024 sustainability report buried data center energy numbers in an appendix and led with efficiency-per-query metrics. Microsoft quietly shifted its sustainability commitments from absolute carbon reduction to "intensity-based" targets -- total emissions can rise as long as emissions per dollar of revenue fall. The denominator is always chosen after the conclusion.
+He is not the only one. Google's 2024 environmental report led with per-query efficiency metrics and PUE scores while the 13% year-over-year increase in total greenhouse gas emissions -- driven by data center expansion -- got less prominent treatment. Microsoft quietly shifted its Scope 3 sustainability commitments from absolute carbon reduction to "intensity-based" targets, measured as emissions per dollar of revenue. Total emissions have risen 29% since their 2020 carbon-negative pledge. The denominator is always chosen after the conclusion.
 
 ## What it looks like when you actually measure
 
@@ -66,4 +66,4 @@ The same pattern showed up in the Eightfold lawsuit -- a company that scored a b
 
 Altman's soundbite works because the public does not have a denominator. Give them one and the argument collapses on contact. That is exactly why it has not been given.
 
-The industry will not volunteer this metric. The EU AI Act already mandates energy consumption reporting for high-risk systems, but enforcement is years away. Until then, every efficiency claim from an AI company is self-graded homework. Treat it accordingly.
+The industry will not volunteer this metric. The EU AI Act mandates energy consumption reporting for general-purpose AI model providers under Annex XI, with compliance required for models launched after August 2025. But broader environmental standards for AI remain voluntary, and enforcement of the existing rules is still ramping up. Until then, every efficiency claim from an AI company is self-graded homework. Treat it accordingly.
