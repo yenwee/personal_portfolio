@@ -8,7 +8,8 @@
       "tags": ["AI", "AI Safety", "Finance"],
       "featured": false,
       "readTime": 9,
-      "draft": true
+      "draft": true,
+      "featuredImage": "/blogs/images/eightfold/eightfold-governance-convergence-timeline.png"
     },
     {
       "id": "deepfake-detection-losing-game",
