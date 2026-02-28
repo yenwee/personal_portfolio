@@ -1,6 +1,6 @@
 # You Were Probably Scored by an AI Hiring Tool. The System That Should Have Stopped It Has Existed Since 1970.
 
-*You have probably been scored by an AI hiring tool. You were never told, and there is no way to dispute it.*
+*Eightfold AI scored over a billion workers for Microsoft, Morgan Stanley, and PayPal. Nobody got a receipt.*
 
 ---
 
@@ -8,7 +8,7 @@
 
 Erin Kistler has a computer science degree from Ohio State and 19 years of product management experience. She applied for a job at PayPal. Before a human recruiter ever opened her application, an algorithm had already scored her on a 0 to 5 scale -- star ratings, half-point increments -- and decided whether she was worth a look.
 
-She did not know the score existed. Neither did over a billion other workers in Eightfold AI's database. The ones who scored low were filtered out silently -- discarded before a human recruiter ever opened the application.
+She did not know the score existed. Neither did over a billion other workers in Eightfold AI's database. The ones who scored low were filtered out silently -- discarded before anyone even looked.
 
 ![AI Hiring Score Pipeline](/blogs/images/eightfold/eightfold-invisible-scoring-pipeline.png)
 
@@ -36,15 +36,13 @@ Former EEOC Commissioner Keith Sonderling has argued this for years: existing em
 
 I had to clear five governance controls before any model I built touched an applicant at a credit bureau. Let me walk through them.
 
-A model cannot be a black box. The Federal Reserve's SR 11-7 guidance, issued in 2011, requires documentation detailed enough that someone outside the team can audit it -- inputs, logic, known failure modes, all written down. Think of it as a recipe a stranger could follow. Eightfold's methodology is proprietary. The plaintiffs allege that neither candidates nor employers receive documentation about how scores are calculated. Kistler did not know the recipe existed, let alone what was in it.
-
-The developers also do not get to grade their own homework. In credit risk, a separate team stress-tests every model against holdout data before deployment, then repeats the process periodically. You would not trust a bridge designed and inspected by the same engineer -- the inspector has to be independent. There is no public evidence that Eightfold's model has been independently validated by anyone outside the company. A system scoring over a billion profiles.
+A model cannot be a black box. The Federal Reserve requires documentation detailed enough that someone outside the team can audit it -- think of it as a recipe a stranger could follow. Eightfold's methodology is proprietary. Kistler did not know the recipe existed, let alone what was in it. And the developers do not get to grade their own homework -- in credit risk, a separate team stress-tests every model before deployment. You would not trust a bridge designed and inspected by the same engineer. There is no public evidence that Eightfold's model has been independently validated by anyone outside the company.
 
 ![Credit Bureau vs Eightfold Model Governance](/blogs/images/eightfold/eightfold-credit-bureau-vs-eightfold.png)
 
-Then there is discrimination testing. The harder problem is not explicit bias -- it is proxy discrimination. Variables that look neutral but correlate with protected classes. An insurance actuary can use your driving record but cannot use your zip code as a stand-in for your ethnicity. The rules are specific. The testing is mandatory. Eightfold claims its AI reduces bias. The lawsuit alleges the opposite. Without access to the model's features and weights, there is no way to know which is true -- and that opacity alone would be disqualifying in credit risk.
+Discrimination testing is where this gets personal for me. The harder problem is not explicit bias -- it is proxy discrimination. Variables that look neutral but correlate with protected classes. An insurance actuary can use your driving record but cannot use your zip code as a stand-in for your ethnicity. I spent enough time building scoring models to know that proxy effects hide in the features you least expect -- a seemingly innocent variable like "years since last job change" can penalize people who took parental leave or recovered from illness. The rules for catching this are specific. The testing is mandatory. Eightfold claims its AI reduces bias. The lawsuit alleges the opposite. Without access to the model's features and weights, there is no way to know which is true -- and that opacity alone would be disqualifying in credit risk.
 
-Disclosure is the most straightforward rule and the most clearly violated. Before using a consumer report for employment decisions, the employer must provide a clear disclosure and get written authorization. Eightfold provided neither. Candidates had no idea a score existed, let alone what it said. If Eightfold's output qualifies as a consumer report -- and the statutory definition covers "character, general reputation, personal characteristics," which is broad enough to include a hiring fitness score -- then every company using the tool has been violating federal disclosure law. Microsoft. Morgan Stanley. All of them.
+Disclosure is the most straightforward rule and the most clearly violated. Before using a consumer report for employment decisions, the employer must provide a clear disclosure and get written authorization. Eightfold provided neither. This is the part that should make employers nervous. If Eightfold's output qualifies as a consumer report -- and the statutory definition is broad enough to include a hiring fitness score -- then every company using the tool has been violating federal disclosure law. Microsoft. Morgan Stanley. All of them.
 
 Dispute rights close the loop. Under FCRA, consumers can see what is in their file, challenge inaccuracies, and have errors investigated within 30 days. A candidate scored 1 out of 5 because the system ingested an outdated LinkedIn profile has no path to correction. The score filters them out silently before a recruiter opens the application.
 
