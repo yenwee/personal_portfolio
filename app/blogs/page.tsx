@@ -422,15 +422,15 @@ export default function BlogsPage() {
                       <div className={`flex flex-col h-full ${viewMode === "grid" ? "" : "sm:flex-row"}`}>
                         {/* Featured image or gradient header */}
                         {post.featuredImage ? (
-                          <div className={`relative overflow-hidden flex items-center justify-center p-3 ${viewMode === "grid" ? "h-40 sm:h-48" : "h-48 sm:h-auto sm:w-1/3 min-w-[240px]"}`}>
-                            <div className="relative w-full h-full bg-white rounded-lg overflow-hidden border border-border/50">
+                          <div className={`relative overflow-hidden flex items-center justify-center p-3 ${viewMode === "grid" ? "" : "h-48 sm:h-auto sm:w-1/3 min-w-[240px]"}`}>
+                            <div className={`relative bg-white rounded-lg overflow-hidden border border-border/50 ${viewMode === "grid" ? "w-full aspect-video" : "w-full h-full"}`}>
                               <Image
                                 src={post.featuredImage}
                                 alt={post.title}
                                 fill
                                 priority={index < 4}
                                 sizes={viewMode === "grid" ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 640px) 100vw, 20vw"}
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                className="object-contain p-1 transition-transform duration-700 group-hover:scale-105"
                               />
                             </div>
                           </div>
