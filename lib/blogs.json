@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "eightfold-ai-billion-workers-actuary",
+      "title": "Eightfold AI Scored a Billion Workers in Secret. An Actuary Would Have Stopped Them at the Door.",
+      "description": "The class action lawsuit is about FCRA violations. The real story is that credit scoring solved this governance problem decades ago -- and AI hiring tools ignored all of it.",
+      "date": "2026-02-28",
+      "tags": ["AI", "AI Safety", "Finance"],
+      "featured": false,
+      "readTime": 9,
+      "draft": true
+    },
+    {
       "id": "deepfake-detection-losing-game",
       "title": "You Cannot Detect Your Way Out of the Deepfake Problem",
       "description": "A $15 kit from the dark web now fools most bank identity systems. Detection is not keeping up. The shift from 'spot the fake' to 'prove the real' is already happening.",
