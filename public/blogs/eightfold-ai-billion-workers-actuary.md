@@ -1,6 +1,6 @@
 # Eightfold AI Scored a Billion Workers in Secret. An Actuary Would Have Stopped Them at the Door.
 
-*A class action names Microsoft, Morgan Stanley, and PayPal. The real story is not AI bias -- it is that credit scoring solved this governance problem in the 1970s and AI hiring tools skipped all of it.*
+*You have probably been scored by an AI hiring tool. You were never told, and there is no way to dispute it.*
 
 ---
 
