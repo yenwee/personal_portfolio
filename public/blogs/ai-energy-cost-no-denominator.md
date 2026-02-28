@@ -58,7 +58,7 @@ And the fix is not mysterious. You would need a standard unit of useful output -
 
 None of this is technically difficult for companies that already track cloud spend to the millisecond. The data exists. The will to publish it does not.
 
-Here is what I keep coming back to. I worked at a place where we could tell you exactly how much it cost to run one credit decision through one model on one applicant. Not approximately. Exactly. A credit bureau in Malaysia with a fraction of OpenAI's engineering budget managed this. The idea that a company valued at $300 billion cannot define "cost per useful output" is not a technical limitation. It is a choice.
+Here is what I keep coming back to. I run AI systems now. I can tell you roughly what it costs to process one document through a multi-agent pipeline -- inference, orchestration, retries, the lot. A small AI team in Kuala Lumpur can track this. The idea that a company valued at $300 billion cannot define "cost per useful output" is not a technical limitation. It is a choice.
 
 ## This is not really about energy
 
