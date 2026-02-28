@@ -8,7 +8,7 @@
 
 Erin Kistler has a computer science degree from Ohio State and 19 years of product management experience. She applied for a job at PayPal. Before a human recruiter ever opened her application, an algorithm had already scored her on a 0 to 5 scale -- star ratings, half-point increments -- and decided whether she was worth a look.
 
-She did not know the score existed. Neither did over a billion other workers in Eightfold AI's database.
+She did not know the score existed. Neither did over a billion other workers in Eightfold AI's database. The ones who scored low were filtered out silently -- discarded before a human recruiter ever opened the application.
 
 ![AI Hiring Score Pipeline](/blogs/images/eightfold/eightfold-invisible-scoring-pipeline.png)
 
@@ -28,7 +28,7 @@ The foundation is governance. Credit scoring has been assigning numbers to peopl
 
 ![Compare Credit Scoring and AI Hiring Governance](/blogs/images/eightfold/eightfold-five-governance-controls.png)
 
-Legal scholars and former regulators have been saying this for years. The existing employment law already covers algorithmic hiring -- the problem is enforcement, not missing statute. The "black box" defense that AI hiring vendors rely on would not survive the scrutiny applied to consumer finance. And the Kistler plaintiffs are testing this directly -- their legal theory maps Eightfold's scores onto the consumer reporting framework that has governed credit bureaus for over 50 years. The governance exists. AI hiring skipped it.
+Former EEOC Commissioner Keith Sonderling has argued this for years: existing employment law already covers algorithmic hiring -- the problem is enforcement, not missing statute. The "black box" defense that AI hiring vendors rely on would not survive the scrutiny applied to consumer finance. And the Kistler plaintiffs are testing this directly -- their legal theory maps Eightfold's scores onto the consumer reporting framework that has governed credit bureaus for over 50 years. The governance exists. AI hiring skipped it.
 
 (Deploying an unvalidated model that secretly scores millions would be career-ending in banking. In AI hiring, it is a Series C. Eightfold has raised over $400 million.)
 
