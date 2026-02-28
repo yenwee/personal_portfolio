@@ -3,7 +3,7 @@
     {
       "id": "deepfake-detection-losing-game",
       "title": "You Cannot Detect Your Way Out of the Deepfake Problem",
-      "description": "Spotting fakes is a losing strategy. The economics of synthetic media crossed a threshold -- generation is cheap and parallel, detection is expensive and sequential. The shift from 'spot the fake' to 'prove the real' is already happening.",
+      "description": "A $15 kit from the dark web now fools most bank identity systems. Detection is not keeping up. The shift from 'spot the fake' to 'prove the real' is already happening.",
       "date": "2026-02-28",
       "tags": ["AI", "AI Safety", "Production"],
       "featured": false,

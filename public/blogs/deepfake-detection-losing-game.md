@@ -1,6 +1,6 @@
 # You Cannot Detect Your Way Out of the Deepfake Problem
 
-*Spotting fakes is a losing strategy. Proving real is the only one left.*
+*A $15 kit from the dark web now fools most bank identity systems. Detection is not keeping up.*
 
 ---
 
