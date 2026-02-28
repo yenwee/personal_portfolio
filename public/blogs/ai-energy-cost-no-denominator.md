@@ -12,21 +12,27 @@ It is a good soundbite. It is also an accounting error.
 
 Altman is comparing the marginal cost of a single AI inference call -- one query, stateless, disposable -- against the fully loaded lifetime cost of a human being. Food, housing, education, healthcare, eighteen years of caloric intake before the person even enters the workforce.
 
-A human produces economic output for 40-plus years, raises children, participates in governance. An AI query answers a question and forgets it happened.
+A human produces economic output for 40-plus years and raises children. An AI query answers a question and forgets it happened.
 
 These are not the same unit of analysis. You do not compare the marginal cost of a single trade against the operating budget of the entire trading floor. You compare trade to trade, or floor to floor. Altman is mixing levels and counting on the audience not to notice.
 
 ## The two honest comparisons nobody wants to publish
 
-There are two defensible ways to compare AI and human cognitive costs. The AI industry avoids both.
+If you wanted to honestly compare AI and human cognitive costs, there are really only two ways to do it. The industry avoids both.
 
 One way is cost per cognitive task -- how much does it cost for an AI to answer a question or generate a code block, versus paying a human to do the same work? This comparison favors AI. Inference is cheap per task. OpenAI cites this constantly when selling enterprise contracts. Fractions of a cent per query on most workloads.
 
-The other way is total system cost -- how much does it cost to build, train, and run all the AI infrastructure versus the human workforce it claims to replace? This comparison does not favor AI. Training runs cost hundreds of millions. Global data center electricity consumption is projected to double by 2030, according to the IEA. Nvidia's deployed H100 GPUs alone consume roughly 13,000 GWh per year -- more electricity than countries like Costa Rica or Guatemala use annually.
+The other way is total system cost -- how much does it cost to build, train, and run all the AI infrastructure versus the human workforce it claims to replace? This comparison does not favor AI. Training runs cost hundreds of millions.
+
+Global data center electricity consumption is projected to double by 2030, according to the IEA. Nvidia's deployed H100 GPUs alone consume roughly 13,000 GWh per year -- more electricity than countries like Costa Rica or Guatemala use annually.
 
 Altman switches between these two frames depending on which makes AI look better. Selling to enterprises? Cost per task. Defending against energy critics? Total human cost. He never holds still long enough for the math to land on one denominator.
 
-He is not the only one. Google's 2024 environmental report led with per-query efficiency metrics and PUE scores while the 13% year-over-year increase in total greenhouse gas emissions -- driven by data center expansion -- got less prominent treatment. Microsoft quietly shifted its Scope 3 sustainability commitments from absolute carbon reduction to "intensity-based" targets, measured as emissions per dollar of revenue. Total emissions have risen 29% since their 2020 carbon-negative pledge. The denominator is always chosen after the conclusion.
+He is not the only one. Google's 2024 environmental report led with per-query efficiency metrics and PUE scores. The 13% year-over-year increase in total greenhouse gas emissions -- driven by data center expansion -- got quieter treatment.
+
+Microsoft did something more interesting. They quietly shifted their Scope 3 sustainability commitments from absolute carbon reduction to "intensity-based" targets, measured as emissions per dollar of revenue. Total emissions have risen 29% since their 2020 carbon-negative pledge. The math technically works -- as long as revenue grows faster than pollution.
+
+The denominator is always chosen after the conclusion.
 
 ## What it looks like when you actually measure
 
@@ -38,7 +44,7 @@ Regulated finance has had this discipline for decades. Insurance companies measu
 
 ## The denominator problem
 
-The AI industry has never agreed on a standard denominator for energy efficiency.
+Here is the part that really bothers me. The AI industry has never agreed on a standard denominator for energy efficiency.
 
 There is no "cost per unit of useful cognitive output." FLOPS measure raw computation, not usefulness. Tokens are a billing unit, not a quality metric -- a thousand tokens of hallucination cost the same to generate as a thousand tokens of correct analysis. Queries are too coarse -- a simple autocomplete and a multi-step reasoning chain consume different resources and deliver different value.
 
@@ -48,22 +54,14 @@ Other industries figured this out a long time ago. Cars have miles per gallon. B
 
 AI has nothing like this.
 
-## What the honest version would look like
-
-An honest energy accounting for AI would start with a standard unit of useful output -- something tied to task completion, not raw tokens or FLOPS. A correctly answered question, a working code block, a decision that would have taken a human analyst a measured amount of time. Defining this is genuinely difficult. That is not a reason to skip it.
-
-The cost attribution would need to be full-stack: training amortization, data center construction, cooling, network, the embodied carbon of the hardware. A manufacturing company reports cost of goods sold, not just the electricity bill for the assembly line. Same principle.
-
-Then someone outside the company would need to verify it. Not self-reported efficiency claims buried in sustainability PDFs -- the same kind of external audit applied to financial statements. If you claim your system is more efficient than a human workforce, open the ledger.
+And the fix is not mysterious. You would need a standard unit of useful output -- something tied to task completion, not raw tokens. A correctly answered question, a working code block, a decision that would have taken a human analyst a measured amount of time. Full-stack cost attribution: training, data center construction, cooling, the embodied carbon of the hardware. Then independent audit, not sustainability PDFs written by the same company burning the electricity.
 
 None of this is technically difficult for companies that already track cloud spend to the millisecond. The data exists. The will to publish it does not.
 
+Here is what I keep coming back to. I worked at a place where we could tell you exactly how much it cost to run one credit decision through one model on one applicant. Not approximately. Exactly. A credit bureau in Malaysia with a fraction of OpenAI's engineering budget managed this. The idea that a company valued at $300 billion cannot define "cost per useful output" is not a technical limitation. It is a choice.
+
 ## This is not really about energy
 
-If the AI industry cannot define what "efficient" means for energy, it cannot define what "efficient" means for accuracy, reliability, fairness, or cost to the customer either. The energy debate is one instance of a wider pattern: build at scale, operate behind proprietary walls, tell the public to trust the output without showing how it works.
+If the AI industry cannot define what "efficient" means for energy, it cannot define it for accuracy, reliability, or fairness either. The energy debate is one instance of a pattern I keep seeing -- same one behind the [Eightfold lawsuit](/blogs/eightfold-ai-billion-workers-actuary), same one behind every "trust us" from a company that will not open the ledger. Build at scale, operate behind proprietary walls, tell the public to trust the output.
 
-The same pattern showed up in the Eightfold lawsuit -- a company that scored a billion workers without telling any of them. "How much energy does AI use?" and "How does your AI make decisions?" get the same structural answer: we will not tell you, and we have not agreed on how to measure it.
-
-Altman's soundbite works because the public does not have a denominator. Give them one and the argument collapses on contact. That is exactly why it has not been given.
-
-The industry will not volunteer this metric. The EU AI Act mandates energy consumption reporting for general-purpose AI model providers under Annex XI, with compliance required for models launched after August 2025. But broader environmental standards for AI remain voluntary, and enforcement of the existing rules is still ramping up. Until then, every efficiency claim from an AI company is self-graded homework. Treat it accordingly.
+Altman's soundbite works because the public does not have a denominator. Give them one and the argument falls apart. The EU AI Act mandates energy reporting for GPAI model providers starting August 2025 -- but broader standards remain voluntary, and enforcement is still ramping up. Until then, every efficiency claim from an AI company is self-graded homework. Treat it accordingly.
