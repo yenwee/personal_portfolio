@@ -30,8 +30,6 @@ Global data center electricity consumption is projected to double by 2030, accor
 
 Altman switches between these two frames depending on which makes AI look better. Selling to enterprises? Cost per task. Defending against energy critics? Total human cost. He never holds still long enough for the math to land on one denominator.
 
-![How AI companies switch denominators depending on the audience](/blogs/images/energy/energy-frame-switch.png)
-
 He is not the only one. Google's 2024 environmental report led with per-query efficiency metrics and PUE scores. The 13% year-over-year increase in total greenhouse gas emissions -- driven by data center expansion -- got quieter treatment.
 
 Microsoft did something more interesting. They quietly shifted their Scope 3 sustainability commitments from absolute carbon reduction to "intensity-based" targets, measured as emissions per dollar of revenue. Total emissions have risen 29% since their 2020 carbon-negative pledge. The math technically works -- as long as revenue grows faster than pollution.
