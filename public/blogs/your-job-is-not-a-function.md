@@ -64,6 +64,8 @@ Software engineering, same story. AI generates code from prompts. But the engine
 
 In every case, the function layer got faster and cheaper. The purpose layer got more valuable. The gap between them widened, not narrowed.
 
+And purpose is not some corporate abstraction. It is a specific feeling in each role. For the engineer, it is the 2am conviction that the team is building the wrong thing, even though the sprint board says otherwise. For the actuary, it is the discomfort when a model's loss ratio looks fine on paper but something about the tail risk distribution feels off. For the recruiter, it is the instinct that the candidate who bombed the coding test is the one who will actually hold the team together. For the data engineer, it is knowing which pipeline failure to wake up for and which one can wait until morning. None of that is an input-output mapping. It is pattern recognition built on years of being wrong and remembering why.
+
 ![Task layer vs purpose layer across four domains](/blogs/images/function/function-matrix.png)
 
 ## The sorting function nobody wants to hear
