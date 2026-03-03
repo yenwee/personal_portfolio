@@ -4,6 +4,8 @@
 
 ---
 
+![Universal Approximation Theorem: what AI can and cannot do](/blogs/images/function/function-featured.png)
+
 If your entire job is turning inputs into outputs, a neural network can do it cheaper. That is not opinion. It is a mathematical proof from 1989.
 
 George Cybenko published the Universal Approximation Theorem that year. The paper showed that a neural network with a single hidden layer and sufficient width can approximate any continuous function to arbitrary accuracy. The math is elegant. The implication is blunt: if a task can be described as a mapping from inputs to outputs through a learnable pattern, a neural network can learn it.
@@ -15,6 +17,8 @@ Jensen Huang understood this earlier than most. At the NVIDIA AI Summit in India
 This post covers three things: what the theorem actually proves, why the gap between task and purpose is the only career question that matters in the age of AI, and what the honest version of "AI will not take your job" sounds like when you stop being polite about it.
 
 ## The 57% that is already spoken for
+
+![57% of work hours are automatable, but fewer than 4% of jobs are fully replaceable](/blogs/images/function/function-57-percent.png)
 
 McKinsey studied 800 occupations and 6,800 skills across the US workforce. The headline finding: 57% of work hours are automatable at the task level. That is not a prediction. It is a description of tasks that already have the mathematical structure a neural network can learn. Inputs mapped to outputs through patterns in historical data.
 
@@ -38,6 +42,8 @@ Sir Andrew Likierman at London Business School framed the same idea from the bus
 
 Three different sources. Three different fields. Same finding: **AI approximates functions. It does not approximate purpose.**
 
+![Multiple fields converge on the same finding about AI's role](/blogs/images/function/function-chorus.png)
+
 ## What this looks like in production
 
 I want to be concrete about this because the abstract version is too easy to nod along with and forget.
@@ -56,6 +62,8 @@ Software engineering, same story. AI generates code from prompts. But the engine
 
 In every case, the function layer got faster and cheaper. The purpose layer got more valuable. The gap between them widened, not narrowed.
 
+![Task layer vs purpose layer across four domains](/blogs/images/function/function-matrix.png)
+
 ## The sorting function nobody wants to hear
 
 Most of the "AI will not take your job" discourse is reassurance. It exists so knowledge workers can read it, feel briefly comforted, and go back to doing exactly what they were doing. The problem is that reassurance is not a strategy.
@@ -68,6 +76,8 @@ But if your entire job is a function (defined inputs, expected outputs, learnabl
 
 **This is not a threat. It is a sorting function.** And being honest about which side of the sort you fall on is more useful than any amount of reassurance.
 
+![Function jobs vs purpose jobs](/blogs/images/function/function-sorting.png)
+
 ## The part that should actually worry you
 
 There is a real problem here, and it is not the one most people are discussing.
@@ -75,6 +85,8 @@ There is a real problem here, and it is not the one most people are discussing.
 Entry-level workers learn judgment by doing tasks. A junior analyst builds intuition about risk by processing hundreds of loan applications. A junior developer builds architectural judgment by writing thousands of lines of straightforward code. A junior recruiter develops an eye for talent by screening thousands of resumes.
 
 If AI handles the task layer, what is the apprenticeship path for the purpose layer?
+
+![The apprenticeship gap cycle: AI handles tasks, reducing repetition and blocking judgment development](/blogs/images/function/function-apprenticeship.png)
 
 This is not a hypothetical concern. Harvard research on AI augmentation found that AI "may substitute for entry-level workers but augment experienced workers." The people who already have judgment get a multiplier. The people who are still building judgment lose the reps they need.
 

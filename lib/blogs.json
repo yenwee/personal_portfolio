@@ -8,7 +8,8 @@
       "tags": ["AI", "Software Engineering", "Economics"],
       "featured": false,
       "readTime": 8,
-      "draft": true
+      "draft": true,
+      "featuredImage": "/blogs/images/function/function-featured.png"
     },
     {
       "id": "ai-energy-cost-no-denominator",
