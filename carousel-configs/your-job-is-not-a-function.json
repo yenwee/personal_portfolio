@@ -1,0 +1,53 @@
+{
+  "title": "Your Job Is Not\na Function",
+  "subtitle": "The Universal Approximation Theorem already describes which jobs AI can replace. It also describes, by omission, which ones it cannot.",
+  "author": "Yen Wee Lim",
+  "handle": "@yenwee0804",
+  "linkedin": "yenwee-lim",
+  "website": "weeai.dev",
+  "url": "weeai.dev/blogs/your-job-is-not-a-function",
+  "slides": [
+    {
+      "type": "title"
+    },
+    {
+      "type": "visual",
+      "image": "public/blogs/images/function/function-featured.png",
+      "headline": "A 1989 proof changed everything",
+      "point": "Cybenko proved a neural network can approximate any continuous function. If a task maps inputs to outputs through a learnable pattern, a network can learn it."
+    },
+    {
+      "type": "visual",
+      "image": "public/blogs/images/function/function-57-percent.png",
+      "headline": "57% of work hours are automatable",
+      "point": "But fewer than 4% of entire jobs are fully replaceable. The gap between 57% and 4% is purpose."
+    },
+    {
+      "type": "visual",
+      "image": "public/blogs/images/function/function-chorus.png",
+      "headline": "Three fields, same finding",
+      "point": "AI approximates functions. It does not approximate purpose. No theorem covers the question of which functions matter."
+    },
+    {
+      "type": "visual",
+      "image": "public/blogs/images/function/function-matrix.png",
+      "headline": "Task layer vs purpose layer",
+      "point": "In extraction, credit risk, hiring, and software engineering: the function layer got cheaper. The purpose layer got more valuable."
+    },
+    {
+      "type": "visual",
+      "image": "public/blogs/images/function/function-sorting.png",
+      "headline": "This is a sorting function",
+      "point": "If your job has purpose, AI is a 10x multiplier. If your entire job is a function, the theorem already has your number."
+    },
+    {
+      "type": "visual",
+      "image": "public/blogs/images/function/function-apprenticeship.png",
+      "headline": "The real worry",
+      "point": "Entry-level workers learn judgment by doing tasks. If AI handles the task layer, what is the apprenticeship path for purpose?"
+    },
+    {
+      "type": "cta"
+    }
+  ]
+}

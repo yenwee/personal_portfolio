@@ -9,7 +9,8 @@
       "featured": false,
       "readTime": 8,
       "draft": true,
-      "featuredImage": "/blogs/images/function/function-featured.png"
+      "featuredImage": "/blogs/images/function/function-featured.png",
+      "carouselPath": "/blogs/carousels/your-job-is-not-a-function-carousel.pdf"
     },
     {
       "id": "ai-energy-cost-no-denominator",

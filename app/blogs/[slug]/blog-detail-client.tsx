@@ -5,7 +5,7 @@ import Image from "next/image"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeHighlight from "rehype-highlight"
-import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, ChevronLeft, FolderOpen, ArrowUp, Twitter, Linkedin, Link as LinkIcon, ZoomIn, X } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, ChevronLeft, FolderOpen, ArrowUp, Twitter, Linkedin, Link as LinkIcon, ZoomIn, X, Download } from "lucide-react"
 import { useEffect, useState, useRef, memo } from "react"
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 import { TableOfContents } from "@/components/project/table-of-contents"
@@ -36,6 +36,7 @@ interface BlogPost {
   featured: boolean
   readTime?: number
   crossPostedOn?: CrossPost[]
+  carouselPath?: string
 }
 
 interface RelatedProject {
@@ -475,6 +476,31 @@ export default function BlogDetailClient({ post, markdownContent, slug, relatedP
                 {preprocessCallouts(markdownContent.replace(/^#\s+.+\n+/, ''))}
               </ReactMarkdown>
             </article>
+
+            {/* LinkedIn Carousel Download */}
+            {post.carouselPath && (
+              <AnimatedContent distance={30} duration={0.5}>
+                <div className="mt-12 p-6 border border-border rounded-xl bg-muted/10 hover:bg-muted/20 transition-colors duration-300">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                      <h3 className="text-base font-semibold text-foreground mb-1">Get the LinkedIn carousel</h3>
+                      <p className="text-sm text-muted-foreground">Share the key visuals from this article as a swipeable PDF on LinkedIn.</p>
+                    </div>
+                    <a
+                      href={post.carouselPath}
+                      download
+                      className="group btn-premium inline-flex items-center gap-2.5 px-5 py-2.5 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-all duration-300 text-sm font-medium whitespace-nowrap"
+                      data-umami-event="download-carousel"
+                      data-umami-event-post={post.id}
+                      onClick={() => trackEvent("download_carousel", { post: post.id })}
+                    >
+                      <Download className="w-4 h-4 transform group-hover:-translate-y-0.5 transition-transform duration-300" />
+                      <ShinyText text="Download PDF" speed={3} shineColor="rgba(255,255,255,0.6)" color="currentColor" />
+                    </a>
+                  </div>
+                </div>
+              </AnimatedContent>
+            )}
 
             {/* Share Actions - Mobile Bottom */}
             <div className="sm:hidden mt-8 pt-8 border-t border-border/50">

@@ -16,6 +16,7 @@ interface BlogPost {
   readTime?: number
   crossPostedOn?: { name: string; url: string; logo: string }[]
   featuredImage?: string
+  carouselPath?: string
 }
 
 interface BlogDetailPageProps {
