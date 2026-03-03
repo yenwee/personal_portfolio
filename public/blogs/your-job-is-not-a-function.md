@@ -1,6 +1,6 @@
 # Your Job Is Not a Function
 
-*A 1989 proof says AI can approximate any input-output mapping. If that describes your entire job, worry. If it does not, you just got a 10x multiplier.*
+*The Universal Approximation Theorem already describes which jobs AI can replace. It also describes, by omission, which ones it cannot.*
 
 ---
 
