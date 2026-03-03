@@ -24,7 +24,7 @@ McKinsey studied 800 occupations and 6,800 skills across the US workforce. The h
 
 Resume keyword screening. First-pass document review. Expense categorization. Appointment scheduling. Data entry. Code generation from a specification. Each of these is a function. Defined inputs, expected outputs, learnable patterns connecting the two.
 
-**The number that matters more is the other one: fewer than 4% of entire occupations are fully replaceable.** Not 57%. Four.
+The number that matters more is the other one: fewer than 4% of entire occupations are fully replaceable. Not 57%. Four.
 
 The gap between 57% and 4% is enormous, and it has a name. It is the part of every job where someone decides which tasks matter in the first place. Where someone interprets the output and decides what to do with it. Where someone defines what "good" looks like in a context that has never existed before. Where someone kills a project because the numbers work but the direction is wrong.
 
@@ -38,9 +38,11 @@ The theorem says nothing about how to choose which function to approximate. It s
 
 Jensen Huang, on Joe Rogan podcast, put it differently: AI is "just math." He meant it as a defense against the sentience doomsday crowd, but the phrase works just as well as a job description. AI is just math. It maps patterns. It does not originate direction.
 
+![Jensen Huang on the Joe Rogan Experience (Source: PCWorld)](/blogs/images/function/jensen-huang-joe-rogan.jpg)
+
 Sir Andrew Likierman at London Business School framed the same idea from the business side: "The more powerful AI becomes, the more we need human judgment." Harvard research on AI-assisted innovation reached the same conclusion independently: AI cannot reliably distinguish good ideas from mediocre ones or guide long-term strategy on its own.
 
-Three different sources. Three different fields. Same finding: **AI approximates functions. It does not approximate purpose.**
+Three different sources. Three different fields. Same finding: AI approximates functions. It does not approximate purpose.
 
 ![Multiple fields converge on the same finding about AI's role](/blogs/images/function/function-chorus.png)
 
@@ -74,7 +76,7 @@ If your work involves defining direction, interpreting ambiguous situations, mak
 
 But if your entire job is a function (defined inputs, expected outputs, learnable pattern connecting the two, no judgment layer on top), then the theorem already has your number. Not because AI is coming for you. Because the mathematical description of your job already exists, and someone will train a network on it if they have not already.
 
-**This is not a threat. It is a sorting function.** And being honest about which side of the sort you fall on is more useful than any amount of reassurance.
+This is not a threat. It is a sorting function. And being honest about which side of the sort you fall on is more useful than any amount of reassurance.
 
 ![Function jobs vs purpose jobs](/blogs/images/function/function-sorting.png)
 
@@ -94,14 +96,14 @@ I do not have a clean answer for this. The problem is real and underexplored. Bu
 
 ## What the theorem omits
 
-The Universal Approximation Theorem is one of the most powerful results in machine learning. It guarantees that neural networks can learn any function. And the thing it omits -- by mathematical necessity, not by oversight -- is the question of which functions matter.
+The Universal Approximation Theorem is one of the most powerful results in machine learning. It guarantees that neural networks can learn any function. And the thing it omits, by mathematical necessity and not by oversight, is the question of which functions matter.
 
 Jensen Huang built his career on that omission. In 1995, NVIDIA was 30 days from bankruptcy. The Sega contract had failed. The technology did not work. Huang flew to Japan and told Sega CEO the truth: the product they promised could not be delivered. Then he asked for the remaining $5 million anyway, because without it the company would cease to exist. Sega CEO agreed.
 
-That decision -- to tell the truth when lying was easier, to ask for money when the leverage was zero, to bet the company on integrity when the math said fold -- is not a function. It has no training data. No input-output mapping covers it. It is purpose, operating in a space where the theorem has nothing to say.
+That decision, telling the truth when lying was easier, asking for money when the leverage was zero, betting the company on integrity when the math said fold, is not a function. It has no training data. No input-output mapping covers it. It is purpose, operating in a space where the theorem has nothing to say.
 
 Huang has used the phrase "30 days from going out of business" for 33 years. Every morning. Every decision. That is not an input-output mapping. That is a human choosing what matters under uncertainty, day after day, with no guarantee the choice is correct.
 
-Your job is not a function. Not if you are doing it right. The parts of it that are functions just got automated. The part that remains -- the part that was always the point -- is more valuable than it has ever been.
+Your job is not a function. Not if you are doing it right. The parts of it that are functions just got automated. The part that remains, the part that was always the point, is more valuable than it has ever been.
 
 The theorem describes what AI can do. It also describes, by omission, what it cannot.
