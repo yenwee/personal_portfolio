@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "your-job-is-not-a-function",
+      "title": "Your Job Is Not a Function",
+      "description": "A 1989 proof says AI can approximate any input-output mapping. If that describes your entire job, worry. If it doesn't, you just got a 10x multiplier.",
+      "date": "2026-03-03",
+      "tags": ["AI", "Software Engineering", "Economics"],
+      "featured": false,
+      "readTime": 8,
+      "draft": true
+    },
+    {
       "id": "ai-energy-cost-no-denominator",
       "title": "The AI Industry Has an Energy Problem It Cannot Do Math On",
       "description": "Sam Altman says training a human uses energy too. The comparison is an accounting error, and the AI industry has no denominator to prove otherwise.",
