@@ -8,7 +8,7 @@ If your entire job is turning inputs into outputs, a neural network can do it ch
 
 George Cybenko published the Universal Approximation Theorem that year. The paper showed that a neural network with a single hidden layer and sufficient width can approximate any continuous function to arbitrary accuracy. The math is elegant. The implication is blunt: if a task can be described as a mapping from inputs to outputs through a learnable pattern, a neural network can learn it.
 
-Jensen Huang understood this earlier than most. At the NVIDIA AI Summit in India, he described what his company had built: "A universal function approximator. A machine learning system, something that learns from examples." He was not being poetic. He was being literal. A GPU running a neural network can learn any input-output relationship you can define -- given enough data, enough compute, and enough time.
+Jensen Huang understood this earlier than most. At the NVIDIA AI Summit in India, he described what his company had built: "A universal function approximator. A machine learning system, something that learns from examples." He was not being poetic. He was being literal. A GPU running a neural network can learn any input-output relationship you can define, given enough data, enough compute, and enough time.
 
 (The theorem said nothing about which relationships are worth learning.)
 
@@ -16,7 +16,7 @@ This post covers three things: what the theorem actually proves, why the gap bet
 
 ## The 57% that is already spoken for
 
-McKinsey studied 800 occupations and 6,800 skills across the US workforce. The headline finding: 57% of work hours are automatable at the task level. That is not a prediction. It is a description of tasks that already have the mathematical structure a neural network can learn -- inputs mapped to outputs through patterns in historical data.
+McKinsey studied 800 occupations and 6,800 skills across the US workforce. The headline finding: 57% of work hours are automatable at the task level. That is not a prediction. It is a description of tasks that already have the mathematical structure a neural network can learn. Inputs mapped to outputs through patterns in historical data.
 
 Resume keyword screening. First-pass document review. Expense categorization. Appointment scheduling. Data entry. Code generation from a specification. Each of these is a function. Defined inputs, expected outputs, learnable patterns connecting the two.
 
@@ -34,7 +34,7 @@ The theorem says nothing about how to choose which function to approximate. It s
 
 Jensen Huang, on Joe Rogan podcast, put it differently: AI is "just math." He meant it as a defense against the sentience doomsday crowd, but the phrase works just as well as a job description. AI is just math. It maps patterns. It does not originate direction.
 
-Sir Andrew Likierman at London Business School framed the same idea from the business side: "The more powerful AI becomes, the more we need human judgment." Harvard research on AI-assisted innovation reached the same conclusion independently -- AI cannot reliably distinguish good ideas from mediocre ones or guide long-term strategy on its own.
+Sir Andrew Likierman at London Business School framed the same idea from the business side: "The more powerful AI becomes, the more we need human judgment." Harvard research on AI-assisted innovation reached the same conclusion independently: AI cannot reliably distinguish good ideas from mediocre ones or guide long-term strategy on its own.
 
 Three different sources. Three different fields. Same finding: **AI approximates functions. It does not approximate purpose.**
 
@@ -42,15 +42,15 @@ Three different sources. Three different fields. Same finding: **AI approximates
 
 I want to be concrete about this because the abstract version is too easy to nod along with and forget.
 
-We threw the most capable vision-language model available at a document extraction problem -- hundreds of scanned invoices, inconsistent layouts, handwritten annotations. Frontier model, single API call, the approach everyone reaches for first. Under 40% accuracy. Not on edge cases. Across the board.
+We threw the most capable vision-language model available at a document extraction problem. Hundreds of scanned invoices, inconsistent layouts, handwritten annotations. Frontier model, single API call, the approach everyone reaches for first. Under 40% accuracy. Not on edge cases. Across the board.
 
-The fix was not a bigger model. It was not more data. It was not fine-tuning. It was a human deciding to reframe the problem entirely -- to stop asking "which model extracts best?" and start asking "how does a skilled human actually read a complex document?" That reframe led to an adaptive workflow with a model one-tenth the size. Over 90% accuracy on the same documents.
+The fix was not a bigger model. It was not more data. It was not fine-tuning. It was a human deciding to reframe the problem entirely. Stop asking "which model extracts best?" and start asking "how does a skilled human actually read a complex document?" That reframe led to an adaptive workflow with a model one-tenth the size. Over 90% accuracy on the same documents.
 
-The model was the function approximator. It did exactly what function approximators do -- it mapped visual inputs to text outputs. The thing that took accuracy from 40% to 90% was not a better approximation. It was an architectural judgment call about how to decompose the problem. That judgment call is not inside any theorem.
+The model was the function approximator. It did exactly what function approximators do. It mapped visual inputs to text outputs. The thing that took accuracy from 40% to 90% was not a better approximation. It was an architectural judgment call about how to decompose the problem. That judgment call is not inside any theorem.
 
-Credit risk is the same pattern. AI scores applications -- maps borrower data to default probabilities. That is a function, and neural networks do it well. But the actuary who decides the institution's risk appetite, who sets the model governance framework, who kills a model because its ROI does not justify the infrastructure -- that person is not performing a function. They are defining which functions the institution should care about.
+Credit risk is the same pattern. AI scores applications, maps borrower data to default probabilities. That is a function, and neural networks do it well. But the actuary who decides the institution's risk appetite, who sets the model governance framework, who kills a model because its ROI does not justify the infrastructure. That person is not performing a function. They are defining which functions the institution should care about.
 
-The pattern holds in hiring. AI screens resumes by matching keywords to job descriptions. Input to output. Function. But the recruiter who decides what "culture fit" actually means for this team, who recognizes that the best candidate's resume does not match the spec because the spec was wrong -- that is judgment the screening function cannot reach.
+The pattern holds in hiring. AI screens resumes by matching keywords to job descriptions. Input to output. Function. But the recruiter who decides what "culture fit" actually means for this team, who recognizes that the best candidate's resume does not match the spec because the spec was wrong. That is judgment the screening function cannot reach.
 
 Software engineering, same story. AI generates code from prompts. But the engineer who decides what to build, why it matters, and what architectural trade-offs the team can live with is making purpose-level decisions that no code generator can approximate, because the answer depends on context that does not exist in the training data.
 
@@ -62,9 +62,9 @@ Most of the "AI will not take your job" discourse is reassurance. It exists so k
 
 Here is the honest version: AI will not take your job if your job has purpose.
 
-If your work involves defining direction, interpreting ambiguous situations, making judgment calls where the right answer depends on context that changes, choosing which problems are worth solving -- then AI just handed you the most powerful set of tools ever built for executing on those decisions. Your bottleneck was never the doing. It was the deciding. Now the doing is nearly free. That is the 10x multiplier.
+If your work involves defining direction, interpreting ambiguous situations, making judgment calls where the right answer depends on context that changes, choosing which problems are worth solving, then AI just handed you the most powerful set of tools ever built for executing on those decisions. Your bottleneck was never the doing. It was the deciding. Now the doing is nearly free. That is the 10x multiplier.
 
-But if your entire job is a function -- defined inputs, expected outputs, learnable pattern connecting the two, no judgment layer on top -- then the theorem already has your number. Not because AI is coming for you. Because the mathematical description of your job already exists, and someone will train a network on it if they have not already.
+But if your entire job is a function (defined inputs, expected outputs, learnable pattern connecting the two, no judgment layer on top), then the theorem already has your number. Not because AI is coming for you. Because the mathematical description of your job already exists, and someone will train a network on it if they have not already.
 
 **This is not a threat. It is a sorting function.** And being honest about which side of the sort you fall on is more useful than any amount of reassurance.
 
