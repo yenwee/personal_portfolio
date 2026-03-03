@@ -6,6 +6,8 @@
   "linkedin": "yenwee-lim",
   "website": "weeai.dev",
   "url": "weeai.dev/blogs/your-job-is-not-a-function",
+  "profilePhoto": "public/profile-photo.png",
+  "featuredImage": "public/blogs/images/function/function-featured.png",
   "slides": [
     {
       "type": "title"

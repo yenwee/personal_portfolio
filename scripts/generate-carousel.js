@@ -54,6 +54,60 @@ function generateSlideHTML(slide, config, index, total) {
   `;
 
   if (slide.type === 'title') {
+    // Load profile photo
+    let profilePhotoHTML = '';
+    if (config.profilePhoto) {
+      const photoPath = path.resolve(config.profilePhoto);
+      if (fs.existsSync(photoPath)) {
+        const photoBase64 = fs.readFileSync(photoPath).toString('base64');
+        const photoExt = path.extname(photoPath).slice(1) === 'jpg' ? 'jpeg' : path.extname(photoPath).slice(1);
+        profilePhotoHTML = `<img src="data:image/${photoExt};base64,${photoBase64}" style="
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          object-fit: cover;
+        " />`;
+      }
+    }
+    if (!profilePhotoHTML) {
+      profilePhotoHTML = `<div style="
+        width: 56px; height: 56px; background: ${BRAND.accent}; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px; font-weight: 700; color: white;
+      ">${config.author.split(' ').map(n => n[0]).join('')}</div>`;
+    }
+
+    // Load featured image for title slide
+    let featuredImageHTML = '';
+    if (config.featuredImage) {
+      const featPath = path.resolve(config.featuredImage);
+      if (fs.existsSync(featPath)) {
+        const featBase64 = fs.readFileSync(featPath).toString('base64');
+        const featExt = path.extname(featPath).slice(1) === 'jpg' ? 'jpeg' : path.extname(featPath).slice(1);
+        featuredImageHTML = `
+          <div style="
+            margin-top: 32px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            max-height: 420px;
+          ">
+            <img src="data:image/${featExt};base64,${featBase64}" style="
+              max-width: 100%;
+              max-height: 100%;
+              object-fit: contain;
+              border-radius: 8px;
+            " />
+          </div>
+        `;
+      }
+    }
+
     return `
       <div style="
         width: ${SLIDE_WIDTH}px;
@@ -61,58 +115,49 @@ function generateSlideHTML(slide, config, index, total) {
         background: ${BRAND.bg};
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
-        padding: 80px 60px;
+        padding: 60px 60px 80px 60px;
         box-sizing: border-box;
         position: relative;
         font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
       ">
         <div style="
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 32px;
+        ">
+          ${profilePhotoHTML}
+          <div>
+            <div style="font-size: 24px; font-weight: 600; color: ${BRAND.text};">${config.author}</div>
+            <div style="font-size: 20px; color: ${BRAND.textMuted};">${config.handle} on Medium</div>
+          </div>
+        </div>
+        <div style="
           width: 80px;
           height: 6px;
           background: ${BRAND.accent};
           border-radius: 3px;
-          margin-bottom: 48px;
+          margin-bottom: 28px;
         "></div>
         <h1 style="
-          font-size: 72px;
+          font-size: 64px;
           font-weight: 800;
           color: ${BRAND.text};
           line-height: 1.15;
-          margin: 0 0 36px 0;
+          margin: 0 0 20px 0;
           letter-spacing: -1.5px;
           white-space: pre-line;
         ">${config.title}</h1>
         <p style="
-          font-size: 28px;
+          font-size: 26px;
           color: ${BRAND.textMuted};
           line-height: 1.5;
-          margin: 0 0 60px 0;
+          margin: 0;
           max-width: 880px;
         ">${config.subtitle}</p>
-        <div style="
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        ">
-          <div style="
-            width: 56px;
-            height: 56px;
-            background: ${BRAND.accent};
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
-          ">${config.author.split(' ').map(n => n[0]).join('')}</div>
-          <div>
-            <div style="font-size: 26px; font-weight: 600; color: ${BRAND.text};">${config.author}</div>
-            <div style="font-size: 22px; color: ${BRAND.textMuted};">${config.handle} on Medium</div>
-          </div>
-        </div>
+        ${featuredImageHTML}
         ${footer}
       </div>
     `;
@@ -175,6 +220,24 @@ function generateSlideHTML(slide, config, index, total) {
   }
 
   if (slide.type === 'cta') {
+    // Load profile photo for CTA
+    let ctaPhotoHTML = '';
+    if (config.profilePhoto) {
+      const photoPath = path.resolve(config.profilePhoto);
+      if (fs.existsSync(photoPath)) {
+        const photoBase64 = fs.readFileSync(photoPath).toString('base64');
+        const photoExt = path.extname(photoPath).slice(1) === 'jpg' ? 'jpeg' : path.extname(photoPath).slice(1);
+        ctaPhotoHTML = `<img src="data:image/${photoExt};base64,${photoBase64}" style="
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 3px solid ${BRAND.accent};
+          margin-bottom: 24px;
+        " />`;
+      }
+    }
+
     return `
       <div style="
         width: ${SLIDE_WIDTH}px;
@@ -190,13 +253,7 @@ function generateSlideHTML(slide, config, index, total) {
         font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
         text-align: center;
       ">
-        <div style="
-          width: 80px;
-          height: 6px;
-          background: ${BRAND.accent};
-          border-radius: 3px;
-          margin-bottom: 48px;
-        "></div>
+        ${ctaPhotoHTML}
         <h2 style="
           font-size: 52px;
           font-weight: 800;
@@ -207,7 +264,7 @@ function generateSlideHTML(slide, config, index, total) {
         <p style="
           font-size: 28px;
           color: ${BRAND.textMuted};
-          margin: 0 0 60px 0;
+          margin: 0 0 48px 0;
         ">${config.url}</p>
         <div style="
           background: ${BRAND.accent};
@@ -216,22 +273,22 @@ function generateSlideHTML(slide, config, index, total) {
           font-weight: 600;
           padding: 20px 48px;
           border-radius: 12px;
-          margin-bottom: 60px;
+          margin-bottom: 48px;
         ">Follow for more</div>
         <div style="
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
           align-items: center;
         ">
-          <div style="font-size: 26px; color: ${BRAND.textMuted};">
-            LinkedIn: linkedin.com/in/${config.linkedin}
+          <div style="font-size: 24px; color: ${BRAND.textMuted};">
+            linkedin.com/in/${config.linkedin}
           </div>
-          <div style="font-size: 26px; color: ${BRAND.textMuted};">
-            Medium: medium.com/${config.handle}
+          <div style="font-size: 24px; color: ${BRAND.textMuted};">
+            medium.com/${config.handle}
           </div>
-          <div style="font-size: 26px; color: ${BRAND.textMuted};">
-            Web: ${config.website}
+          <div style="font-size: 24px; color: ${BRAND.textMuted};">
+            ${config.website}
           </div>
         </div>
         ${footer}
@@ -332,9 +389,13 @@ async function generateCarousel(configPath) {
   await pdfPage.close();
   await browser.close();
 
-  // Clean up individual PNGs
-  for (const p of pngPaths) {
-    fs.unlinkSync(p);
+  // Clean up individual PNGs (pass --keep-slides to preserve them)
+  if (!process.argv.includes('--keep-slides')) {
+    for (const p of pngPaths) {
+      fs.unlinkSync(p);
+    }
+  } else {
+    console.log(`Individual slides kept in: ${outputDir}/`);
   }
 
   console.log(`\nCarousel PDF generated: ${outputPath}`);
