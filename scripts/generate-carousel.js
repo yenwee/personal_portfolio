@@ -368,8 +368,9 @@ async function generateCarousel(configPath) {
       <meta charset="utf-8">
       <style>
         * { margin: 0; padding: 0; }
-        body { margin: 0; padding: 0; }
+        body { margin: 0; padding: 0; overflow: hidden; }
         @page { size: ${SLIDE_WIDTH}px ${SLIDE_HEIGHT}px; margin: 0; }
+        div { overflow: hidden; }
       </style>
     </head>
     <body>${allSlidesHTML}</body>
