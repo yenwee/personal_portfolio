@@ -50,11 +50,11 @@ Three different sources. Three different fields. Same finding: AI approximates f
 
 I want to be concrete about this because the abstract version is too easy to nod along with and forget.
 
-We threw the most capable vision-language model available at a document extraction problem. Hundreds of scanned invoices, inconsistent layouts, handwritten annotations. Frontier model, single API call, the approach everyone reaches for first. Under 40% accuracy. Not on edge cases. Across the board.
+We were building a document extraction feature for a client. Hundreds of scanned invoices, inconsistent layouts, handwritten annotations. AI's suggestion was predictable: throw a frontier vision model at it. Biggest model available, single API call, the approach a function approximator will always reach for because it optimizes for the path with the most training signal. After multiple iterations, accuracy stuck under 40%.
 
-The fix was not a bigger model. It was not more data. It was not fine-tuning. It was a human deciding to reframe the problem entirely. Stop asking "which model extracts best?" and start asking "how does a skilled human actually read a complex document?" That reframe led to an adaptive workflow with a model one-tenth the size. Over 90% accuracy on the same documents.
+The fix had nothing to do with models. A human looked at the results, looked at the documents, and asked a different question: "Why are we treating every page the same when a human reader wouldn't?" That reframe led to an adaptive workflow that broke the problem into stages. A 32B model, one-tenth the size of the frontier option, hit over 90% on the same documents.
 
-The model was the function approximator. It did exactly what function approximators do. It mapped visual inputs to text outputs. The thing that took accuracy from 40% to 90% was not a better approximation. It was an architectural judgment call about how to decompose the problem. That judgment call is not inside any theorem.
+AI's instinct was bigger model, more parameters, try again. That is what a function approximator does. It scales the function. A human with a purpose to actually solve the problem did something AI cannot do on its own: step back, reconsider the architecture, and decide the approach itself was wrong. That judgment call is not inside any theorem.
 
 Credit risk is the same pattern. AI scores applications, maps borrower data to default probabilities. That is a function, and neural networks do it well. But the actuary who decides the institution's risk appetite, who sets the model governance framework, who kills a model because its ROI does not justify the infrastructure. That person is not performing a function. They are defining which functions the institution should care about.
 
