@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "world-models-billion-dollar-bet",
+      "title": "Two Scientists Bet a Billion Dollars Each That LLMs Are Not Enough. They Disagree on What Is.",
+      "description": "Yann LeCun thinks AI needs to understand physics. Fei-Fei Li thinks it needs to understand space. Only one of those problems has a market the size of the real world.",
+      "date": "2026-03-10",
+      "tags": ["AI", "Economics", "Production"],
+      "featured": false,
+      "readTime": 8,
+      "draft": true
+    },
+    {
       "id": "your-job-is-not-a-function",
       "title": "Your Job Is Not a Function",
       "description": "The Universal Approximation Theorem already describes which jobs AI can replace. It also describes, by omission, which ones it cannot.",
