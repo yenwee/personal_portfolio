@@ -2,8 +2,8 @@
   "posts": [
     {
       "id": "world-models-billion-dollar-bet",
-      "title": "Two Scientists Bet a Billion Dollars Each That LLMs Are Not Enough. They Disagree on What Is.",
-      "description": "Yann LeCun thinks AI needs to understand physics. Fei-Fei Li thinks it needs to understand space. Only one of those problems has a market the size of the real world.",
+      "title": "LLMs Cannot Understand Physics. Two $1B Startups Just Bet on What Can.",
+      "description": "Yann LeCun and Fei-Fei Li agree the next era of AI is world models. They disagree on which part of reality matters most.",
       "date": "2026-03-10",
       "tags": ["AI", "Economics", "Production"],
       "featured": false,

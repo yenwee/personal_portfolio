@@ -1,6 +1,6 @@
-# Two Scientists Bet a Billion Dollars Each That LLMs Are Not Enough. They Disagree on What Is.
+# LLMs Cannot Understand Physics. Two $1B Startups Just Bet on What Can.
 
-*Yann LeCun thinks AI needs to understand physics. Fei-Fei Li thinks it needs to understand space. Only one of those problems has a market the size of the real world.*
+*Yann LeCun and Fei-Fei Li agree the next era of AI is world models. They disagree on which part of reality matters most.*
 
 ---
 
