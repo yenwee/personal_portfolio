@@ -4,7 +4,7 @@
 
 ---
 
-![LLMs Are Not Enough: Two Paths Forward -- AMI Labs vs World Labs](/blogs/images/worldmodels/worldmodels-featured.png)
+![LLM vs JEPA Working Principles](/blogs/images/worldmodels/worldmodels-llm-vs-jepa.png)
 
 Two AI labs announced billion-dollar seed rounds within weeks of each other in 2026. Both claimed the same thing: large language models are not enough.
 
@@ -53,8 +53,6 @@ Spatial intelligence is a rendering problem. A valuable one. Gaming, architectur
 Li raised a billion dollars to bet on eyes. LeCun raised a billion to bet on intuition.
 
 ## The physics bet
-
-![LLM vs JEPA Working Principles](/blogs/images/worldmodels/worldmodels-llm-vs-jepa.png)
 
 LeCun's approach has a name -- JEPA, Joint Embedding Predictive Architecture. The name does not matter. What matters is what it does differently.
 
