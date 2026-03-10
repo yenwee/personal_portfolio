@@ -4,11 +4,10 @@
       "id": "world-models-billion-dollar-bet",
       "title": "LLMs Cannot Understand Physics. Two $1B Startups Just Bet on What Can.",
       "description": "Yann LeCun and Fei-Fei Li agree the next era of AI is world models. They disagree on which part of reality matters most.",
-      "date": "2026-03-10",
+      "date": "2026-03-09",
       "tags": ["AI", "Economics", "Production"],
       "featured": false,
       "readTime": 8,
-      "draft": true,
       "featuredImage": "/blogs/images/worldmodels/worldmodels-llm-vs-jepa.png"
     },
     {
