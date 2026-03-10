@@ -8,9 +8,9 @@
 
 Two AI labs announced billion-dollar seed rounds within weeks of each other in 2026. Both claimed the same thing: large language models are not enough.
 
-AMI Labs, founded by Turing Award winner Yann LeCun and former Nabla CEO Alex LeBrun, raised $1.03 billion. The largest seed round for a European company, possibly ever. Their thesis: AI needs to understand physics. How objects move, what happens when you drop something, why a bridge holds weight. The kind of knowledge a two-year-old has and GPT-4 does not.
+**AMI Labs**, founded by Turing Award winner Yann LeCun and former Nabla CEO Alex LeBrun, raised $1.03 billion. The largest seed round for a European company, possibly ever. Their thesis: AI needs to understand physics. How objects move, what happens when you drop something, why a bridge holds weight. The kind of knowledge a two-year-old has and GPT-4 does not.
 
-World Labs, founded by Stanford professor Fei-Fei Li, raised $1 billion. Their thesis: AI needs to understand space. How a room looks from another angle, how light falls on a surface, how objects relate to each other in three dimensions. They already have a product shipping -- Marble, a 3D design tool.
+**World Labs**, founded by Stanford professor Fei-Fei Li, raised $1 billion. Their thesis: AI needs to understand space. How a room looks from another angle, how light falls on a surface, how objects relate to each other in three dimensions. They already have a product shipping -- Marble, a 3D design tool.
 
 Same diagnosis. Same scale of capital. Radically different prescriptions.
 
@@ -26,7 +26,7 @@ Ask ChatGPT what happens when you tilt a full cup of coffee. It will give you a 
 
 A two-year-old does not know the word "gravity." But she knows the coffee will spill. She knows it before it happens. She has a model of the world running in her head -- not a language model, a physics model. Objects fall. Liquids flow downhill. If you push something off a table, it does not hover.
 
-This is the gap LeCun has been talking about for years. LLMs predict the next word. They do not predict the next event. They can describe what a ball does when you throw it. They cannot simulate the throw. The description and the simulation are different capabilities, and only one of them is useful for a robot trying to catch the ball.
+This is the gap LeCun has been talking about for years. **LLMs predict the next word. They do not predict the next event.** They can describe what a ball does when you throw it. They cannot simulate the throw. The description and the simulation are different capabilities, and only one of them is useful for a robot trying to catch the ball.
 
 A self-driving car approaches a construction zone. The camera sees orange cones. An LLM can label them. A world model simulates what happens if the car maintains speed versus braking versus changing lanes. The difference between labeling and simulating is the difference between seeing the cones and not hitting them.
 
@@ -50,7 +50,7 @@ Marble can generate a photorealistic kitchen from every angle. It cannot tell yo
 
 Spatial intelligence is a rendering problem. A valuable one. Gaming, architecture, and design need it. But the ceiling is visible. You are building better eyes for machines. Eyes that see from every angle, in perfect detail. The question is whether better eyes are enough, or whether machines also need intuition about what they are looking at.
 
-Li raised a billion dollars to bet on eyes. LeCun raised a billion to bet on intuition.
+**Li raised a billion dollars to bet on eyes. LeCun raised a billion to bet on intuition.**
 
 ## The physics bet
 
@@ -80,7 +80,7 @@ Surgical robots can map a patient's anatomy in 3D before the first incision. The
 
 Same story in industrial automation. A robot arm that can see a conveyor belt in perfect 3D is commodity hardware. One that knows a warped part will jam the next machine downstream -- that is the version that runs a factory without a human watching.
 
-Perception is largely solved. Prediction is not. And the market for predicting what happens next in the physical world is the physical world itself.
+**Perception is largely solved. Prediction is not.** And the market for predicting what happens next in the physical world is the physical world itself.
 
 That is why LeCun's bet, if it works, reshapes more industries than Li's. The market for "what does this look like from another angle" fits inside the market for "what happens if I do this." One is contained by the other.
 
@@ -96,7 +96,7 @@ The trillion-dollar question stops being "which company has the best LLM" and be
 
 If LeCun is wrong, the story is simpler. He spent the largest European seed round in history on a theory he has championed for a decade, and the theory did not survive contact with engineering reality. World models join the list of beautiful ideas that worked on paper and broke at scale. It would not be the first time.
 
-But here is what I keep coming back to. LeCun did not raise a billion dollars from his office. NVIDIA invested. Samsung invested. Toyota Ventures invested. Bezos invested. These are companies that build physical things -- chips, cars, factories, logistics networks. They are not betting on better chatbots. They are betting on AI that understands the world their products operate in.
+But here is what I keep coming back to. LeCun did not raise a billion dollars from his office. **NVIDIA** invested. **Samsung** invested. **Toyota Ventures** invested. **Bezos** invested. These are companies that build physical things -- chips, cars, factories, logistics networks. They are not betting on better chatbots. They are betting on AI that understands the world their products operate in.
 
 That investor list is the tell.
 
