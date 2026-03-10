@@ -8,7 +8,8 @@
       "tags": ["AI", "Economics", "Production"],
       "featured": false,
       "readTime": 8,
-      "draft": true
+      "draft": true,
+      "featuredImage": "/blogs/images/worldmodels/worldmodels-featured.png"
     },
     {
       "id": "your-job-is-not-a-function",

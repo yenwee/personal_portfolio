@@ -4,6 +4,8 @@
 
 ---
 
+![LLMs Are Not Enough: Two Paths Forward -- AMI Labs vs World Labs](/blogs/images/worldmodels/worldmodels-featured.png)
+
 Two AI labs announced billion-dollar seed rounds within weeks of each other in 2026. Both claimed the same thing: large language models are not enough.
 
 AMI Labs, founded by Turing Award winner Yann LeCun and former Nabla CEO Alex LeBrun, raised $1.03 billion. The largest seed round for a European company, possibly ever. Their thesis: AI needs to understand physics. How objects move, what happens when you drop something, why a bridge holds weight. The kind of knowledge a two-year-old has and GPT-4 does not.
@@ -18,6 +20,8 @@ One is building AI that understands how things look. The other is building AI th
 
 ## What a two-year-old knows that ChatGPT does not
 
+![LLM vs World Model: The Coffee Cup Test](/blogs/images/worldmodels/worldmodels-coffee-cup-gap.png)
+
 Ask ChatGPT what happens when you tilt a full cup of coffee. It will give you a paragraph about gravity, fluid dynamics, and surface tension. Accurate. Articulate. Completely useless in the moment.
 
 A two-year-old does not know the word "gravity." But she knows the coffee will spill. She knows it before it happens. She has a model of the world running in her head -- not a language model, a physics model. Objects fall. Liquids flow downhill. If you push something off a table, it does not hover.
@@ -31,6 +35,8 @@ A nurse watches a patient breathe. Nothing in the chart has changed. But the bre
 A factory robot picks up a glass bottle. It needs to know that glass is fragile before it squeezes, not after. That requires a model of materials, forces, and consequences.
 
 ## The spatial intelligence bet
+
+![Limitations of Spatial Intelligence](/blogs/images/worldmodels/worldmodels-spatial-ceiling.png)
 
 Fei-Fei Li is not wrong. She is solving a real problem.
 
@@ -48,6 +54,8 @@ Li raised a billion dollars to bet on eyes. LeCun raised a billion to bet on int
 
 ## The physics bet
 
+![LLM vs JEPA Working Principles](/blogs/images/worldmodels/worldmodels-llm-vs-jepa.png)
+
 LeCun's approach has a name -- JEPA, Joint Embedding Predictive Architecture. The name does not matter. What matters is what it does differently.
 
 An LLM works like autocomplete. Given a sequence of words, predict the next word. Given a sequence of tokens, predict the next token. Pattern matching on language. Powerful, but it is a text trick at bottom.
@@ -64,6 +72,8 @@ The distinction matters in practice. It is the difference between an AI that can
 
 ## Why one bet matters more than the other
 
+![Autonomous System Hierarchy: Perception, Prediction, Failure](/blogs/images/worldmodels/worldmodels-perception-vs-prediction.png)
+
 The hardest problems in production AI are never about what things look like. They are about what happens next.
 
 Autonomous vehicles already have spatial intelligence. LiDAR gives you millimeter-accurate 3D. Tesla's vision system reconstructs the scene in real time. The cars still crash. Not because they cannot see the obstacle. Because they cannot predict what the pedestrian, the cyclist, the other driver will do in the next two seconds. Every fatal self-driving incident you have read about happened with full spatial awareness of the scene. The car saw everything. It understood nothing about what would happen next.
@@ -77,6 +87,8 @@ Perception is largely solved. Prediction is not. And the market for predicting w
 That is why LeCun's bet, if it works, reshapes more industries than Li's. The market for "what does this look like from another angle" fits inside the market for "what happens if I do this." One is contained by the other.
 
 ## What happens if LeCun is right
+
+![Investor Bets on Physical AI](/blogs/images/worldmodels/worldmodels-investor-tell.png)
 
 If world models work -- if JEPA or something like it produces AI that genuinely understands physics -- LLMs become the dial-up era of AI. Useful, transformative for their time, and eventually a footnote. The same way dial-up proved the internet was valuable but nobody builds on it today. Token prediction got us this far. Physics simulation gets us the rest of the way.
 
