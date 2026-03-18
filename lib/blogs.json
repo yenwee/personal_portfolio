@@ -8,7 +8,7 @@
       "tags": ["AI", "Software Engineering", "Production"],
       "featured": false,
       "readTime": 10,
-      "draft": true,
+      "draft": false,
       "featuredImage": "/blogs/images/devdivide/devdivide-featured.png"
     },
     {
