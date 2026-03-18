@@ -1,5 +1,7 @@
 # We build AI for a living. Half our company does not want to use it.
 
+![Two teams, one AI company -- AI Solutions team embraces tools for speed, Software Engineering team prefers hand-written code for quality](/blogs/images/devdivide/devdivide-featured.png)
+
 We called a townhall last month to talk about AI coding tools. Not a casual Slack poll. A planned, company-wide session. The AI Solutions team -- my team -- had been using Claude Code, Cursor, and custom agent workflows for months. The Software Engineering team, the one building the core product, had not. Same company. Same office. Two completely different relationships with the tools we sell.
 
 I walked in expecting a conversation about which tools to standardize. What I got was a lesson in the technology adoption curve that I should have seen coming.
@@ -8,6 +10,8 @@ I walked in expecting a conversation about which tools to standardize. What I go
 > The divide is not about whether AI coding tools work. Everyone agrees they produce code. The divide is about whether you trust what they produce -- and whether you think the speed is worth the risk.
 
 ## The adoption curve, again
+
+![Technology adoption curve for AI tools -- from innovators through early adopters to laggards, with team positions mapped](/blogs/images/devdivide/devdivide-adoption-curve.png)
 
 I have seen this pattern before. Everyone has.
 
@@ -22,6 +26,8 @@ My AI Solutions team sits at early adopter. We build AI agents for clients. We a
 Neither side is wrong. But only one side is going to be comfortable in 18 months.
 
 ## `/processes` vs `/process`
+
+![Analyzing the pitfalls of almost right AI code -- fishbone diagram showing how false confidence, subtle errors, and isolated tests lead to harder debugging](/blogs/images/devdivide/devdivide-almost-right.png)
 
 Here is the moment that made me take the "almost right" problem seriously.
 
@@ -44,6 +50,8 @@ I believe that number. I have watched engineers on my team submit pull requests 
 > Vendor claims: 20-55% faster. METR randomized study: 19% slower. Real-world analysis: maybe 10% gains in the best case. The gap between claimed and measured productivity is the widest in any software tooling category I have seen.
 
 ## The "almost right" tax
+
+![AI coding impact matrix -- vendor claims vs METR study findings vs developer perception](/blogs/images/devdivide/devdivide-productivity-paradox.png)
 
 The `/processes` bug is not an isolated story. It is a pattern.
 
@@ -81,6 +89,8 @@ The two positions are not contradictory. You can believe AI coding tools are wor
 
 ## How I hire now
 
+![Hiring priorities pyramid -- product sense at the top, coding ability at the base as table stakes](/blogs/images/devdivide/devdivide-hiring-shift.png)
+
 I used to weight coding ability heavily in interviews. Can you implement this algorithm? Can you debug this function? Can you write clean, idiomatic code?
 
 I still care about those things. But they matter less than they did two years ago.
@@ -110,6 +120,8 @@ This is not hypocrisy. It is the gap between knowing something works and getting
 > The question is not "should we use AI tools?" The answer is obviously yes. The question is "how do we adopt them without losing the craft that makes our code good?" That question does not have a clean answer, and anyone selling you one is lying.
 
 ## What we actually do
+
+![The experiment and share cycle -- try new tools, apply to real tasks, analyze results, share findings, adopt what works, repeat](/blogs/images/devdivide/devdivide-experiment-cycle.png)
 
 We do not have an AI tools policy. We have a culture.
 

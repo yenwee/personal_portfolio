@@ -8,7 +8,8 @@
       "tags": ["AI", "Software Engineering", "Production"],
       "featured": false,
       "readTime": 10,
-      "draft": true
+      "draft": true,
+      "featuredImage": "/blogs/images/devdivide/devdivide-featured.png"
     },
     {
       "id": "world-models-billion-dollar-bet",
