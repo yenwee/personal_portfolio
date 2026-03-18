@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "id": "developer-divide-ai-coding-tools",
+      "title": "We Build AI for a Living. Half Our Company Does Not Want to Use It.",
+      "description": "The AI team embraced Claude Code. The software team called it a risk. Then someone shipped /processes instead of /process and the real debate started.",
+      "date": "2026-03-18",
+      "tags": ["AI", "Software Engineering", "Production"],
+      "featured": false,
+      "readTime": 10,
+      "draft": true
+    },
+    {
       "id": "world-models-billion-dollar-bet",
       "title": "LLMs Cannot Understand Physics. Two $1B Startups Just Bet on What Can.",
       "description": "Yann LeCun and Fei-Fei Li agree the next era of AI is world models. They disagree on which part of reality matters most.",
