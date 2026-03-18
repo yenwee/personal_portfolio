@@ -7,7 +7,7 @@ We called a townhall last month to talk about AI coding tools. Not a casual Slac
 I walked in expecting a conversation about which tools to standardize. What I got was a lesson in the technology adoption curve that I should have seen coming.
 
 > [!challenge] The divide is not about tools
-> The divide is not about whether AI coding tools work. Everyone agrees they produce code. The divide is about whether you trust what they produce -- and whether you think the speed is worth the risk.
+> The divide is not about whether AI coding tools work. Everyone agrees they produce code. The divide is about whether you trust what they produce, and whether you think the speed is worth the risk.
 
 ## The adoption curve, again
 
@@ -19,7 +19,7 @@ When the internet arrived, someone at every newspaper said "our readers prefer p
 
 They were not wrong about the present. They were wrong about the trajectory.
 
-The technology adoption curve -- innovators, early adopters, early majority, late majority, laggards -- is one of the most validated frameworks in tech. It describes every wave. And it describes exactly what happened in our townhall.
+The technology adoption curve (innovators, early adopters, early majority, late majority, laggards) is one of the most validated frameworks in tech. It describes every wave. And it describes exactly what happened in our townhall.
 
 My AI Solutions team sits at early adopter. We build AI agents for clients. We already believe the technology works because we ship it. Using AI to write the AI felt natural. The Software Engineering team sits at early majority, maybe late majority. They build the core platform. Their codebase is stable, well-tested, and maintained by people who take pride in the craft of writing it themselves.
 
@@ -31,7 +31,7 @@ Neither side is wrong. But only one side is going to be comfortable in 18 months
 
 Here is the moment that made me take the "almost right" problem seriously.
 
-We had a spec. Frontend and backend teams had agreed on the API contract. Route names, request bodies, response shapes -- all documented. An engineer used an AI coding tool to generate the backend endpoint. The code was clean. It compiled. The endpoint responded correctly when tested in isolation.
+We had a spec. Frontend and backend teams had agreed on the API contract. Route names, request bodies, response shapes. All documented. An engineer used an AI coding tool to generate the backend endpoint. The code was clean. It compiled. The endpoint responded correctly when tested in isolation.
 
 The frontend got a 404.
 
@@ -42,7 +42,7 @@ The AI had generated the route as `/processes`. The frontend was calling `/proce
 
 This is what I mean by "almost right." The code is 95% correct. It compiles. It runs. It does roughly the right thing. But the 5% it gets wrong is subtle, and subtle bugs are harder to catch than obvious ones. A 500 error is easy to debug. A 404 caused by a route name you never thought to check is not.
 
-METR -- one of the few organizations running rigorous, randomized studies on AI coding productivity -- found that developers using AI tools were **19% slower** on average. But the developers themselves estimated they were **20% faster**. The perception gap is not small. It is a full 39 percentage points in the wrong direction.
+METR, one of the few organizations running rigorous randomized studies on AI coding productivity, found that developers using AI tools were **19% slower** on average. But the developers themselves estimated they were **20% faster**. The perception gap is not small. It is a full 39 percentage points in the wrong direction.
 
 I believe that number. I have watched engineers on my team submit pull requests faster and then spend twice as long in review figuring out what the AI got subtly wrong. The generation is fast. The validation eats the speed gains and then some.
 
@@ -62,7 +62,7 @@ And close-enough code is harder to debug than wrong code. When code is obviously
 The security angle makes this worse. Analysis of AI-generated code found **1.7x more issues** overall and **322% more privilege escalation vulnerabilities** compared to human-written code. The AI does not write insecure code on purpose. It writes plausible code that happens to miss edge cases a security-aware human would catch.
 
 > [!insight] The uncanny valley of code
-> Code that is obviously wrong gets caught immediately. Code that is subtly wrong passes review, ships to production, and becomes the bug you spend three days tracking down. AI-generated code sits in that uncanny valley -- syntactically perfect, architecturally plausible, functionally off by one character.
+> Code that is obviously wrong gets caught immediately. Code that is subtly wrong passes review, ships to production, and becomes the bug you spend three days tracking down. AI-generated code sits in that uncanny valley: syntactically perfect, architecturally plausible, functionally off by one character.
 
 This is why TDD matters more now than it did before AI tools existed. Not less. If your tests check that the frontend can actually call the backend endpoint by name, the `/processes` bug dies in CI instead of production. If your tests only check that the endpoint returns the right data shape, the bug ships.
 
@@ -76,7 +76,7 @@ Not everyone on my team is fully bought in. One person -- I will call him the re
 
 His argument is not "AI is bad." His argument is "AI is good enough to be dangerous."
 
-He showed us a blog post about a Rust SQL query generated by an AI tool. The query was correct. It returned the right results. But a human who understood the database schema would have written it differently -- with better indexing, fewer joins, and half the execution time. The AI solved for correctness. It did not solve for craft.
+He showed us a blog post about a Rust SQL query generated by an AI tool. The query was correct. It returned the right results. But a human who understood the database schema would have written it differently: better indexing, fewer joins, half the execution time. The AI solved for correctness. It did not solve for craft.
 
 Correct but unoptimized code ships to production. Then more correct but unoptimized code ships. Then more. And in 18 months, you have a codebase that runs but runs slowly, uses more memory than it should, and is harder to maintain than it needs to be. That is the technical debt of 2027, and we are writing it right now.
 
@@ -85,7 +85,7 @@ Correct but unoptimized code ships to production. Then more correct but unoptimi
 
 He is right. And I still think we should use the tools.
 
-The two positions are not contradictory. You can believe AI coding tools are worth using and also believe they require more discipline, not less. The mistake is treating AI as a replacement for judgment. It is a replacement for *typing*. The judgment -- what to build, how to structure it, what to test, what to optimize -- still needs a human.
+The two positions are not contradictory. You can believe AI coding tools are worth using and also believe they require more discipline, not less. The mistake is treating AI as a replacement for judgment. It is a replacement for *typing*. The judgment still needs a human. What to build, how to structure it, what to test, what to optimize.
 
 ## How I hire now
 
@@ -95,9 +95,9 @@ I used to weight coding ability heavily in interviews. Can you implement this al
 
 I still care about those things. But they matter less than they did two years ago.
 
-Now my interview questions sound more like: "How would you turn this into a product?" "How would someone actually use this?" "Walk me through the architecture -- not the implementation, the architecture."
+Now my interview questions sound more like: "How would you turn this into a product?" "How would someone actually use this?" "Walk me through the architecture. Not the implementation. The architecture."
 
-I am looking for product sense. I am looking for the ability to think at the right altitude -- high enough to see the system, low enough to know where the risks are. I am looking for attitude: curiosity about tools, willingness to learn, comfort with ambiguity.
+I am looking for product sense. I am looking for the ability to think at the right altitude. High enough to see the system, low enough to know where the risks are. I am looking for attitude: curiosity about tools, willingness to learn, comfort with ambiguity.
 
 The candidates who concern me are the ones who say "I tried AI tools before and they don't work." Not because they are wrong about the current limitations. But because the statement reveals a fixed relationship with tools. Someone who tried the internet in 1995 and said "this is useless" was making an accurate observation about 1995. They were making a catastrophic prediction about 2005.
 
@@ -110,7 +110,7 @@ I have passed on technically strong candidates who could not answer "who would u
 
 Here is the part I find funny, in the way that uncomfortable truths are funny.
 
-I am the person at Infomina AI pushing hardest for AI tool adoption. I run sharing sessions. I demo my Claude Code setup -- the custom skills, the MCP tools, the subagent workflows, the personalized configurations. I show people what is possible when you invest the time to learn the tools deeply.
+I am the person at Infomina AI pushing hardest for AI tool adoption. I run sharing sessions. I demo my Claude Code setup: the custom skills, the MCP tools, the subagent workflows, the personalized configurations. I show people what is possible when you invest the time to learn the tools deeply.
 
 And I know -- honestly know -- that we are not fully utilizing what is already available. My own company, which builds AI products for clients, has not fully embraced AI tools internally. I am the ambassador, and the embassy is half-built.
 
@@ -131,7 +131,7 @@ No top-down requirements. No "everyone must use Copilot by Q3." No banning AI to
 
 This works better than policy for a simple reason: adoption driven by curiosity sticks. Adoption driven by mandate creates resentment. The engineers who adopt AI tools because they saw a colleague ship something faster are more committed than the ones who adopt because their manager told them to.
 
-The sharing sessions are where the real learning happens. Not "look how fast I generated this code" -- we got past that novelty months ago. More like "here is how I caught a subtle bug using TDD that the AI introduced" or "here is a prompt structure that produces better architecture decisions" or "here is why I stopped using AI for this specific type of task."
+The sharing sessions are where the real learning happens. Not "look how fast I generated this code." We got past that novelty months ago. More like "here is how I caught a subtle bug using TDD that the AI introduced" or "here is a prompt structure that produces better architecture decisions" or "here is why I stopped using AI for this specific type of task."
 
 The nuance matters. The tools are good for some things and bad for others, and the only way to learn the boundary is to use them enough to find it.
 
