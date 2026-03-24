@@ -1,5 +1,7 @@
 # Every business will build AI skills. Most will ship garbage.
 
+![Skill-based service hierarchy -- skill at the top as domain expertise, agent orchestrates, model as swappable engine, platform as infrastructure](/blogs/images/skills/skills-featured.png)
+
 My director said something this morning that I cannot stop thinking about.
 
 "Our clients want Skill X from AiExe and Skill Y from AiMod. Can we let them pick and choose?"
@@ -12,6 +14,8 @@ That stopped me. That is not a feature request. That is a market forming.
 > Clients are not buying platforms anymore. They are buying capabilities. A transfer pricing firm does not want "an AI analytics suite." They want the skill that automates their benchmarking analysis. The platform is a delivery mechanism. The skill is what they are paying for.
 
 ## I started with Tableau and XML
+
+![Challenges in building production skills -- fishbone diagram showing domain knowledge, system understanding, and error handling converging into a working skill](/blogs/images/skills/skills-building.png)
 
 My first skill was not for a client. It was for myself.
 
@@ -37,6 +41,8 @@ I have done this enough times now to see the pattern clearly. **The skill is not
 I thought I was selling AI agents. I am selling packaged expertise. A transfer pricing firm does not care that I use LangGraph and Claude. They care that the benchmarking analysis takes 20 minutes instead of 4 hours.
 
 ## Skills are the new apps
+
+![App Store vs Skill Store -- matrix comparing distribution, payment, sandbox, security, and IP protection](/blogs/images/skills/skills-appstore.png)
 
 I keep coming back to the app analogy because it maps so precisely.
 
@@ -65,6 +71,8 @@ If your skill only works when you are watching it, it is not a skill. It is a de
 
 ## Most will ship garbage
 
+![Published skills vs production-ready skills -- 351K published, high failure rate, security risks](/blogs/images/skills/skills-garbage.png)
+
 I am not being cynical. I am reading the data.
 
 Of the 351,000 skills on SkillsMP, how many have been tested in production? How many handle edge cases? How many have error recovery? Someone analyzed 847 real AI agent deployments and found that **76% experience critical failures within 90 days**. Only 18% deliver on their original ROI promises. 43% get abandoned completely after six months.
@@ -77,6 +85,8 @@ The market is growing faster than the infrastructure that would make it safe. Th
 > 351,000 skills published. 76% of agent deployments fail within 90 days. 82% of MCP servers have known vulnerabilities. The ratio of skills built to skills that work in production is probably somewhere around 10 to 1. Maybe worse.
 
 ## MCP is a bridge, not the destination
+
+![MCP importance over time -- from required in 2024 to optimization layer long-term, still critical for smaller models](/blogs/images/skills/skills-mcp-timeline.png)
 
 I have a take on MCP that will probably get me yelled at on Hacker News.
 
@@ -92,6 +102,8 @@ This does not mean MCP will disappear. It means its role is shifting from "neces
 > MCP is the SOP for AI agents, and SOPs matter more when the agent is less capable. A senior engineer does not need a checklist to deploy to production. A junior engineer does. MCP is the checklist. As models mature, they need less of it. But even senior engineers appreciate a good checklist when the stakes are high.
 
 ## Every business becomes a skill contributor
+
+![AI skill contribution framework -- cycle from using AI tools through workflow identification, expertise encoding, testing, packaging, to distribution](/blogs/images/skills/skills-cycle.png)
 
 Most businesses right now are AI consumers. They prompt ChatGPT, use Copilot, experiment with Claude. They are running on someone else's expertise.
 

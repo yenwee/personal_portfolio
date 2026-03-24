@@ -8,7 +8,8 @@
       "tags": ["AI", "Software Engineering", "Production"],
       "featured": false,
       "readTime": 12,
-      "draft": true
+      "draft": true,
+      "featuredImage": "/blogs/images/skills/skills-featured.png"
     },
     {
       "id": "developer-divide-ai-coding-tools",
