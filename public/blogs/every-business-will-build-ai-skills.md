@@ -11,7 +11,7 @@ AiExe is our AI-powered KYC platform. AiMod is our AI workflow automation platfo
 That stopped me. That is not a feature request. That is a market forming.
 
 > [!insight] The skill is the product
-> Clients are not buying platforms anymore. They are buying capabilities. A transfer pricing firm does not want "an AI analytics suite." They want the skill that automates their benchmarking analysis. The platform is a delivery mechanism. The skill is what they are paying for.
+> Clients are not buying platforms anymore. They are buying capabilities. A transfer pricing firm does not want "an AI workflow automation platform." They want the specific skill that automates their benchmarking analysis. The platform is a delivery mechanism. The skill is what they are paying for.
 
 ## I started with Tableau and XML
 
