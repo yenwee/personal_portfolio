@@ -15,7 +15,7 @@ That stopped me. That is not a feature request. That is a market forming.
 
 ## I started with Tableau and XML
 
-![Challenges in building production skills -- fishbone diagram showing domain knowledge, system understanding, and error handling converging into a working skill](/blogs/images/skills/skills-building.png)
+![From tinkering to production skill -- flowchart showing reverse-engineering, breaking things, writing instructions for model mistakes, validation, and testing until it works without watching](/blogs/images/skills/skills-building.png)
 
 My first skill was not for a client. It was for myself.
 
