@@ -6,7 +6,7 @@ My director said something this morning that I cannot stop thinking about.
 
 "Our clients want Skill X from AiExe and Skill Y from AiMod. Can we let them pick and choose?"
 
-AiExe is our workflow automation platform. AiMod is our data analytics platform. Two separate products. The client did not want either product as a whole. They wanted *specific capabilities* from each one, assembled into their own workflow.
+AiExe is our AI-powered KYC platform. AiMod is our AI workflow automation platform. Two separate products. The client did not want either product as a whole. They wanted *specific capabilities* from each one, assembled into their own workflow.
 
 That stopped me. That is not a feature request. That is a market forming.
 
@@ -32,11 +32,13 @@ Then Opus 4.6 came out, and something shifted. The model could finally hold enou
 
 After Tableau, I started building AI agents for clients at Infomina AI. Transfer pricing firms. Credit risk teams. Analytics departments that needed repeatable workflows.
 
-The pattern was always the same. I would sit with the domain expert. They would explain their process: "First I pull the comparable data, then I adjust for these five factors, then I run the benchmarking analysis, then I format the report." I would listen, ask questions, and encode their expertise into a structured skill file with defined steps, tool calls, validation checks, and error handling.
+The pattern was always the same. The client already had the expertise internally. Transfer pricing consultants who knew the OECD guidelines cold. Credit risk analysts who could assess default probability in their sleep. They had the knowledge. What they did not have was a way to assemble that knowledge into something an AI agent could execute.
 
-The domain expert spent twenty years learning what matters. The skill file captured the decision logic in a format an AI agent could execute. Not perfectly. But consistently enough to handle the 80% of cases that follow the pattern, and flag the 20% that need a human.
+I would sit with the domain expert. They would explain their process: "First I pull the comparable data, then I adjust for these five factors, then I run the benchmarking analysis, then I format the report." I would listen, ask questions, and encode their expertise into a structured skill file with defined steps, tool calls, validation checks, and error handling.
 
-I have done this enough times now to see the pattern clearly. **The skill is not code. The skill is someone's expertise, encoded.** The model is just the execution engine. Swap Claude for GPT-5 or Gemini 3 and the skill still works because the valuable part is the domain knowledge, not the model that runs it.
+The domain expert spent twenty years learning what matters. The skill file captured the decision logic in a format an AI agent could run. Not perfectly. But consistently enough to handle the 80% of cases that follow the pattern, and flag the 20% that need a human.
+
+**The skill is not code. The skill is someone's expertise, assembled.** The businesses already have the knowledge. They just do not know how to package it into something AI can use. That is the gap I keep filling, one client at a time.
 
 I thought I was selling AI agents. I am selling packaged expertise. A transfer pricing firm does not care that I use LangGraph and Claude. They care that the benchmarking analysis takes 20 minutes instead of 4 hours.
 
