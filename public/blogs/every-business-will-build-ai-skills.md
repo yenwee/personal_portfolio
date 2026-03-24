@@ -8,7 +8,7 @@ My director said something this morning that I cannot stop thinking about.
 
 AiExe is our AI-powered KYC platform. AiMod is our AI workflow automation platform. Two separate products. The client did not want either product as a whole. They wanted *specific capabilities* from each one, assembled into their own workflow.
 
-That stopped me. That is not a feature request. That is a market forming.
+That stopped me. That is not a feature request. That is a *market* forming.
 
 > [!insight] The skill is the product
 > Clients are not buying platforms anymore. They are buying capabilities. A transfer pricing firm does not want "an AI workflow automation platform." They want the specific skill that automates their benchmarking analysis. The platform is a delivery mechanism. The skill is what they are paying for.
@@ -21,7 +21,7 @@ My first skill was not for a client. It was for myself.
 
 When Claude Code came out, I wanted to automate parts of my Tableau Desktop workflow. The problem: Tableau's underlying format is XML, and the API to work with it is not public. There is no documented way to programmatically manipulate workbook structure. You have to reverse-engineer the XML schema, figure out which nodes control which visual elements, and write instructions precise enough that an AI agent can modify them without breaking the file.
 
-The early models could not do it. The XML was too complex, the structure too fragile. One wrong node and the workbook corrupts. I tried with Claude Sonnet, with Opus. Close, but not reliable enough for production use.
+The early models could not do it. The XML was too complex, the structure too fragile. One wrong node and the *entire workbook* corrupts. I tried with Claude Sonnet, with Opus. Close, but not reliable enough for production use.
 
 Then Opus 4.6 came out, and something shifted. The model could finally hold enough context to understand the full XML tree and make targeted modifications without collapsing the structure. I had a working Tableau skill. Not perfect. But reliable enough to save me hours every week.
 
@@ -40,7 +40,7 @@ The domain expert spent twenty years learning what matters. The skill file captu
 
 **The skill is not code. The skill is someone's expertise, assembled.** The businesses already have the knowledge. They just do not know how to package it into something AI can use. That is the gap I keep filling, one client at a time.
 
-I thought I was selling AI agents. I am selling packaged expertise. A transfer pricing firm does not care that I use LangGraph and Claude. They care that the benchmarking analysis takes 20 minutes instead of 4 hours.
+I thought I was selling AI agents. I am selling *packaged expertise*. A transfer pricing firm does not care that I use LangGraph and Claude. They care that the benchmarking analysis takes 20 minutes instead of 4 hours.
 
 ## Skills are the new apps
 
@@ -54,7 +54,7 @@ Skills are following the same curve. SkillsMP, a marketplace for AI agent skills
 
 The difference is that apps have infrastructure. The App Store handles distribution, payment, installation, updates, and security. You download an app and it works. It runs in a sandbox. It cannot corrupt your operating system. It goes through review before it reaches users.
 
-Skills have none of that.
+Skills have *none* of that.
 
 > [!warning] The missing infrastructure
 > There is no App Store for AI skills. No standard installation process. No sandbox. No payment layer. No security review. If I want to sell my Tableau skill, I would have to share the raw skill file, which exposes my entire methodology. There is no DRM, no hosted execution, no way to sell access without selling the source. The market is building inventory before the store exists.
@@ -69,7 +69,7 @@ A good skill is something you can hand to a stranger. They read the instructions
 
 I have built both kinds. The bad ones felt productive when I wrote them. The good ones took three times longer to build and saved ten times more time over the following months.
 
-If your skill only works when you are watching it, it is not a skill. It is a demo.
+**If your skill only works when you are watching it, it is not a skill. It is a demo.**
 
 ## Most will ship garbage
 
@@ -81,7 +81,7 @@ Of the 351,000 skills on SkillsMP, how many have been tested in production? How 
 
 A security audit of 2,614 MCP servers found that **82% are vulnerable to path traversal** and **67% are vulnerable to code injection**. Thirty CVEs were filed in the first two months of 2026 alone. Anthropic's own mcp-server-git had vulnerabilities that allowed arbitrary file writes.
 
-The market is growing faster than the infrastructure that would make it safe. That is the early App Store without Apple's review process. It is npm without lockfiles. It is Docker Hub without image scanning. The skills are flowing. The quality control is not.
+The market is growing faster than the infrastructure that would make it safe. That is the early App Store without Apple's review process. It is npm without lockfiles. It is Docker Hub without image scanning. The skills are flowing. The quality control is *not*.
 
 > [!metric] The reliability gap
 > 351,000 skills published. 76% of agent deployments fail within 90 days. 82% of MCP servers have known vulnerabilities. The ratio of skills built to skills that work in production is probably somewhere around 10 to 1. Maybe worse.
@@ -107,13 +107,13 @@ This does not mean MCP will disappear. It means its role is shifting from "neces
 
 ![AI skill contribution framework -- cycle from using AI tools through workflow identification, expertise encoding, testing, packaging, to distribution](/blogs/images/skills/skills-cycle.png)
 
-Most businesses right now are AI consumers. They prompt ChatGPT, use Copilot, experiment with Claude. They are running on someone else's expertise.
+Most businesses right now are AI consumers. They prompt ChatGPT, use Copilot, experiment with Claude. They are running on *someone else's* expertise.
 
 But businesses have something that AI companies do not: twenty years of domain knowledge that no foundation model was trained on. A credit bureau knows how to assess default risk. A law firm knows how to structure a merger agreement. A transfer pricing consultancy knows the OECD guidelines better than any model ever will.
 
 That expertise is locked inside people's heads and internal documentation. Skills are the extraction mechanism. The transfer pricing agent I built does not know transfer pricing. The skill file does. The model just executes the workflow. And because the knowledge lives in the skill, not the model, it survives model upgrades, provider switches, and API changes.
 
-I think the businesses that figure out how to package their expertise as reusable skills will build an asset that compounds. The ones that wait will end up buying skills from their own competitors.
+I think the businesses that figure out how to package their expertise as reusable skills will build an asset that compounds. The ones that wait will end up buying skills from their *own competitors*.
 
 ## I would sell my skills. I do not know how.
 
@@ -129,7 +129,7 @@ Apps solved this decades ago. The App Store handles distribution, payment, sandb
 
 **Skills have no equivalent.** The closest thing is SkillsMP with 351,000 listings and no monetization layer. Or Agent37, which is trying to build hosted execution. Or Gumloop, which just raised $50 million to be the platform layer. But none of them are the App Store yet. Not even close.
 
-So for now, skill builders like me keep building for ourselves and our clients, one custom engagement at a time. It works. It pays. But it does not scale, and I know it.
+So for now, skill builders like me keep building for ourselves and our clients, one custom engagement at a time. It works. It pays. But it does not *scale*, and I know it.
 
 > [!challenge] The infrastructure gap
 > The skill economy has 351,000 skills, $10.9 billion in market size, and 79% enterprise adoption of agentic AI. What it does not have is a way to install a skill and trust that it will work. Until someone builds the App Store for AI skills, the market stays fragmented and the opportunity stays locked.
