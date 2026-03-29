@@ -1,6 +1,17 @@
 {
   "posts": [
     {
+      "id": "ai-compression-education-literacy",
+      "title": "AI Learned How to Compress Intelligence. It Never Learned How to Explain It.",
+      "description": "Quantization asks how much of a neural network you can throw away. Education asks the same question about a human mind.",
+      "date": "2026-03-29",
+      "tags": ["AI", "Software Engineering", "Economics"],
+      "featured": false,
+      "readTime": 10,
+      "draft": true,
+      "featuredImage": "/blogs/images/compression/compression-featured.png"
+    },
+    {
       "id": "every-business-will-build-ai-skills",
       "title": "Every Business Will Build AI Skills. Most Will Ship Garbage.",
       "description": "The skill is the product. The model is the engine. The store does not exist yet.",
