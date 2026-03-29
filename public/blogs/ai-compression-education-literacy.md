@@ -70,7 +70,7 @@ She sells AI products. She did not know what quantization is. I do not mean she 
 
 That is not a story about one person. That is a story about an entire industry.
 
-**90% of developers** now use AI tools daily. **72% of non-technical knowledge workers** use AI at least weekly. Fewer than **28% of any group** -- technical or not -- can explain how the technology actually works.
+**90% of developers** now use AI tools daily, according to Google's 2025 DORA report. **75% of knowledge workers** use AI regularly. Fewer than **28% of any group** -- technical or not -- can explain how the technology actually works.
 
 We have built the first technology in history that makes people more capable while making them less literate about the capability.
 
@@ -114,7 +114,7 @@ I see this pattern in my own work. I build [multi-agent AI systems](/blogs/build
 
 "Cheaper and faster" is enough to close a deal. It is not enough to make a good decision. The client who chose a quantized open-weight model because it was cheaper, without understanding *why* it was cheaper, will not know what to do when accuracy degrades on a new document type. They will not know that the model lost some capability during compression and needs a different prompting strategy. They will blame the model. Or blame us. Or abandon the approach. Because nobody gave them the five-minute explanation that would have set the right expectations.
 
-The pharmaceutical industry solved this decades ago. Sales reps are required to understand pharmacology. Not at a researcher's level. But enough to know what they are selling, how it works, what the side effects are, and when it should not be used. Financial advisors must pass licensing exams. Insurance agents learn actuarial basics. In every regulated industry, there is a minimum comprehension bar for the people who sell the product to the people who use it.
+The pharmaceutical industry figured this out decades ago. Sales reps undergo pharmacology training -- not at a researcher's level, but enough to know what they are selling, how it works, what the side effects are, and when it should not be used. Some cities like Chicago require it by law. Financial advisors must pass Series 65 or Series 66 licensing exams before they can give investment advice. Insurance agents learn actuarial basics. In regulated industries, there is a minimum comprehension bar for the people who sell the product to the people who use it.
 
 AI has no equivalent. You can sell a system that scores a billion job applicants without understanding how scoring works. You can sell a model that runs on a phone without knowing why running on a phone is harder than running in a cloud. You can sell an agent framework without understanding what "bounded autonomy" means or why it matters.
 
@@ -135,5 +135,7 @@ Education solves that problem. That is its entire purpose -- take complex knowle
 Compression solves it too. Not metaphorically. Literally. A quantized model that runs on a laptop instead of a data center is portable knowledge. A [skill file that encodes domain expertise](/blogs/every-business-will-build-ai-skills) into a format an AI agent can execute is portable knowledge. A well-structured prompt that captures decades of actuarial judgment in a repeatable workflow is portable knowledge.
 
 The tools exist. The methods exist. What does not exist is the will to use them on the hardest problem: explaining AI to the people who depend on it.
+
+![From portable tools to inaccessible knowledge](/blogs/images/compression/compression-knowledge-portability.png)
 
 **She asked why compression matters. The answer is that compression is how knowledge becomes portable -- in machines and in minds. And right now, the knowledge is not moving.**
