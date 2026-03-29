@@ -8,7 +8,7 @@
       "tags": ["AI", "Software Engineering", "Economics"],
       "featured": false,
       "readTime": 10,
-      "draft": true,
+      "draft": false,
       "featuredImage": "/blogs/images/compression/compression-featured.png"
     },
     {
