@@ -1,12 +1,14 @@
 import fs from "node:fs"
 import path from "node:path"
 import { NextResponse } from "next/server"
+import blogsData from "@/lib/blogs.json"
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params
+  const post = blogsData.posts.find((p) => p.id === slug)
   const filePath = path.join(process.cwd(), "public", "blogs", `${slug}.md`)
 
   let markdown: string
@@ -77,11 +79,23 @@ export async function GET(
 
   const body = processed.join('\n')
 
+  const title = post?.title ?? slug
+  const description = post?.description ?? ''
+  const date = post?.date ?? ''
+  const canonicalUrl = `https://weeai.dev/blogs/${slug}`
+
   const fullHtml = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>${slug}</title>
+<title>${title}</title>
+<meta name="description" content="${description}">
+<link rel="canonical" href="${canonicalUrl}">
+${date ? `<meta property="article:published_time" content="${date}">` : ''}
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:url" content="${canonicalUrl}">
+<meta property="og:type" content="article">
 </head>
 <body>
 ${body}
