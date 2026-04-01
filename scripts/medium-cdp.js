@@ -193,13 +193,26 @@ async function getComments(context, postUrl) {
   try {
     await openResponsesPanel(page, postUrl);
 
+    // Expand all truncated comments ("more" buttons) and reply threads
+    for (let pass = 0; pass < 3; pass++) {
+      await page.evaluate(() => {
+        const btns = Array.from(document.querySelectorAll('button'));
+        btns.filter(b => {
+          const t = b.textContent.trim();
+          return (t === 'more' || /^\d+\s*repl/i.test(t) || /show.*repl/i.test(t))
+            && b.getBoundingClientRect().width > 0;
+        }).forEach(b => b.click());
+      });
+      await page.waitForTimeout(2000);
+    }
+
     // Extract responses from the side panel using text-based parsing
     const data = await page.evaluate(() => {
       const body = document.body.innerText || '';
       const idx = body.indexOf('Responses');
       if (idx === -1) return { raw: '', count: 0 };
 
-      const raw = body.substring(idx, idx + 10000);
+      const raw = body.substring(idx, idx + 15000);
       const countMatch = raw.match(/Responses?\s*\((\d+)\)/);
       return { raw, count: countMatch ? parseInt(countMatch[1], 10) : 0 };
     });
@@ -283,7 +296,7 @@ function parseCommentsFromText(raw, expectedCount) {
       claps = textLines.pop();
     }
 
-    const commentText = textLines.join(' ').replace(/…more$/, '...').trim();
+    const commentText = textLines.join(' ').replace(/…more$/, '').replace(/\.\.\.more$/, '').trim();
     if (!commentText) continue;
 
     comments.push({
