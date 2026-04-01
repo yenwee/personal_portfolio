@@ -186,14 +186,14 @@ async function getStats(context) {
   }
 }
 
-// ─── Comments (text-based parser for side panel) ─────────────
+// ─── Comments (clap-button indexed for consistency with reply/clap) ──
 
 async function getComments(context, postUrl) {
   const page = await context.newPage();
   try {
     await openResponsesPanel(page, postUrl);
 
-    // Expand all truncated comments ("more" buttons) and reply threads
+    // Expand all truncated comments and reply threads
     for (let pass = 0; pass < 3; pass++) {
       await page.evaluate(() => {
         const btns = Array.from(document.querySelectorAll('button'));
@@ -206,110 +206,179 @@ async function getComments(context, postUrl) {
       await page.waitForTimeout(2000);
     }
 
-    // Extract responses from the side panel using text-based parsing
-    const data = await page.evaluate(() => {
-      const body = document.body.innerText || '';
-      const idx = body.indexOf('Responses');
-      if (idx === -1) return { raw: '', count: 0 };
+    // Use clap buttons as anchors (same indexing as reply/clap commands)
+    // Then extract surrounding text for each clap-indexed comment
+    const comments = await page.evaluate(() => {
+      const panel = document.querySelector('[data-focus-lock-disabled]') || document;
 
-      const raw = body.substring(idx, idx + 15000);
-      const countMatch = raw.match(/Responses?\s*\((\d+)\)/);
-      return { raw, count: countMatch ? parseInt(countMatch[1], 10) : 0 };
+      // Get clap buttons sorted by y (these define the replyable comments)
+      const clapBtns = Array.from(panel.querySelectorAll('svg[aria-label="clap"]'))
+        .map(svg => svg.closest('button'))
+        .filter(btn => btn && btn.getBoundingClientRect().width > 0)
+        .sort((a, b) => a.getBoundingClientRect().y - b.getBoundingClientRect().y);
+
+      // Get all Reply buttons sorted by y
+      const replyBtns = Array.from(panel.querySelectorAll('button'))
+        .filter(b => b.textContent.trim() === 'Reply' && b.getBoundingClientRect().width > 0)
+        .sort((a, b) => a.getBoundingClientRect().y - b.getBoundingClientRect().y);
+
+      // For each clap button, find its comment block by walking up the DOM
+      const results = [];
+      for (let i = 0; i < clapBtns.length; i++) {
+        const clapBtn = clapBtns[i];
+        const clapY = clapBtn.getBoundingClientRect().y;
+
+        // Walk up to find the comment container
+        let container = clapBtn;
+        for (let j = 0; j < 8; j++) {
+          if (container.parentElement) container = container.parentElement;
+        }
+
+        // Extract text from the container
+        const fullText = container.innerText || '';
+        const lines = fullText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+        // Parse: first meaningful line = author, then time, then comment text
+        let author = '';
+        let time = '';
+        let commentLines = [];
+        let foundAuthor = false;
+
+        for (let j = 0; j < lines.length; j++) {
+          const line = lines[j];
+          // Skip noise
+          if (/^(Follow|he\/him|she\/her|they\/them|Author|Member-only|MOST RELEVANT)$/i.test(line)) continue;
+          if (/^(Hide replies|Show \d|Cancel|Respond|Reply|\d+ repl)/.test(line)) continue;
+          if (/^(What are your thoughts|Write a response)/.test(line)) continue;
+
+          if (!foundAuthor && line.length > 1 && line.length < 60 && !/^\d+$/.test(line)) {
+            author = line;
+            foundAuthor = true;
+            continue;
+          }
+
+          if (foundAuthor && !time && (/ago/i.test(line) || /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i.test(line) || /^\d+ (day|hour|min)/i.test(line))) {
+            time = line;
+            continue;
+          }
+
+          if (foundAuthor && time) {
+            // Stop at noise markers
+            if (/^(Hide replies|Reply|\d+ repl|Show \d)/.test(line)) break;
+            if (line === 'more') continue;
+            if (/^\d+$/.test(line) && parseInt(line) < 200) continue; // clap count
+            commentLines.push(line);
+          }
+        }
+
+        if (author && commentLines.length > 0) {
+          results.push({
+            index: i,
+            author,
+            time: time || '',
+            text: commentLines.join(' '),
+          });
+        }
+      }
+
+      // Also get the total response count
+      const body = document.body.innerText || '';
+      const countMatch = body.match(/Responses?\s*\((\d+)\)/);
+      const totalCount = countMatch ? parseInt(countMatch[1], 10) : results.length;
+
+      return { comments: results, totalCount };
     });
 
-    if (data.count === 0) {
-      console.log('\nNo responses found on this post.');
-      return { comments: [] };
-    }
+    // Also get nested replies (our replies + follow-ups) from text
+    const nestedData = await page.evaluate(() => {
+      const body = document.body.innerText || '';
+      const idx = body.indexOf('Responses');
+      if (idx === -1) return { raw: '' };
+      return { raw: body.substring(idx, idx + 15000) };
+    });
 
-    // Parse comments from raw text
-    // Pattern: split on "Reply\n" boundaries, each block has author, time, text
-    const comments = parseCommentsFromText(data.raw, data.count);
+    // Find nested replies by looking for "Author" tagged entries and follow-up replies
+    const nestedReplies = parseNestedReplies(nestedData.raw, comments.comments);
 
-    console.log(`\nComments on post (${data.count} responses)`);
+    console.log(`\nComments on post (${comments.totalCount} total responses)`);
     console.log('═'.repeat(70));
 
-    comments.forEach((c) => {
+    comments.comments.forEach((c) => {
       console.log(`\n#${c.index} ${c.author} (${c.time})`);
-      if (c.claps) console.log(`   [${c.claps} clap${c.claps !== '1' ? 's' : ''}]`);
       console.log('─'.repeat(70));
       const lines = wordWrap(c.text, 66);
       lines.forEach(line => console.log(`  ${line}`));
+
+      // Show nested replies for this comment
+      const nested = nestedReplies.filter(n => n.parentIndex === c.index);
+      nested.forEach(n => {
+        console.log(`  └─ ${n.author} (${n.time}): ${n.text.substring(0, 100)}${n.text.length > 100 ? '...' : ''}`);
+      });
     });
 
     console.log('\n' + '═'.repeat(70));
-    console.log(`\nTo respond: node scripts/medium-cdp.js respond "${postUrl}" "your text"`);
+    console.log(`\n# indices match across comments/reply/clap commands`);
     console.log(`To reply:   node scripts/medium-cdp.js reply "${postUrl}" <#> "your text"`);
     console.log(`To clap:    node scripts/medium-cdp.js clap "${postUrl}" <#>`);
 
-    return { comments };
+    return { comments: comments.comments };
   } finally {
     await page.close();
   }
 }
 
-function parseCommentsFromText(raw, expectedCount) {
-  const comments = [];
+function parseNestedReplies(raw, topComments) {
+  const nested = [];
+  if (!raw) return nested;
 
-  // Remove header (everything before "MOST RELEVANT" or first author block)
-  let text = raw;
-  const relevantIdx = text.indexOf('MOST RELEVANT');
-  if (relevantIdx !== -1) {
-    text = text.substring(relevantIdx + 'MOST RELEVANT'.length).trim();
-  } else {
-    // Skip past the "Responses (N)" header and editor
-    const respondIdx = text.indexOf('Respond\n');
-    if (respondIdx !== -1) {
-      text = text.substring(respondIdx + 'Respond\n'.length).trim();
+  // Look for "Author" tagged replies and follow-up replies between top-level comments
+  for (let i = 0; i < topComments.length; i++) {
+    const authorName = topComments[i].author;
+    // Find follow-up text blocks between this comment and the next
+    const startMarker = topComments[i].text.substring(0, 30);
+    const endMarker = i + 1 < topComments.length ? topComments[i + 1].text.substring(0, 30) : null;
+
+    const startIdx = raw.indexOf(startMarker);
+    if (startIdx === -1) continue;
+    const endIdx = endMarker ? raw.indexOf(endMarker, startIdx + 50) : raw.length;
+    const section = raw.substring(startIdx, endIdx);
+
+    // Look for "Author" tag (our replies)
+    const authorMatches = [...section.matchAll(/Author\n\n(\d+[\w\s]+ago|Just now)\n\n([\s\S]*?)(?=\nReply\n|\n\d+\n|$)/g)];
+    const seen = new Set();
+    for (const m of authorMatches) {
+      const key = m[1].trim() + m[2].substring(0, 30);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      nested.push({
+        parentIndex: i,
+        author: 'You',
+        time: m[1].trim(),
+        text: m[2].replace(/\n/g, ' ').trim(),
+      });
+    }
+
+    // Look for follow-up replies from others
+    const followUpPattern = /Hide replies[\s\S]*?Reply\n\n([\w\s,.]+)\n\n(\d+[\w\s]+ago|Just now)\n\n([\s\S]*?)(?=\nReply\n|$)/g;
+    for (const fu of section.matchAll(followUpPattern)) {
+      const fuAuthor = fu[1].trim();
+      if (fuAuthor !== authorName && fuAuthor.length < 40) {
+        const key = fuAuthor + fu[2].trim();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        nested.push({
+          parentIndex: i,
+          author: fuAuthor,
+          time: fu[2].trim(),
+          text: fu[3].replace(/\n/g, ' ').trim(),
+        });
+      }
     }
   }
 
-  // Split on "Reply\n" to get individual comment blocks
-  const blocks = text.split(/\nReply\n/);
-
-  for (let i = 0; i < blocks.length; i++) {
-    const block = blocks[i].trim();
-    if (!block || block.length < 5) continue;
-
-    // Stop when we hit the article content (after all comments)
-    if (block.includes('min read\n') && block.includes('Press enter')) break;
-
-    const lines = block.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-    if (lines.length < 2) continue;
-
-    // First line: author name (may include credentials like ", FRM")
-    const author = lines[0];
-
-    // Skip if this looks like article content, not a comment
-    if (author.length > 80 || /^(More from|In$|Help|Status|About|Careers)/.test(author)) break;
-
-    // Second line: time (e.g., "1 day ago", "Mar 10", "15 hours ago")
-    const time = lines[1];
-    if (!/\d/.test(time) && !/ago|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/i.test(time)) continue;
-
-    // Remaining lines: comment text (last line might be clap count)
-    let textLines = lines.slice(2);
-    let claps = null;
-
-    // Check if last line is just a number (clap count)
-    if (textLines.length > 0 && /^\d+$/.test(textLines[textLines.length - 1])) {
-      claps = textLines.pop();
-    }
-
-    const commentText = textLines.join(' ').replace(/…more$/, '').replace(/\.\.\.more$/, '').trim();
-    if (!commentText) continue;
-
-    comments.push({
-      index: comments.length,
-      author,
-      time,
-      text: commentText,
-      claps,
-    });
-  }
-
-  return comments;
+  return nested;
 }
+
 
 // ─── Respond (top-level response to post) ────────────────────
 
