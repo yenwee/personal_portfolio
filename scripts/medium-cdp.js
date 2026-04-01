@@ -495,20 +495,69 @@ async function replyToComment(context, postUrl, commentIndex, replyText) {
 async function clapForComment(context, postUrl, commentIndex, clapCount = 1) {
   const page = await context.newPage();
   try {
+    // For article-level claps (no comment index), skip the panel entirely
+    if (commentIndex === null || commentIndex === undefined) {
+      console.log(`Navigating to: ${postUrl}`);
+      await page.goto(postUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
+      await page.waitForTimeout(3000);
+
+      // Scroll full page to load the clap button
+      const totalHeight = await page.evaluate(() => document.body.scrollHeight);
+      for (let y = 0; y < totalHeight; y += 400) {
+        await page.evaluate((sy) => window.scrollTo(0, sy), y);
+        await page.waitForTimeout(100);
+      }
+      await page.waitForTimeout(2000);
+
+      // Find main page clap button (x < 800, not in a panel)
+      const clapPos = await page.evaluate(() => {
+        const svgs = Array.from(document.querySelectorAll('svg[aria-label="clap"]'));
+        for (const svg of svgs) {
+          const btn = svg.closest('button');
+          if (!btn) continue;
+          const r = btn.getBoundingClientRect();
+          if (r.width > 0 && r.x < 800 && r.x > 100) {
+            btn.scrollIntoView({ behavior: 'instant', block: 'center' });
+            return { found: true };
+          }
+        }
+        return { error: 'No article clap button found' };
+      });
+
+      if (clapPos.error) { console.error(clapPos.error); return false; }
+      await page.waitForTimeout(1000);
+
+      const coords = await page.evaluate(() => {
+        const svgs = Array.from(document.querySelectorAll('svg[aria-label="clap"]'));
+        for (const svg of svgs) {
+          const btn = svg.closest('button');
+          if (!btn) continue;
+          const r = btn.getBoundingClientRect();
+          if (r.width > 0 && r.x < 800 && r.x > 100 && r.y > 0 && r.y < window.innerHeight) {
+            return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+          }
+        }
+        return null;
+      });
+
+      if (!coords) { console.error('Clap button not in viewport'); return false; }
+
+      for (let c = 0; c < clapCount; c++) {
+        await page.mouse.click(coords.x, coords.y);
+        await page.waitForTimeout(80);
+      }
+      await page.waitForTimeout(1000);
+      console.log(`Clapped ${clapCount}x for post!`);
+      return true;
+    }
+
+    // For comment-level claps, open the responses panel
     await openResponsesPanel(page, postUrl);
 
     // Find clap button, scroll into view, then CDP mouse click
     const findResult = await page.evaluate((idx) => {
       const panel = document.querySelector('[data-focus-lock-disabled]') || document;
-
-      if (idx === null || idx === undefined) {
-        const mainClap = document.querySelector('svg[aria-label="clap"]');
-        if (mainClap) {
-          const btn = mainClap.closest('button');
-          if (btn) { btn.scrollIntoView({ behavior: 'instant', block: 'center' }); return { target: 'post' }; }
-        }
-        return { error: 'No post clap button found' };
-      }
 
       const clapBtns = Array.from(panel.querySelectorAll('svg[aria-label="clap"]'))
         .map(svg => svg.closest('button'))
@@ -651,7 +700,8 @@ Usage:
   node scripts/medium-cdp.js comments <post-url>                        Get comments on a post
   node scripts/medium-cdp.js respond <post-url> "response text"         Post a top-level response
   node scripts/medium-cdp.js reply <post-url> <comment-index> "text"    Reply to a specific comment
-  node scripts/medium-cdp.js clap <post-url> [comment-index] [count]    Clap for post or comment (1-50)
+  node scripts/medium-cdp.js clap <post-url> post [count]              Clap for article (default 50)
+  node scripts/medium-cdp.js clap <post-url> <comment-index> [count]   Clap for comment (default 1)
   node scripts/medium-cdp.js snapshot <url>                             Debug: save page HTML
 
 Environment:
@@ -714,8 +764,17 @@ async function main() {
         await replyToComment(context, args[1], parseInt(args[2], 10), args[3]);
         break;
       case 'clap': {
-        const clapIdx = args[2] !== undefined ? parseInt(args[2], 10) : null;
-        const clapN = args[3] !== undefined ? Math.min(50, Math.max(1, parseInt(args[3], 10))) : 1;
+        // clap <url>              → 1 clap for article
+        // clap <url> post [N]     → N claps for article (default 50)
+        // clap <url> <idx> [N]    → N claps for comment #idx (default 1)
+        let clapIdx, clapN;
+        if (args[2] === 'post' || args[2] === undefined) {
+          clapIdx = null;
+          clapN = args[3] !== undefined ? Math.min(50, parseInt(args[3], 10)) : (args[2] === 'post' ? 50 : 1);
+        } else {
+          clapIdx = parseInt(args[2], 10);
+          clapN = args[3] !== undefined ? Math.min(50, Math.max(1, parseInt(args[3], 10))) : 1;
+        }
         await clapForComment(context, args[1], clapIdx, clapN);
         break;
       }

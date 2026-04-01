@@ -170,66 +170,93 @@ async function scanPostComments(context, postUrl, postTitle) {
 
 // ─── Analytics Engine ────────────────────────────────────────
 
+// CTR benchmarks (impressions to views)
+const CTR_BENCHMARKS = {
+  STRONG: 15,    // 15%+ CTR
+  OK: 10,        // 10-15%
+  WEAK: 5,       // 5-10%
+  // Below 5% = poor
+};
+
 function analyzeStats(posts) {
   const analyzed = posts.map((post) => {
     const readRatio = post.views > 0 ? (post.reads / post.views) * 100 : 0;
-    let tier;
-    if (readRatio >= BENCHMARKS.EXCELLENT) tier = 'EXCELLENT';
-    else if (readRatio >= BENCHMARKS.GOOD) tier = 'GOOD';
-    else if (readRatio >= BENCHMARKS.AVERAGE) tier = 'AVERAGE';
-    else if (readRatio >= BENCHMARKS.LOW) tier = 'LOW';
-    else tier = 'CONCERNING';
+    const ctr = post.presentations > 0 ? (post.views / post.presentations) * 100 : 0;
+
+    let readTier;
+    if (readRatio >= BENCHMARKS.EXCELLENT) readTier = 'EXCELLENT';
+    else if (readRatio >= BENCHMARKS.GOOD) readTier = 'GOOD';
+    else if (readRatio >= BENCHMARKS.AVERAGE) readTier = 'AVERAGE';
+    else if (readRatio >= BENCHMARKS.LOW) readTier = 'LOW';
+    else readTier = 'CONCERNING';
+
+    let ctrTier;
+    if (ctr >= CTR_BENCHMARKS.STRONG) ctrTier = 'STRONG';
+    else if (ctr >= CTR_BENCHMARKS.OK) ctrTier = 'OK';
+    else if (ctr >= CTR_BENCHMARKS.WEAK) ctrTier = 'WEAK';
+    else ctrTier = 'POOR';
+
+    // Diagnose what needs fixing based on the two metrics
+    // CTR = title/subtitle/image problem (discovery)
+    // Read ratio = content/opening problem (retention)
+    let diagnosis;
+    if (ctr >= CTR_BENCHMARKS.STRONG && readRatio >= BENCHMARKS.GOOD) {
+      diagnosis = 'WINNING - both discovery and retention strong';
+    } else if (ctr >= CTR_BENCHMARKS.OK && readRatio >= BENCHMARKS.GOOD) {
+      diagnosis = 'GOOD - content is strong, title could be sharper';
+    } else if (ctr >= CTR_BENCHMARKS.STRONG && readRatio < BENCHMARKS.AVERAGE) {
+      diagnosis = 'FIX CONTENT - title works but readers leave early. Strengthen opening paragraphs.';
+    } else if (ctr < CTR_BENCHMARKS.WEAK && readRatio >= BENCHMARKS.GOOD) {
+      diagnosis = 'FIX TITLE - content is great but nobody clicks. Rewrite title/subtitle for curiosity gap.';
+    } else if (ctr < CTR_BENCHMARKS.WEAK && readRatio < BENCHMARKS.AVERAGE) {
+      diagnosis = 'FIX BOTH - low clicks AND low retention. Rethink title and opening.';
+    } else if (post.presentations === 0) {
+      diagnosis = 'NO DATA - old post without presentation tracking';
+    } else {
+      diagnosis = 'AVERAGE - room to improve on both fronts';
+    }
 
     return {
       ...post,
       readRatio: Math.round(readRatio * 10) / 10,
-      tier,
+      ctr: Math.round(ctr * 10) / 10,
+      readTier,
+      ctrTier,
+      diagnosis,
     };
   });
 
-  // Sort by views descending
-  analyzed.sort((a, b) => b.views - a.views);
+  // Sort by presentations descending (most impressions first)
+  analyzed.sort((a, b) => b.presentations - a.presentations || b.views - a.views);
 
-  // Aggregate stats (only include posts where views > 0 for ratio calc)
+  // Aggregate stats (only posts with views > 0)
   const postsWithViews = analyzed.filter((p) => p.views > 0);
   const totalViews = postsWithViews.reduce((s, p) => s + p.views, 0);
   const totalReads = postsWithViews.reduce((s, p) => s + p.reads, 0);
   const avgReadRatio = totalViews > 0 ? (totalReads / totalViews) * 100 : 0;
 
-  // Tier distribution
-  const tierCounts = {};
-  for (const p of analyzed) {
-    tierCounts[p.tier] = (tierCounts[p.tier] || 0) + 1;
-  }
+  const postsWithPres = analyzed.filter((p) => p.presentations > 0);
+  const totalPres = postsWithPres.reduce((s, p) => s + p.presentations, 0);
+  const totalViewsFromPres = postsWithPres.reduce((s, p) => s + p.views, 0);
+  const avgCtr = totalPres > 0 ? (totalViewsFromPres / totalPres) * 100 : 0;
 
-  // Identify patterns
-  const highViewLowRatio = analyzed.filter(
-    (p) => p.views >= 1000 && p.readRatio < 15
-  );
-  const lowViewHighRatio = analyzed.filter(
-    (p) => p.views < 500 && p.readRatio >= 15
-  );
-  const topPerformers = analyzed.filter(
-    (p) => p.views >= 5000 && p.readRatio >= 30
-  );
-  const underperformers = analyzed.filter(
-    (p) => p.views < 300 && p.readRatio < 15
-  );
+  // Diagnosis distribution
+  const diagCounts = {};
+  for (const p of analyzed) {
+    const key = p.diagnosis.split(' - ')[0];
+    diagCounts[key] = (diagCounts[key] || 0) + 1;
+  }
 
   return {
     posts: analyzed,
     summary: {
       totalPosts: analyzed.length,
+      totalPresentations: totalPres,
       totalViews,
       totalReads,
+      avgCtr: Math.round(avgCtr * 10) / 10,
       avgReadRatio: Math.round(avgReadRatio * 10) / 10,
-      tierCounts,
-    },
-    patterns: {
-      highViewLowRatio,
-      lowViewHighRatio,
-      topPerformers,
-      underperformers,
+      diagCounts,
     },
   };
 }
@@ -237,186 +264,123 @@ function analyzeStats(posts) {
 // ─── Report Generator ────────────────────────────────────────
 
 function generateReport(analysis) {
-  const { posts, summary, patterns } = analysis;
+  const { posts, summary } = analysis;
   const lines = [];
 
   lines.push('');
-  lines.push('='.repeat(80));
+  lines.push('='.repeat(100));
   lines.push('  MEDIUM ANALYTICS REPORT');
   lines.push('  Generated: ' + new Date().toISOString().split('T')[0]);
-  lines.push('='.repeat(80));
+  lines.push('='.repeat(100));
 
   // Summary
   lines.push('');
   lines.push('OVERVIEW');
-  lines.push('-'.repeat(40));
-  lines.push(`  Total posts:      ${summary.totalPosts}`);
-  lines.push(`  Total views:      ${summary.totalViews.toLocaleString()}`);
-  lines.push(`  Total reads:      ${summary.totalReads.toLocaleString()}`);
-  lines.push(`  Avg read ratio:   ${summary.avgReadRatio}%`);
+  lines.push('-'.repeat(50));
+  lines.push(`  Total posts:         ${summary.totalPosts}`);
+  lines.push(`  Total impressions:   ${summary.totalPresentations.toLocaleString()}`);
+  lines.push(`  Total views:         ${summary.totalViews.toLocaleString()}`);
+  lines.push(`  Total reads:         ${summary.totalReads.toLocaleString()}`);
+  lines.push(`  Avg CTR:             ${summary.avgCtr}% (impressions -> views)`);
+  lines.push(`  Avg read ratio:      ${summary.avgReadRatio}% (views -> reads)`);
   lines.push('');
-  lines.push('  Tier distribution:');
-  for (const [tier, count] of Object.entries(summary.tierCounts)) {
+  lines.push('  Diagnosis distribution:');
+  for (const [diag, count] of Object.entries(summary.diagCounts)) {
     const bar = '#'.repeat(count * 3);
-    lines.push(`    ${tier.padEnd(12)} ${String(count).padStart(2)} ${bar}`);
+    lines.push(`    ${diag.padEnd(14)} ${String(count).padStart(2)} ${bar}`);
   }
 
-  // All posts table
+  // All posts table with CTR + Read Ratio + Diagnosis
   lines.push('');
-  lines.push('ALL POSTS (sorted by views)');
-  lines.push('-'.repeat(80));
+  lines.push('ALL POSTS (sorted by impressions)');
+  lines.push('-'.repeat(100));
   lines.push(
     '  ' +
     '#'.padEnd(3) +
-    'Title'.padEnd(40) +
-    'Views'.padStart(8) +
-    'Reads'.padStart(8) +
-    'Ratio'.padStart(7) +
-    '  Tier'
+    'Title'.padEnd(32) +
+    'Impr.'.padStart(7) +
+    'Views'.padStart(7) +
+    'Reads'.padStart(7) +
+    'CTR'.padStart(6) +
+    'Read%'.padStart(7) +
+    '  What to fix'
   );
-  lines.push('-'.repeat(80));
+  lines.push('-'.repeat(100));
 
   posts.forEach((p, i) => {
-    const title = p.title.length > 37 ? p.title.substring(0, 37) + '...' : p.title;
+    const title = p.title.length > 29 ? p.title.substring(0, 29) + '...' : p.title;
+    const ctrStr = p.ctr > 0 ? p.ctr + '%' : '-';
     const ratioStr = p.readRatio > 0 ? p.readRatio + '%' : '-';
+    const diag = p.diagnosis.split(' - ')[0];
     lines.push(
       '  ' +
       String(i + 1).padEnd(3) +
-      title.padEnd(40) +
-      p.views.toLocaleString().padStart(8) +
-      p.reads.toLocaleString().padStart(8) +
+      title.padEnd(32) +
+      p.presentations.toLocaleString().padStart(7) +
+      p.views.toLocaleString().padStart(7) +
+      p.reads.toLocaleString().padStart(7) +
+      ctrStr.padStart(6) +
       ratioStr.padStart(7) +
-      '  ' + p.tier
+      '  ' + diag
     );
   });
 
-  // Pattern insights
-  lines.push('');
-  lines.push('='.repeat(80));
-  lines.push('  INSIGHTS & PATTERNS');
-  lines.push('='.repeat(80));
+  // Detailed diagnosis for each post that needs work
+  const needsWork = posts.filter(p =>
+    p.diagnosis.startsWith('FIX') || p.diagnosis.startsWith('AVERAGE')
+  );
 
-  if (patterns.highViewLowRatio.length > 0) {
+  if (needsWork.length > 0) {
     lines.push('');
-    lines.push('HIGH VIEWS, LOW READ RATIO (title/content mismatch?)');
-    lines.push('-'.repeat(60));
-    lines.push('  These posts attract clicks but readers leave early.');
-    lines.push('  Possible causes: title overpromises, weak opening,');
-    lines.push('  too long, or content does not match expectations.');
-    lines.push('');
-    for (const p of patterns.highViewLowRatio) {
-      lines.push(`  - "${p.title.substring(0, 55)}"`);
-      lines.push(`    ${p.views.toLocaleString()} views, ${p.readRatio}% read ratio`);
+    lines.push('='.repeat(100));
+    lines.push('  WHAT TO FIX (per post)');
+    lines.push('='.repeat(100));
+
+    for (const p of needsWork) {
+      const title = p.title.length > 55 ? p.title.substring(0, 55) + '...' : p.title;
+      lines.push('');
+      lines.push(`  "${title}"`);
+      lines.push(`  ${p.diagnosis}`);
+      if (p.diagnosis.startsWith('FIX TITLE') || p.diagnosis.startsWith('FIX BOTH')) {
+        lines.push('  -> Rewrite title to create a curiosity gap. Ask: does the headline give away the conclusion?');
+        lines.push('  -> Check subtitle preview in feed. Is it compelling on its own?');
+        lines.push('  -> Consider a stronger featured image.');
+      }
+      if (p.diagnosis.startsWith('FIX CONTENT') || p.diagnosis.startsWith('FIX BOTH')) {
+        lines.push('  -> Strengthen the first 2-3 sentences. Deliver on the title promise immediately.');
+        lines.push('  -> Consider a TL;DR at the top for longer posts.');
+        lines.push('  -> Check if the post is too long for the promise the title makes.');
+      }
     }
   }
 
-  if (patterns.lowViewHighRatio.length > 0) {
+  // Winners
+  const winners = posts.filter(p => p.diagnosis.startsWith('WINNING') || p.diagnosis.startsWith('GOOD'));
+  if (winners.length > 0) {
     lines.push('');
-    lines.push('LOW VIEWS, HIGH READ RATIO (distribution problem?)');
-    lines.push('-'.repeat(60));
-    lines.push('  These posts are engaging but not getting discovered.');
-    lines.push('  Possible fixes: better title, submit to publications,');
-    lines.push('  cross-post to social media, improve SEO/tags.');
-    lines.push('');
-    for (const p of patterns.lowViewHighRatio) {
-      lines.push(`  - "${p.title.substring(0, 55)}"`);
-      lines.push(`    ${p.views.toLocaleString()} views, ${p.readRatio}% read ratio`);
+    lines.push('='.repeat(100));
+    lines.push('  WHAT IS WORKING');
+    lines.push('='.repeat(100));
+
+    for (const p of winners) {
+      const title = p.title.length > 55 ? p.title.substring(0, 55) + '...' : p.title;
+      lines.push(`  "${title}"  CTR: ${p.ctr}% | Read: ${p.readRatio}%`);
     }
   }
 
-  if (patterns.topPerformers.length > 0) {
-    lines.push('');
-    lines.push('TOP PERFORMERS (high views AND high read ratio)');
-    lines.push('-'.repeat(60));
-    lines.push('  Study what makes these work. Replicate the pattern.');
-    lines.push('');
-    for (const p of patterns.topPerformers) {
-      lines.push(`  - "${p.title.substring(0, 55)}"`);
-      lines.push(`    ${p.views.toLocaleString()} views, ${p.readRatio}% read ratio`);
-    }
-  }
-
-  // Recommendations
   lines.push('');
-  lines.push('='.repeat(80));
-  lines.push('  RECOMMENDATIONS');
-  lines.push('='.repeat(80));
-
-  // Generate contextual recommendations based on data
-  const recommendations = generateRecommendations(analysis);
-  recommendations.forEach((rec, i) => {
-    lines.push('');
-    lines.push(`${i + 1}. ${rec.title}`);
-    rec.details.forEach((d) => lines.push(`   ${d}`));
-  });
-
+  lines.push('='.repeat(100));
+  lines.push('  METRICS EXPLAINED');
+  lines.push('='.repeat(100));
+  lines.push('  CTR = Impressions -> Views. Low CTR = fix title/subtitle/image (discovery problem)');
+  lines.push('  Read% = Views -> Reads. Low Read% = fix opening/content (retention problem)');
+  lines.push('  CTR benchmarks: STRONG 15%+ | OK 10-15% | WEAK 5-10% | POOR <5%');
+  lines.push('  Read benchmarks: EXCELLENT 40%+ | GOOD 30-40% | AVERAGE 20-30% | LOW <20%');
   lines.push('');
-  lines.push('='.repeat(80));
 
   return lines.join('\n');
 }
 
-function generateRecommendations(analysis) {
-  const { summary, patterns } = analysis;
-  const recs = [];
-
-  if (patterns.highViewLowRatio.length > 0) {
-    recs.push({
-      title: 'FIX THE TITLE-CONTENT GAP',
-      details: [
-        `${patterns.highViewLowRatio.length} posts have high views but low read ratios.`,
-        'Your titles are attracting clicks, but readers leave before 30 seconds.',
-        'Action: Strengthen your opening paragraphs - deliver on the title promise',
-        'within the first 2-3 sentences. Use a hook that previews the payoff.',
-        'Consider: Are these posts too long for the promise? A provocative title',
-        'needs an equally compelling first paragraph to keep readers scrolling.',
-      ],
-    });
-  }
-
-  if (patterns.topPerformers.length > 0) {
-    recs.push({
-      title: 'DOUBLE DOWN ON WHAT WORKS',
-      details: [
-        `Your top ${patterns.topPerformers.length} posts combine discovery + engagement.`,
-        'Common pattern in your top posts: practical, technical how-to content.',
-        'These posts rank well in search (evergreen) and deliver clear value.',
-        'Action: Write more tutorial/how-to content alongside opinion pieces.',
-        'Consider: Can you add practical sections to your opinion posts?',
-      ],
-    });
-  }
-
-  if (summary.avgReadRatio < 25) {
-    recs.push({
-      title: 'IMPROVE OVERALL READ RATIO',
-      details: [
-        `Your average read ratio is ${summary.avgReadRatio}% (benchmark: 30-40%).`,
-        'Medium uses read ratio to rank and recommend posts.',
-        'Quick wins:',
-        '  - Shorter paragraphs (3-4 sentences max)',
-        '  - Use subheadings every 200-300 words',
-        '  - Front-load the most valuable insight',
-        '  - Add a "TL;DR" or key takeaway at the top',
-        '  - End with a clear call-to-action or question',
-      ],
-    });
-  }
-
-  recs.push({
-    title: 'COMMENT ENGAGEMENT STRATEGY',
-    details: [
-      'Reply to every comment within 24 hours if possible.',
-      'Use the 1-3-1 structure: 1 hook, 3 content lines, 1 closer.',
-      'Share relevant personal experience in your replies.',
-      'Ask a follow-up question to keep the conversation going.',
-      'Replying boosts your post in Medium\'s algorithm.',
-      'Run: node scripts/medium-cdp.js comments "<url>" to check.',
-    ],
-  });
-
-  return recs;
-}
 
 // ─── CLI ─────────────────────────────────────────────────────
 
