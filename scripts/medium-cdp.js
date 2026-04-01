@@ -694,6 +694,81 @@ async function clapForComment(context, postUrl, commentIndex, clapCount = 1) {
   }
 }
 
+// ─── Reply Nested (via comment permalink page) ──────────────
+
+async function replyNested(context, commentUrl, replyText) {
+  const page = await context.newPage();
+  try {
+    console.log(`Navigating to comment: ${commentUrl}`);
+    await page.goto(commentUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
+    await page.waitForTimeout(5000);
+
+    // Full scroll to load content
+    const h = await page.evaluate(() => document.body.scrollHeight);
+    for (let y = 0; y < h; y += 300) {
+      await page.evaluate((sy) => window.scrollTo(0, sy), y);
+      await page.waitForTimeout(100);
+    }
+    await page.waitForTimeout(2000);
+
+    // Open responses panel via speech bubble SVG
+    await page.evaluate(() => {
+      const btn = Array.from(document.querySelectorAll('button')).find(b => {
+        const svg = b.querySelector('svg');
+        if (!svg || b.getBoundingClientRect().width === 0) return false;
+        return Array.from(svg.querySelectorAll('path')).some(p =>
+          (p.getAttribute('d') || '').includes('18.006'));
+      });
+      if (btn) { btn.scrollIntoView({ behavior: 'instant', block: 'center' }); btn.click(); }
+    });
+    await page.waitForTimeout(5000);
+
+    // Find editor in panel
+    const editorPos = await page.evaluate(() => {
+      for (const ed of document.querySelectorAll('[contenteditable=true]')) {
+        const r = ed.getBoundingClientRect();
+        if (r.width > 0 && r.x > 700) return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+      }
+      return null;
+    });
+
+    if (!editorPos) {
+      console.error('No editor found on comment page.');
+      return false;
+    }
+
+    // Type via CDP mouse click (real focus) + keyboard
+    await page.mouse.click(editorPos.x, editorPos.y);
+    await page.waitForTimeout(500);
+    await page.keyboard.type(replyText, { delay: 5 });
+    await page.waitForTimeout(1000);
+    console.log('Typed reply...');
+
+    // Click Respond
+    const respondPos = await page.evaluate(() => {
+      const btn = Array.from(document.querySelectorAll('button')).find(b =>
+        b.textContent.trim() === 'Respond' && b.getBoundingClientRect().width > 0
+          && b.getBoundingClientRect().x > 700);
+      if (!btn) return null;
+      const r = btn.getBoundingClientRect();
+      return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+    });
+
+    if (!respondPos) {
+      console.error('No Respond button found.');
+      return false;
+    }
+
+    await page.mouse.click(respondPos.x, respondPos.y);
+    await page.waitForTimeout(5000);
+    console.log('Nested reply posted!');
+    return true;
+  } finally {
+    await page.close();
+  }
+}
+
 // ─── Snapshot ────────────────────────────────────────────────
 
 async function snapshot(context, url) {
@@ -782,6 +857,7 @@ Usage:
   node scripts/medium-cdp.js comments <post-url>                        Get comments on a post
   node scripts/medium-cdp.js respond <post-url> "response text"         Post a top-level response
   node scripts/medium-cdp.js reply <post-url> <comment-index> "text"    Reply to a specific comment
+  node scripts/medium-cdp.js reply-nested <comment-url> "text"          Reply to a nested comment via its permalink
   node scripts/medium-cdp.js clap <post-url> post [count]              Clap for article (default 50)
   node scripts/medium-cdp.js clap <post-url> <comment-index> [count]   Clap for comment (default 1)
   node scripts/medium-cdp.js snapshot <url>                             Debug: save page HTML
@@ -817,6 +893,11 @@ async function main() {
         console.error('Usage: reply <post-url> <index> "text"'); process.exit(1);
       }
       break;
+    case 'reply-nested':
+      if (!args[1] || !args[2]) {
+        console.error('Usage: reply-nested <comment-url> "text"'); process.exit(1);
+      }
+      break;
     case 'clap':
       if (!args[1]) { console.error('Usage: clap <post-url> [comment-index]'); process.exit(1); }
       break;
@@ -844,6 +925,9 @@ async function main() {
         break;
       case 'reply':
         await replyToComment(context, args[1], parseInt(args[2], 10), args[3]);
+        break;
+      case 'reply-nested':
+        await replyNested(context, args[1], args[2]);
         break;
       case 'clap': {
         // clap <url>              → 1 clap for article
