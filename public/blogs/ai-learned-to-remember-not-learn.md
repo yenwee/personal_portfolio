@@ -1,4 +1,4 @@
-# AI Learned How to Remember. It Never Learned How to Learn.
+# They Call It Self-Improving AI. Nobody Checks Who Actually Improved.
 
 *Claude remembers everything I told it. I do not remember what I said. That asymmetry is the whole problem.*
 
