@@ -3,7 +3,7 @@
     {
       "id": "ai-learned-to-remember-not-learn",
       "title": "They Call It Self-Improving AI. Nobody Checks Who Actually Improved.",
-      "description": "Claude remembers everything I told it. I do not remember what I said. That asymmetry is the whole problem.",
+      "description": "I checked. The model is identical to the day it shipped. I am not.",
       "date": "2026-04-04",
       "tags": ["AI", "Software Engineering", "Production"],
       "featured": false,

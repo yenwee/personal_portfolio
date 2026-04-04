@@ -1,6 +1,6 @@
 # They Call It Self-Improving AI. Nobody Checks Who Actually Improved.
 
-*Claude remembers everything I told it. I do not remember what I said. That asymmetry is the whole problem.*
+*I checked. The model is identical to the day it shipped. I am not.*
 
 ---
 
