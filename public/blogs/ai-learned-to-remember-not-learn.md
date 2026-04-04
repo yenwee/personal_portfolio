@@ -24,9 +24,13 @@ The improvement is real. It is just not happening where I thought it was.
 
 Anthropic announced earlier this year that Claude "authors up to 90% of the code" on some internal projects. The headlines wrote themselves. Recursive self-improvement. AI building better AI. The singularity, one commit at a time.
 
-Here is what actually happens. Claude generates code. An Anthropic engineer reads it. Tests it. Evaluates whether it meets human-defined criteria. Integrates the parts that pass. Discards the rest. The engineer decides what to research next. The engineer defines success. The engineer chooses direction.
+Here is what actually happens. Claude the model generates code for Claude Code the harness. Claude Code is a TypeScript CLI that wraps around the Claude API. It handles tool calls, file reads, permission prompts, context management. It is scaffolding. The model writes code for the scaffolding. An Anthropic engineer reads it. Tests it. Integrates the parts that pass. Discards the rest.
 
-That is not self-improvement. That is autocomplete with a review cycle.
+The model is not improving itself. It is improving its own packaging. The weights that define how Claude reasons, generates, and processes language are frozen from training. Nothing the harness produces changes them. Improving Claude Code is like improving the steering wheel on a car. The engine is untouched.
+
+That is not self-improvement. That is autocomplete improving its own interface.
+
+![Peeling back the self-improvement claim -- from headline to frozen weights](/blogs/images/memory/memory-layers-misdirection.png)
 
 The distinction matters because the word "learning" implies something specific. Learning means the system changes. Not its notes. Not its input. The system itself. Its weights, its reasoning patterns, its ability to handle situations it could not handle before. That is what learning means in machine learning. That is what it means in human development. That is what it does not mean in any current production AI system.
 
@@ -38,6 +42,8 @@ There are research systems that do modify weights. MIT's SEAL framework generate
 
 No corporation will fine-tune a model on you. The liability, the compute, and the alignment risks make it structurally impossible at consumer scale. What you get instead is a text file that the model re-reads every morning, like a doctor skimming your chart in the waiting room and calling it "knowing you."
 
+![Everything that ships is retrieval. Everything that learns is research.](/blogs/images/memory/memory-retrieval-vs-learning.png)
+
 ## You are the one improving
 
 I realized this when I compared my CLAUDE.md from January to my CLAUDE.md from March.
@@ -48,11 +54,11 @@ The model did not write that document. I did. The model did not learn those fail
 
 The "self" in self-improving AI is you.
 
-I have seen this pattern before. I built an [eight-module business OS](/blogs/built-my-own-business-os) because no SaaS could connect my workflow. CRM, invoicing, projects, timesheets, expenses, reports. One Next.js app instead of five separate tools. I maintain it. I improve it. The tool does not get smarter. I get better at organizing my work inside it.
-
 Obsidian users know this feeling. Notion users know it. Roam Research users definitely know it. You build an elaborate system. You refine your templates. You organize your tags. You feel productive. And then one day you search your vault and realize you have 800 notes and you reference maybe 40 of them. The rest are a graveyard of good intentions.
 
 Peer-reviewed research on knowledge management practices confirms the pattern. Second brain tools create what researchers call an "illusion of progress." Writing a note feels like learning. Filing it feels like retaining. Neither is true. The act of capturing information is not the same as the act of internalizing it. The tool holds the knowledge. Your brain moved on the moment you hit save.
+
+![The illusion of progress -- from capture to the gap between you and your notes](/blogs/images/memory/memory-illusion-of-progress.png)
 
 AI memory has the same problem at industrial scale. Claude stores my preferences, my architecture decisions, my project context. I outsourced the remembering. But the outsourcing created a gap: the model has the information and I do not. Not because I forgot. Because I never needed to remember. The system handled it.
 
@@ -70,6 +76,8 @@ A Microsoft study on 319 knowledge workers found a correlation of r=-0.49 betwee
 
 The mechanism is well-documented. Researchers call it cognitive offloading. You delegate a mental task to an external system. Your brain, freed from the effort, stops maintaining the capacity. The Columbia study that coined the "Google Effect" in 2011 showed people remember where to find information but not the information itself. AI extends this further. You now forget entire procedures because the AI can generate them on demand.
 
+![Cognitive cost of AI assistance -- causes flowing into performance drop after removal](/blogs/images/memory/memory-cognitive-cost.png)
+
 The numbers from recent research are specific. AI assistance boosts task completion by 48-127%. Impressive. But when the AI is removed, performance drops 17% below the pre-AI baseline. Not back to where you started. Below where you started. The training wheels weakened the legs.
 
 The metacognitive part is worse. A 2025 study found that users who worked with AI overestimated their own performance by 4 points on logical reasoning tests. They scored higher with AI help. But they thought they scored even higher than they did. The self-assessment was wrong in both directions: they were not as good as they thought, and they did not know they were not as good as they thought.
@@ -79,6 +87,8 @@ Researchers call this the "Steeper Curve Illusion." You feel like you are learni
 The finding that ties this back to everything: **if you already know a domain well, AI extends your cognition.** You have the internal frameworks to evaluate its output, catch its mistakes, and integrate its suggestions into genuine understanding. The AI is a lever that amplifies existing capability.
 
 **If you do not know the domain, AI replaces the cognitive process your brain needs to build that knowledge.** The effort it removes is the effort that creates expertise. The friction it eliminates is the friction that produces learning.
+
+![The expertise dividing line -- domain knowledge determines whether AI extends or hollows your cognition](/blogs/images/memory/memory-expertise-dividing-line.png)
 
 I have been writing code for years. When Claude generates a function in a domain I understand, I catch the subtle bugs. I notice the architectural choices I would not have made. I learn from the delta between its approach and mine. The AI makes me better because I have enough foundation to use it well.
 
