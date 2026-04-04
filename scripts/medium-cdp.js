@@ -467,6 +467,29 @@ async function replyToComment(context, postUrl, commentIndex, replyText) {
   try {
     await openResponsesPanel(page, postUrl);
 
+    // Expand all truncated comments and reply threads (same as getComments)
+    for (let pass = 0; pass < 3; pass++) {
+      await page.evaluate(() => {
+        const panel = document.querySelector('[data-focus-lock-disabled]') || document;
+        // Scroll to bottom to trigger lazy loading
+        if (panel.scrollHeight) panel.scrollTop = panel.scrollHeight;
+        // Click expansion buttons
+        const btns = Array.from(panel.querySelectorAll('button'));
+        btns.filter(b => {
+          const t = b.textContent.trim();
+          return (t === 'more' || /^\d+\s*repl/i.test(t) || /show.*repl/i.test(t))
+            && b.getBoundingClientRect().width > 0;
+        }).forEach(b => b.click());
+      });
+      await page.waitForTimeout(2000);
+    }
+    // Scroll back to top so clap button ordering is correct
+    await page.evaluate(() => {
+      const panel = document.querySelector('[data-focus-lock-disabled]');
+      if (panel) panel.scrollTop = 0;
+    });
+    await page.waitForTimeout(1000);
+
     // Snapshot editor positions BEFORE clicking Reply
     const editorsBefore = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('[contenteditable=true]')).map(e => {
@@ -546,12 +569,20 @@ async function replyToComment(context, postUrl, commentIndex, replyText) {
     console.log('Typing reply...');
     await replyEditor.click({ force: true });
     await page.waitForTimeout(300);
+    // Clear any existing draft text in the editor
+    await page.keyboard.press('Meta+A');
+    await page.waitForTimeout(100);
+    await page.keyboard.press('Control+A');
+    await page.waitForTimeout(100);
+    await page.keyboard.press('Backspace');
+    await page.waitForTimeout(300);
     await page.keyboard.type(replyText, { delay: 5 });
     await page.waitForTimeout(1000);
 
-    // Submit via JS click (bypasses overlay)
+    // Submit via JS click scoped to the responses panel (bypasses overlay)
     const submitted = await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll('button')).filter(b =>
+      const panel = document.querySelector('[data-focus-lock-disabled]') || document;
+      const btns = Array.from(panel.querySelectorAll('button')).filter(b =>
         b.textContent.trim() === 'Respond' && b.getBoundingClientRect().width > 0
       );
       btns.sort((a, b) => b.getBoundingClientRect().y - a.getBoundingClientRect().y);
