@@ -441,7 +441,7 @@ export default function Home() {
         </section>
 
         {/* Tech Stack */}
-        <section className="py-10 sm:py-14 section-reveal">
+        <section className="py-16 sm:py-24 section-reveal">
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-2xl sm:text-3xl font-light">Tech Stack</h2>
