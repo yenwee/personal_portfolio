@@ -4,29 +4,17 @@ import Link from "next/link"
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import contentData from "@/lib/content.json"
-import { Bot, Globe, Settings, TrendingUp, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 import SplitText from "@/components/reactbits/SplitText"
-import DecryptedText from "@/components/reactbits/DecryptedText"
-import ShinyText from "@/components/reactbits/ShinyText"
-import CountUp from "@/components/reactbits/CountUp"
 import ScrollFloat from "@/components/reactbits/ScrollFloat"
-import RotatingText from "@/components/reactbits/RotatingText"
-import "@/components/reactbits/RotatingText.css"
 import Dock from "@/components/reactbits/Dock"
 import "@/components/reactbits/Dock.css"
-import SpotlightCard from "@/components/reactbits/SpotlightCard"
-import "@/components/reactbits/SpotlightCard.css"
-import Threads from "@/components/reactbits/Threads"
-import "@/components/reactbits/Threads.css"
 import TiltedCard from "@/components/reactbits/TiltedCard"
 import LogoLoop from "@/components/reactbits/LogoLoop"
 import "@/components/reactbits/LogoLoop.css"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
-import GlareHover from "@/components/reactbits/GlareHover"
-
-void [Bot, Globe, Settings, TrendingUp, DecryptedText, CountUp, RotatingText, SpotlightCard, TiltedCard, AnimatedContent, GlareHover]
 
 const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
   { name: "Services", id: "services" },
@@ -188,7 +176,7 @@ export default function Home() {
                   data-umami-event="cta-book-call"
                   data-umami-event-location="nav"
                 >
-                  <ShinyText text="Book a Call" speed={3} shineColor="rgba(255,255,255,0.6)" color="currentColor" />
+                  Book a Call
                 </Link>
               </div>
               <button
@@ -298,11 +286,7 @@ export default function Home() {
         </div>
       )}
 
-      <div className="absolute inset-0 h-[100vh] overflow-hidden pointer-events-none opacity-20 dark:opacity-15">
-        <Threads color={[0.5, 0.5, 0.5]} amplitude={0.8} distance={0.3} />
-      </div>
-
-      <main className="max-w-6xl mx-auto px-6 sm:px-8 pt-16 relative z-[1]">
+      <main className="max-w-6xl mx-auto px-6 sm:px-8 pt-16 relative">
         <header
           id="intro"
           className="py-16 sm:py-24 flex items-center"
@@ -408,47 +392,29 @@ export default function Home() {
           
         </header>
 
-        {/* Scroll Navigation Indicator */}
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-          <button
-            onClick={() => {
-              if (activeSection === 'connect') {
-                document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })
-              } else {
-                const currentIndex = SECTION_IDS.indexOf(activeSection || 'intro')
-                const nextSection = SECTION_IDS[currentIndex + 1]
-                if (nextSection) {
-                  document.getElementById(nextSection)?.scrollIntoView({ behavior: 'smooth' })
-                }
-              }
-            }}
-            className="group animate-gentle-float flex items-center gap-2 px-3 h-9 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
-            aria-label={activeSection === 'connect' ? 'Scroll to top' : 'Scroll to next section'}
-            data-umami-event="nav-scroll-button"
-          >
-            <span className="text-[10px] text-muted-foreground/50 font-mono tracking-wider group-hover:text-muted-foreground transition-colors duration-300">
-              {activeSection === 'connect' ? 'TOP' : (() => {
-                const labels: Record<string, string> = { intro: 'TOP', services: 'SERVICES', work: 'EXPERIENCE', education: 'EDUCATION', connect: 'CONNECT' }
-                const currentIndex = SECTION_IDS.indexOf(activeSection || 'intro')
-                const nextId = SECTION_IDS[currentIndex + 1]
-                return nextId ? labels[nextId] || nextId.toUpperCase() : ''
-              })()}
-            </span>
-            <svg
-              className={`w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-foreground transition-all duration-300 ${activeSection === 'connect' ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        {/* Back to top */}
+        {activeSection && activeSection !== 'intro' && (
+          <div className="fixed bottom-8 right-8 z-10">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="group flex items-center gap-2 px-3 h-9 rounded-full border border-border/60 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+              aria-label="Back to top"
+              data-umami-event="nav-back-to-top"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </button>
-        </div>
+              <svg
+                className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-foreground transition-colors duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+              <span className="text-[10px] text-muted-foreground/50 font-mono tracking-wider group-hover:text-muted-foreground transition-colors duration-300">
+                TOP
+              </span>
+            </button>
+          </div>
+        )}
 
         <section
           id="services"
@@ -475,7 +441,7 @@ export default function Home() {
         </section>
 
         {/* Tech Stack */}
-        <section className="py-16 sm:py-24 section-reveal">
+        <section className="py-10 sm:py-14 section-reveal">
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="text-2xl sm:text-3xl font-light">Tech Stack</h2>
@@ -501,7 +467,7 @@ export default function Home() {
 
         <section
           id="work"
-          className="py-16 sm:py-24 section-reveal"
+          className="py-16 sm:py-24 -mx-6 sm:-mx-8 px-6 sm:px-8 bg-muted/30 rounded-2xl section-reveal"
         >
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -561,13 +527,13 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-16 sm:py-24 section-reveal">
+        <section className="py-12 sm:py-16 section-reveal">
           <div className="space-y-8 sm:space-y-10">
             <div className="text-xs text-muted-foreground font-mono tracking-wider">WHAT PEOPLE SAY</div>
 
             <div className="space-y-8">
               {contentData.testimonials.map((testimonial: { quote: string; name: string; title: string; company: string }, index: number) => (
-                <blockquote key={index} className="border-l-2 border-border/60 pl-6 py-1">
+                <blockquote key={index} className="border-l-2 border-foreground/20 pl-6 py-1">
                   <p className="text-muted-foreground leading-relaxed">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
@@ -671,11 +637,11 @@ export default function Home() {
                     <div className="w-7 h-7 relative shrink-0">
                       <Image src={edu.logo} alt={edu.institution} fill className="rounded-sm object-contain" />
                     </div>
-                    <span className="text-xs text-muted-foreground/60 font-mono">{edu.period.replace("Feb ", "").replace("May ", "")}</span>
+                    <span className="text-xs text-muted-foreground/60 font-mono">{edu.period.replace(/[A-Za-z]+\s/g, "")}</span>
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-foreground">{edu.degree}</h3>
-                    <div className="text-sm text-muted-foreground">{edu.institution} {"\u00b7"} {edu.honors} {"\u00b7"} {edu.gpa.replace("Cumulative GPA: ", "")}</div>
+                    <div className="text-sm text-muted-foreground">{edu.institution} {"\u00b7"} {edu.honors} {"\u00b7"} {edu.gpa.replace(/^Cumulative GPA:\s*/, "")}</div>
                   </div>
                 </div>
               ))}
@@ -700,7 +666,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" className="py-16 sm:py-24 section-reveal">
+        <section id="connect" className="py-20 sm:py-32 section-reveal">
           <div className="space-y-8">
             <div className="max-w-2xl space-y-4">
               <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Have a project in mind?</ScrollFloat>

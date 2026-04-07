@@ -31,13 +31,13 @@
   ],
   "testimonials": [
     {
-      "quote": "Yen Wee took our AI platform from a concept deck to a production system with 15 agents in under a year. The 80% improvement in MLOps efficiency wasn't just a metric -- it changed how our entire team works.",
+      "quote": "Yen Wee took our AI platform from a concept deck to a production system with 15 agents in under a year. The 80% improvement in MLOps efficiency wasn't just a metric \u2014it changed how our entire team works.",
       "name": "Director",
       "title": "",
       "company": "Tech Company"
     },
     {
-      "quote": "He built dashboards cross-functional teams actually wanted to use -- not just functional, but genuinely intuitive. What stood out was how he translated messy business questions into clean, actionable views. One of the strongest I've worked with.",
+      "quote": "He built dashboards cross-functional teams actually wanted to use \u2014not just functional, but genuinely intuitive. What stood out was how he translated messy business questions into clean, actionable views. One of the strongest I've worked with.",
       "name": "Analytics Manager",
       "title": "",
       "company": "Regional Tech Company"
@@ -60,7 +60,7 @@
     "ogUrl": "https://weeai.dev"
   },
   "intro": {
-    "description": "Whether you need production AI agents, scalable data platforms, or full-stack applications -- I ship systems that deliver measurable results. Let's discuss your next project."
+    "description": "Whether you need production AI agents, scalable data platforms, or full-stack applications \u2014I ship systems that deliver measurable results. Let's discuss your next project."
   },
   "currentRole": {
     "position": "Lead AI Solutions",
@@ -71,7 +71,7 @@
   "services": [
     {
       "title": "AI Agents & LLM Systems",
-      "description": "15+ LangGraph agents in production -- data mining, report generation, deep research. Each with bounded autonomy, human-in-the-loop gates, and structured observability."
+      "description": "15+ LangGraph agents in production \u2014data mining, report generation, deep research. Each with bounded autonomy, human-in-the-loop gates, and structured observability."
     },
     {
       "title": "Full-Stack Applications",
@@ -79,7 +79,7 @@
     },
     {
       "title": "Data & MLOps Platforms",
-      "description": "Built a 6TB PostgreSQL warehouse with daily ETL at Credit Bureau Malaysia. Model retraining, feature stores, Airflow pipelines -- at national scale."
+      "description": "Built a 6TB PostgreSQL warehouse with daily ETL at Credit Bureau Malaysia. Model retraining, feature stores, Airflow pipelines \u2014at national scale."
     },
     {
       "title": "Dashboards & Analytics",

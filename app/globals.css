@@ -176,16 +176,6 @@
     display: none;
   }
 
-  /* Gentle float for scroll indicator — replaces competing bounce+pulse */
-  .animate-gentle-float {
-    animation: gentle-float 3s ease-in-out infinite;
-  }
-
-  @keyframes gentle-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
-  }
-
   /* Side nav dot scale on hover */
   .nav-dot {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -223,40 +213,6 @@
   }
   .card-lift:hover {
     transform: translateY(-2px);
-  }
-
-  /* Gradient text for hero name */
-  .text-gradient {
-    background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Service icon tints */
-  .icon-tint-blue {
-    background-color: oklch(0.95 0.03 260);
-  }
-  .dark .icon-tint-blue {
-    background-color: oklch(0.25 0.04 260);
-  }
-  .icon-tint-green {
-    background-color: oklch(0.95 0.03 160);
-  }
-  .dark .icon-tint-green {
-    background-color: oklch(0.25 0.04 160);
-  }
-  .icon-tint-purple {
-    background-color: oklch(0.95 0.03 300);
-  }
-  .dark .icon-tint-purple {
-    background-color: oklch(0.25 0.04 300);
-  }
-  .icon-tint-orange {
-    background-color: oklch(0.95 0.03 60);
-  }
-  .dark .icon-tint-orange {
-    background-color: oklch(0.25 0.04 60);
   }
 
   /* Hero staggered entrance - uses animation shorthand to guarantee fill-mode */
