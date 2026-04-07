@@ -1,6 +1,17 @@
 {
   "posts": [
     {
+      "id": "ai-trust-double-standard",
+      "title": "We Hold AI to a Standard Humans Never Met. Then We Blame It When We Fall Short.",
+      "description": "I made an error in a published article. A reader said that proved a machine wrote it.",
+      "date": "2026-04-07",
+      "tags": ["AI", "Software Engineering", "Production"],
+      "featured": false,
+      "readTime": 7,
+      "draft": false,
+      "featuredImage": "/blogs/images/trust-standard/trust-standard-featured.png"
+    },
+    {
       "id": "ai-learned-to-remember-not-learn",
       "title": "They Call It Self-Improving AI. Nobody Checks Who Actually Improved.",
       "description": "I checked. The model is identical to the day it shipped. I am not.",
