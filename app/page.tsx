@@ -36,9 +36,13 @@ const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
   { name: "Connect", id: "connect" },
 ]
 
+const SECTION_IDS = ['intro', 'services', 'work', 'education', 'connect']
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [cmdkOpen, setCmdkOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
   const viewedSectionsRef = useRef<Set<string>>(new Set())
 
   useEffect(() => {
@@ -70,13 +74,84 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
+  // Scroll progress bar
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      setScrollProgress(docHeight > 0 ? scrollTop / docHeight : 0)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) return
+
+      // Cmd/Ctrl+K → command palette
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setCmdkOpen(prev => !prev)
+        return
+      }
+
+      // Esc → close menu/palette
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false)
+        setCmdkOpen(false)
+        return
+      }
+
+      // t → toggle theme
+      if (e.key === 't') {
+        document.documentElement.classList.toggle('dark')
+        const isDark = document.documentElement.classList.contains('dark')
+        localStorage.setItem('theme', isDark ? 'dark' : 'light')
+        return
+      }
+
+      // 1-5 → jump to sections
+      const num = parseInt(e.key)
+      if (num >= 1 && num <= SECTION_IDS.length) {
+        e.preventDefault()
+        const sectionId = SECTION_IDS[num - 1]
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+        setCmdkOpen(false)
+      }
+
+      // Home/End
+      if (e.key === 'Home') {
+        e.preventDefault()
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      if (e.key === 'End') {
+        e.preventDefault()
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
     setMobileMenuOpen(false)
+    setCmdkOpen(false)
   }
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-30 h-[2px]">
+        <div
+          className="h-full bg-foreground/20 transition-[width] duration-150 ease-out"
+          style={{ width: `${scrollProgress * 100}%` }}
+        />
+      </div>
+
       <nav className="fixed top-0 left-0 right-0 z-20 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="flex items-center justify-between h-16">
@@ -97,11 +172,14 @@ export default function Home() {
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`text-sm transition-colors duration-300 hover:text-foreground ${
+                      className={`relative text-sm transition-colors duration-300 hover:text-foreground ${
                         activeSection === item.id ? "text-foreground" : "text-muted-foreground"
                       }`}
                     >
                       {item.name}
+                      {activeSection === item.id && (
+                        <span className="absolute -bottom-1 left-0 right-0 h-px bg-foreground/50" />
+                      )}
                     </button>
                   )
                 ))}
@@ -116,6 +194,14 @@ export default function Home() {
                   <ShinyText text="Book a Call" speed={3} shineColor="rgba(255,255,255,0.6)" color="currentColor" />
                 </Link>
               </div>
+              <button
+                onClick={() => setCmdkOpen(true)}
+                className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border/60 hover:border-foreground/30 text-muted-foreground/40 hover:text-muted-foreground transition-all duration-300"
+                aria-label="Open command palette"
+              >
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <span className="text-[10px] font-mono">&#8984;K</span>
+              </button>
               <ThemeToggle />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -174,6 +260,46 @@ export default function Home() {
           </div>
         )}
       </nav>
+
+      {/* Cmd+K Command Palette */}
+      {cmdkOpen && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]" onClick={() => setCmdkOpen(false)}>
+          <div className="fixed inset-0 bg-background/60 backdrop-blur-sm" />
+          <div
+            className="relative w-full max-w-md mx-4 bg-background border border-border rounded-lg shadow-2xl overflow-hidden animate-fade-in-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-4 py-3 border-b border-border/50 text-xs text-muted-foreground/50 font-mono flex items-center justify-between">
+              <span>NAVIGATE</span>
+              <span>ESC to close</span>
+            </div>
+            <div className="py-2">
+              {SECTION_IDS.map((id, index) => {
+                const labels: Record<string, string> = { intro: 'Home', services: 'Services', work: 'Experience', education: 'Education', connect: 'Connect' }
+                return (
+                  <button
+                    key={id}
+                    onClick={() => scrollToSection(id)}
+                    className={`w-full px-4 py-2.5 flex items-center justify-between text-sm transition-colors duration-150 hover:bg-muted/50 ${activeSection === id ? 'text-foreground' : 'text-muted-foreground'}`}
+                  >
+                    <span>{labels[id] || id}</span>
+                    <span className="text-xs text-muted-foreground/40 font-mono">{index + 1}</span>
+                  </button>
+                )
+              })}
+              <div className="border-t border-border/30 mt-1 pt-1">
+                <Link href="/projects" className="w-full px-4 py-2.5 flex items-center text-sm text-muted-foreground hover:bg-muted/50 transition-colors duration-150" onClick={() => setCmdkOpen(false)}>Projects</Link>
+                <Link href="/blogs" className="w-full px-4 py-2.5 flex items-center text-sm text-muted-foreground hover:bg-muted/50 transition-colors duration-150" onClick={() => setCmdkOpen(false)}>Blog</Link>
+              </div>
+            </div>
+            <div className="px-4 py-2 border-t border-border/30 flex items-center gap-4 text-[10px] text-muted-foreground/40 font-mono">
+              <span>1-5 jump</span>
+              <span>t theme</span>
+              <span>Home/End scroll</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="absolute inset-0 h-[100vh] overflow-hidden pointer-events-none opacity-20 dark:opacity-15">
         <Threads color={[0.5, 0.5, 0.5]} amplitude={0.8} distance={0.3} />
@@ -292,20 +418,27 @@ export default function Home() {
               if (activeSection === 'connect') {
                 document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })
               } else {
-                const sections = ['intro', 'services', 'work', 'education', 'connect']
-                const currentIndex = sections.indexOf(activeSection || 'intro')
-                const nextSection = sections[currentIndex + 1]
+                const currentIndex = SECTION_IDS.indexOf(activeSection || 'intro')
+                const nextSection = SECTION_IDS[currentIndex + 1]
                 if (nextSection) {
                   document.getElementById(nextSection)?.scrollIntoView({ behavior: 'smooth' })
                 }
               }
             }}
-            className="group animate-gentle-float flex items-center justify-center w-11 h-11 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+            className="group animate-gentle-float flex items-center gap-2 px-3 h-9 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
             aria-label={activeSection === 'connect' ? 'Scroll to top' : 'Scroll to next section'}
             data-umami-event="nav-scroll-button"
           >
+            <span className="text-[10px] text-muted-foreground/50 font-mono tracking-wider group-hover:text-muted-foreground transition-colors duration-300">
+              {activeSection === 'connect' ? 'TOP' : (() => {
+                const labels: Record<string, string> = { intro: 'TOP', services: 'SERVICES', work: 'EXPERIENCE', education: 'EDUCATION', connect: 'CONNECT' }
+                const currentIndex = SECTION_IDS.indexOf(activeSection || 'intro')
+                const nextId = SECTION_IDS[currentIndex + 1]
+                return nextId ? labels[nextId] || nextId.toUpperCase() : ''
+              })()}
+            </span>
             <svg
-              className={`w-4 h-4 text-muted-foreground group-hover:text-foreground transition-all duration-300 ${activeSection === 'connect' ? 'rotate-180' : ''}`}
+              className={`w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-foreground transition-all duration-300 ${activeSection === 'connect' ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
