@@ -26,24 +26,11 @@ import "@/components/reactbits/LogoLoop.css"
 import AnimatedContent from "@/components/reactbits/AnimatedContent"
 import GlareHover from "@/components/reactbits/GlareHover"
 
-function AnimatedStat({ value, label }: { value: string; label: string }) {
-  const numericMatch = value.match(/^(\d+)(.*)$/)
-  const targetNum = numericMatch ? parseInt(numericMatch[1], 10) : 0
-  const suffix = numericMatch ? numericMatch[2] : value
-
-  return (
-    <div className="text-center space-y-1">
-      <div className="text-2xl sm:text-3xl font-medium text-foreground">
-        {targetNum ? (
-          <><CountUp to={targetNum} duration={1.5} className="" />{suffix}</>
-        ) : value}
-      </div>
-      <div className="text-xs text-muted-foreground font-mono tracking-wider">{label}</div>
-    </div>
-  )
-}
+void [Bot, Globe, Settings, TrendingUp, DecryptedText, CountUp, RotatingText, SpotlightCard, TiltedCard, AnimatedContent, GlareHover]
 
 const NAV_ITEMS: { name: string; id: string; href?: string }[] = [
+  { name: "Services", id: "services" },
+  { name: "Experience", id: "work" },
   { name: "Projects", id: "projects", href: "/projects" },
   { name: "Blog", id: "blog", href: "/blogs" },
   { name: "Connect", id: "connect" },
@@ -200,22 +187,14 @@ export default function Home() {
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full items-center">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               <div className="space-y-3 sm:space-y-2">
-                <DecryptedText
-                  text={contentData.header.tagline}
-                  animateOn="view"
-                  sequential
-                  speed={30}
-                  maxIterations={15}
-                  revealDirection="start"
-                  className="text-sm text-muted-foreground font-mono tracking-wider"
-                  parentClassName="text-sm text-muted-foreground font-mono tracking-wider"
-                  encryptedClassName="text-sm text-muted-foreground/40 font-mono tracking-wider"
-                />
+                <div className="text-sm text-muted-foreground font-mono tracking-wider hero-stagger" style={{ animationDelay: '0ms' }}>
+                  {contentData.header.tagline}
+                </div>
                 <SplitText
                   text={contentData.personal.name}
                   tag="h1"
                   className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight"
-                  charClassName="text-gradient"
+                  charClassName="text-foreground"
                   delay={50}
                   duration={0.6}
                   textAlign="left"
@@ -230,17 +209,8 @@ export default function Home() {
                   ))}
                   {contentData.personal.titleClosing}
                 </p>
-                <div className="text-sm text-muted-foreground/60 flex items-center gap-1.5">
-                  <RotatingText
-                    texts={["AI agents", "Workflow automation", "Full-stack apps", "Data platforms"]}
-                    rotationInterval={2500}
-                    staggerDuration={0.02}
-                    mainClassName="text-muted-foreground/60 overflow-hidden"
-                    splitLevelClassName=""
-                    elementLevelClassName=""
-                  />
-                  <span>&middot;</span>
-                  <span>Ship to production</span>
+                <div className="text-sm text-muted-foreground/60">
+                  AI agents, full-stack apps, data platforms. Ship to production.
                 </div>
               </div>
 
@@ -272,11 +242,32 @@ export default function Home() {
 
               <div className="flex items-center gap-4 text-sm text-muted-foreground/60 hero-stagger" style={{ animationDelay: '400ms' }}>
                 <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-status-pulse"></div>
                   {contentData.personal.availability}
                 </div>
                 <span>&middot;</span>
                 <div>{contentData.personal.location}</div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 hero-stagger" style={{ animationDelay: '500ms' }}>
+                {contentData.metrics.map((metric: { value: string; label: string }, index: number) => (
+                  <div key={index} className="flex items-baseline gap-1.5">
+                    <span className="text-sm font-medium text-foreground">{metric.value}</span>
+                    <span className="text-xs text-muted-foreground/50">{metric.label}</span>
+                  </div>
+                ))}
+                {contentData.publishedIn.map((pub: { name: string; logo: string; url: string }, index: number) => (
+                  <Link
+                    key={`pub-${index}`}
+                    href={pub.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300"
+                  >
+                    <Image src={pub.logo} alt={pub.name} width={14} height={14} className="rounded-[2px] opacity-50" />
+                    <span className="text-xs">{pub.name}</span>
+                  </Link>
+                ))}
               </div>
             </div>
 
@@ -286,7 +277,7 @@ export default function Home() {
                 alt="Yen Wee Lim - Professional headshot"
                 width={400}
                 height={400}
-                className="rounded-2xl object-cover profile-image shadow-lg border border-border/50"
+                className="w-48 h-48 sm:w-64 sm:h-64 lg:w-full lg:h-auto rounded-2xl object-cover profile-image shadow-lg border border-border/50"
                 priority
               />
             </div>
@@ -309,7 +300,7 @@ export default function Home() {
                 }
               }
             }}
-            className="group animate-gentle-float flex items-center justify-center w-10 h-10 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
+            className="group animate-gentle-float flex items-center justify-center w-11 h-11 rounded-full border border-muted-foreground/20 hover:border-foreground/50 transition-all duration-300 bg-background/80 backdrop-blur-sm"
             aria-label={activeSection === 'connect' ? 'Scroll to top' : 'Scroll to next section'}
             data-umami-event="nav-scroll-button"
           >
@@ -329,85 +320,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Metrics Banner */}
-        <section className="py-10 sm:py-12 border-y border-border/60 section-reveal">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            {contentData.metrics.map((metric: { value: string; label: string }, index: number) => (
-              <AnimatedStat key={index} value={metric.value} label={metric.label} />
-            ))}
-          </div>
-        </section>
-
-        {/* Published In */}
-        <section className="py-6 sm:py-8 section-reveal">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            <div className="text-xs text-muted-foreground/50 font-mono tracking-wider shrink-0">PUBLISHED IN</div>
-            <div className="flex items-center gap-6">
-              {contentData.publishedIn.map((pub: { name: string; logo: string; url: string }, index: number) => (
-                <Link
-                  key={index}
-                  href={pub.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 text-muted-foreground/60 hover:text-foreground transition-colors duration-300"
-                >
-                  <Image src={pub.logo} alt={pub.name} width={20} height={20} className="rounded-[3px] opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="text-sm">{pub.name}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Currently & Focus */}
-        <section className="py-8 sm:py-10 section-reveal">
-          <div className="grid sm:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <div className="text-xs text-muted-foreground font-mono tracking-wider">CURRENTLY</div>
-              <div className="space-y-1.5">
-                <div className="text-foreground">{contentData.currentRole.position}</div>
-                <div className="text-muted-foreground">{contentData.currentRole.company}</div>
-                <div className="text-xs text-muted-foreground">{contentData.currentRole.period}</div>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div className="text-xs text-muted-foreground font-mono tracking-wider">FOCUS</div>
-              <div className="flex flex-wrap gap-2">
-                {contentData.focus.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* My Path */}
-        <section className="py-8 sm:py-10 border-t border-border/40 section-reveal">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="space-y-2 max-w-2xl">
-              <div className="text-xs text-muted-foreground font-mono tracking-wider">{contentData.story.heading.toUpperCase()}</div>
-              <p className="text-muted-foreground leading-relaxed">
-                {contentData.story.text}
-              </p>
-            </div>
-            <Link
-              href={contentData.story.linkHref}
-              className="group inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors whitespace-nowrap shrink-0"
-              data-umami-event="content-read-journey"
-            >
-              {contentData.story.linkText}
-              <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
-        </section>
-
         <section
           id="services"
           className="py-16 sm:py-24 section-reveal"
@@ -418,27 +330,16 @@ export default function Home() {
               <div className="text-xs text-muted-foreground font-mono tracking-wider">SERVICES</div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 stagger-reveal">
-              {contentData.services.map((service, index) => {
-                const iconMap = [Bot, Globe, Settings, TrendingUp];
-                const tintMap = ["icon-tint-blue", "icon-tint-green", "icon-tint-purple", "icon-tint-orange"];
-                const IconComponent = iconMap[index % iconMap.length];
-                const tintClass = tintMap[index % tintMap.length];
-                return (
-                <SpotlightCard
+            <div className="space-y-6">
+              {contentData.services.map((service, index) => (
+                <div
                   key={index}
-                  className="group card-lift flex items-start gap-4 p-5 rounded-lg"
+                  className="group grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8 py-4 border-b border-border/30 last:border-b-0"
                 >
-                  <div className={`w-10 h-10 rounded-md ${tintClass} flex items-center justify-center shrink-0 transition-colors duration-300`}>
-                    <IconComponent className="w-5 h-5 text-foreground/70" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-foreground mb-1">{service.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-                  </div>
-                </SpotlightCard>
-                );
-              })}
+                  <h3 className="text-sm font-medium text-foreground sm:text-right">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -447,28 +348,22 @@ export default function Home() {
         <section className="py-16 sm:py-24 section-reveal">
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Tech Stack</ScrollFloat>
+              <h2 className="text-2xl sm:text-3xl font-light">Tech Stack</h2>
               <div className="text-xs text-muted-foreground font-mono tracking-wider">TOOLS I SHIP WITH</div>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="space-y-6">
               {contentData.technicalSkills.map((group: { category: string; skills: string[] }, index: number) => (
-                <SpotlightCard
-                  key={index}
-                  className="card-lift p-5 rounded-lg space-y-3 h-full bg-muted/10 hover:bg-muted/20 transition-colors duration-300"
-                >
-                  <div className="text-xs text-muted-foreground font-mono tracking-wider">{group.category.toUpperCase()}</div>
+                <div key={index} className="grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+                  <div className="text-xs text-muted-foreground font-mono tracking-wider sm:text-right pt-1">{group.category.toUpperCase()}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {group.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2.5 py-1 text-xs text-foreground/80 bg-muted/50 rounded-md border border-border/50 hover:border-muted-foreground/40 transition-colors duration-300"
-                      >
+                      <span key={skill} className="px-2.5 py-1 text-xs text-foreground/80 bg-muted/50 rounded-md border border-border/50 hover:border-muted-foreground/40 transition-colors duration-300">
                         {skill}
                       </span>
                     ))}
                   </div>
-                </SpotlightCard>
+                </div>
               ))}
             </div>
           </div>
@@ -480,7 +375,7 @@ export default function Home() {
         >
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Experience</ScrollFloat>
+              <h2 className="text-2xl sm:text-3xl font-light">Experience</h2>
               <div className="text-xs text-muted-foreground font-mono tracking-wider">2022 — PRESENT</div>
             </div>
 
@@ -540,19 +435,20 @@ export default function Home() {
           <div className="space-y-8 sm:space-y-10">
             <div className="text-xs text-muted-foreground font-mono tracking-wider">WHAT PEOPLE SAY</div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="space-y-8">
               {contentData.testimonials.map((testimonial: { quote: string; name: string; title: string; company: string }, index: number) => (
-                <TiltedCard key={index} rotateAmplitude={6} scaleOnHover={1.03} className="card-lift p-5 rounded-lg border border-border/50 hover:border-border bg-muted/10 hover:bg-muted/20 transition-all duration-300 flex flex-col justify-between gap-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed italic">
+                <blockquote key={index} className="border-l-2 border-border/60 pl-6 py-1">
+                  <p className="text-muted-foreground leading-relaxed">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
-                  <div className="pt-2 border-t border-border/30">
-                    <div className="font-medium text-foreground text-sm">{testimonial.name}</div>
-                    <div className="text-muted-foreground/70 text-xs">
+                  <footer className="mt-3 text-sm">
+                    <span className="text-foreground font-medium">{testimonial.name}</span>
+                    <span className="text-muted-foreground/50"> / </span>
+                    <span className="text-muted-foreground/70">
                       {testimonial.title ? `${testimonial.title}, ${testimonial.company}` : testimonial.company}
-                    </div>
-                  </div>
-                </TiltedCard>
+                    </span>
+                  </footer>
+                </blockquote>
               ))}
             </div>
           </div>
@@ -562,7 +458,7 @@ export default function Home() {
         <section className="py-16 sm:py-24 section-reveal">
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Speaking & Talks</ScrollFloat>
+              <h2 className="text-2xl sm:text-3xl font-light">Speaking & Talks</h2>
               <div className="flex items-center gap-3">
                 <div className="text-xs text-muted-foreground font-mono tracking-wider hidden sm:block">SHARING KNOWLEDGE</div>
                 <div className="flex items-center gap-1.5">
@@ -634,25 +530,22 @@ export default function Home() {
         >
           <div className="space-y-8 sm:space-y-10">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <ScrollFloat containerClassName="text-2xl sm:text-3xl font-light" animationDuration={0.5} stagger={0.02}>Education & Credentials</ScrollFloat>
+              <h2 className="text-2xl sm:text-3xl font-light">Education & Credentials</h2>
               <div className="text-xs text-muted-foreground font-mono tracking-wider">QUALIFICATIONS</div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-6">
               {contentData.education.map((edu, index) => (
-                <div key={index} className="card-lift p-5 rounded-lg border border-border/50 hover:border-border transition-all duration-300 space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 relative shrink-0">
+                <div key={index} className="grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+                  <div className="flex items-center gap-2.5 sm:justify-end">
+                    <div className="w-7 h-7 relative shrink-0">
                       <Image src={edu.logo} alt={edu.institution} fill className="rounded-sm object-contain" />
                     </div>
-                    <div className="min-w-0">
-                      <h3 className="font-medium text-foreground text-sm">{edu.degree}</h3>
-                      <div className="text-xs text-muted-foreground">{edu.institution}</div>
-                    </div>
+                    <span className="text-xs text-muted-foreground/60 font-mono">{edu.period.replace("Feb ", "").replace("May ", "")}</span>
                   </div>
-                  <div className="flex items-baseline justify-between gap-2">
-                    <div className="text-sm text-muted-foreground">{edu.honors} {"\u00b7"} {edu.gpa.replace("Cumulative GPA: ", "")}</div>
-                    <div className="text-xs text-muted-foreground/60 font-mono shrink-0">{edu.period.replace("Feb ", "").replace("May ", "")}</div>
+                  <div>
+                    <h3 className="text-sm font-medium text-foreground">{edu.degree}</h3>
+                    <div className="text-sm text-muted-foreground">{edu.institution} {"\u00b7"} {edu.honors} {"\u00b7"} {edu.gpa.replace("Cumulative GPA: ", "")}</div>
                   </div>
                 </div>
               ))}
@@ -770,7 +663,6 @@ export default function Home() {
         </footer>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/60 to-transparent pointer-events-none"></div>
     </div>
   )
 }

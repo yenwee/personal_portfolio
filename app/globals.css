@@ -124,6 +124,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
   body {
     @apply bg-background text-foreground;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -284,6 +289,32 @@
   .stagger-reveal.is-visible > * {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Theme toggle icon entrance */
+  .animate-theme-icon {
+    animation: theme-icon-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes theme-icon-in {
+    from {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  /* Status pulse — slower, subtler than default animate-pulse */
+  .animate-status-pulse {
+    animation: status-pulse 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  @keyframes status-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
   }
 
   /* Profile image treatment */

@@ -27,16 +27,18 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setIsDark((prev) => !prev)}
-      className="p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
-      aria-label="Toggle theme"
+      className="relative overflow-hidden p-2 rounded-lg hover:bg-muted/50 transition-colors duration-300"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       data-umami-event="ui-theme-toggle"
     >
       {mounted ? (
-        isDark ? (
-          <Sun className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
-        ) : (
-          <Moon className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
-        )
+        <span key={isDark ? "sun" : "moon"} className="block animate-theme-icon">
+          {isDark ? (
+            <Sun className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
+          ) : (
+            <Moon className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors" />
+          )}
+        </span>
       ) : (
         <div className="w-4 h-4" />
       )}
