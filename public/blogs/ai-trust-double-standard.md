@@ -18,7 +18,7 @@ If you have ever second-guessed your own writing because you worried someone mig
 
 ## We do not treat these errors the same
 
-The commenter made a fair follow-up point in the thread. Context matters. A medical error carries more weight than a typo. Scrutiny should scale with consequence. I agree.
+There is a fair counterpoint here. Context matters. A medical error carries more weight than a typo. Scrutiny should scale with consequence. I agree.
 
 But we do not actually scale it that way.
 
@@ -34,7 +34,7 @@ The standard is not higher because AI is worse. It is higher because we have not
 
 ## The investment tells the real story
 
-Here is a number that I think explains more than any trust survey.
+One number explains more than any trust survey.
 
 Companies allocate 93% of their AI adoption budgets to technology. Seven percent goes to helping humans actually work with it.
 
@@ -48,28 +48,56 @@ These are not Luddites. These are people who built expertise over decades watchi
 
 I have seen this pattern up close. The pushback is never "I tried it and it failed." It is "it is not perfect." The tool does not need to be perfect. It needs to be better than not using it. But that comparison rarely happens.
 
+## The part the skeptics get right
+
+The discomfort is not irrational.
+
+![Accountability for failures: human vs AI -- human failure has a clear path, AI failure has no clear answer](/blogs/images/trust-standard/trust-standard-accountability.png)
+
+When a doctor makes an error, there is a medical board. When an engineer signs off on a flawed design, there is professional liability. When a financial advisor gives bad advice, there is a regulatory body and malpractice insurance. The systems are imperfect, but they are legible. You know who to call. You know who pays.
+
+When AI fails, who do you call? The developer who trained the model? The company that deployed it? The user who trusted the output?
+
+The question of accountability is genuinely unsolved. The EU AI Act tries to answer it. McKinsey's trust guidelines try. Internal governance policies try. None of them have a clean answer yet. I do not either.
+
+The fear is not that AI makes mistakes. The fear is that nobody owns the mistake when it does.
+
+The absence of an accountability framework does not mean the technology is less capable. It means we are behind on governance. Those are different problems. We did not stop using cars because liability law took decades to mature. We built the frameworks while we drove.
+
 ## Meanwhile
 
-This is a different domain. But it is worth knowing what was happening the same week that comment landed.
+This is a different domain. But the timing is hard to ignore.
 
 ![AI's impact on open source vulnerability discovery -- from manual review to 652 kernel vulnerabilities in 2026](/blogs/images/trust-standard/trust-standard-vulnerability-surge.png)
 
 The Linux kernel security team reported that AI-generated vulnerability submissions had surged from two or three per week to five to ten per day. Not spam. Real bugs. Findings that human reviewers missed for years. Greg Kroah-Hartman, a Linux Foundation fellow, confirmed it: "The tools are good enough at finding these bugs."
 
-At a conference demo, Claude found a blind SQL injection in Ghost, a platform with 50,000 GitHub stars that had never had a critical vulnerability in its history. Found it in 90 minutes.
+The Open Source Security Foundation described the pace: submissions arriving "in minutes or hours" where they used to take weeks. Not one team. Multiple independent researchers, using different AI tools, finding the same bugs simultaneously. The old model of quiet disclosure and embargoed patches is breaking down because the bugs are being found faster than the process can handle.
+
+At a conference demo, Claude found a blind SQL injection in Ghost, a platform with 50,000 GitHub stars that had never had a critical vulnerability in its entire history. Found it in 90 minutes. 652 Linux kernel vulnerabilities have been logged in 2026 so far, many discovered by AI tools running patterns no human team had the bandwidth to execute.
 
 This does not prove AI is trustworthy for everything. Writing articles and finding SQL injections are different tasks. But it does raise a question: if we are going to hold AI to a higher standard, should we not also update that standard as the evidence changes?
 
+## What calibrated trust actually looks like
+
+I do not think the answer is "trust AI" or "do not trust AI." The answer is: trust it for what it is measurably good at, verify where it is measurably weak, and invest in the governance structures that let you tell the difference.
+
+![How to verify AI code based on risk -- trust and ship for low risk, verify every line for high risk](/blogs/images/trust-standard/trust-standard-calibrated.png)
+
+I build AI systems for a living. I let AI generate code all day. Routing logic, API scaffolding, data transformations, test boilerplate. It is fast and it is usually right. But when it comes to API key management or authentication modules, I review every line. Not because I think the model is bad at auth. Because the consequence of a subtle error in auth is different from the consequence of a subtle error in a data transform. One is a bug. The other is a breach.
+
+That is calibrated trust. Not blanket acceptance. Not blanket rejection. Risk-proportional verification. The same approach we already use for human work. A junior developer can write a CRUD endpoint without oversight. That same developer gets a senior review before touching payment processing. We do not call that distrust. We call it engineering.
+
+The problem is that most organizations do not apply this logic to AI. They either trust it completely (shadow AI, no review, no governance) or reject it completely ("it is not perfect"). Both responses are miscalibrated. Both cost more than the alternative.
+
 ## What I actually think
 
-I do not think we should trust AI blindly. I do not think the commenter was wrong to be skeptical. Skepticism is fine.
+I do not think we should trust AI blindly. Skepticism is fine. I would rather work with skeptics than with people who accept every output without reading it.
 
 ![AI trust calibration -- bridging the gap between how we judge AI, what the evidence shows, and the real question](/blogs/images/trust-standard/trust-standard-calibration.png)
 
-What I think is that we have a calibration problem. We assess AI risk based on how the technology makes us feel, not on what it actually gets wrong. A PMC study shows identical errors getting judged differently based on who made them. A 93-7 budget split shows organizations investing in the technology but not in helping people understand it. And a commenter sees a human error and concludes a machine must have made it.
+What I think is that we have a calibration problem. We assess AI risk based on how the technology makes us feel, not on what it actually gets wrong. A PMC study shows identical errors getting judged differently based on who made them. A 93-7 budget split shows organizations investing in the technology but not in helping people understand it. An accountability gap gets conflated with a capability gap.
 
-The commenter wrote: "With AI this is still a guess, and as such they are held at a different standard."
-
-Fair. But the guess is narrowing. And the standard is not.
+With AI, the standard is still based on a guess. Fair. But the guess is narrowing. And the standard is not.
 
 The double standard is not that we hold AI to higher expectations. It is that we forgot humans never met those expectations either.
