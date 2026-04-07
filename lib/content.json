@@ -200,6 +200,11 @@
       "url": "https://levelup.gitconnected.com"
     },
     {
+      "name": "Generative AI",
+      "logo": "/images/generative-ai-logo.png",
+      "url": "https://generativeai.pub/"
+    },
+    {
       "name": "Medium",
       "logo": "/images/medium-logo.svg",
       "url": "https://medium.com/@yenwee0804"
