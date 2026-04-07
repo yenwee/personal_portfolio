@@ -51,9 +51,6 @@ export default function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-in-up")
-            entry.target.querySelectorAll(".stagger-reveal").forEach((el) => {
-              el.classList.add("is-visible")
-            })
             if (entry.target.id) {
               setActiveSection(entry.target.id)
               if (!viewedSectionsRef.current.has(entry.target.id)) {
